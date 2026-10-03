@@ -1,44 +1,28 @@
 # Your first 20 minutes
 
-[Back to the curriculum](README.md)
+[Curriculum](README.md) · [Diagnostic](curriculum/diagnostic.md) · [Pathways](learning-plan/README.md)
 
-You do not need to master everything at once. Choose the skill with the greatest immediate benefit.
+Choose something useful this week: a bill, an account-security concern, a move, a job application, a conversation, or a routine. Use fictional details for learning and appropriate professional services for urgent or personal high-stakes needs.
 
-## Choose a starting point
+1. **Five minutes:** try the relevant diagnostic task and compare your output with its domain criterion.
+2. **Ten minutes:** read the short guide and start one practical subskill. Use a checklist when needed.
+3. **Three minutes:** close the guide and explain or demonstrate what you can; correct errors afterwards.
+4. **Two minutes:** record the output, help used, next action, and a later review in your [tracker](templates/progress-tracker.md).
 
-| Your situation | Start with |
+For a fuller starting assessment, spread the diagnostic across several sessions. Choose two priority domains and a supporting skill using the [dependency map](curriculum/dependency-map.md), then follow the matching pathway.
+
+## Choose a route
+
+| Situation | Pathway |
 | --- | --- |
-| You have no plan for an emergency | [Emergencies](guides/01-emergencies.md) |
-| Bills and spending are hard to track | [Money](guides/02-money.md) |
-| You reuse passwords or worry about scams | [Digital safety](guides/07-digital-safety.md) |
-| You are overwhelmed or isolated | [Emotional wellbeing](guides/04-wellbeing.md) |
-| You are preparing to live independently | [Everyday independence](guides/08-home.md) |
-| You want the full foundation | [30-day plan](learning-plan/30-days.md) |
+| Build a balanced foundation | [General](learning-plan/30-days.md) |
+| Prepare to move or run a household | [Independent living](learning-plan/independent-living.md) |
+| Handle bills, borrowing, records, or contracts | [Money and admin](learning-plan/money-admin.md) |
+| Protect accounts and verify requests | [Digital safety](learning-plan/digital-safety.md) |
+| Apply for work and evaluate offers | [School to work](learning-plan/school-to-work.md) |
 
-## Assess yourself
+If you already demonstrate a full criterion, try a fresh assessment or move to the next missing skill. Do not skip solely because the topic feels familiar. Read [how mastery works](curriculum/mastery.md), including practical evidence and delayed reassessment.
 
-Give each of the twelve skills a score in a local [progress tracker](templates/progress-tracker.md):
+Choose [UK/Wales resources](locales/README.md) where applicable. For another country, use the local-resource worksheet and record official sources; no other-country pack is implied to be verified. If under 18, use appropriate trusted-adult help for accounts, contracts, equipment, and age-restricted activities.
 
-- **0 — New:** I do not know where to start.
-- **1 — Familiar:** I understand the basics but need guidance.
-- **2 — Practised:** I can complete the task with a checklist.
-- **3 — Confident:** I can do it independently and explain my choices.
-
-These scores help you choose what to practise. They are not a grade or a measure of your worth.
-
-## Do one learning cycle
-
-1. **Read for five minutes.** Find the guide's main idea.
-2. **Practise for ten minutes.** Start its exercise. Split longer tasks across sessions.
-3. **Recall for three minutes.** Close the guide and answer its self-check.
-4. **Reflect for two minutes.** Write what you did, what confused you, and the next action.
-
-Revisit the self-check after a few days and again the next week. These are convenient starting intervals; adjust them to your memory and schedule. If you can explain a skill but cannot use it, repeat the exercise.
-
-## Localise your learning
-
-Identify your country or region's emergency service, healthcare access route, consumer regulator, tax authority, employment advice service, and accredited first-aid provider. Some linked sources are from the UK or US; their legal rules and services may not apply to you.
-
-If you are under 18, ask a trusted adult to help with contracts, money accounts, household equipment, and training that requires adult supervision.
-
-**Today's win:** choose one guide, complete its smallest action, and schedule your next session.
+Copy worksheets into `personal/` locally. Keep personal information and secrets out of the repository.

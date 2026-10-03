@@ -1,0 +1,811 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "red-cross-preparedness",
+      "title": "Emergency preparedness",
+      "organisation": "American Red Cross",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies.html",
+      "topic": "Emergency planning",
+      "jurisdiction": "United States",
+      "source_type": "professional-organisation",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/moving-out.md",
+        "domains/emergencies.md",
+        "guides/01-emergencies.md",
+        "scenarios/01-emergencies.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "red-cross-training",
+      "title": "First-aid training",
+      "organisation": "American Red Cross",
+      "url": "https://www.redcross.org/take-a-class/first-aid",
+      "topic": "Training pathway",
+      "jurisdiction": "United States",
+      "source_type": "professional-organisation",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/moving-out.md",
+        "domains/emergencies.md",
+        "guides/01-emergencies.md",
+        "scenarios/01-emergencies.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "consumer-budget",
+      "title": "Making a budget",
+      "organisation": "Consumer.gov / FTC",
+      "url": "https://consumer.gov/your-money/making-budget",
+      "topic": "Budgeting",
+      "jurisdiction": "United States",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/money.md",
+        "guides/02-money.md",
+        "scenarios/02-money.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "cfpb-buffer",
+      "title": "Building an emergency fund",
+      "organisation": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/",
+      "topic": "Savings and cash flow",
+      "jurisdiction": "United States",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/money.md",
+        "guides/02-money.md",
+        "scenarios/02-money.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "who-diet",
+      "title": "Healthy diet",
+      "organisation": "World Health Organization",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet",
+      "topic": "Diet principles",
+      "jurisdiction": "International",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "domains/health.md",
+        "guides/03-health.md",
+        "scenarios/03-health.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "who-movement",
+      "title": "Physical activity",
+      "organisation": "World Health Organization",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/physical-activity",
+      "topic": "Movement guidance",
+      "jurisdiction": "International",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "domains/health.md",
+        "guides/03-health.md",
+        "scenarios/03-health.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "nhs-wellbeing",
+      "title": "Every Mind Matters",
+      "organisation": "NHS",
+      "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/",
+      "topic": "Everyday wellbeing",
+      "jurisdiction": "England service context",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/unexpected-expense.md",
+        "domains/health.md",
+        "domains/wellbeing.md",
+        "guides/03-health.md",
+        "guides/04-wellbeing.md",
+        "scenarios/03-health.md",
+        "scenarios/04-wellbeing.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "nhs-relationships",
+      "title": "Maintaining healthy relationships and mental wellbeing",
+      "organisation": "NHS",
+      "url": "https://www.nhs.uk/every-mind-matters/lifes-challenges/maintaining-healthy-relationships-and-mental-wellbeing/",
+      "topic": "Relationships and support",
+      "jurisdiction": "England service context",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "capstones/suspicious-payment.md",
+        "domains/relationships.md",
+        "guides/05-relationships.md",
+        "scenarios/05-relationships.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "ncsc-security",
+      "title": "Staying secure online",
+      "organisation": "National Cyber Security Centre",
+      "url": "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online",
+      "topic": "Account and device safety",
+      "jurisdiction": "United Kingdom",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/suspicious-payment.md",
+        "domains/digital-safety.md",
+        "guides/07-digital-safety.md",
+        "scenarios/07-digital-safety.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "ncsc-ai",
+      "title": "ChatGPT and large language models",
+      "organisation": "National Cyber Security Centre",
+      "url": "https://www.ncsc.gov.uk/blog-post/chatgpt-and-large-language-models-whats-the-risk",
+      "topic": "AI data and verification risks",
+      "jurisdiction": "United Kingdom",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/critical-thinking.md",
+        "domains/digital-safety.md",
+        "guides/06-thinking.md",
+        "guides/07-digital-safety.md",
+        "scenarios/06-critical-thinking.md",
+        "scenarios/07-digital-safety.md"
+      ],
+      "notes": "Published in 2023; used for general verification/privacy risks, not current product features or data policies."
+    },
+    {
+      "id": "fsa-hygiene",
+      "title": "Food safety for community cooking",
+      "organisation": "Food Standards Agency",
+      "url": "https://www.gov.uk/government/publications/food-safety-for-community-cooking-and-food-banks/food-safety-for-community-cooking-and-food-banks",
+      "topic": "Food-hygiene principles",
+      "jurisdiction": "England, Wales, Northern Ireland; community cooking",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/moving-out.md",
+        "domains/home.md",
+        "guides/08-home.md",
+        "scenarios/08-home.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "fsa-cooking",
+      "title": "Cooking your food",
+      "organisation": "Food Standards Agency",
+      "url": "https://www.gov.uk/government/publications/cooking-your-food",
+      "topic": "Safe cooking",
+      "jurisdiction": "England, Wales, Northern Ireland",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/moving-out.md",
+        "domains/home.md",
+        "guides/08-home.md",
+        "scenarios/08-home.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "england-careers",
+      "title": "Careers advice",
+      "organisation": "Get careers information and advice (formerly National Careers Service)",
+      "url": "https://nationalcareers.service.gov.uk/careers-advice",
+      "topic": "Applications and interviews",
+      "jurisdiction": "England",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/first-job.md",
+        "domains/work.md",
+        "guides/09-work.md",
+        "scenarios/09-work.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "spacing-review",
+      "title": "The science of effective learning with spacing and retrieval practice",
+      "organisation": "Carpenter, Pan, and Butler",
+      "url": "https://www.nature.com/articles/s44159-022-00089-1",
+      "topic": "Learning research",
+      "jurisdiction": "International research context",
+      "source_type": "research-review",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "domains/learning-time.md",
+        "guides/10-learning-and-time.md",
+        "scenarios/10-learning-time.md"
+      ],
+      "notes": "Publisher access may be restricted; accessible practice guidance is linked separately. A research review is not a validated personal assessment tool."
+    },
+    {
+      "id": "retrieval-practice",
+      "title": "Retrieval practice",
+      "organisation": "The Learning Scientists",
+      "url": "https://www.learningscientists.org/retrieval-practice",
+      "topic": "Learning exercises",
+      "jurisdiction": "General education",
+      "source_type": "educational-source",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "domains/learning-time.md",
+        "guides/10-learning-and-time.md",
+        "scenarios/10-learning-time.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "england-housing",
+      "title": "Renting a property",
+      "organisation": "UK Government",
+      "url": "https://www.gov.uk/browse/housing-local-services/renting-property",
+      "topic": "Housing guidance directory",
+      "jurisdiction": "Check each linked page; many rules are England-specific",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/moving-out.md",
+        "domains/major-decisions.md",
+        "guides/12-major-decisions.md",
+        "scenarios/12-major-decisions.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "uk-money",
+      "title": "Everyday money",
+      "organisation": "MoneyHelper / Money and Pensions Service",
+      "url": "https://www.moneyhelper.org.uk/en/everyday-money",
+      "topic": "Banking, budgets, borrowing, insurance",
+      "jurisdiction": "United Kingdom; check individual guidance",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/life-admin.md",
+        "domains/money.md",
+        "guides/02-money.md",
+        "guides/11-life-admin.md",
+        "scenarios/02-money.md",
+        "scenarios/11-life-admin.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "uk-tax",
+      "title": "Income Tax",
+      "organisation": "HMRC / UK Government",
+      "url": "https://www.gov.uk/browse/tax/income-tax",
+      "topic": "Tax information and current rules",
+      "jurisdiction": "United Kingdom; devolved tax differences may apply",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/life-admin.md",
+        "domains/money.md",
+        "domains/work.md",
+        "guides/02-money.md",
+        "guides/09-work.md",
+        "guides/11-life-admin.md",
+        "scenarios/02-money.md",
+        "scenarios/09-work.md",
+        "scenarios/11-life-admin.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "gb-employment",
+      "title": "Employment contracts",
+      "organisation": "Acas",
+      "url": "https://www.acas.org.uk/employment-contracts",
+      "topic": "Employment terms and advice",
+      "jurisdiction": "Great Britain; Northern Ireland has a different advice route",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/life-admin.md",
+        "domains/work.md",
+        "guides/09-work.md",
+        "guides/11-life-admin.md",
+        "scenarios/09-work.md",
+        "scenarios/11-life-admin.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "gb-payslips",
+      "title": "Payslips",
+      "organisation": "Acas",
+      "url": "https://www.acas.org.uk/payslips",
+      "topic": "Pay statements and deductions",
+      "jurisdiction": "Great Britain",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/money.md",
+        "domains/work.md",
+        "guides/02-money.md",
+        "guides/09-work.md",
+        "scenarios/02-money.md",
+        "scenarios/09-work.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "uk-consumer",
+      "title": "Help for consumers",
+      "organisation": "Competition and Markets Authority / UK Government",
+      "url": "https://www.gov.uk/guidance/help-for-consumers",
+      "topic": "Consumer problems and advice routes",
+      "jurisdiction": "United Kingdom; regional advice routes differ",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/life-admin.md",
+        "domains/money.md",
+        "guides/02-money.md",
+        "guides/11-life-admin.md",
+        "scenarios/02-money.md",
+        "scenarios/11-life-admin.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "uk-investing",
+      "title": "InvestSmart",
+      "organisation": "Financial Conduct Authority",
+      "url": "https://www.fca.org.uk/investsmart",
+      "topic": "Investment risk, fees, and verification",
+      "jurisdiction": "United Kingdom",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/critical-thinking.md",
+        "domains/money.md",
+        "guides/02-money.md",
+        "guides/06-thinking.md",
+        "scenarios/02-money.md",
+        "scenarios/06-critical-thinking.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "uk-council",
+      "title": "Find your local council",
+      "organisation": "UK Government",
+      "url": "https://www.gov.uk/find-local-council",
+      "topic": "Local government services",
+      "jurisdiction": "United Kingdom",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/moving-out.md",
+        "domains/major-decisions.md",
+        "guides/12-major-decisions.md",
+        "scenarios/12-major-decisions.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "uk-civic",
+      "title": "Register to vote",
+      "organisation": "Electoral Commission",
+      "url": "https://www.electoralcommission.org.uk/voting-and-elections/register-vote",
+      "topic": "Official civic participation information",
+      "jurisdiction": "United Kingdom; eligibility differs by election and nation",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/moving-out.md",
+        "domains/major-decisions.md",
+        "guides/12-major-decisions.md",
+        "scenarios/12-major-decisions.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "uk-fraud",
+      "title": "Report internet scams and phishing",
+      "organisation": "UK Government",
+      "url": "https://www.gov.uk/report-suspicious-emails-websites-phishing",
+      "topic": "Current official scam/fraud reporting routes",
+      "jurisdiction": "United Kingdom; reporting differs by nation and incident",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/suspicious-payment.md",
+        "domains/digital-safety.md",
+        "guides/07-digital-safety.md",
+        "scenarios/07-digital-safety.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "gb-utilities",
+      "title": "Power-cut help",
+      "organisation": "Energy Networks Association / electricity network operators",
+      "url": "https://www.powercut105.com/en/",
+      "topic": "Electricity outages and verified network contact",
+      "jurisdiction": "Great Britain",
+      "source_type": "official-service",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/moving-out.md",
+        "domains/emergencies.md",
+        "domains/home.md",
+        "guides/01-emergencies.md",
+        "guides/08-home.md",
+        "scenarios/01-emergencies.md",
+        "scenarios/08-home.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-gas",
+      "title": "Gas services and emergencies",
+      "organisation": "Wales & West Utilities",
+      "url": "https://www.wwutilities.co.uk/services/",
+      "topic": "Gas network service and emergency information",
+      "jurisdiction": "Wales and south-west England",
+      "source_type": "official-service",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/moving-out.md",
+        "domains/emergencies.md",
+        "domains/home.md",
+        "guides/01-emergencies.md",
+        "guides/08-home.md",
+        "scenarios/01-emergencies.md",
+        "scenarios/08-home.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-999",
+      "title": "999",
+      "organisation": "Welsh Ambulance Services University NHS Trust",
+      "url": "https://ambulance.nhs.wales/services/999/",
+      "topic": "Medical emergencies",
+      "jurisdiction": "Wales",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/moving-out.md",
+        "domains/emergencies.md",
+        "guides/01-emergencies.md",
+        "scenarios/01-emergencies.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-health",
+      "title": "NHS 111 Wales",
+      "organisation": "Welsh Ambulance Services / NHS Wales",
+      "url": "https://111.wales.nhs.uk/",
+      "topic": "Healthcare routes and service information",
+      "jurisdiction": "Wales",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/unexpected-expense.md",
+        "domains/health.md",
+        "domains/wellbeing.md",
+        "guides/03-health.md",
+        "guides/04-wellbeing.md",
+        "scenarios/03-health.md",
+        "scenarios/04-wellbeing.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-mental-health",
+      "title": "Mental health and wellbeing",
+      "organisation": "NHS 111 Wales",
+      "url": "https://111.wales.nhs.uk/encyclopaedia/m/article/mentalhealthandwellbeing",
+      "topic": "Urgent mental-health support routes",
+      "jurisdiction": "Wales",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/unexpected-expense.md",
+        "domains/wellbeing.md",
+        "guides/04-wellbeing.md",
+        "scenarios/04-wellbeing.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-medicine",
+      "title": "Medicines information",
+      "organisation": "NHS 111 Wales",
+      "url": "https://111.wales.nhs.uk/medicinesinformation/",
+      "topic": "Medicine information and professional questions",
+      "jurisdiction": "Wales",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "domains/health.md",
+        "guides/03-health.md",
+        "scenarios/03-health.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-housing",
+      "title": "Renting homes: tenants",
+      "organisation": "Welsh Government",
+      "url": "https://www.gov.wales/renting-homes-tenants",
+      "topic": "Occupation contracts and housing information",
+      "jurisdiction": "Wales",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/moving-out.md",
+        "domains/home.md",
+        "domains/major-decisions.md",
+        "guides/08-home.md",
+        "guides/12-major-decisions.md",
+        "scenarios/08-home.md",
+        "scenarios/12-major-decisions.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-housing-advice",
+      "title": "Housing advice",
+      "organisation": "Shelter Cymru",
+      "url": "https://sheltercymru.org.uk/housing-advice-parent/",
+      "topic": "Independent specialist housing advice",
+      "jurisdiction": "Wales",
+      "source_type": "recognised-advice-organisation",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/moving-out.md",
+        "domains/major-decisions.md",
+        "guides/12-major-decisions.md",
+        "scenarios/12-major-decisions.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-advice",
+      "title": "Claim what's yours / Advicelink Cymru",
+      "organisation": "Welsh Government",
+      "url": "https://www.gov.wales/claim-whats-yours-campaign",
+      "topic": "Advice and financial-support signposting",
+      "jurisdiction": "Wales",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/life-admin.md",
+        "guides/11-life-admin.md",
+        "scenarios/11-life-admin.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-general-advice",
+      "title": "Advice for Wales",
+      "organisation": "Citizens Advice",
+      "url": "https://www.citizensadvice.org.uk/wales/",
+      "topic": "Consumer, benefits, debt, and legal-advice signposting",
+      "jurisdiction": "Wales",
+      "source_type": "recognised-advice-organisation",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/life-admin.md",
+        "domains/major-decisions.md",
+        "guides/11-life-admin.md",
+        "guides/12-major-decisions.md",
+        "scenarios/11-life-admin.md",
+        "scenarios/12-major-decisions.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "uk-legal",
+      "title": "Legal aid",
+      "organisation": "UK Government",
+      "url": "https://www.gov.uk/legal-aid",
+      "topic": "Legal-support scope and eligibility information",
+      "jurisdiction": "England and Wales; verify eligibility and issue scope",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/life-admin.md",
+        "domains/major-decisions.md",
+        "guides/11-life-admin.md",
+        "guides/12-major-decisions.md",
+        "scenarios/11-life-admin.md",
+        "scenarios/12-major-decisions.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-careers",
+      "title": "Careers Wales",
+      "organisation": "Careers Wales / Welsh Government",
+      "url": "https://careerswales.gov.wales/",
+      "topic": "Education, careers, and skills",
+      "jurisdiction": "Wales",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/first-job.md",
+        "capstones/moving-out.md",
+        "domains/major-decisions.md",
+        "domains/work.md",
+        "guides/09-work.md",
+        "guides/12-major-decisions.md",
+        "scenarios/09-work.md",
+        "scenarios/12-major-decisions.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-transport",
+      "title": "Traveline Cymru",
+      "organisation": "Transport for Wales / Traveline Cymru",
+      "url": "https://www.traveline.cymru/",
+      "topic": "Journey planning and service information",
+      "jurisdiction": "Wales; verify operator fares and live disruptions",
+      "source_type": "official-service",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/busy-week.md",
+        "capstones/moving-out.md",
+        "domains/major-decisions.md",
+        "guides/12-major-decisions.md",
+        "scenarios/12-major-decisions.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-floods",
+      "title": "What to do in a flood",
+      "organisation": "Natural Resources Wales",
+      "url": "https://naturalresourceswales.gov.uk/flooding/what-to-do-in-a-flood?lang=en",
+      "topic": "Flood preparation and response",
+      "jurisdiction": "Wales",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/moving-out.md",
+        "domains/emergencies.md",
+        "guides/01-emergencies.md",
+        "scenarios/01-emergencies.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "wales-first-aid",
+      "title": "First-aid training",
+      "organisation": "St John Ambulance Cymru",
+      "url": "https://www.sjacymru.org.uk/en/page/training",
+      "topic": "Practical first-aid training",
+      "jurisdiction": "Wales",
+      "source_type": "professional-organisation",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/moving-out.md",
+        "domains/emergencies.md",
+        "guides/01-emergencies.md",
+        "scenarios/01-emergencies.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    },
+    {
+      "id": "ncsc-integrity",
+      "title": "Preserving integrity in the age of generative AI",
+      "organisation": "National Cyber Security Centre",
+      "url": "https://www.ncsc.gov.uk/blog-post/preserving-integrity-in-age-generative-ai",
+      "topic": "Manipulated media and provenance",
+      "jurisdiction": "United Kingdom",
+      "source_type": "official-authority",
+      "last_checked": "2026-10-03",
+      "lesson_dependencies": [
+        "capstones/suspicious-payment.md",
+        "capstones/unexpected-expense.md",
+        "domains/critical-thinking.md",
+        "domains/digital-safety.md",
+        "guides/06-thinking.md",
+        "guides/07-digital-safety.md",
+        "scenarios/06-critical-thinking.md",
+        "scenarios/07-digital-safety.md"
+      ],
+      "notes": "Review scope and current guidance before personal decisions."
+    }
+  ]
+}

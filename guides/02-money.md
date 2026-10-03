@@ -44,3 +44,11 @@ Fictional monthly amounts in any currency: income 1,500; essentials 1,000; other
 
 - [Consumer.gov: making a budget](https://consumer.gov/your-money/making-budget) — budgeting basics; US context.
 - [CFPB: emergency funds](https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/) — savings and cash-flow concepts; US context.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/money.md)
+- [Scenario S02](../scenarios/02-money.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

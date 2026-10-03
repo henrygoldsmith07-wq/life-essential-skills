@@ -44,3 +44,11 @@ Prepare for interviews by matching examples to the role's requirements. Use a si
 ## Reference
 
 - [National Careers Service: careers advice](https://nationalcareers.service.gov.uk/careers-advice) — England-based service with practical career resources; local services may differ.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/work.md)
+- [Scenario S09](../scenarios/09-work.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

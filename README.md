@@ -1,17 +1,25 @@
 # Life Essential Skills
 
-**Learn the things that help you stay safe, manage money, care for yourself, build relationships, and live independently.**
+**Learn, practise, demonstrate, revisit: practical skills for an independent life.**
 
-A practical beginner curriculum. No coding, paid subscriptions, or special equipment required. Start with 20 minutes, use what you have, and measure progress by what you can do.
+Twelve short guides support a competency-based curriculum. Progress means what you can do with realistic situations, not how many pages you read. Everything works in Markdown; no app or paid subscription is required.
 
-## Start here
+## Start with your needs
 
-1. Read [START-HERE](START-HERE.md) and choose one skill you need this week.
-2. Follow the [30-day learning plan](learning-plan/30-days.md), or pick a guide below.
-3. Read a short lesson, do the exercise, then answer the self-check without looking.
-4. Record what worked in a local copy of the [progress tracker](templates/progress-tracker.md).
+1. Try the [practical diagnostic](curriculum/diagnostic.md) and choose two priorities.
+2. Choose a [30-day pathway](learning-plan/README.md): general, independent living, money/admin, digital safety, or school to work.
+3. Read a short guide, practise a subskill, and attempt its [scenario](scenarios/README.md) before opening the explanation.
+4. Record the criterion, evidence, help used, and later result in your local [progress tracker](templates/progress-tracker.md).
 
-## The curriculum
+For a first 20-minute session, use [START-HERE](START-HERE.md). If a situation needs urgent help, use appropriate services before a learning exercise.
+
+## What does mastery look like?
+
+**Foundation → Applied → Independent → Advanced scenario.** Each domain has four observable criteria. Understanding, guided practice, independent demonstration, and later retention are recorded separately. The [mastery framework](curriculum/mastery.md) explains how to assess an attempt; advanced scenario does not mean professional qualification.
+
+Use the [dependency map](curriculum/dependency-map.md) to see supporting skills, recommended next steps, and optional branches. Prior evidence lets you skip work you already demonstrate.
+
+## The twelve guides
 
 | Guide | What you will be able to do | First practical task |
 | --- | --- | --- |
@@ -28,24 +36,44 @@ A practical beginner curriculum. No coding, paid subscriptions, or special equip
 | [11 · Life administration](guides/11-life-admin.md) | Organise documents, read agreements, and track responsibilities | Build an admin checklist |
 | [12 · Major decisions and community](guides/12-major-decisions.md) | Compare housing, transport, education, and other choices | Compare two real options |
 
-## Worksheets
+Each guide preserves **Goal → Learn → Example → Practise → Self-check → Done when → Sources**, then links to its expanded subskills and mastery criteria. The original exercise is a first milestone; it does not automatically establish independent mastery.
 
-- [Budget](templates/budget.md)
-- [Emergency plan](templates/emergency-plan.md)
-- [Decision journal](templates/decision-journal.md)
-- [Weekly review](templates/weekly-review.md)
-- [Progress tracker](templates/progress-tracker.md)
+## Practise with realistic materials
 
-## How this works
+- [Scenario library](scenarios/README.md): twelve assessments using fictional messages, statements, payslips, contracts, offers, adverts, shopping lists, and scheduling problems.
+- [Capstone challenges](capstones/README.md): moving out, first job, unexpected expense, suspicious payment, and busy week.
+- [Fresh reassessment cards](curriculum/reassessment.md): test retained ability with changed materials.
+- [Assessment record](templates/assessment-record.md): criterion-level evidence and help used.
 
-Every guide includes a goal, a lesson, a realistic example, an exercise, a self-check with suggested answers, and a completion criterion. Exercises and examples are original teaching material; official references support the health, safety, money, and security guidance. The [source register](RESOURCES.md) explains what each reference covers and its regional limits.
+Solutions are hidden beneath expandable sections. Written judgement and hands-on skill are assessed separately; a plan does not prove that you can cook or perform first aid.
 
-This is general education. Use qualified help for personal medical, financial, legal, or emergency decisions. Emergency numbers, rights, taxes, healthcare, and benefits depend on where you live. Localise those details before relying on them.
+## Tools to use locally
 
-## Keep personal records local
+| Need | Worksheet |
+| --- | --- |
+| Track demonstrations and retention | [Progress tracker](templates/progress-tracker.md) |
+| Assess a specific attempt | [Assessment record](templates/assessment-record.md) |
+| Plan income, costs, and bill timing | [Budget](templates/budget.md) |
+| Prepare household contacts and access needs | [Emergency plan](templates/emergency-plan.md) |
+| Compare options and uncertain claims | [Decision journal](templates/decision-journal.md) |
+| Plan realistic capacity and later reviews | [Weekly review](templates/weekly-review.md) |
+| Make clear enquiries and complaints | [Communication template](templates/communication.md) |
+| Verify a local service | [Local resource check](templates/local-resource-check.md) |
 
-Copy worksheets into `personal/` on your computer. That folder is excluded by `.gitignore`. Keep passwords, recovery codes, identity documents, medical records, and actual account details out of GitHub, including a private repo. Use fictional examples in issues and contributions.
+## Choose your locality
 
-## Improve the curriculum
+Start with [localisation](locales/README.md). The [UK pack](locales/uk/README.md) provides shared resources and scope limits; the [Wales pack](locales/uk-wales/README.md) adds healthcare, housing, advice, careers, transport, and local hazards. England-only housing or healthcare guidance must not be substituted for Wales.
 
-See [CONTRIBUTING](CONTRIBUTING.md). Helpful improvements include clearer examples, accessible exercises, verified sources, and country-specific resource links.
+Use the maintained [source register](RESOURCES.md) for organisation, purpose, jurisdiction, verification date, and dependent lessons. Generic lessons do not hard-code changing legal rates or entitlements. This is general education; personal medical, financial, legal, and emergency decisions may require qualified help.
+
+## Privacy and accessibility
+
+Copy worksheets into `personal/` locally; that folder is ignored by Git. Keep actual identity documents, account details, passwords, recovery codes, contacts, and health records out of GitHub, including private repositories. Use fictional or redacted evidence. `.gitignore` is a guardrail, not secure storage.
+
+Use spoken, typed, or other accessible responses; adapt tasks to your abilities and equipment. Split sessions as needed. No real payment, treatment change, hazardous repair, or disclosure is required for assessment.
+
+## Maintaining the curriculum
+
+[CONTRIBUTING](CONTRIBUTING.md) and the [content checklist](CONTENT-QUALITY.md) cover improvements. [Structured metadata](curriculum/README.md) connects lessons, competencies, scenarios, pathways, locales, and sources for future tools. [Repository checks](scripts/README.md) validate those connections, sections, links, and Markdown; external checks report access blocks honestly.
+
+Original content and code use the [MIT licence](LICENSE); linked publications retain their own rights. See [CHANGELOG](CHANGELOG.md).

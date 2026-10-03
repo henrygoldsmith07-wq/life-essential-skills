@@ -1,0 +1,31 @@
+name: Curriculum quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: curriculum-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Validate curriculum, sources, sections, and internal links
+        run: python3 scripts/validate_curriculum.py
+      - name: Verify source registry render
+        run: python3 scripts/render_registry.py --check
+      - name: Test validator and link-check failure cases
+        run: python3 -m unittest discover -s tests -v
+      - name: Lint Markdown
+        run: npx --yes markdownlint-cli2@0.18.1

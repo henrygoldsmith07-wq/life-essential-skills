@@ -46,3 +46,11 @@ Home A has rent of 700 and travel costs of 150 per month. Home B has rent of 800
 ## Reference
 
 - [GOV.UK: renting a property](https://www.gov.uk/browse/housing-local-services/renting-property) — official housing information; individual pages have different territorial scope. Find the equivalent for your location.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/major-decisions.md)
+- [Scenario S12](../scenarios/12-major-decisions.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

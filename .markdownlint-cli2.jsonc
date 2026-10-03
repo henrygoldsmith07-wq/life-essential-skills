@@ -1,0 +1,9 @@
+{
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules/**", "personal/**", "private/**"],
+  "config": {
+    "default": true,
+    "MD013": false,
+    "MD033": { "allowed_elements": ["details", "summary"] }
+  }
+}

@@ -44,3 +44,11 @@ A message claims your bank account will close unless you confirm details immedia
 ## Reference
 
 - [UK NCSC: staying secure online](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online) — passwords, updates, two-step verification, and backups. Reporting routes differ by country.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/digital-safety.md)
+- [Scenario S07](../scenarios/07-digital-safety.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

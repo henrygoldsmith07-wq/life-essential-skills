@@ -45,3 +45,11 @@ Your household may lose power during storms. Agree where a torch is kept, how yo
 
 - [American Red Cross: emergency preparedness](https://www.redcross.org/get-help/how-to-prepare-for-emergencies.html) — planning framework; US context.
 - [American Red Cross: first-aid training](https://www.redcross.org/take-a-class/first-aid) — training information; find the equivalent provider in your region.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/emergencies.md)
+- [Scenario S01](../scenarios/01-emergencies.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

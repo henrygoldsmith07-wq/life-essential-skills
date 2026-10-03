@@ -44,3 +44,11 @@ Instead of "get organised," schedule ten minutes on Sunday to check deadlines, p
 
 - [Carpenter, Pan, and Butler: review of spacing and retrieval practice](https://www.nature.com/articles/s44159-022-00089-1).
 - [The Learning Scientists: retrieval practice](https://www.learningscientists.org/retrieval-practice) — accessible practice guidance.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/learning-time.md)
+- [Scenario S10](../scenarios/10-learning-time.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

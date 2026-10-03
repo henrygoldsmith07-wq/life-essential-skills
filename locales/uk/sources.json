@@ -1,0 +1,21 @@
+{
+  "id": "uk",
+  "inherits": [],
+  "source_ids": [
+    "uk-money",
+    "uk-tax",
+    "gb-employment",
+    "gb-payslips",
+    "uk-consumer",
+    "uk-investing",
+    "ncsc-security",
+    "ncsc-ai",
+    "ncsc-integrity",
+    "uk-fraud",
+    "gb-utilities",
+    "uk-council",
+    "uk-civic",
+    "uk-legal"
+  ],
+  "last_checked": "2026-10-03"
+}

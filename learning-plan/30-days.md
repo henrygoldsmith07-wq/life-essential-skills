@@ -1,56 +1,52 @@
-# A practical 30-day learning plan
+# General foundation: an adaptive 30-day pathway
 
-[Curriculum](../README.md) · [Progress tracker](../templates/progress-tracker.md)
+[All pathways](README.md) · [Diagnostic](../curriculum/diagnostic.md) · [Progress tracker](../templates/progress-tracker.md)
 
-Aim for about 20 minutes per session. Bigger exercises can take longer: use the session to begin, then schedule the rest. This is a foundation, not a promise of mastery in a month. Repeat or extend any day as needed. Household practice and first-aid training may need equipment, supervision, or a separate appointment.
+Build a balanced foundation, then deepen the two skills your diagnostic identifies.
 
-For each guide: read, practise, answer its self-check from memory, and record one next step. Review earlier skills on the checkpoint days.
+## Adapt before you begin
 
-| Day | Focus | Concrete action |
-| --- | --- | --- |
-| 1 | [Start here](../START-HERE.md) | Score all twelve areas and choose your top three needs |
-| 2 | [Emergencies](../guides/01-emergencies.md) | Verify your local emergency number and begin an emergency plan |
-| 3 | Emergencies | Walk through exits and contacts; find recognised first-aid training |
-| 4 | [Money](../guides/02-money.md) | List income, spending, and bill dates |
-| 5 | Money | Balance the budget and choose a realistic buffer goal |
-| 6 | [Physical health](../guides/03-health.md) | Choose one manageable food, movement, hygiene, or sleep routine |
-| 7 | Review 1 | Recall days 2–6; check your routine and finish any incomplete small task |
-| 8 | Physical health | Repeat the routine and identify your local healthcare routes |
-| 9 | [Emotional wellbeing](../guides/04-wellbeing.md) | Identify signs of overload and a small helpful action |
-| 10 | Emotional wellbeing | Make a private support list and verify a local professional service |
-| 11 | [Relationships](../guides/05-relationships.md) | Write an observation, effect, and request |
-| 12 | Relationships | Practise listening and define one workable boundary |
-| 13 | [Critical thinking](../guides/06-thinking.md) | Choose a claim and find its original source |
-| 14 | Review 2 | Recall health, wellbeing, and relationship lessons; revisit your budget |
-| 15 | Critical thinking | Compare evidence and record uncertainty in a decision journal |
-| 16 | [Digital safety](../guides/07-digital-safety.md) | Review main-email password and two-step verification |
-| 17 | Digital safety | Restore a sample backup and practise verifying a suspicious request |
-| 18 | [Everyday independence](../guides/08-home.md) | Plan one affordable meal and read safety instructions |
-| 19 | Everyday independence | Prepare the meal and write a short household routine |
-| 20 | [Work and earning](../guides/09-work.md) | Match three truthful skill examples to a sample role |
-| 21 | Review 3 | Recall thinking, security, and home lessons; check your new routines |
-| 22 | Work and earning | Practise an interview answer and write three questions about a role |
-| 23 | [Learning and time](../guides/10-learning-and-time.md) | Run a learning cycle and write three recall questions |
-| 24 | Learning and time | Plan a realistic week with room for interruptions |
-| 25 | [Life administration](../guides/11-life-admin.md) | Create a private inventory and add three reminders |
-| 26 | Life administration | Read a sample agreement and identify costs and exit conditions |
-| 27 | [Major decisions](../guides/12-major-decisions.md) | Compare two housing, transport, or education options |
-| 28 | Review 4 | Recall work, learning, and admin lessons; revisit your skill scores |
-| 29 | Major decisions | Verify a missing fact and find a useful local community service |
-| 30 | Demonstration and next month | Demonstrate three skills; choose the next month's two priorities |
+Start with 20 minutes a day. Each row is a suggested session, not a mandatory lesson or a guarantee of mastery. Split practical tasks over more days and keep urgent needs ahead of the timetable.
 
-## Day 30 demonstration
+After the diagnostic, replace a session you already demonstrate with the next unmet criterion or missing prerequisite. Use the [dependency map](../curriculum/dependency-map.md). If you cannot yet meet a capstone's preparation criteria, use its three sessions for guided practice and complete it later. The review dates are adjustable starting points.
 
-Use fictional numbers or local private records. Ask yourself:
+## Daily sessions
 
-- Can I explain my emergency plan and how I would get help?
-- Can I explain a balanced budget and its bill dates?
-- Can I verify a suspicious request without using its contact details?
-- Can I make a clear request and respect a refusal?
-- Can I compare two options and name a tradeoff?
+| Day | Observable action |
+| --- | --- |
+| 1 | [Diagnostic](../curriculum/diagnostic.md): demonstrate the relevant starting tasks; choose two priority domains and one support skill. |
+| 2 | [Emergencies guide](../guides/01-emergencies.md): Find the official emergency and non-emergency routes. Then give a dispatcher a fictional location and incident summary. |
+| 3 | [Learning and time guide](../guides/10-learning-and-time.md): Separate real deadlines, consequences, and preferences. Then choose three priorities with reasons. |
+| 4 | [Critical thinking and AI literacy guide](../guides/06-thinking.md): Find original evidence and check context and date. Then trace a claim to its source or label it unverified. |
+| 5 | [Digital safety guide](../guides/07-digital-safety.md): Use separate strong credentials for important accounts. Then review your main-email protection without recording the secret. |
+| 6 | [Relationships and communication guide](../guides/05-relationships.md): Reflect back meaning and check understanding. Then summarise a reply without inventing motives. |
+| 7 | [Fresh reassessment](../curriculum/reassessment.md): revisit a skill from at least a few days earlier; record retained / needed help / not retained, then adapt the next sessions. |
+| 8 | [Money guide](../guides/02-money.md): Use take-home income and all planned outgoings. Then balance a fictional month and label any gap. |
+| 9 | [Physical health guide](../guides/03-health.md): Identify routine, urgent, and emergency routes locally. Then choose a verified route without diagnosing symptoms. |
+| 10 | [Emotional wellbeing guide](../guides/04-wellbeing.md): Notice your own early signs without self-diagnosing. Then name two signs and a manageable next action. |
+| 11 | [Work and earning guide](../guides/09-work.md): Describe truthful actions and outcomes. Then write a specific example from any relevant responsibility. |
+| 12 | [Everyday independence guide](../guides/08-home.md): Check supplies, compare unit prices, and plan a short list. Then plan meals within a fictional food budget. |
+| 13 | [Life administration guide](../guides/11-life-admin.md): Keep an inventory in secure private storage. Then locate sample records without sharing identity data. |
+| 14 | [Fresh reassessment](../curriculum/reassessment.md): revisit a skill from at least a few days earlier; record retained / needed help / not retained, then adapt the next sessions. |
+| 15 | [Major decisions and community guide](../guides/12-major-decisions.md): Compare full cost, condition, access, and written terms. Then list questions before paying or signing. |
+| 16 | [S01: Emergencies](../scenarios/01-emergencies.md): attempt with a checklist if needed; complete the relevant guide exercise and record what help was used. |
+| 17 | [S10: Learning and time](../scenarios/10-learning-time.md): attempt with a checklist if needed; complete the relevant guide exercise and record what help was used. |
+| 18 | [S06: Critical thinking and AI literacy](../scenarios/06-critical-thinking.md): attempt with a checklist if needed; complete the relevant guide exercise and record what help was used. |
+| 19 | [S07: Digital safety](../scenarios/07-digital-safety.md): attempt with a checklist if needed; complete the relevant guide exercise and record what help was used. |
+| 20 | [S05: Relationships and communication](../scenarios/05-relationships.md): attempt with a checklist if needed; complete the relevant guide exercise and record what help was used. |
+| 21 | [Fresh reassessment](../curriculum/reassessment.md): revisit a skill from at least a few days earlier; record retained / needed help / not retained, then adapt the next sessions. |
+| 22 | [S02: Money](../scenarios/02-money.md): attempt with a checklist if needed; complete the relevant guide exercise and record what help was used. |
+| 23 | [S03: Physical health](../scenarios/03-health.md): attempt with a checklist if needed; complete the relevant guide exercise and record what help was used. |
+| 24 | [S04: Emotional wellbeing](../scenarios/04-wellbeing.md): attempt with a checklist if needed; complete the relevant guide exercise and record what help was used. |
+| 25 | [C05: busy week](../capstones/busy-week.md): Analyse materials and identify facts to verify. |
+| 26 | [C05: busy week](../capstones/busy-week.md): Produce calculations, messages, and a feasible plan. |
+| 27 | [C05: busy week](../capstones/busy-week.md): Handle the advanced variation and assess each rubric row. |
+| 28 | [Fresh reassessment](../curriculum/reassessment.md): revisit a skill from at least a few days earlier; record retained / needed help / not retained, then adapt the next sessions. |
+| 29 | Choose your weakest relevant criterion and complete a changed [reassessment card](../curriculum/reassessment.md) without prompts; verify the output afterwards. |
+| 30 | [Weekly review](../templates/weekly-review.md): compare evidence with day 1; choose two next priorities, a support skill, and later review dates. |
 
-Pick three demonstrations. Record what you could do independently and what needs another attempt. Reassess all twelve areas using the same scoring system you used on day 1.
+## Check progress
 
-## Keep going
+Track the criterion, output, help used, and later result. A session marked complete is not automatically a mastery award. Use the [stage criteria](../curriculum/mastery.md) and add practical evidence for hands-on tasks. For later attempts, change materials rather than memorising a solution.
 
-Review your budget and priorities weekly. Revisit emergency contacts, backups, deadlines, and household routines when circumstances change. Practise one weak area each month and update local references before important decisions.
+At days 7, 14, 21, and 28, select an earlier competency for a fresh task. If it is not retained, replace an upcoming session with smaller practice. Keep successful past demonstrations and add the new result. After day 30, revisit around day 42 where useful so recently learned skills also receive a delayed check.

@@ -43,3 +43,11 @@ When a disagreement escalates, agree a pause and a time to return if doing so is
 **Done when:** you can make a specific request, accurately summarise a reply, and describe one boundary.
 
 **Teaching note:** the scripts are practice tools, not guarantees that a conversation will succeed. Adapt them to your culture, access needs, and safety.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/relationships.md)
+- [Scenario S05](../scenarios/05-relationships.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

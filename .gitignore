@@ -18,3 +18,9 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.bak
+
+# Validation/runtime artefacts
+__pycache__/
+*.pyc
+node_modules/
+external-link-report.json

@@ -45,3 +45,11 @@ You want more consistent evenings. Your experiment is to prepare tomorrow's brea
 - [WHO: healthy diet](https://www.who.int/news-room/fact-sheets/detail/healthy-diet).
 - [WHO: physical activity](https://www.who.int/news-room/fact-sheets/detail/physical-activity).
 - [NHS: mental wellbeing and sleep resources](https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/) — UK services and general wellbeing resources.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/health.md)
+- [Scenario S03](../scenarios/03-health.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

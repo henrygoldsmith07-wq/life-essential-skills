@@ -42,3 +42,11 @@ A subscription costs 12 per month, but the agreement lasts a year. Its cost over
 **Done when:** you can locate your records privately, explain a sample agreement, and identify your next administrative deadline.
 
 **Local reference task:** record the official authorities for your own location in your private checklist. This guide intentionally does not state country-specific legal rules.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/life-admin.md)
+- [Scenario S11](../scenarios/11-life-admin.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

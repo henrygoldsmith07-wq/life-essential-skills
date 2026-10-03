@@ -44,3 +44,11 @@ For a simple meal, choose tinned beans, bread or a grain, and suitable vegetable
 
 - [Food Standards Agency: food safety and hygiene](https://www.gov.uk/government/publications/food-safety-for-community-cooking-and-food-banks/food-safety-for-community-cooking-and-food-banks) — includes basic hygiene principles; written for community cooking and food donation.
 - [Food Standards Agency: cooking guidance](https://www.gov.uk/government/publications/cooking-your-food) — applies to England, Northern Ireland, and Wales; check guidance for your location.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/home.md)
+- [Scenario S08](../scenarios/08-home.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

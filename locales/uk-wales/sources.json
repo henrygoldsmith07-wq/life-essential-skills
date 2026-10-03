@@ -1,0 +1,22 @@
+{
+  "id": "uk-wales",
+  "inherits": [
+    "uk"
+  ],
+  "source_ids": [
+    "wales-999",
+    "wales-health",
+    "wales-mental-health",
+    "wales-medicine",
+    "wales-housing",
+    "wales-housing-advice",
+    "wales-advice",
+    "wales-general-advice",
+    "wales-careers",
+    "wales-transport",
+    "wales-floods",
+    "wales-first-aid",
+    "wales-gas"
+  ],
+  "last_checked": "2026-10-03"
+}

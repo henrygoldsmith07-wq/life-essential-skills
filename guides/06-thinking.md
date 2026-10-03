@@ -44,3 +44,11 @@ A supplement advertisement says "twice as effective." You cannot assess it witho
 **Done when:** you can explain a claim, the evidence behind it, and at least one limitation.
 
 **Teaching note:** examples are hypothetical reasoning exercises. They do not describe a particular study or product.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/critical-thinking.md)
+- [Scenario S06](../scenarios/06-critical-thinking.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

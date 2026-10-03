@@ -21,7 +21,7 @@ An unfinished assignment feels overwhelming. Write the specific problem: "I do n
 1. Identify two early signs that you are overloaded.
 2. List two trusted contacts and verify a local professional support route. Store details privately.
 3. Pick a low-pressure activity that helps you reset.
-4. Practise this request: "I have been finding ___ difficult. Could you help me with ___?"
+4. Practise this request: "I have been finding [situation] difficult. Could you help me with [specific action]?"
 
 ## Self-check
 
@@ -43,3 +43,11 @@ An unfinished assignment feels overwhelming. Write the specific problem: "I do n
 ## Reference
 
 - [NHS: Every Mind Matters](https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/) — wellbeing resources; check local services outside the UK.
+
+## Build and demonstrate this skill
+
+- [Subskills and four mastery stages](../domains/wellbeing.md)
+- [Scenario S04](../scenarios/04-wellbeing.md) — try it before opening the explanation.
+- [UK/Wales and other locality choices](../locales/README.md)
+
+The original exercise's **Done when** is a first practical milestone. Award a mastery stage only when its [observable criteria](../curriculum/mastery.md) are demonstrated and record help used and later reassessment.

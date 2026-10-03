@@ -1,0 +1,2833 @@
+{
+  "schema_version": 1,
+  "levels": [
+    "foundation",
+    "applied",
+    "independent",
+    "advanced-scenario"
+  ],
+  "domains": [
+    {
+      "id": "emergencies",
+      "title": "Emergencies",
+      "path": "guides/01-emergencies.md",
+      "skills_path": "domains/emergencies.md",
+      "domain": "emergencies",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "related": [
+        "health",
+        "home"
+      ],
+      "recommended_next": [
+        "digital-safety",
+        "home"
+      ],
+      "competencies": [
+        {
+          "id": "emergencies.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Identify an appropriate emergency help route and explain why scene safety comes first.",
+          "evidence": "A fictional call outline and verified local contact."
+        },
+        {
+          "id": "emergencies.applied",
+          "mastery_level": "applied",
+          "criterion": "Use a checklist to make an offline household plan including access needs.",
+          "evidence": "A plan with exits, meeting point, contacts, and named gaps."
+        },
+        {
+          "id": "emergencies.independent",
+          "mastery_level": "independent",
+          "criterion": "Respond to the outage scenario with a safe sequence and verified support routes.",
+          "evidence": "An unprompted action sequence that avoids entering hazards."
+        },
+        {
+          "id": "emergencies.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Adapt the plan for a failed phone and an additional access need; identify professional limits.",
+          "evidence": "A revised plan with a fallback and escalation trigger."
+        }
+      ],
+      "subskills": [
+        "Contacts",
+        "Household plan",
+        "Fire and flood",
+        "Power outage",
+        "Professional help",
+        "First-aid pathway"
+      ],
+      "localisation_requirements": [
+        "emergency-services",
+        "local-hazards",
+        "first-aid-training"
+      ],
+      "scenario_links": [
+        "S01"
+      ],
+      "source_dependencies": [
+        "red-cross-preparedness",
+        "red-cross-training",
+        "wales-999",
+        "wales-floods",
+        "wales-first-aid",
+        "gb-utilities",
+        "wales-gas"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "money",
+      "title": "Money",
+      "path": "guides/02-money.md",
+      "skills_path": "domains/money.md",
+      "domain": "money",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "critical-thinking.foundation",
+        "digital-safety.applied"
+      ],
+      "related": [
+        "work",
+        "life-admin"
+      ],
+      "recommended_next": [
+        "life-admin",
+        "major-decisions"
+      ],
+      "competencies": [
+        {
+          "id": "money.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Create an arithmetically balanced monthly budget from fictional income and costs.",
+          "evidence": "Income, allocations, and unallocated amount."
+        },
+        {
+          "id": "money.applied",
+          "mastery_level": "applied",
+          "criterion": "Use a checklist to allow for irregular costs and calculate dated cash flow.",
+          "evidence": "Dated running balance and an irregular-cost allowance."
+        },
+        {
+          "id": "money.independent",
+          "mastery_level": "independent",
+          "criterion": "Handle a surprise cost without assuming funds exist or neglecting essentials.",
+          "evidence": "A revised budget and a legitimate support route if needed."
+        },
+        {
+          "id": "money.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Compare credit offers by total repayment, timing, risk, and unanswered terms.",
+          "evidence": "Calculations plus an affordability and contract explanation."
+        }
+      ],
+      "subskills": [
+        "Budget",
+        "Cash flow",
+        "Bank accounts",
+        "Debit and credit",
+        "Borrowing",
+        "Debt",
+        "Buffer and saving",
+        "Payslips and tax",
+        "Insurance",
+        "Scams",
+        "Investing basics"
+      ],
+      "localisation_requirements": [
+        "banking",
+        "debt-advice",
+        "tax",
+        "insurance"
+      ],
+      "scenario_links": [
+        "S02"
+      ],
+      "source_dependencies": [
+        "consumer-budget",
+        "cfpb-buffer",
+        "uk-money",
+        "uk-tax",
+        "gb-payslips",
+        "uk-investing",
+        "uk-consumer"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "health",
+      "title": "Physical health",
+      "path": "guides/03-health.md",
+      "skills_path": "domains/health.md",
+      "domain": "health",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "related": [
+        "wellbeing",
+        "home",
+        "critical-thinking"
+      ],
+      "recommended_next": [
+        "wellbeing",
+        "home"
+      ],
+      "competencies": [
+        {
+          "id": "health.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Identify routine, urgent, and emergency help routes from official local guidance.",
+          "evidence": "Correctly labelled routes and their sources."
+        },
+        {
+          "id": "health.applied",
+          "mastery_level": "applied",
+          "criterion": "Use a checklist to prepare a routine and appointment questions.",
+          "evidence": "A feasible routine and concise appointment checklist."
+        },
+        {
+          "id": "health.independent",
+          "mastery_level": "independent",
+          "criterion": "Handle a missed appointment and an uncertain medicine instruction by contacting appropriate professionals.",
+          "evidence": "An independent contact plan without changing treatment."
+        },
+        {
+          "id": "health.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Evaluate a persuasive health claim and adapt practical arrangements for an access barrier.",
+          "evidence": "Verification steps, an accessible alternative, and clear limits."
+        }
+      ],
+      "subskills": [
+        "Healthcare access",
+        "Sleep",
+        "Food routines",
+        "Movement",
+        "Hygiene",
+        "Medicine safety",
+        "Appointments",
+        "Health information"
+      ],
+      "localisation_requirements": [
+        "healthcare",
+        "medicine-advice"
+      ],
+      "scenario_links": [
+        "S03"
+      ],
+      "source_dependencies": [
+        "who-diet",
+        "who-movement",
+        "nhs-wellbeing",
+        "wales-health",
+        "wales-medicine"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "wellbeing",
+      "title": "Emotional wellbeing",
+      "path": "guides/04-wellbeing.md",
+      "skills_path": "domains/wellbeing.md",
+      "domain": "wellbeing",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "related": [
+        "health",
+        "relationships",
+        "learning-time"
+      ],
+      "recommended_next": [
+        "relationships",
+        "learning-time"
+      ],
+      "competencies": [
+        {
+          "id": "wellbeing.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Identify overload signs and distinguish a manageable task from a need for more support.",
+          "evidence": "A specific observation and next action."
+        },
+        {
+          "id": "wellbeing.applied",
+          "mastery_level": "applied",
+          "criterion": "Use a prompt to build a private support plan and divide a problem into steps.",
+          "evidence": "Named support roles and one realistic first step."
+        },
+        {
+          "id": "wellbeing.independent",
+          "mastery_level": "independent",
+          "criterion": "Respond to the overloaded-week scenario with a feasible plan and a clear support request.",
+          "evidence": "A plan that protects basic needs and contacts appropriate help."
+        },
+        {
+          "id": "wellbeing.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Adapt when the first contact is unavailable and identify when urgent professional help takes priority.",
+          "evidence": "A verified fallback route without diagnosis or treatment advice."
+        }
+      ],
+      "subskills": [
+        "Overload",
+        "Stress",
+        "Support network",
+        "Seeking help",
+        "Healthy routines",
+        "Problem breakdown"
+      ],
+      "localisation_requirements": [
+        "professional-support",
+        "urgent-support"
+      ],
+      "scenario_links": [
+        "S04"
+      ],
+      "source_dependencies": [
+        "nhs-wellbeing",
+        "wales-health",
+        "wales-mental-health"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "relationships",
+      "title": "Relationships and communication",
+      "path": "guides/05-relationships.md",
+      "skills_path": "domains/relationships.md",
+      "domain": "relationships",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "related": [
+        "wellbeing",
+        "work"
+      ],
+      "recommended_next": [
+        "work",
+        "life-admin"
+      ],
+      "competencies": [
+        {
+          "id": "relationships.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Distinguish an observation from a motive claim and recognise that consent can change.",
+          "evidence": "A rewritten statement and consent explanation."
+        },
+        {
+          "id": "relationships.applied",
+          "mastery_level": "applied",
+          "criterion": "Use a script to make a request, reflect a reply, and define a boundary.",
+          "evidence": "A short two-person role-play."
+        },
+        {
+          "id": "relationships.independent",
+          "mastery_level": "independent",
+          "criterion": "Handle a realistic disagreement with listening, a clear request, and a workable boundary.",
+          "evidence": "An unscripted written or spoken response."
+        },
+        {
+          "id": "relationships.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Adapt to refusal or escalating behaviour, choosing a safe pause or appropriate support.",
+          "evidence": "A response that avoids coercion and recognises safety limits."
+        }
+      ],
+      "subskills": [
+        "Listening",
+        "Assertiveness",
+        "Boundaries",
+        "Consent",
+        "Disagreement",
+        "Difficult conversations",
+        "De-escalation"
+      ],
+      "localisation_requirements": [
+        "safety-support"
+      ],
+      "scenario_links": [
+        "S05"
+      ],
+      "source_dependencies": [
+        "nhs-relationships"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "critical-thinking",
+      "title": "Critical thinking and AI literacy",
+      "path": "guides/06-thinking.md",
+      "skills_path": "domains/critical-thinking.md",
+      "domain": "critical-thinking",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "related": [
+        "health",
+        "digital-safety",
+        "major-decisions"
+      ],
+      "recommended_next": [
+        "digital-safety",
+        "major-decisions"
+      ],
+      "competencies": [
+        {
+          "id": "critical-thinking.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Separate a claim, its evidence, and an assumption.",
+          "evidence": "A labelled claim and a missing fact."
+        },
+        {
+          "id": "critical-thinking.applied",
+          "mastery_level": "applied",
+          "criterion": "Use a checklist to trace a source and calculate relative and absolute differences.",
+          "evidence": "Correct calculations and source notes."
+        },
+        {
+          "id": "critical-thinking.independent",
+          "mastery_level": "independent",
+          "criterion": "Assess an unfamiliar social or AI claim using original evidence and independent verification.",
+          "evidence": "An independent conclusion with limitations."
+        },
+        {
+          "id": "critical-thinking.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Adapt the conclusion to manipulated content or incomplete evidence and name what would change it.",
+          "evidence": "A revised judgement that does not invent certainty."
+        }
+      ],
+      "subskills": [
+        "Source verification",
+        "Statistics",
+        "Causation",
+        "Manipulated content",
+        "Persuasion",
+        "Uncertainty",
+        "AI literacy",
+        "Decision journal"
+      ],
+      "localisation_requirements": [
+        "official-authorities"
+      ],
+      "scenario_links": [
+        "S06"
+      ],
+      "source_dependencies": [
+        "ncsc-ai",
+        "uk-investing",
+        "ncsc-integrity"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "digital-safety",
+      "title": "Digital safety",
+      "path": "guides/07-digital-safety.md",
+      "skills_path": "domains/digital-safety.md",
+      "domain": "digital-safety",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "critical-thinking.foundation"
+      ],
+      "related": [
+        "money",
+        "life-admin"
+      ],
+      "recommended_next": [
+        "money",
+        "life-admin"
+      ],
+      "competencies": [
+        {
+          "id": "digital-safety.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Explain why email, unique passwords, updates, and MFA matter.",
+          "evidence": "An account-protection checklist with no secrets."
+        },
+        {
+          "id": "digital-safety.applied",
+          "mastery_level": "applied",
+          "criterion": "Use official settings to review account protection and restore a sample backup.",
+          "evidence": "A private settings review and restored sample."
+        },
+        {
+          "id": "digital-safety.independent",
+          "mastery_level": "independent",
+          "criterion": "Handle a suspicious message without clicking its link or sharing codes.",
+          "evidence": "An independent verification and payment-hold sequence."
+        },
+        {
+          "id": "digital-safety.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Adapt after a possible account compromise or realistic impersonation.",
+          "evidence": "Official recovery, relevant provider contact, and local reporting steps."
+        }
+      ],
+      "subskills": [
+        "Passwords",
+        "Password managers",
+        "MFA",
+        "Phishing and scams",
+        "Backups",
+        "Privacy",
+        "Device security",
+        "Recovery",
+        "Safe downloads",
+        "Identity theft response"
+      ],
+      "localisation_requirements": [
+        "fraud-reporting",
+        "provider-recovery"
+      ],
+      "scenario_links": [
+        "S07"
+      ],
+      "source_dependencies": [
+        "ncsc-security",
+        "ncsc-ai",
+        "uk-fraud",
+        "ncsc-integrity"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "home",
+      "title": "Everyday independence",
+      "path": "guides/08-home.md",
+      "skills_path": "domains/home.md",
+      "domain": "home",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "emergencies.foundation",
+        "health.foundation",
+        "money.foundation"
+      ],
+      "related": [
+        "life-admin",
+        "major-decisions"
+      ],
+      "recommended_next": [
+        "life-admin",
+        "major-decisions"
+      ],
+      "competencies": [
+        {
+          "id": "home.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Plan a simple meal and identify key food-safety and hazardous-repair limits.",
+          "evidence": "A shopping list and safe task boundaries."
+        },
+        {
+          "id": "home.applied",
+          "mastery_level": "applied",
+          "criterion": "Use instructions to prepare a meal and make a household checklist.",
+          "evidence": "Practical meal evidence and a feasible routine."
+        },
+        {
+          "id": "home.independent",
+          "mastery_level": "independent",
+          "criterion": "Handle the household scenario with a costed shopping plan and safe repair escalation.",
+          "evidence": "Independent calculations and a repair request."
+        },
+        {
+          "id": "home.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Adapt routines to an equipment failure, move, or access limitation.",
+          "evidence": "A revised plan with a workable safe alternative."
+        }
+      ],
+      "subskills": [
+        "Meals and shopping",
+        "Food safety",
+        "Cooking",
+        "Laundry",
+        "Cleaning",
+        "Routines",
+        "Maintenance",
+        "Utilities",
+        "Repairs",
+        "Moving"
+      ],
+      "localisation_requirements": [
+        "utilities",
+        "repairs",
+        "waste-services"
+      ],
+      "scenario_links": [
+        "S08"
+      ],
+      "source_dependencies": [
+        "fsa-hygiene",
+        "fsa-cooking",
+        "gb-utilities",
+        "wales-housing",
+        "wales-gas"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "work",
+      "title": "Work and earning",
+      "path": "guides/09-work.md",
+      "skills_path": "domains/work.md",
+      "domain": "work",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "learning-time.applied",
+        "relationships.applied"
+      ],
+      "related": [
+        "money",
+        "life-admin"
+      ],
+      "recommended_next": [
+        "money",
+        "life-admin"
+      ],
+      "competencies": [
+        {
+          "id": "work.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Identify job requirements and write one truthful evidence statement.",
+          "evidence": "An advert annotated with matching evidence."
+        },
+        {
+          "id": "work.applied",
+          "mastery_level": "applied",
+          "criterion": "Use a structure to prepare an application and interview answer.",
+          "evidence": "A targeted paragraph and practised answer."
+        },
+        {
+          "id": "work.independent",
+          "mastery_level": "independent",
+          "criterion": "Evaluate a fictional offer and reconcile its payslip before asking clear questions.",
+          "evidence": "An independent offer review and pay calculation."
+        },
+        {
+          "id": "work.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Adapt to unclear hours, an access need, or a changed offer without inventing entitlements.",
+          "evidence": "A professional clarification and appropriate advice route."
+        }
+      ],
+      "subskills": [
+        "CV evidence",
+        "Applications",
+        "Interviews",
+        "Professional contact",
+        "Workplace behaviour",
+        "Evaluating jobs",
+        "Payslips",
+        "Employment terms",
+        "Experience",
+        "Development"
+      ],
+      "localisation_requirements": [
+        "employment",
+        "tax",
+        "careers-support"
+      ],
+      "scenario_links": [
+        "S09"
+      ],
+      "source_dependencies": [
+        "england-careers",
+        "wales-careers",
+        "gb-employment",
+        "gb-payslips",
+        "uk-tax"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "learning-time",
+      "title": "Learning and time",
+      "path": "guides/10-learning-and-time.md",
+      "skills_path": "domains/learning-time.md",
+      "domain": "learning-time",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "related": [
+        "wellbeing",
+        "work",
+        "life-admin"
+      ],
+      "recommended_next": [
+        "work",
+        "life-admin"
+      ],
+      "competencies": [
+        {
+          "id": "learning-time.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Identify fixed commitments and explain the difference between retrieval and rereading.",
+          "evidence": "A commitment list and memory-first question."
+        },
+        {
+          "id": "learning-time.applied",
+          "mastery_level": "applied",
+          "criterion": "Use a checklist to schedule realistic tasks, travel, and two later reviews.",
+          "evidence": "A calendar with buffer."
+        },
+        {
+          "id": "learning-time.independent",
+          "mastery_level": "independent",
+          "criterion": "Resolve a busy-week conflict by comparing consequences and contacting affected people.",
+          "evidence": "An independent schedule and communication plan."
+        },
+        {
+          "id": "learning-time.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Adapt to a new interruption and use delayed reassessment to revise the plan.",
+          "evidence": "A feasible replacement plan and recorded reassessment."
+        }
+      ],
+      "subskills": [
+        "Priorities",
+        "Calendar",
+        "Task breakdown",
+        "Retrieval",
+        "Spacing",
+        "Interruptions",
+        "Weekly review",
+        "Capacity"
+      ],
+      "localisation_requirements": [],
+      "scenario_links": [
+        "S10"
+      ],
+      "source_dependencies": [
+        "spacing-review",
+        "retrieval-practice"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "life-admin",
+      "title": "Life administration",
+      "path": "guides/11-life-admin.md",
+      "skills_path": "domains/life-admin.md",
+      "domain": "life-admin",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "money.applied",
+        "digital-safety.applied",
+        "work.foundation"
+      ],
+      "related": [
+        "home",
+        "major-decisions"
+      ],
+      "recommended_next": [
+        "major-decisions"
+      ],
+      "competencies": [
+        {
+          "id": "life-admin.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Identify an agreement's cost, duration, responsibility, and cancellation questions.",
+          "evidence": "An annotated fictional agreement."
+        },
+        {
+          "id": "life-admin.applied",
+          "mastery_level": "applied",
+          "criterion": "Use a checklist to organise records, reminders, and verified contacts.",
+          "evidence": "A private inventory and dated action list."
+        },
+        {
+          "id": "life-admin.independent",
+          "mastery_level": "independent",
+          "criterion": "Resolve the billing scenario with correct totals and a documented clarification or complaint.",
+          "evidence": "An independent email and next-step timeline."
+        },
+        {
+          "id": "life-admin.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Adapt when cancellation is disputed or correspondence is suspicious, using current local advice.",
+          "evidence": "An evidence log, verified advice route, and safe follow-up."
+        }
+      ],
+      "subskills": [
+        "Records",
+        "Bills and renewals",
+        "Appointments and forms",
+        "Contracts",
+        "Insurance",
+        "Complaints",
+        "Subscriptions",
+        "Official correspondence",
+        "Professional phone/email"
+      ],
+      "localisation_requirements": [
+        "consumer-advice",
+        "tax",
+        "contracts",
+        "official-correspondence"
+      ],
+      "scenario_links": [
+        "S11"
+      ],
+      "source_dependencies": [
+        "uk-consumer",
+        "uk-tax",
+        "gb-employment",
+        "uk-money",
+        "wales-advice",
+        "wales-general-advice",
+        "uk-legal"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "major-decisions",
+      "title": "Major decisions and community",
+      "path": "guides/12-major-decisions.md",
+      "skills_path": "domains/major-decisions.md",
+      "domain": "major-decisions",
+      "difficulty": "beginner-to-applied",
+      "mastery_level": "foundation",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "money.applied",
+        "home.applied",
+        "life-admin.applied",
+        "critical-thinking.applied"
+      ],
+      "related": [
+        "work",
+        "learning-time"
+      ],
+      "recommended_next": [],
+      "competencies": [
+        {
+          "id": "major-decisions.foundation",
+          "mastery_level": "foundation",
+          "criterion": "Identify essential needs and full costs for two options.",
+          "evidence": "A comparison with explicit assumptions."
+        },
+        {
+          "id": "major-decisions.applied",
+          "mastery_level": "applied",
+          "criterion": "Use a checklist to compare housing, transport, and contract questions.",
+          "evidence": "A costed comparison and verified local source."
+        },
+        {
+          "id": "major-decisions.independent",
+          "mastery_level": "independent",
+          "criterion": "Choose between realistic options and plan feasible transport and an administrative next step.",
+          "evidence": "An independent choice with a clear tradeoff."
+        },
+        {
+          "id": "major-decisions.advanced-scenario",
+          "mastery_level": "advanced-scenario",
+          "criterion": "Adapt to changed income, service disruption, or incomplete terms and consider a reversible alternative.",
+          "evidence": "A revised choice, missing-fact check, and fallback."
+        }
+      ],
+      "subskills": [
+        "Housing",
+        "Transport",
+        "Education",
+        "Major purchases",
+        "Reversibility",
+        "Local services",
+        "Civic literacy",
+        "Community resources"
+      ],
+      "localisation_requirements": [
+        "housing",
+        "transport",
+        "education",
+        "local-government",
+        "civic-information"
+      ],
+      "scenario_links": [
+        "S12"
+      ],
+      "source_dependencies": [
+        "england-housing",
+        "wales-housing",
+        "wales-housing-advice",
+        "wales-careers",
+        "wales-transport",
+        "uk-council",
+        "uk-civic",
+        "wales-general-advice",
+        "uk-legal"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "S01",
+      "title": "Outage with an access need",
+      "path": "scenarios/01-emergencies.md",
+      "domain": "emergencies",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "competencies": [
+        "emergencies.foundation",
+        "emergencies.applied",
+        "emergencies.independent",
+        "emergencies.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "red-cross-preparedness",
+        "red-cross-training",
+        "wales-999",
+        "wales-floods",
+        "wales-first-aid",
+        "gb-utilities",
+        "wales-gas"
+      ],
+      "localisation_requirements": [
+        "emergency-services",
+        "local-hazards",
+        "first-aid-training"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S02",
+      "title": "The month that balances but runs short",
+      "path": "scenarios/02-money.md",
+      "domain": "money",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "critical-thinking.foundation",
+        "digital-safety.applied"
+      ],
+      "competencies": [
+        "money.foundation",
+        "money.applied",
+        "money.independent",
+        "money.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "consumer-budget",
+        "cfpb-buffer",
+        "uk-money",
+        "uk-tax",
+        "gb-payslips",
+        "uk-investing",
+        "uk-consumer"
+      ],
+      "localisation_requirements": [
+        "banking",
+        "debt-advice",
+        "tax",
+        "insurance"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S03",
+      "title": "Missed appointment and a confident health post",
+      "path": "scenarios/03-health.md",
+      "domain": "health",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "competencies": [
+        "health.foundation",
+        "health.applied",
+        "health.independent",
+        "health.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "who-diet",
+        "who-movement",
+        "nhs-wellbeing",
+        "wales-health",
+        "wales-medicine"
+      ],
+      "localisation_requirements": [
+        "healthcare",
+        "medicine-advice"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S04",
+      "title": "Too many problems at once",
+      "path": "scenarios/04-wellbeing.md",
+      "domain": "wellbeing",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "competencies": [
+        "wellbeing.foundation",
+        "wellbeing.applied",
+        "wellbeing.independent",
+        "wellbeing.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "nhs-wellbeing",
+        "wales-health",
+        "wales-mental-health"
+      ],
+      "localisation_requirements": [
+        "professional-support",
+        "urgent-support"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S05",
+      "title": "The last-minute favour",
+      "path": "scenarios/05-relationships.md",
+      "domain": "relationships",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "competencies": [
+        "relationships.foundation",
+        "relationships.applied",
+        "relationships.independent",
+        "relationships.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "nhs-relationships"
+      ],
+      "localisation_requirements": [
+        "safety-support"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S06",
+      "title": "A dramatic statistic and an AI summary",
+      "path": "scenarios/06-critical-thinking.md",
+      "domain": "critical-thinking",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "competencies": [
+        "critical-thinking.foundation",
+        "critical-thinking.applied",
+        "critical-thinking.independent",
+        "critical-thinking.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "ncsc-ai",
+        "uk-investing",
+        "ncsc-integrity"
+      ],
+      "localisation_requirements": [
+        "official-authorities"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S07",
+      "title": "A payment email that sounds familiar",
+      "path": "scenarios/07-digital-safety.md",
+      "domain": "digital-safety",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "critical-thinking.foundation"
+      ],
+      "competencies": [
+        "digital-safety.foundation",
+        "digital-safety.applied",
+        "digital-safety.independent",
+        "digital-safety.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "ncsc-security",
+        "ncsc-ai",
+        "uk-fraud",
+        "ncsc-integrity"
+      ],
+      "localisation_requirements": [
+        "fraud-reporting",
+        "provider-recovery"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S08",
+      "title": "A food budget and a leaking appliance",
+      "path": "scenarios/08-home.md",
+      "domain": "home",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "emergencies.foundation",
+        "health.foundation",
+        "money.foundation"
+      ],
+      "competencies": [
+        "home.foundation",
+        "home.applied",
+        "home.independent",
+        "home.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "fsa-hygiene",
+        "fsa-cooking",
+        "gb-utilities",
+        "wales-housing",
+        "wales-gas"
+      ],
+      "localisation_requirements": [
+        "utilities",
+        "repairs",
+        "waste-services"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S09",
+      "title": "An attractive offer and an unexplained deduction",
+      "path": "scenarios/09-work.md",
+      "domain": "work",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "learning-time.applied",
+        "relationships.applied"
+      ],
+      "competencies": [
+        "work.foundation",
+        "work.applied",
+        "work.independent",
+        "work.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "england-careers",
+        "wales-careers",
+        "gb-employment",
+        "gb-payslips",
+        "uk-tax"
+      ],
+      "localisation_requirements": [
+        "employment",
+        "tax",
+        "careers-support"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S10",
+      "title": "A calendar with no travel time",
+      "path": "scenarios/10-learning-time.md",
+      "domain": "learning-time",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [],
+      "competencies": [
+        "learning-time.foundation",
+        "learning-time.applied",
+        "learning-time.independent",
+        "learning-time.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "spacing-review",
+        "retrieval-practice"
+      ],
+      "localisation_requirements": [],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S11",
+      "title": "The phone deal and the renewal",
+      "path": "scenarios/11-life-admin.md",
+      "domain": "life-admin",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "money.applied",
+        "digital-safety.applied",
+        "work.foundation"
+      ],
+      "competencies": [
+        "life-admin.foundation",
+        "life-admin.applied",
+        "life-admin.independent",
+        "life-admin.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "uk-consumer",
+        "uk-tax",
+        "gb-employment",
+        "uk-money",
+        "wales-advice",
+        "wales-general-advice",
+        "uk-legal"
+      ],
+      "localisation_requirements": [
+        "consumer-advice",
+        "tax",
+        "contracts",
+        "official-correspondence"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    },
+    {
+      "id": "S12",
+      "title": "Two homes and a disrupted route",
+      "path": "scenarios/12-major-decisions.md",
+      "domain": "major-decisions",
+      "difficulty": "transfer-and-adaptation",
+      "mastery_level": "independent",
+      "estimated_time_minutes": 20,
+      "prerequisites": [
+        "money.applied",
+        "home.applied",
+        "life-admin.applied",
+        "critical-thinking.applied"
+      ],
+      "competencies": [
+        "major-decisions.foundation",
+        "major-decisions.applied",
+        "major-decisions.independent",
+        "major-decisions.advanced-scenario"
+      ],
+      "source_dependencies": [
+        "england-housing",
+        "wales-housing",
+        "wales-housing-advice",
+        "wales-careers",
+        "wales-transport",
+        "uk-council",
+        "uk-civic",
+        "wales-general-advice",
+        "uk-legal"
+      ],
+      "localisation_requirements": [
+        "housing",
+        "transport",
+        "education",
+        "local-government",
+        "civic-information"
+      ],
+      "review_interval_days": [
+        3,
+        7,
+        21
+      ]
+    }
+  ],
+  "capstones": [
+    {
+      "id": "C01",
+      "title": "Moving out",
+      "path": "capstones/moving-out.md",
+      "domains": [
+        "money",
+        "home",
+        "life-admin",
+        "major-decisions",
+        "emergencies"
+      ],
+      "mastery_level": "independent",
+      "difficulty": "multi-domain",
+      "estimated_time_minutes": 60,
+      "prerequisites": [
+        "money.applied",
+        "home.applied",
+        "life-admin.applied",
+        "major-decisions.applied",
+        "emergencies.applied"
+      ],
+      "competencies": [
+        "money.independent",
+        "major-decisions.independent",
+        "life-admin.independent",
+        "home.independent",
+        "emergencies.independent"
+      ],
+      "source_dependencies": [
+        "cfpb-buffer",
+        "consumer-budget",
+        "england-housing",
+        "fsa-cooking",
+        "fsa-hygiene",
+        "gb-employment",
+        "gb-payslips",
+        "gb-utilities",
+        "red-cross-preparedness",
+        "red-cross-training",
+        "uk-civic",
+        "uk-consumer",
+        "uk-council",
+        "uk-investing",
+        "uk-legal",
+        "uk-money",
+        "uk-tax",
+        "wales-999",
+        "wales-advice",
+        "wales-careers",
+        "wales-first-aid",
+        "wales-floods",
+        "wales-gas",
+        "wales-general-advice",
+        "wales-housing",
+        "wales-housing-advice",
+        "wales-transport"
+      ],
+      "review_interval_days": [
+        7,
+        21
+      ]
+    },
+    {
+      "id": "C02",
+      "title": "First job",
+      "path": "capstones/first-job.md",
+      "domains": [
+        "work",
+        "money",
+        "relationships",
+        "life-admin",
+        "learning-time"
+      ],
+      "mastery_level": "independent",
+      "difficulty": "multi-domain",
+      "estimated_time_minutes": 60,
+      "prerequisites": [
+        "work.applied",
+        "money.applied",
+        "relationships.applied",
+        "life-admin.applied",
+        "learning-time.applied"
+      ],
+      "competencies": [
+        "work.independent",
+        "money.independent",
+        "relationships.independent",
+        "life-admin.independent",
+        "learning-time.independent"
+      ],
+      "source_dependencies": [
+        "cfpb-buffer",
+        "consumer-budget",
+        "england-careers",
+        "gb-employment",
+        "gb-payslips",
+        "nhs-relationships",
+        "retrieval-practice",
+        "spacing-review",
+        "uk-consumer",
+        "uk-investing",
+        "uk-legal",
+        "uk-money",
+        "uk-tax",
+        "wales-advice",
+        "wales-careers",
+        "wales-general-advice"
+      ],
+      "review_interval_days": [
+        7,
+        21
+      ]
+    },
+    {
+      "id": "C03",
+      "title": "Unexpected expense",
+      "path": "capstones/unexpected-expense.md",
+      "domains": [
+        "money",
+        "critical-thinking",
+        "life-admin",
+        "wellbeing"
+      ],
+      "mastery_level": "independent",
+      "difficulty": "multi-domain",
+      "estimated_time_minutes": 60,
+      "prerequisites": [
+        "money.applied",
+        "critical-thinking.applied",
+        "life-admin.applied",
+        "wellbeing.applied"
+      ],
+      "competencies": [
+        "money.independent",
+        "critical-thinking.independent",
+        "life-admin.independent",
+        "wellbeing.independent"
+      ],
+      "source_dependencies": [
+        "cfpb-buffer",
+        "consumer-budget",
+        "gb-employment",
+        "gb-payslips",
+        "ncsc-ai",
+        "ncsc-integrity",
+        "nhs-wellbeing",
+        "uk-consumer",
+        "uk-investing",
+        "uk-legal",
+        "uk-money",
+        "uk-tax",
+        "wales-advice",
+        "wales-general-advice",
+        "wales-health",
+        "wales-mental-health"
+      ],
+      "review_interval_days": [
+        7,
+        21
+      ]
+    },
+    {
+      "id": "C04",
+      "title": "Suspicious payment request",
+      "path": "capstones/suspicious-payment.md",
+      "domains": [
+        "digital-safety",
+        "critical-thinking",
+        "relationships",
+        "money",
+        "life-admin"
+      ],
+      "mastery_level": "independent",
+      "difficulty": "multi-domain",
+      "estimated_time_minutes": 60,
+      "prerequisites": [
+        "digital-safety.applied",
+        "critical-thinking.applied",
+        "relationships.applied",
+        "money.applied",
+        "life-admin.applied"
+      ],
+      "competencies": [
+        "digital-safety.independent",
+        "critical-thinking.independent",
+        "relationships.independent",
+        "money.independent",
+        "life-admin.independent"
+      ],
+      "source_dependencies": [
+        "cfpb-buffer",
+        "consumer-budget",
+        "gb-employment",
+        "gb-payslips",
+        "ncsc-ai",
+        "ncsc-integrity",
+        "ncsc-security",
+        "nhs-relationships",
+        "uk-consumer",
+        "uk-fraud",
+        "uk-investing",
+        "uk-legal",
+        "uk-money",
+        "uk-tax",
+        "wales-advice",
+        "wales-general-advice"
+      ],
+      "review_interval_days": [
+        7,
+        21
+      ]
+    },
+    {
+      "id": "C05",
+      "title": "Busy week",
+      "path": "capstones/busy-week.md",
+      "domains": [
+        "learning-time",
+        "wellbeing",
+        "life-admin",
+        "relationships",
+        "home",
+        "major-decisions"
+      ],
+      "mastery_level": "independent",
+      "difficulty": "multi-domain",
+      "estimated_time_minutes": 60,
+      "prerequisites": [
+        "learning-time.applied",
+        "wellbeing.applied",
+        "life-admin.applied",
+        "relationships.applied",
+        "home.applied",
+        "major-decisions.applied"
+      ],
+      "competencies": [
+        "learning-time.independent",
+        "wellbeing.independent",
+        "life-admin.independent",
+        "relationships.independent",
+        "home.independent",
+        "major-decisions.independent"
+      ],
+      "source_dependencies": [
+        "england-housing",
+        "fsa-cooking",
+        "fsa-hygiene",
+        "gb-employment",
+        "gb-utilities",
+        "nhs-relationships",
+        "nhs-wellbeing",
+        "retrieval-practice",
+        "spacing-review",
+        "uk-civic",
+        "uk-consumer",
+        "uk-council",
+        "uk-legal",
+        "uk-money",
+        "uk-tax",
+        "wales-advice",
+        "wales-careers",
+        "wales-gas",
+        "wales-general-advice",
+        "wales-health",
+        "wales-housing",
+        "wales-housing-advice",
+        "wales-mental-health",
+        "wales-transport"
+      ],
+      "review_interval_days": [
+        7,
+        21
+      ]
+    }
+  ],
+  "pathways": [
+    {
+      "id": "general",
+      "title": "General foundation",
+      "path": "learning-plan/30-days.md",
+      "domains": [
+        "emergencies",
+        "learning-time",
+        "critical-thinking",
+        "digital-safety",
+        "relationships",
+        "money",
+        "health",
+        "wellbeing",
+        "work",
+        "home",
+        "life-admin",
+        "major-decisions"
+      ],
+      "capstone": "C05",
+      "estimated_daily_minutes": 20,
+      "sessions": [
+        {
+          "day": 1,
+          "kind": "diagnostic",
+          "path": "curriculum/diagnostic.md",
+          "competencies": []
+        },
+        {
+          "day": 2,
+          "kind": "practice",
+          "path": "guides/01-emergencies.md",
+          "competencies": [
+            "emergencies.foundation"
+          ]
+        },
+        {
+          "day": 3,
+          "kind": "practice",
+          "path": "guides/10-learning-and-time.md",
+          "competencies": [
+            "learning-time.foundation"
+          ]
+        },
+        {
+          "day": 4,
+          "kind": "practice",
+          "path": "guides/06-thinking.md",
+          "competencies": [
+            "critical-thinking.foundation"
+          ]
+        },
+        {
+          "day": 5,
+          "kind": "practice",
+          "path": "guides/07-digital-safety.md",
+          "competencies": [
+            "digital-safety.foundation"
+          ]
+        },
+        {
+          "day": 6,
+          "kind": "practice",
+          "path": "guides/05-relationships.md",
+          "competencies": [
+            "relationships.foundation"
+          ]
+        },
+        {
+          "day": 7,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 8,
+          "kind": "practice",
+          "path": "guides/02-money.md",
+          "competencies": [
+            "money.foundation"
+          ]
+        },
+        {
+          "day": 9,
+          "kind": "practice",
+          "path": "guides/03-health.md",
+          "competencies": [
+            "health.foundation"
+          ]
+        },
+        {
+          "day": 10,
+          "kind": "practice",
+          "path": "guides/04-wellbeing.md",
+          "competencies": [
+            "wellbeing.foundation"
+          ]
+        },
+        {
+          "day": 11,
+          "kind": "practice",
+          "path": "guides/09-work.md",
+          "competencies": [
+            "work.foundation"
+          ]
+        },
+        {
+          "day": 12,
+          "kind": "practice",
+          "path": "guides/08-home.md",
+          "competencies": [
+            "home.foundation"
+          ]
+        },
+        {
+          "day": 13,
+          "kind": "practice",
+          "path": "guides/11-life-admin.md",
+          "competencies": [
+            "life-admin.foundation"
+          ]
+        },
+        {
+          "day": 14,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 15,
+          "kind": "practice",
+          "path": "guides/12-major-decisions.md",
+          "competencies": [
+            "major-decisions.foundation"
+          ]
+        },
+        {
+          "day": 16,
+          "kind": "assessment",
+          "path": "scenarios/01-emergencies.md",
+          "competencies": [
+            "emergencies.applied"
+          ]
+        },
+        {
+          "day": 17,
+          "kind": "assessment",
+          "path": "scenarios/10-learning-time.md",
+          "competencies": [
+            "learning-time.applied"
+          ]
+        },
+        {
+          "day": 18,
+          "kind": "assessment",
+          "path": "scenarios/06-critical-thinking.md",
+          "competencies": [
+            "critical-thinking.applied"
+          ]
+        },
+        {
+          "day": 19,
+          "kind": "assessment",
+          "path": "scenarios/07-digital-safety.md",
+          "competencies": [
+            "digital-safety.applied"
+          ]
+        },
+        {
+          "day": 20,
+          "kind": "assessment",
+          "path": "scenarios/05-relationships.md",
+          "competencies": [
+            "relationships.applied"
+          ]
+        },
+        {
+          "day": 21,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 22,
+          "kind": "assessment",
+          "path": "scenarios/02-money.md",
+          "competencies": [
+            "money.applied"
+          ]
+        },
+        {
+          "day": 23,
+          "kind": "assessment",
+          "path": "scenarios/03-health.md",
+          "competencies": [
+            "health.applied"
+          ]
+        },
+        {
+          "day": 24,
+          "kind": "assessment",
+          "path": "scenarios/04-wellbeing.md",
+          "competencies": [
+            "wellbeing.applied"
+          ]
+        },
+        {
+          "day": 25,
+          "kind": "capstone",
+          "capstone": "C05",
+          "path": "capstones/busy-week.md",
+          "competencies": []
+        },
+        {
+          "day": 26,
+          "kind": "capstone",
+          "capstone": "C05",
+          "path": "capstones/busy-week.md",
+          "competencies": []
+        },
+        {
+          "day": 27,
+          "kind": "capstone",
+          "capstone": "C05",
+          "path": "capstones/busy-week.md",
+          "competencies": []
+        },
+        {
+          "day": 28,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 29,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 30,
+          "kind": "reflection",
+          "path": "templates/weekly-review.md",
+          "competencies": []
+        }
+      ]
+    },
+    {
+      "id": "independent-living",
+      "title": "Independent living",
+      "path": "learning-plan/independent-living.md",
+      "domains": [
+        "emergencies",
+        "digital-safety",
+        "money",
+        "home",
+        "life-admin",
+        "major-decisions"
+      ],
+      "capstone": "C01",
+      "estimated_daily_minutes": 20,
+      "sessions": [
+        {
+          "day": 1,
+          "kind": "diagnostic",
+          "path": "curriculum/diagnostic.md",
+          "competencies": []
+        },
+        {
+          "day": 2,
+          "kind": "practice",
+          "path": "guides/01-emergencies.md",
+          "competencies": [
+            "emergencies.foundation"
+          ]
+        },
+        {
+          "day": 3,
+          "kind": "practice",
+          "path": "guides/07-digital-safety.md",
+          "competencies": [
+            "digital-safety.foundation"
+          ]
+        },
+        {
+          "day": 4,
+          "kind": "practice",
+          "path": "guides/02-money.md",
+          "competencies": [
+            "money.foundation"
+          ]
+        },
+        {
+          "day": 5,
+          "kind": "practice",
+          "path": "guides/08-home.md",
+          "competencies": [
+            "home.foundation"
+          ]
+        },
+        {
+          "day": 6,
+          "kind": "practice",
+          "path": "guides/11-life-admin.md",
+          "competencies": [
+            "life-admin.foundation"
+          ]
+        },
+        {
+          "day": 7,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 8,
+          "kind": "practice",
+          "path": "guides/12-major-decisions.md",
+          "competencies": [
+            "major-decisions.foundation"
+          ]
+        },
+        {
+          "day": 9,
+          "kind": "assessment",
+          "path": "scenarios/01-emergencies.md",
+          "competencies": [
+            "emergencies.applied"
+          ]
+        },
+        {
+          "day": 10,
+          "kind": "assessment",
+          "path": "scenarios/07-digital-safety.md",
+          "competencies": [
+            "digital-safety.applied"
+          ]
+        },
+        {
+          "day": 11,
+          "kind": "assessment",
+          "path": "scenarios/02-money.md",
+          "competencies": [
+            "money.applied"
+          ]
+        },
+        {
+          "day": 12,
+          "kind": "assessment",
+          "path": "scenarios/08-home.md",
+          "competencies": [
+            "home.applied"
+          ]
+        },
+        {
+          "day": 13,
+          "kind": "assessment",
+          "path": "scenarios/11-life-admin.md",
+          "competencies": [
+            "life-admin.applied"
+          ]
+        },
+        {
+          "day": 14,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 15,
+          "kind": "assessment",
+          "path": "scenarios/12-major-decisions.md",
+          "competencies": [
+            "major-decisions.applied"
+          ]
+        },
+        {
+          "day": 16,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "emergencies.independent"
+          ]
+        },
+        {
+          "day": 17,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "digital-safety.independent"
+          ]
+        },
+        {
+          "day": 18,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "money.independent"
+          ]
+        },
+        {
+          "day": 19,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "home.independent"
+          ]
+        },
+        {
+          "day": 20,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "life-admin.independent"
+          ]
+        },
+        {
+          "day": 21,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 22,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "major-decisions.independent"
+          ]
+        },
+        {
+          "day": 23,
+          "kind": "assessment",
+          "path": "domains/emergencies.md",
+          "competencies": [
+            "emergencies.advanced-scenario"
+          ]
+        },
+        {
+          "day": 24,
+          "kind": "assessment",
+          "path": "domains/digital-safety.md",
+          "competencies": [
+            "digital-safety.advanced-scenario"
+          ]
+        },
+        {
+          "day": 25,
+          "kind": "capstone",
+          "capstone": "C01",
+          "path": "capstones/moving-out.md",
+          "competencies": []
+        },
+        {
+          "day": 26,
+          "kind": "capstone",
+          "capstone": "C01",
+          "path": "capstones/moving-out.md",
+          "competencies": []
+        },
+        {
+          "day": 27,
+          "kind": "capstone",
+          "capstone": "C01",
+          "path": "capstones/moving-out.md",
+          "competencies": []
+        },
+        {
+          "day": 28,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 29,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 30,
+          "kind": "reflection",
+          "path": "templates/weekly-review.md",
+          "competencies": []
+        }
+      ]
+    },
+    {
+      "id": "money-admin",
+      "title": "Money and administration",
+      "path": "learning-plan/money-admin.md",
+      "domains": [
+        "critical-thinking",
+        "digital-safety",
+        "money",
+        "life-admin",
+        "learning-time"
+      ],
+      "capstone": "C03",
+      "estimated_daily_minutes": 20,
+      "sessions": [
+        {
+          "day": 1,
+          "kind": "diagnostic",
+          "path": "curriculum/diagnostic.md",
+          "competencies": []
+        },
+        {
+          "day": 2,
+          "kind": "practice",
+          "path": "guides/06-thinking.md",
+          "competencies": [
+            "critical-thinking.foundation"
+          ]
+        },
+        {
+          "day": 3,
+          "kind": "practice",
+          "path": "guides/07-digital-safety.md",
+          "competencies": [
+            "digital-safety.foundation"
+          ]
+        },
+        {
+          "day": 4,
+          "kind": "practice",
+          "path": "guides/02-money.md",
+          "competencies": [
+            "money.foundation"
+          ]
+        },
+        {
+          "day": 5,
+          "kind": "practice",
+          "path": "guides/11-life-admin.md",
+          "competencies": [
+            "life-admin.foundation"
+          ]
+        },
+        {
+          "day": 6,
+          "kind": "practice",
+          "path": "guides/10-learning-and-time.md",
+          "competencies": [
+            "learning-time.foundation"
+          ]
+        },
+        {
+          "day": 7,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 8,
+          "kind": "assessment",
+          "path": "scenarios/06-critical-thinking.md",
+          "competencies": [
+            "critical-thinking.applied"
+          ]
+        },
+        {
+          "day": 9,
+          "kind": "assessment",
+          "path": "scenarios/07-digital-safety.md",
+          "competencies": [
+            "digital-safety.applied"
+          ]
+        },
+        {
+          "day": 10,
+          "kind": "assessment",
+          "path": "scenarios/02-money.md",
+          "competencies": [
+            "money.applied"
+          ]
+        },
+        {
+          "day": 11,
+          "kind": "assessment",
+          "path": "scenarios/11-life-admin.md",
+          "competencies": [
+            "life-admin.applied"
+          ]
+        },
+        {
+          "day": 12,
+          "kind": "assessment",
+          "path": "scenarios/10-learning-time.md",
+          "competencies": [
+            "learning-time.applied"
+          ]
+        },
+        {
+          "day": 13,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "critical-thinking.independent"
+          ]
+        },
+        {
+          "day": 14,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 15,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "digital-safety.independent"
+          ]
+        },
+        {
+          "day": 16,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "money.independent"
+          ]
+        },
+        {
+          "day": 17,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "life-admin.independent"
+          ]
+        },
+        {
+          "day": 18,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "learning-time.independent"
+          ]
+        },
+        {
+          "day": 19,
+          "kind": "assessment",
+          "path": "domains/critical-thinking.md",
+          "competencies": [
+            "critical-thinking.advanced-scenario"
+          ]
+        },
+        {
+          "day": 20,
+          "kind": "assessment",
+          "path": "domains/digital-safety.md",
+          "competencies": [
+            "digital-safety.advanced-scenario"
+          ]
+        },
+        {
+          "day": 21,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 22,
+          "kind": "assessment",
+          "path": "domains/money.md",
+          "competencies": [
+            "money.advanced-scenario"
+          ]
+        },
+        {
+          "day": 23,
+          "kind": "assessment",
+          "path": "domains/life-admin.md",
+          "competencies": [
+            "life-admin.advanced-scenario"
+          ]
+        },
+        {
+          "day": 24,
+          "kind": "assessment",
+          "path": "domains/learning-time.md",
+          "competencies": [
+            "learning-time.advanced-scenario"
+          ]
+        },
+        {
+          "day": 25,
+          "kind": "capstone",
+          "capstone": "C03",
+          "path": "capstones/unexpected-expense.md",
+          "competencies": []
+        },
+        {
+          "day": 26,
+          "kind": "capstone",
+          "capstone": "C03",
+          "path": "capstones/unexpected-expense.md",
+          "competencies": []
+        },
+        {
+          "day": 27,
+          "kind": "capstone",
+          "capstone": "C03",
+          "path": "capstones/unexpected-expense.md",
+          "competencies": []
+        },
+        {
+          "day": 28,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 29,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 30,
+          "kind": "reflection",
+          "path": "templates/weekly-review.md",
+          "competencies": []
+        }
+      ]
+    },
+    {
+      "id": "digital-safety",
+      "title": "Digital safety",
+      "path": "learning-plan/digital-safety.md",
+      "domains": [
+        "critical-thinking",
+        "digital-safety",
+        "money",
+        "relationships",
+        "life-admin"
+      ],
+      "capstone": "C04",
+      "estimated_daily_minutes": 20,
+      "sessions": [
+        {
+          "day": 1,
+          "kind": "diagnostic",
+          "path": "curriculum/diagnostic.md",
+          "competencies": []
+        },
+        {
+          "day": 2,
+          "kind": "practice",
+          "path": "guides/06-thinking.md",
+          "competencies": [
+            "critical-thinking.foundation"
+          ]
+        },
+        {
+          "day": 3,
+          "kind": "practice",
+          "path": "guides/07-digital-safety.md",
+          "competencies": [
+            "digital-safety.foundation"
+          ]
+        },
+        {
+          "day": 4,
+          "kind": "practice",
+          "path": "guides/02-money.md",
+          "competencies": [
+            "money.foundation"
+          ]
+        },
+        {
+          "day": 5,
+          "kind": "practice",
+          "path": "guides/05-relationships.md",
+          "competencies": [
+            "relationships.foundation"
+          ]
+        },
+        {
+          "day": 6,
+          "kind": "practice",
+          "path": "guides/11-life-admin.md",
+          "competencies": [
+            "life-admin.foundation"
+          ]
+        },
+        {
+          "day": 7,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 8,
+          "kind": "assessment",
+          "path": "scenarios/06-critical-thinking.md",
+          "competencies": [
+            "critical-thinking.applied"
+          ]
+        },
+        {
+          "day": 9,
+          "kind": "assessment",
+          "path": "scenarios/07-digital-safety.md",
+          "competencies": [
+            "digital-safety.applied"
+          ]
+        },
+        {
+          "day": 10,
+          "kind": "assessment",
+          "path": "scenarios/02-money.md",
+          "competencies": [
+            "money.applied"
+          ]
+        },
+        {
+          "day": 11,
+          "kind": "assessment",
+          "path": "scenarios/05-relationships.md",
+          "competencies": [
+            "relationships.applied"
+          ]
+        },
+        {
+          "day": 12,
+          "kind": "assessment",
+          "path": "scenarios/11-life-admin.md",
+          "competencies": [
+            "life-admin.applied"
+          ]
+        },
+        {
+          "day": 13,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "critical-thinking.independent"
+          ]
+        },
+        {
+          "day": 14,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 15,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "digital-safety.independent"
+          ]
+        },
+        {
+          "day": 16,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "money.independent"
+          ]
+        },
+        {
+          "day": 17,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "relationships.independent"
+          ]
+        },
+        {
+          "day": 18,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "life-admin.independent"
+          ]
+        },
+        {
+          "day": 19,
+          "kind": "assessment",
+          "path": "domains/critical-thinking.md",
+          "competencies": [
+            "critical-thinking.advanced-scenario"
+          ]
+        },
+        {
+          "day": 20,
+          "kind": "assessment",
+          "path": "domains/digital-safety.md",
+          "competencies": [
+            "digital-safety.advanced-scenario"
+          ]
+        },
+        {
+          "day": 21,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 22,
+          "kind": "assessment",
+          "path": "domains/money.md",
+          "competencies": [
+            "money.advanced-scenario"
+          ]
+        },
+        {
+          "day": 23,
+          "kind": "assessment",
+          "path": "domains/relationships.md",
+          "competencies": [
+            "relationships.advanced-scenario"
+          ]
+        },
+        {
+          "day": 24,
+          "kind": "assessment",
+          "path": "domains/life-admin.md",
+          "competencies": [
+            "life-admin.advanced-scenario"
+          ]
+        },
+        {
+          "day": 25,
+          "kind": "capstone",
+          "capstone": "C04",
+          "path": "capstones/suspicious-payment.md",
+          "competencies": []
+        },
+        {
+          "day": 26,
+          "kind": "capstone",
+          "capstone": "C04",
+          "path": "capstones/suspicious-payment.md",
+          "competencies": []
+        },
+        {
+          "day": 27,
+          "kind": "capstone",
+          "capstone": "C04",
+          "path": "capstones/suspicious-payment.md",
+          "competencies": []
+        },
+        {
+          "day": 28,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 29,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 30,
+          "kind": "reflection",
+          "path": "templates/weekly-review.md",
+          "competencies": []
+        }
+      ]
+    },
+    {
+      "id": "school-to-work",
+      "title": "School to work",
+      "path": "learning-plan/school-to-work.md",
+      "domains": [
+        "learning-time",
+        "relationships",
+        "critical-thinking",
+        "digital-safety",
+        "work",
+        "money",
+        "life-admin"
+      ],
+      "capstone": "C02",
+      "estimated_daily_minutes": 20,
+      "sessions": [
+        {
+          "day": 1,
+          "kind": "diagnostic",
+          "path": "curriculum/diagnostic.md",
+          "competencies": []
+        },
+        {
+          "day": 2,
+          "kind": "practice",
+          "path": "guides/10-learning-and-time.md",
+          "competencies": [
+            "learning-time.foundation"
+          ]
+        },
+        {
+          "day": 3,
+          "kind": "practice",
+          "path": "guides/05-relationships.md",
+          "competencies": [
+            "relationships.foundation"
+          ]
+        },
+        {
+          "day": 4,
+          "kind": "practice",
+          "path": "guides/06-thinking.md",
+          "competencies": [
+            "critical-thinking.foundation"
+          ]
+        },
+        {
+          "day": 5,
+          "kind": "practice",
+          "path": "guides/07-digital-safety.md",
+          "competencies": [
+            "digital-safety.foundation"
+          ]
+        },
+        {
+          "day": 6,
+          "kind": "practice",
+          "path": "guides/09-work.md",
+          "competencies": [
+            "work.foundation"
+          ]
+        },
+        {
+          "day": 7,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 8,
+          "kind": "practice",
+          "path": "guides/02-money.md",
+          "competencies": [
+            "money.foundation"
+          ]
+        },
+        {
+          "day": 9,
+          "kind": "practice",
+          "path": "guides/11-life-admin.md",
+          "competencies": [
+            "life-admin.foundation"
+          ]
+        },
+        {
+          "day": 10,
+          "kind": "assessment",
+          "path": "scenarios/10-learning-time.md",
+          "competencies": [
+            "learning-time.applied"
+          ]
+        },
+        {
+          "day": 11,
+          "kind": "assessment",
+          "path": "scenarios/05-relationships.md",
+          "competencies": [
+            "relationships.applied"
+          ]
+        },
+        {
+          "day": 12,
+          "kind": "assessment",
+          "path": "scenarios/06-critical-thinking.md",
+          "competencies": [
+            "critical-thinking.applied"
+          ]
+        },
+        {
+          "day": 13,
+          "kind": "assessment",
+          "path": "scenarios/07-digital-safety.md",
+          "competencies": [
+            "digital-safety.applied"
+          ]
+        },
+        {
+          "day": 14,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 15,
+          "kind": "assessment",
+          "path": "scenarios/09-work.md",
+          "competencies": [
+            "work.applied"
+          ]
+        },
+        {
+          "day": 16,
+          "kind": "assessment",
+          "path": "scenarios/02-money.md",
+          "competencies": [
+            "money.applied"
+          ]
+        },
+        {
+          "day": 17,
+          "kind": "assessment",
+          "path": "scenarios/11-life-admin.md",
+          "competencies": [
+            "life-admin.applied"
+          ]
+        },
+        {
+          "day": 18,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "learning-time.independent"
+          ]
+        },
+        {
+          "day": 19,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "relationships.independent"
+          ]
+        },
+        {
+          "day": 20,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "critical-thinking.independent"
+          ]
+        },
+        {
+          "day": 21,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 22,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "digital-safety.independent"
+          ]
+        },
+        {
+          "day": 23,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "work.independent"
+          ]
+        },
+        {
+          "day": 24,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": [
+            "money.independent"
+          ]
+        },
+        {
+          "day": 25,
+          "kind": "capstone",
+          "capstone": "C02",
+          "path": "capstones/first-job.md",
+          "competencies": []
+        },
+        {
+          "day": 26,
+          "kind": "capstone",
+          "capstone": "C02",
+          "path": "capstones/first-job.md",
+          "competencies": []
+        },
+        {
+          "day": 27,
+          "kind": "capstone",
+          "capstone": "C02",
+          "path": "capstones/first-job.md",
+          "competencies": []
+        },
+        {
+          "day": 28,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 29,
+          "kind": "reassessment",
+          "path": "curriculum/reassessment.md",
+          "competencies": []
+        },
+        {
+          "day": 30,
+          "kind": "reflection",
+          "path": "templates/weekly-review.md",
+          "competencies": []
+        }
+      ]
+    }
+  ],
+  "locales": [
+    {
+      "id": "uk",
+      "path": "locales/uk/README.md",
+      "data_path": "locales/uk/sources.json"
+    },
+    {
+      "id": "uk-wales",
+      "path": "locales/uk-wales/README.md",
+      "data_path": "locales/uk-wales/sources.json"
+    }
+  ]
+}

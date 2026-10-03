@@ -1,0 +1,10 @@
+{
+  "exceptions": [
+    {
+      "url": "https://www.nature.com/articles/s44159-022-00089-1",
+      "statuses": [403, 429],
+      "reason": "Publisher access controls can block automated checks; retain an explicit unverified result and use the accessible learning resource alongside this research reference.",
+      "expires": "2027-01-03"
+    }
+  ]
+}
