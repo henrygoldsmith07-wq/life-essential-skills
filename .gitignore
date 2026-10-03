@@ -1,0 +1,20 @@
+# Private local worksheets and records
+/personal/
+/private/
+
+# Secrets and local configuration
+.env
+.env.*
+*.pem
+*.key
+
+# Operating system/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*~
+
+# Temporary files
+*.tmp
+*.bak
