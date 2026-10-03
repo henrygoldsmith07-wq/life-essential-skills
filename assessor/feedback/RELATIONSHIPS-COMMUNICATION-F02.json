@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Describe the interruption, check understanding, reflect the access issue and make a workable request without pretending to know motives.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "overconfident-conclusion": "Match the conclusion to the evidence",
+    "ignores-consent": "Respect consent, refusal, and boundaries",
+    "misses-access-constraint": "Include access needs and realistic travel"
+  },
+  "next_steps": {
+    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "ignores-consent": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "misses-access-constraint": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

@@ -38,3 +38,21 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [nhs-relationships](../RESOURCES.md#nhs-relationships)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `relationships.communication.foundation` | Explain the reasoning and produce the basic fictional output for: Replace motive claims with observations, reflect the reply and make a specific respectful request. | knowledge |
+| `relationships.communication.independent` | Replace motive claims with observations, reflect the reply and make a specific respectful request. | independent |
+| `relationships.boundaries.foundation` | Explain the reasoning and produce the basic fictional output for: Define a boundary within one’s own control and respond to refusal without coercion. | knowledge |
+| `relationships.boundaries.independent` | Define a boundary within one’s own control and respond to refusal without coercion. | independent |
+| `relationships.conflict.foundation` | Explain the reasoning and produce the basic fictional output for: Respond to escalation with a safe pause or support route rather than forcing resolution. | knowledge |
+| `relationships.conflict.independent` | Respond to escalation with a safe pause or support route rather than forcing resolution. | independent |
+| `relationships.conflict.adaptive` | Adapt to refusal or escalating behaviour, choosing a safe pause or appropriate support. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

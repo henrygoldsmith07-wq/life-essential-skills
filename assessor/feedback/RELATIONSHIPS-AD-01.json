@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Respect the pause, avoid continued confrontation, preserve/report evidence only through appropriate safe channels and use verified support if threatened. No real personal messages stored. Revalidate facts, feasibility and scope after the change; do not simply repeat the base answer. Seek appropriate support or renegotiation where the constraints cannot safely be satisfied.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot. Changed condition: The other person refuses the request and starts making threats. The earlier boundary is ignored. Assess the revised plan against this actual change; an unresolved feasibility gap must be named honestly.",
+  "common_mistakes": {
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "ignores-consent": "Respect consent, refusal, and boundaries",
+    "no-fallback": "Prepare a feasible fallback"
+  },
+  "next_steps": {
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "ignores-consent": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "no-fallback": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

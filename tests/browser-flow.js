@@ -1,0 +1,30 @@
+(async()=>{
+  const checks=[];
+  const assert=(condition,name)=>{if(!condition)throw new Error(name);checks.push(name);};
+  const click=selector=>{const e=document.querySelector(selector);if(!e)throw new Error('Missing '+selector);e.click();};
+  const wait=async fn=>{for(let n=0;n<80;n++){if(fn())return;await new Promise(r=>setTimeout(r,75));}throw new Error('Timed out waiting for UI');};
+  const key='life-essential-skills-evidence-v1';
+  assert(document.querySelector('h1').textContent==='A little more capable.','Today renders');
+  assert(!performance.getEntriesByType('resource').some(r=>r.name.includes('/assessor/')),'No solutions fetched before attempt');
+  click('[data-learn]');assert(document.querySelector('.lesson h3')&&!document.querySelector('.lesson').textContent.includes('## Learn'),'Guide renders readable headings');click('#close-lesson');
+  click('[data-task]');click('#finish-attempt');assert(document.querySelector('#feedback-area').hidden,'Empty attempt cannot expose feedback');
+  const response='Fictional output: keep clear of water and electrics, verify responsible professional route, include access needs and offline fallback.';
+  document.querySelector('#response').value=response;click('#finish-attempt');await wait(()=>document.querySelector('#save-attempt'));
+  assert(document.querySelector('#response').readOnly,'Original response is frozen before feedback');
+  assert(performance.getEntriesByType('resource').filter(r=>r.name.includes('/assessor/feedback/')).length===1,'Only selected item feedback fetched');
+  document.querySelectorAll('[name=criterion]').forEach(e=>e.checked=true);document.querySelector('#outcome').value='demonstrated';document.querySelector('#access-used').checked=true;click('#save-attempt');
+  const saved=JSON.parse(localStorage.getItem(key));assert(saved.records.length===1&&saved.records[0].outcome==='demonstrated','Criterion evidence saved');
+  assert(saved.records[0].access_supports.includes('extra-time'),'Access support preserves independence');assert(!localStorage.getItem(key).includes(response),'Written answer never stored');
+  location.hash='progress';await wait(()=>!document.querySelector('#progress').hidden);assert(document.querySelector('#progress-content').textContent.includes('Knowledge checks met'),'Progress separates knowledge');
+  location.hash='settings';await wait(()=>!document.querySelector('#settings').hidden);document.querySelector('#locality').value='wales';document.querySelector('#locality').dispatchEvent(new Event('change'));
+  assert(JSON.parse(localStorage.getItem(key)).locality==='wales','Locality preference saves');
+  const sample=await(await fetch('../examples/learners/wales-housing.json')).json();
+  const transfer=new DataTransfer();transfer.items.add(new File([JSON.stringify(sample)],'fictional.json',{type:'application/json'}));document.querySelector('#import-state').files=transfer.files;document.querySelector('#import-state').dispatchEvent(new Event('change'));await wait(()=>JSON.parse(localStorage.getItem(key)).goal_competencies[0]==='major-decisions.housing.independent');
+  location.hash='today';await wait(()=>!document.querySelector('#today').hidden);assert(document.querySelector('#today-content').textContent.includes('W-HO-'),'Wales error-aware housing recommendation');
+  location.hash='pathways';await wait(()=>!document.querySelector('#pathways').hidden);click('[data-pathway="school-to-work"]');assert(JSON.parse(localStorage.getItem(key)).pathway==='school-to-work','Pathway selection updates state');
+  location.hash='practice';await wait(()=>!document.querySelector('#practice').hidden);document.querySelector('#domain-filter').value='major-decisions';document.querySelector('#domain-filter').dispatchEvent(new Event('change'));assert(document.querySelector('#practice-content').textContent.includes('W-HO-'),'Locality-filtered practice bank available');
+  const before=localStorage.getItem(key);const invalid={...sample,password:'not-allowed'};const bad=new DataTransfer();bad.items.add(new File([JSON.stringify(invalid)],'invalid.json',{type:'application/json'}));location.hash='settings';await wait(()=>!document.querySelector('#settings').hidden);document.querySelector('#import-state').files=bad.files;document.querySelector('#import-state').dispatchEvent(new Event('change'));await wait(()=>document.querySelector('#notice').textContent.includes('Import refused'));assert(localStorage.getItem(key)===before,'Sensitive extra fields rejected without overwriting evidence');
+  location.hash='today';await wait(()=>!document.querySelector('#today').hidden);
+  assert(document.documentElement.scrollWidth<=window.innerWidth,'Mobile view has no horizontal overflow');
+  return {checks,viewport:{width:innerWidth,height:innerHeight},records:JSON.parse(localStorage.getItem(key)).records.length,feedbackRequests:performance.getEntriesByType('resource').filter(r=>r.name.includes('/assessor/feedback/')).length};
+})()

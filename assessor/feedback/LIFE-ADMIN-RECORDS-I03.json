@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Sample reminder day15; three days from today. Use minimal private placeholders, independently verify required forms/data and never place ID/health records in the public worksheet.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "reveals-sensitive-information": "Keep secrets and personal records private",
+    "fails-independent-verification": "Verify through an independent official route",
+    "missed-payment-timing": "Place money in date order",
+    "unverified-entitlement": "Verify legal scope without promising an entitlement"
+  },
+  "next_steps": {
+    "reveals-sensitive-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "missed-payment-timing": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unverified-entitlement": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

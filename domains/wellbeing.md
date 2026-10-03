@@ -39,3 +39,19 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [wales-mental-health](../RESOURCES.md#wales-mental-health)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `wellbeing.capacity.foundation` | Explain the reasoning and produce the basic fictional output for: Identify a manageable next action, preserve basic needs, and distinguish a planning problem from a need for professional support. | knowledge |
+| `wellbeing.capacity.independent` | Identify a manageable next action, preserve basic needs, and distinguish a planning problem from a need for professional support. | independent |
+| `wellbeing.support.foundation` | Explain the reasoning and produce the basic fictional output for: Make a specific consent-based support request with a verified fallback and recognise when urgent help takes priority. | knowledge |
+| `wellbeing.support.independent` | Make a specific consent-based support request with a verified fallback and recognise when urgent help takes priority. | independent |
+| `wellbeing.support.adaptive` | Adapt when the first contact is unavailable and identify when urgent professional help takes priority. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

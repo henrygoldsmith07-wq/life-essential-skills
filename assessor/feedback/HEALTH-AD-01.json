@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Appearance alone does not establish a dispensing error. Reject invented dose advice, verify with an appropriate qualified service and avoid treatment instructions; urgent danger takes priority over learning. Revalidate facts, feasibility and scope after the change; do not simply repeat the base answer. Seek appropriate support or renegotiation where the constraints cannot safely be satisfied.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot. Changed condition: The clinic changes venue and step-free access is unconfirmed. An AI now cites an untraceable paper to justify changing medicine directions. Assess the revised plan against this actual change; an unresolved feasibility gap must be named honestly.",
+  "common_mistakes": {
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "assumes-missing-information": "Name missing facts before deciding",
+    "fails-independent-verification": "Verify through an independent official route",
+    "overconfident-conclusion": "Match the conclusion to the evidence"
+  },
+  "next_steps": {
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

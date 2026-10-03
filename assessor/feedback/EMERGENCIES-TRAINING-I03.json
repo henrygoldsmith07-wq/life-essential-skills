@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Separate written knowledge from observed technique, verify the training provider and supervised practical assessment/access options. No hazardous real-world demonstration or unearned practical claim.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "overconfident-conclusion": "Match the conclusion to the evidence",
+    "fails-independent-verification": "Verify through an independent official route"
+  },
+  "next_steps": {
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

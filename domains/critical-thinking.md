@@ -41,3 +41,21 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [ncsc-integrity](../RESOURCES.md#ncsc-integrity)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `critical-thinking.verification.foundation` | Explain the reasoning and produce the basic fictional output for: Separate claim, evidence and assumptions; trace an original source and state uncertainty without inventing verification. | knowledge |
+| `critical-thinking.verification.independent` | Separate claim, evidence and assumptions; trace an original source and state uncertainty without inventing verification. | independent |
+| `critical-thinking.statistics.foundation` | Explain the reasoning and produce the basic fictional output for: Calculate absolute and relative differences and distinguish an association from a causal conclusion. | knowledge |
+| `critical-thinking.statistics.independent` | Calculate absolute and relative differences and distinguish an association from a causal conclusion. | independent |
+| `critical-thinking.decisions.foundation` | Explain the reasoning and produce the basic fictional output for: Record assumptions, missing evidence and a condition that would change a decision. | knowledge |
+| `critical-thinking.decisions.independent` | Record assumptions, missing evidence and a condition that would change a decision. | independent |
+| `critical-thinking.verification.adaptive` | Adapt the conclusion to manipulated content or incomplete evidence and name what would change it. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

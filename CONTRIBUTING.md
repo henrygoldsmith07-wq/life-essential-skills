@@ -33,3 +33,7 @@ Only update a review date after an actual check. Access blocks are unverified, n
 Each scenario needs context, materials, task, advanced variation, criterion-linked rubric, hidden explanation, and relevant sources. Check calculations independently. A written plan cannot certify hands-on technique; a remembered answer cannot establish transfer. Record guidance used and delayed reassessment separately.
 
 Keep competency IDs stable and never make urgent help dependent on curriculum prerequisites. Use plain language, accessible adaptations, and non-partisan civic information. Original contributions use the [MIT licence](LICENSE); linked publications retain their own rights.
+
+## Adaptive product maintenance
+
+Use the [architecture guide](docs/architecture.md) for canonical files, schemas and build commands. Review new variants for genuine changes in constraints and uncertainty. Preserve legacy IDs, source scope, safety gates, exposure history and access equity. Keep assessor solutions out of initial learner data and learner-facing navigation. Run the [evaluation cycle](docs/evaluation.md) with fictional evidence and the [source review process](docs/source-review.md) when guidance changes.

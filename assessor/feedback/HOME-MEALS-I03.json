@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Listed shelf-stable purchases5.90 leave1.10; adding2 exceeds by0.90. Verify preparation/storage and equipment fit; do not assume chilled food is safe or infer cooking technique from a written plan.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "arithmetic-error": "Check the arithmetic and units",
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "assumes-missing-information": "Name missing facts before deciding"
+  },
+  "next_steps": {
+    "arithmetic-error": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

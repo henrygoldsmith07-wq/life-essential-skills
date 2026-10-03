@@ -1,0 +1,3545 @@
+{
+  "schema_version": 1,
+  "competencies": [
+    {
+      "id": "emergencies.response.foundation",
+      "domain": "emergencies",
+      "subskill": "response",
+      "title": "Safe response and escalation · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Produce a safe ordered response, verify a local help route, and identify a professional limit.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "emergencies.response.independent",
+        "emergencies.preparedness.independent",
+        "emergencies.training.independent"
+      ],
+      "assessment_routes": [
+        "EMERGENCIES-RESPONSE-F01",
+        "EMERGENCIES-RESPONSE-F02"
+      ],
+      "learn_path": "guides/01-emergencies.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "fails-independent-verification",
+        "misses-access-constraint",
+        "no-fallback"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "emergencies.response.independent",
+      "domain": "emergencies",
+      "subskill": "response",
+      "title": "Safe response and escalation · independent",
+      "mode": "independent",
+      "criterion": "Produce a safe ordered response, verify a local help route, and identify a professional limit.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "emergencies.response.foundation"
+      ],
+      "related_competencies": [
+        "emergencies.preparedness.independent",
+        "emergencies.training.independent"
+      ],
+      "assessment_routes": [
+        "EMERGENCIES-RESPONSE-I01",
+        "EMERGENCIES-RESPONSE-I02",
+        "EMERGENCIES-RESPONSE-I03"
+      ],
+      "learn_path": "guides/01-emergencies.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "fails-independent-verification",
+        "misses-access-constraint",
+        "no-fallback"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "emergencies.preparedness.foundation",
+      "domain": "emergencies",
+      "subskill": "preparedness",
+      "title": "Offline household planning · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Create an offline plan with safe exits, a meeting arrangement, access needs, verified contacts, and unresolved gaps.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "emergencies.response.independent",
+        "emergencies.preparedness.independent",
+        "emergencies.training.independent"
+      ],
+      "assessment_routes": [
+        "EMERGENCIES-PREPAREDNESS-F01",
+        "EMERGENCIES-PREPAREDNESS-F02"
+      ],
+      "learn_path": "guides/01-emergencies.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "reveals-sensitive-information",
+        "misses-access-constraint",
+        "no-fallback"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "emergencies.preparedness.independent",
+      "domain": "emergencies",
+      "subskill": "preparedness",
+      "title": "Offline household planning · independent",
+      "mode": "independent",
+      "criterion": "Create an offline plan with safe exits, a meeting arrangement, access needs, verified contacts, and unresolved gaps.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "emergencies.preparedness.foundation"
+      ],
+      "related_competencies": [
+        "emergencies.response.independent",
+        "emergencies.training.independent"
+      ],
+      "assessment_routes": [
+        "EMERGENCIES-PREPAREDNESS-I01",
+        "EMERGENCIES-PREPAREDNESS-I02",
+        "EMERGENCIES-PREPAREDNESS-I03"
+      ],
+      "learn_path": "guides/01-emergencies.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "reveals-sensitive-information",
+        "misses-access-constraint",
+        "no-fallback"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "emergencies.training.foundation",
+      "domain": "emergencies",
+      "subskill": "training",
+      "title": "Recognising practical first-aid limits · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Select verified practical training and explain which abilities a written answer cannot demonstrate.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "emergencies.response.independent",
+        "emergencies.preparedness.independent",
+        "emergencies.training.independent"
+      ],
+      "assessment_routes": [
+        "EMERGENCIES-TRAINING-F01",
+        "EMERGENCIES-TRAINING-F02"
+      ],
+      "learn_path": "guides/01-emergencies.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "overconfident-conclusion",
+        "fails-independent-verification"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "emergencies.training.independent",
+      "domain": "emergencies",
+      "subskill": "training",
+      "title": "Recognising practical first-aid limits · independent",
+      "mode": "independent",
+      "criterion": "Select verified practical training and explain which abilities a written answer cannot demonstrate.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "emergencies.training.foundation"
+      ],
+      "related_competencies": [
+        "emergencies.response.independent",
+        "emergencies.preparedness.independent"
+      ],
+      "assessment_routes": [
+        "EMERGENCIES-TRAINING-I01",
+        "EMERGENCIES-TRAINING-I02",
+        "EMERGENCIES-TRAINING-I03"
+      ],
+      "learn_path": "guides/01-emergencies.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "overconfident-conclusion",
+        "fails-independent-verification"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.budget.foundation",
+      "domain": "money",
+      "subskill": "budget",
+      "title": "Budget and essential costs · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Balance a fictional monthly budget including essentials, irregular reserves and a stated unallocated amount.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-BUDGET-F01",
+        "MONEY-BUDGET-F02"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "ignores-essential-cost",
+        "assumes-missing-information"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.budget.independent",
+      "domain": "money",
+      "subskill": "budget",
+      "title": "Budget and essential costs · independent",
+      "mode": "independent",
+      "criterion": "Balance a fictional monthly budget including essentials, irregular reserves and a stated unallocated amount.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "money.budget.foundation"
+      ],
+      "related_competencies": [
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-BUDGET-I01",
+        "MONEY-BUDGET-I02",
+        "MONEY-BUDGET-I03"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "ignores-essential-cost",
+        "assumes-missing-information"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.cash-flow.foundation",
+      "domain": "money",
+      "subskill": "cash-flow",
+      "title": "Dated cash flow · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Calculate the lowest dated balance and a feasible response to a shortfall without assuming funds or consent.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-CASH-FLOW-F01",
+        "MONEY-CASH-FLOW-F02"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "missed-payment-timing",
+        "ignores-essential-cost",
+        "assumes-missing-information"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.cash-flow.independent",
+      "domain": "money",
+      "subskill": "cash-flow",
+      "title": "Dated cash flow · independent",
+      "mode": "independent",
+      "criterion": "Calculate the lowest dated balance and a feasible response to a shortfall without assuming funds or consent.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "money.cash-flow.foundation",
+        "money.budget.foundation"
+      ],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "M-CF-01",
+        "M-CF-02",
+        "M-CF-03",
+        "M-CF-04",
+        "M-CF-05"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "missed-payment-timing",
+        "ignores-essential-cost",
+        "assumes-missing-information"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.credit.foundation",
+      "domain": "money",
+      "subskill": "credit",
+      "title": "Borrowing and debt trade-offs · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Compare total repayment, payment timing, essential costs and uncertain terms; identify when borrowing is not demonstrably affordable.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-CREDIT-F01",
+        "MONEY-CREDIT-F02"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "missed-payment-timing",
+        "ignores-essential-cost",
+        "assumes-missing-information",
+        "unverified-entitlement"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.credit.independent",
+      "domain": "money",
+      "subskill": "credit",
+      "title": "Borrowing and debt trade-offs · independent",
+      "mode": "independent",
+      "criterion": "Compare total repayment, payment timing, essential costs and uncertain terms; identify when borrowing is not demonstrably affordable.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "money.credit.foundation",
+        "money.cash-flow.independent"
+      ],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "M-CR-01",
+        "M-CR-02",
+        "M-CR-03",
+        "M-CR-04",
+        "M-CR-05"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "missed-payment-timing",
+        "ignores-essential-cost",
+        "assumes-missing-information",
+        "unverified-entitlement"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.banking.foundation",
+      "domain": "money",
+      "subskill": "banking",
+      "title": "Banking and payment verification · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Reconcile a fictional statement, distinguish available from pending funds, and verify an unexpected payment request independently.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-BANKING-F01",
+        "MONEY-BANKING-F02"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "assumes-missing-information",
+        "reveals-sensitive-information",
+        "fails-independent-verification"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.banking.independent",
+      "domain": "money",
+      "subskill": "banking",
+      "title": "Banking and payment verification · independent",
+      "mode": "independent",
+      "criterion": "Reconcile a fictional statement, distinguish available from pending funds, and verify an unexpected payment request independently.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "money.banking.foundation"
+      ],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-BANKING-I01",
+        "MONEY-BANKING-I02",
+        "MONEY-BANKING-I03"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "assumes-missing-information",
+        "reveals-sensitive-information",
+        "fails-independent-verification"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.payslip.foundation",
+      "domain": "money",
+      "subskill": "payslip",
+      "title": "Payslip and tax questions · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Reconcile gross pay, stated deductions and received pay; raise a specific query without inventing tax liability or sharing records.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-PAYSLIP-F01",
+        "MONEY-PAYSLIP-F02"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "assumes-missing-information",
+        "unverified-entitlement",
+        "reveals-sensitive-information"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.payslip.independent",
+      "domain": "money",
+      "subskill": "payslip",
+      "title": "Payslip and tax questions · independent",
+      "mode": "independent",
+      "criterion": "Reconcile gross pay, stated deductions and received pay; raise a specific query without inventing tax liability or sharing records.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "money.payslip.foundation"
+      ],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-PAYSLIP-I01",
+        "MONEY-PAYSLIP-I02",
+        "MONEY-PAYSLIP-I03"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "assumes-missing-information",
+        "unverified-entitlement",
+        "reveals-sensitive-information"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "health.access.foundation",
+      "domain": "health",
+      "subskill": "access",
+      "title": "Healthcare access and appointments · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Choose a verified local service route and prepare appointment/access questions without diagnosing or delaying urgent help.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "health.access.independent",
+        "health.medicine.independent",
+        "health.routine.independent"
+      ],
+      "assessment_routes": [
+        "HEALTH-ACCESS-F01",
+        "HEALTH-ACCESS-F02"
+      ],
+      "learn_path": "guides/03-health.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "fails-independent-verification",
+        "misses-access-constraint",
+        "reveals-sensitive-information",
+        "unsafe-advice"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "health.access.independent",
+      "domain": "health",
+      "subskill": "access",
+      "title": "Healthcare access and appointments · independent",
+      "mode": "independent",
+      "criterion": "Choose a verified local service route and prepare appointment/access questions without diagnosing or delaying urgent help.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "health.access.foundation"
+      ],
+      "related_competencies": [
+        "health.medicine.independent",
+        "health.routine.independent"
+      ],
+      "assessment_routes": [
+        "HEALTH-ACCESS-I01",
+        "HEALTH-ACCESS-I02",
+        "HEALTH-ACCESS-I03"
+      ],
+      "learn_path": "guides/03-health.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "fails-independent-verification",
+        "misses-access-constraint",
+        "reveals-sensitive-information",
+        "unsafe-advice"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "health.medicine.foundation",
+      "domain": "health",
+      "subskill": "medicine",
+      "title": "Medicine safety and information · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Resolve uncertain medicine directions through a qualified verified route without inventing a dose or changing treatment.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "health.access.independent",
+        "health.medicine.independent",
+        "health.routine.independent"
+      ],
+      "assessment_routes": [
+        "HEALTH-MEDICINE-F01",
+        "HEALTH-MEDICINE-F02"
+      ],
+      "learn_path": "guides/03-health.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "assumes-missing-information",
+        "fails-independent-verification",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "health.medicine.independent",
+      "domain": "health",
+      "subskill": "medicine",
+      "title": "Medicine safety and information · independent",
+      "mode": "independent",
+      "criterion": "Resolve uncertain medicine directions through a qualified verified route without inventing a dose or changing treatment.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "health.medicine.foundation"
+      ],
+      "related_competencies": [
+        "health.access.independent",
+        "health.routine.independent"
+      ],
+      "assessment_routes": [
+        "HEALTH-MEDICINE-I01",
+        "HEALTH-MEDICINE-I02",
+        "HEALTH-MEDICINE-I03"
+      ],
+      "learn_path": "guides/03-health.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "assumes-missing-information",
+        "fails-independent-verification",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "health.routine.foundation",
+      "domain": "health",
+      "subskill": "routine",
+      "title": "Feasible health routines and claims · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Plan a realistic food, rest and movement routine and evaluate a health claim with an appropriate professional limit.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "health.access.independent",
+        "health.medicine.independent",
+        "health.routine.independent"
+      ],
+      "assessment_routes": [
+        "HEALTH-ROUTINE-F01",
+        "HEALTH-ROUTINE-F02"
+      ],
+      "learn_path": "guides/03-health.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "overconfident-conclusion",
+        "unrealistic-capacity",
+        "fails-independent-verification"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "health.routine.independent",
+      "domain": "health",
+      "subskill": "routine",
+      "title": "Feasible health routines and claims · independent",
+      "mode": "independent",
+      "criterion": "Plan a realistic food, rest and movement routine and evaluate a health claim with an appropriate professional limit.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "health.routine.foundation"
+      ],
+      "related_competencies": [
+        "health.access.independent",
+        "health.medicine.independent"
+      ],
+      "assessment_routes": [
+        "HEALTH-ROUTINE-I01",
+        "HEALTH-ROUTINE-I02",
+        "HEALTH-ROUTINE-I03"
+      ],
+      "learn_path": "guides/03-health.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "overconfident-conclusion",
+        "unrealistic-capacity",
+        "fails-independent-verification"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "wellbeing.capacity.foundation",
+      "domain": "wellbeing",
+      "subskill": "capacity",
+      "title": "Overload and manageable action · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Identify a manageable next action, preserve basic needs, and distinguish a planning problem from a need for professional support.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "wellbeing.capacity.independent",
+        "wellbeing.support.independent"
+      ],
+      "assessment_routes": [
+        "WELLBEING-CAPACITY-F01",
+        "WELLBEING-CAPACITY-F02"
+      ],
+      "learn_path": "guides/04-wellbeing.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unrealistic-capacity",
+        "unsafe-advice",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "wellbeing.capacity.independent",
+      "domain": "wellbeing",
+      "subskill": "capacity",
+      "title": "Overload and manageable action · independent",
+      "mode": "independent",
+      "criterion": "Identify a manageable next action, preserve basic needs, and distinguish a planning problem from a need for professional support.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "wellbeing.capacity.foundation"
+      ],
+      "related_competencies": [
+        "wellbeing.support.independent"
+      ],
+      "assessment_routes": [
+        "WELLBEING-CAPACITY-I01",
+        "WELLBEING-CAPACITY-I02",
+        "WELLBEING-CAPACITY-I03"
+      ],
+      "learn_path": "guides/04-wellbeing.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unrealistic-capacity",
+        "unsafe-advice",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "wellbeing.support.foundation",
+      "domain": "wellbeing",
+      "subskill": "support",
+      "title": "Support requests and fallback · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Make a specific consent-based support request with a verified fallback and recognise when urgent help takes priority.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "wellbeing.capacity.independent",
+        "wellbeing.support.independent"
+      ],
+      "assessment_routes": [
+        "WELLBEING-SUPPORT-F01",
+        "WELLBEING-SUPPORT-F02"
+      ],
+      "learn_path": "guides/04-wellbeing.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "ignores-consent",
+        "fails-independent-verification",
+        "unsafe-advice",
+        "no-fallback"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "wellbeing.support.independent",
+      "domain": "wellbeing",
+      "subskill": "support",
+      "title": "Support requests and fallback · independent",
+      "mode": "independent",
+      "criterion": "Make a specific consent-based support request with a verified fallback and recognise when urgent help takes priority.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "wellbeing.support.foundation"
+      ],
+      "related_competencies": [
+        "wellbeing.capacity.independent"
+      ],
+      "assessment_routes": [
+        "WELLBEING-SUPPORT-I01",
+        "WELLBEING-SUPPORT-I02",
+        "WELLBEING-SUPPORT-I03"
+      ],
+      "learn_path": "guides/04-wellbeing.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "ignores-consent",
+        "fails-independent-verification",
+        "unsafe-advice",
+        "no-fallback"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "relationships.communication.foundation",
+      "domain": "relationships",
+      "subskill": "communication",
+      "title": "Listening and clear requests · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Replace motive claims with observations, reflect the reply and make a specific respectful request.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "relationships.communication.independent",
+        "relationships.boundaries.independent",
+        "relationships.conflict.independent"
+      ],
+      "assessment_routes": [
+        "RELATIONSHIPS-COMMUNICATION-F01",
+        "RELATIONSHIPS-COMMUNICATION-F02"
+      ],
+      "learn_path": "guides/05-relationships.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "overconfident-conclusion",
+        "ignores-consent",
+        "misses-access-constraint"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "relationships.communication.independent",
+      "domain": "relationships",
+      "subskill": "communication",
+      "title": "Listening and clear requests · independent",
+      "mode": "independent",
+      "criterion": "Replace motive claims with observations, reflect the reply and make a specific respectful request.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "relationships.communication.foundation"
+      ],
+      "related_competencies": [
+        "relationships.boundaries.independent",
+        "relationships.conflict.independent"
+      ],
+      "assessment_routes": [
+        "RELATIONSHIPS-COMMUNICATION-I01",
+        "RELATIONSHIPS-COMMUNICATION-I02",
+        "RELATIONSHIPS-COMMUNICATION-I03"
+      ],
+      "learn_path": "guides/05-relationships.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "overconfident-conclusion",
+        "ignores-consent",
+        "misses-access-constraint"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "relationships.boundaries.foundation",
+      "domain": "relationships",
+      "subskill": "boundaries",
+      "title": "Consent and boundaries · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Define a boundary within one’s own control and respond to refusal without coercion.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "relationships.communication.independent",
+        "relationships.boundaries.independent",
+        "relationships.conflict.independent"
+      ],
+      "assessment_routes": [
+        "RELATIONSHIPS-BOUNDARIES-F01",
+        "RELATIONSHIPS-BOUNDARIES-F02"
+      ],
+      "learn_path": "guides/05-relationships.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "ignores-consent",
+        "unsafe-advice",
+        "assumes-missing-information"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "relationships.boundaries.independent",
+      "domain": "relationships",
+      "subskill": "boundaries",
+      "title": "Consent and boundaries · independent",
+      "mode": "independent",
+      "criterion": "Define a boundary within one’s own control and respond to refusal without coercion.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "relationships.boundaries.foundation"
+      ],
+      "related_competencies": [
+        "relationships.communication.independent",
+        "relationships.conflict.independent"
+      ],
+      "assessment_routes": [
+        "RELATIONSHIPS-BOUNDARIES-I01",
+        "RELATIONSHIPS-BOUNDARIES-I02",
+        "RELATIONSHIPS-BOUNDARIES-I03"
+      ],
+      "learn_path": "guides/05-relationships.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "ignores-consent",
+        "unsafe-advice",
+        "assumes-missing-information"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "relationships.conflict.foundation",
+      "domain": "relationships",
+      "subskill": "conflict",
+      "title": "Disagreement and safe pauses · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Respond to escalation with a safe pause or support route rather than forcing resolution.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "relationships.communication.independent",
+        "relationships.boundaries.independent",
+        "relationships.conflict.independent"
+      ],
+      "assessment_routes": [
+        "RELATIONSHIPS-CONFLICT-F01",
+        "RELATIONSHIPS-CONFLICT-F02"
+      ],
+      "learn_path": "guides/05-relationships.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "ignores-consent",
+        "no-fallback"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "relationships.conflict.independent",
+      "domain": "relationships",
+      "subskill": "conflict",
+      "title": "Disagreement and safe pauses · independent",
+      "mode": "independent",
+      "criterion": "Respond to escalation with a safe pause or support route rather than forcing resolution.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "relationships.conflict.foundation"
+      ],
+      "related_competencies": [
+        "relationships.communication.independent",
+        "relationships.boundaries.independent"
+      ],
+      "assessment_routes": [
+        "RELATIONSHIPS-CONFLICT-I01",
+        "RELATIONSHIPS-CONFLICT-I02",
+        "RELATIONSHIPS-CONFLICT-I03"
+      ],
+      "learn_path": "guides/05-relationships.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "ignores-consent",
+        "no-fallback"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "critical-thinking.verification.foundation",
+      "domain": "critical-thinking",
+      "subskill": "verification",
+      "title": "Evidence, AI and provenance · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Separate claim, evidence and assumptions; trace an original source and state uncertainty without inventing verification.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "critical-thinking.verification.independent",
+        "critical-thinking.statistics.independent",
+        "critical-thinking.decisions.independent"
+      ],
+      "assessment_routes": [
+        "CRITICAL-THINKING-VERIFICATION-F01",
+        "CRITICAL-THINKING-VERIFICATION-F02"
+      ],
+      "learn_path": "guides/06-thinking.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "fails-independent-verification",
+        "overconfident-conclusion",
+        "assumes-missing-information",
+        "wrong-jurisdiction"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "critical-thinking.verification.independent",
+      "domain": "critical-thinking",
+      "subskill": "verification",
+      "title": "Evidence, AI and provenance · independent",
+      "mode": "independent",
+      "criterion": "Separate claim, evidence and assumptions; trace an original source and state uncertainty without inventing verification.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "critical-thinking.verification.foundation"
+      ],
+      "related_competencies": [
+        "critical-thinking.statistics.independent",
+        "critical-thinking.decisions.independent"
+      ],
+      "assessment_routes": [
+        "CRITICAL-THINKING-VERIFICATION-I01",
+        "CRITICAL-THINKING-VERIFICATION-I02",
+        "CRITICAL-THINKING-VERIFICATION-I03"
+      ],
+      "learn_path": "guides/06-thinking.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "fails-independent-verification",
+        "overconfident-conclusion",
+        "assumes-missing-information",
+        "wrong-jurisdiction"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "critical-thinking.statistics.foundation",
+      "domain": "critical-thinking",
+      "subskill": "statistics",
+      "title": "Rates and causal claims · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Calculate absolute and relative differences and distinguish an association from a causal conclusion.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "critical-thinking.verification.independent",
+        "critical-thinking.statistics.independent",
+        "critical-thinking.decisions.independent"
+      ],
+      "assessment_routes": [
+        "CRITICAL-THINKING-STATISTICS-F01",
+        "CRITICAL-THINKING-STATISTICS-F02"
+      ],
+      "learn_path": "guides/06-thinking.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "confuses-relative-absolute",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "critical-thinking.statistics.independent",
+      "domain": "critical-thinking",
+      "subskill": "statistics",
+      "title": "Rates and causal claims · independent",
+      "mode": "independent",
+      "criterion": "Calculate absolute and relative differences and distinguish an association from a causal conclusion.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "critical-thinking.statistics.foundation"
+      ],
+      "related_competencies": [
+        "critical-thinking.verification.independent",
+        "critical-thinking.decisions.independent"
+      ],
+      "assessment_routes": [
+        "CRITICAL-THINKING-STATISTICS-I01",
+        "CRITICAL-THINKING-STATISTICS-I02",
+        "CRITICAL-THINKING-STATISTICS-I03"
+      ],
+      "learn_path": "guides/06-thinking.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "confuses-relative-absolute",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "critical-thinking.decisions.foundation",
+      "domain": "critical-thinking",
+      "subskill": "decisions",
+      "title": "Uncertainty and revisable decisions · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Record assumptions, missing evidence and a condition that would change a decision.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "critical-thinking.verification.independent",
+        "critical-thinking.statistics.independent",
+        "critical-thinking.decisions.independent"
+      ],
+      "assessment_routes": [
+        "CRITICAL-THINKING-DECISIONS-F01",
+        "CRITICAL-THINKING-DECISIONS-F02"
+      ],
+      "learn_path": "guides/06-thinking.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "fails-independent-verification",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "critical-thinking.decisions.independent",
+      "domain": "critical-thinking",
+      "subskill": "decisions",
+      "title": "Uncertainty and revisable decisions · independent",
+      "mode": "independent",
+      "criterion": "Record assumptions, missing evidence and a condition that would change a decision.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "critical-thinking.decisions.foundation"
+      ],
+      "related_competencies": [
+        "critical-thinking.verification.independent",
+        "critical-thinking.statistics.independent"
+      ],
+      "assessment_routes": [
+        "CRITICAL-THINKING-DECISIONS-I01",
+        "CRITICAL-THINKING-DECISIONS-I02",
+        "CRITICAL-THINKING-DECISIONS-I03"
+      ],
+      "learn_path": "guides/06-thinking.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "fails-independent-verification",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "digital-safety.accounts.foundation",
+      "domain": "digital-safety",
+      "subskill": "accounts",
+      "title": "Account protection and recovery planning · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Explain a safe account-protection and recovery plan using unique credentials, MFA, updates and private recovery methods.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "digital-safety.accounts.independent",
+        "digital-safety.scams.independent",
+        "digital-safety.backup.independent"
+      ],
+      "assessment_routes": [
+        "DIGITAL-SAFETY-ACCOUNTS-F01",
+        "DIGITAL-SAFETY-ACCOUNTS-F02"
+      ],
+      "learn_path": "guides/07-digital-safety.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "reveals-sensitive-information",
+        "fails-independent-verification",
+        "no-fallback"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "digital-safety.accounts.independent",
+      "domain": "digital-safety",
+      "subskill": "accounts",
+      "title": "Account protection and recovery planning · independent",
+      "mode": "independent",
+      "criterion": "Explain a safe account-protection and recovery plan using unique credentials, MFA, updates and private recovery methods.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "digital-safety.accounts.foundation"
+      ],
+      "related_competencies": [
+        "digital-safety.scams.independent",
+        "digital-safety.backup.independent"
+      ],
+      "assessment_routes": [
+        "DIGITAL-SAFETY-ACCOUNTS-I01",
+        "DIGITAL-SAFETY-ACCOUNTS-I02",
+        "DIGITAL-SAFETY-ACCOUNTS-I03"
+      ],
+      "learn_path": "guides/07-digital-safety.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "reveals-sensitive-information",
+        "fails-independent-verification",
+        "no-fallback"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "digital-safety.scams.foundation",
+      "domain": "digital-safety",
+      "subskill": "scams",
+      "title": "Suspicious requests and independent verification · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Pause a suspicious request, verify through an independent route, protect secrets and choose proportionate recovery steps.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "digital-safety.accounts.independent",
+        "digital-safety.scams.independent",
+        "digital-safety.backup.independent"
+      ],
+      "assessment_routes": [
+        "DIGITAL-SAFETY-SCAMS-F01",
+        "DIGITAL-SAFETY-SCAMS-F02"
+      ],
+      "learn_path": "guides/07-digital-safety.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "fails-independent-verification",
+        "reveals-sensitive-information",
+        "unsafe-advice",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "digital-safety.scams.independent",
+      "domain": "digital-safety",
+      "subskill": "scams",
+      "title": "Suspicious requests and independent verification · independent",
+      "mode": "independent",
+      "criterion": "Pause a suspicious request, verify through an independent route, protect secrets and choose proportionate recovery steps.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "digital-safety.scams.foundation"
+      ],
+      "related_competencies": [
+        "digital-safety.accounts.independent",
+        "digital-safety.backup.independent"
+      ],
+      "assessment_routes": [
+        "D-SC-01",
+        "D-SC-02",
+        "D-SC-03",
+        "D-SC-04",
+        "D-SC-05"
+      ],
+      "learn_path": "guides/07-digital-safety.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "fails-independent-verification",
+        "reveals-sensitive-information",
+        "unsafe-advice",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "digital-safety.backup.foundation",
+      "domain": "digital-safety",
+      "subskill": "backup",
+      "title": "Backups, privacy and device limits · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Plan and verify a restore of a fictional non-sensitive file, minimise sharing and avoid unsafe downloads.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "digital-safety.accounts.independent",
+        "digital-safety.scams.independent",
+        "digital-safety.backup.independent"
+      ],
+      "assessment_routes": [
+        "DIGITAL-SAFETY-BACKUP-F01",
+        "DIGITAL-SAFETY-BACKUP-F02"
+      ],
+      "learn_path": "guides/07-digital-safety.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "reveals-sensitive-information",
+        "fails-independent-verification",
+        "overconfident-conclusion",
+        "no-fallback"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "digital-safety.backup.independent",
+      "domain": "digital-safety",
+      "subskill": "backup",
+      "title": "Backups, privacy and device limits · independent",
+      "mode": "independent",
+      "criterion": "Plan and verify a restore of a fictional non-sensitive file, minimise sharing and avoid unsafe downloads.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "digital-safety.backup.foundation"
+      ],
+      "related_competencies": [
+        "digital-safety.accounts.independent",
+        "digital-safety.scams.independent"
+      ],
+      "assessment_routes": [
+        "DIGITAL-SAFETY-BACKUP-I01",
+        "DIGITAL-SAFETY-BACKUP-I02",
+        "DIGITAL-SAFETY-BACKUP-I03"
+      ],
+      "learn_path": "guides/07-digital-safety.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "reveals-sensitive-information",
+        "fails-independent-verification",
+        "overconfident-conclusion",
+        "no-fallback"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "home.meals.foundation",
+      "domain": "home",
+      "subskill": "meals",
+      "title": "Meal planning and food safety limits · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Produce a costed feasible meal plan using instructions and safe storage questions; distinguish planning from observed cooking.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "home.meals.independent",
+        "home.routines.independent",
+        "home.maintenance.independent"
+      ],
+      "assessment_routes": [
+        "HOME-MEALS-F01",
+        "HOME-MEALS-F02"
+      ],
+      "learn_path": "guides/08-home.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "unsafe-advice",
+        "assumes-missing-information"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "home.meals.independent",
+      "domain": "home",
+      "subskill": "meals",
+      "title": "Meal planning and food safety limits · independent",
+      "mode": "independent",
+      "criterion": "Produce a costed feasible meal plan using instructions and safe storage questions; distinguish planning from observed cooking.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "home.meals.foundation"
+      ],
+      "related_competencies": [
+        "home.routines.independent",
+        "home.maintenance.independent"
+      ],
+      "assessment_routes": [
+        "HOME-MEALS-I01",
+        "HOME-MEALS-I02",
+        "HOME-MEALS-I03"
+      ],
+      "learn_path": "guides/08-home.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "unsafe-advice",
+        "assumes-missing-information"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "home.routines.foundation",
+      "domain": "home",
+      "subskill": "routines",
+      "title": "Laundry, cleaning and household routines · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Use label instructions to plan a feasible household routine without mixing products or assuming equipment suitability.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "home.meals.independent",
+        "home.routines.independent",
+        "home.maintenance.independent"
+      ],
+      "assessment_routes": [
+        "HOME-ROUTINES-F01",
+        "HOME-ROUTINES-F02"
+      ],
+      "learn_path": "guides/08-home.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "assumes-missing-information",
+        "unrealistic-capacity"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "home.routines.independent",
+      "domain": "home",
+      "subskill": "routines",
+      "title": "Laundry, cleaning and household routines · independent",
+      "mode": "independent",
+      "criterion": "Use label instructions to plan a feasible household routine without mixing products or assuming equipment suitability.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "home.routines.foundation"
+      ],
+      "related_competencies": [
+        "home.meals.independent",
+        "home.maintenance.independent"
+      ],
+      "assessment_routes": [
+        "HOME-ROUTINES-I01",
+        "HOME-ROUTINES-I02",
+        "HOME-ROUTINES-I03"
+      ],
+      "learn_path": "guides/08-home.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "assumes-missing-information",
+        "unrealistic-capacity"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "home.maintenance.foundation",
+      "domain": "home",
+      "subskill": "maintenance",
+      "title": "Repairs and utility escalation · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Recognise hazardous repair limits and contact a verified responsible service using a factual fictional report.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "home.meals.independent",
+        "home.routines.independent",
+        "home.maintenance.independent"
+      ],
+      "assessment_routes": [
+        "HOME-MAINTENANCE-F01",
+        "HOME-MAINTENANCE-F02"
+      ],
+      "learn_path": "guides/08-home.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "fails-independent-verification",
+        "no-fallback"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "home.maintenance.independent",
+      "domain": "home",
+      "subskill": "maintenance",
+      "title": "Repairs and utility escalation · independent",
+      "mode": "independent",
+      "criterion": "Recognise hazardous repair limits and contact a verified responsible service using a factual fictional report.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "home.maintenance.foundation"
+      ],
+      "related_competencies": [
+        "home.meals.independent",
+        "home.routines.independent"
+      ],
+      "assessment_routes": [
+        "HOME-MAINTENANCE-I01",
+        "HOME-MAINTENANCE-I02",
+        "HOME-MAINTENANCE-I03"
+      ],
+      "learn_path": "guides/08-home.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "fails-independent-verification",
+        "no-fallback"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "work.evidence.foundation",
+      "domain": "work",
+      "subskill": "evidence",
+      "title": "Truthful applications and interviews · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Match a job requirement to a truthful specific example with an action, outcome and limitation.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "work.evidence.independent",
+        "work.offers.independent",
+        "work.pay.independent"
+      ],
+      "assessment_routes": [
+        "WORK-EVIDENCE-F01",
+        "WORK-EVIDENCE-F02"
+      ],
+      "learn_path": "guides/09-work.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "overconfident-conclusion",
+        "assumes-missing-information",
+        "reveals-sensitive-information"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "work.evidence.independent",
+      "domain": "work",
+      "subskill": "evidence",
+      "title": "Truthful applications and interviews · independent",
+      "mode": "independent",
+      "criterion": "Match a job requirement to a truthful specific example with an action, outcome and limitation.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "work.evidence.foundation"
+      ],
+      "related_competencies": [
+        "work.offers.independent",
+        "work.pay.independent"
+      ],
+      "assessment_routes": [
+        "WORK-EVIDENCE-I01",
+        "WORK-EVIDENCE-I02",
+        "WORK-EVIDENCE-I03"
+      ],
+      "learn_path": "guides/09-work.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "overconfident-conclusion",
+        "assumes-missing-information",
+        "reveals-sensitive-information"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "work.offers.foundation",
+      "domain": "work",
+      "subskill": "offers",
+      "title": "Offers, terms and professional questions · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Evaluate a fictional offer’s hours, costs, access and uncertain terms and draft a specific verified clarification.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "work.evidence.independent",
+        "work.offers.independent",
+        "work.pay.independent"
+      ],
+      "assessment_routes": [
+        "WORK-OFFERS-F01",
+        "WORK-OFFERS-F02"
+      ],
+      "learn_path": "guides/09-work.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "misses-access-constraint",
+        "unverified-entitlement",
+        "reveals-sensitive-information"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "work.offers.independent",
+      "domain": "work",
+      "subskill": "offers",
+      "title": "Offers, terms and professional questions · independent",
+      "mode": "independent",
+      "criterion": "Evaluate a fictional offer’s hours, costs, access and uncertain terms and draft a specific verified clarification.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "work.offers.foundation"
+      ],
+      "related_competencies": [
+        "work.evidence.independent",
+        "work.pay.independent"
+      ],
+      "assessment_routes": [
+        "WORK-OFFERS-I01",
+        "WORK-OFFERS-I02",
+        "WORK-OFFERS-I03"
+      ],
+      "learn_path": "guides/09-work.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "misses-access-constraint",
+        "unverified-entitlement",
+        "reveals-sensitive-information"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "work.pay.foundation",
+      "domain": "work",
+      "subskill": "pay",
+      "title": "Pay queries and workplace communication · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Reconcile a fictional pay discrepancy and draft a factual professional query with a safe escalation route.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "work.evidence.independent",
+        "work.offers.independent",
+        "work.pay.independent"
+      ],
+      "assessment_routes": [
+        "WORK-PAY-F01",
+        "WORK-PAY-F02"
+      ],
+      "learn_path": "guides/09-work.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "reveals-sensitive-information",
+        "assumes-missing-information",
+        "unverified-entitlement"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "work.pay.independent",
+      "domain": "work",
+      "subskill": "pay",
+      "title": "Pay queries and workplace communication · independent",
+      "mode": "independent",
+      "criterion": "Reconcile a fictional pay discrepancy and draft a factual professional query with a safe escalation route.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "work.pay.foundation",
+        "money.payslip.foundation"
+      ],
+      "related_competencies": [
+        "work.evidence.independent",
+        "work.offers.independent"
+      ],
+      "assessment_routes": [
+        "WORK-PAY-I01",
+        "WORK-PAY-I02",
+        "WORK-PAY-I03"
+      ],
+      "learn_path": "guides/09-work.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "reveals-sensitive-information",
+        "assumes-missing-information",
+        "unverified-entitlement"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "learning-time.planning.foundation",
+      "domain": "learning-time",
+      "subskill": "planning",
+      "title": "Capacity, priorities and travel · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Detect a scheduling conflict, protect basic needs and seek a feasible arrangement without assuming consent.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "learning-time.planning.independent",
+        "learning-time.retrieval.independent",
+        "learning-time.revision.independent"
+      ],
+      "assessment_routes": [
+        "LEARNING-TIME-PLANNING-F01",
+        "LEARNING-TIME-PLANNING-F02"
+      ],
+      "learn_path": "guides/10-learning-and-time.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "misses-access-constraint",
+        "unrealistic-capacity",
+        "assumes-missing-information",
+        "no-fallback"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "learning-time.planning.independent",
+      "domain": "learning-time",
+      "subskill": "planning",
+      "title": "Capacity, priorities and travel · independent",
+      "mode": "independent",
+      "criterion": "Detect a scheduling conflict, protect basic needs and seek a feasible arrangement without assuming consent.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "learning-time.planning.foundation"
+      ],
+      "related_competencies": [
+        "learning-time.retrieval.independent",
+        "learning-time.revision.independent"
+      ],
+      "assessment_routes": [
+        "L-TM-01",
+        "L-TM-02",
+        "L-TM-03",
+        "L-TM-04",
+        "L-TM-05"
+      ],
+      "learn_path": "guides/10-learning-and-time.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "misses-access-constraint",
+        "unrealistic-capacity",
+        "assumes-missing-information",
+        "no-fallback"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "learning-time.retrieval.foundation",
+      "domain": "learning-time",
+      "subskill": "retrieval",
+      "title": "Retrieval and useful review · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Design a retrieval check with different materials, feedback and later reviews rather than equating rereading with competence.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "learning-time.planning.independent",
+        "learning-time.retrieval.independent",
+        "learning-time.revision.independent"
+      ],
+      "assessment_routes": [
+        "LEARNING-TIME-RETRIEVAL-F01",
+        "LEARNING-TIME-RETRIEVAL-F02"
+      ],
+      "learn_path": "guides/10-learning-and-time.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "memorised-answer",
+        "overconfident-conclusion",
+        "assumes-missing-information"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "learning-time.retrieval.independent",
+      "domain": "learning-time",
+      "subskill": "retrieval",
+      "title": "Retrieval and useful review · independent",
+      "mode": "independent",
+      "criterion": "Design a retrieval check with different materials, feedback and later reviews rather than equating rereading with competence.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "learning-time.retrieval.foundation"
+      ],
+      "related_competencies": [
+        "learning-time.planning.independent",
+        "learning-time.revision.independent"
+      ],
+      "assessment_routes": [
+        "LEARNING-TIME-RETRIEVAL-I01",
+        "LEARNING-TIME-RETRIEVAL-I02",
+        "LEARNING-TIME-RETRIEVAL-I03"
+      ],
+      "learn_path": "guides/10-learning-and-time.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "memorised-answer",
+        "overconfident-conclusion",
+        "assumes-missing-information"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "learning-time.revision.foundation",
+      "domain": "learning-time",
+      "subskill": "revision",
+      "title": "Interruptions and weekly revision · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Revise a plan after an interruption using consequences, capacity and communication rather than compressing impossible work.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "learning-time.planning.independent",
+        "learning-time.retrieval.independent",
+        "learning-time.revision.independent"
+      ],
+      "assessment_routes": [
+        "LEARNING-TIME-REVISION-F01",
+        "LEARNING-TIME-REVISION-F02"
+      ],
+      "learn_path": "guides/10-learning-and-time.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unrealistic-capacity",
+        "ignores-consent",
+        "assumes-missing-information",
+        "no-fallback"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "learning-time.revision.independent",
+      "domain": "learning-time",
+      "subskill": "revision",
+      "title": "Interruptions and weekly revision · independent",
+      "mode": "independent",
+      "criterion": "Revise a plan after an interruption using consequences, capacity and communication rather than compressing impossible work.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "learning-time.revision.foundation"
+      ],
+      "related_competencies": [
+        "learning-time.planning.independent",
+        "learning-time.retrieval.independent"
+      ],
+      "assessment_routes": [
+        "LEARNING-TIME-REVISION-I01",
+        "LEARNING-TIME-REVISION-I02",
+        "LEARNING-TIME-REVISION-I03"
+      ],
+      "learn_path": "guides/10-learning-and-time.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unrealistic-capacity",
+        "ignores-consent",
+        "assumes-missing-information",
+        "no-fallback"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "life-admin.contracts.foundation",
+      "domain": "life-admin",
+      "subskill": "contracts",
+      "title": "Contracts, renewals and insurance questions · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Compare costs over a defined term and identify renewal, cancellation, responsibility and coverage questions.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "life-admin.contracts.independent",
+        "life-admin.records.independent",
+        "life-admin.complaints.independent"
+      ],
+      "assessment_routes": [
+        "LIFE-ADMIN-CONTRACTS-F01",
+        "LIFE-ADMIN-CONTRACTS-F02"
+      ],
+      "learn_path": "guides/11-life-admin.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "assumes-missing-information",
+        "unverified-entitlement"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "life-admin.contracts.independent",
+      "domain": "life-admin",
+      "subskill": "contracts",
+      "title": "Contracts, renewals and insurance questions · independent",
+      "mode": "independent",
+      "criterion": "Compare costs over a defined term and identify renewal, cancellation, responsibility and coverage questions.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "life-admin.contracts.foundation"
+      ],
+      "related_competencies": [
+        "life-admin.records.independent",
+        "life-admin.complaints.independent"
+      ],
+      "assessment_routes": [
+        "LIFE-ADMIN-CONTRACTS-I01",
+        "LIFE-ADMIN-CONTRACTS-I02",
+        "LIFE-ADMIN-CONTRACTS-I03"
+      ],
+      "learn_path": "guides/11-life-admin.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "assumes-missing-information",
+        "unverified-entitlement"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "life-admin.records.foundation",
+      "domain": "life-admin",
+      "subskill": "records",
+      "title": "Private records, forms and reminders · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Organise fictional records and a renewal reminder with minimum data, verified contacts and explicit access limits.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "life-admin.contracts.independent",
+        "life-admin.records.independent",
+        "life-admin.complaints.independent"
+      ],
+      "assessment_routes": [
+        "LIFE-ADMIN-RECORDS-F01",
+        "LIFE-ADMIN-RECORDS-F02"
+      ],
+      "learn_path": "guides/11-life-admin.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "reveals-sensitive-information",
+        "fails-independent-verification",
+        "missed-payment-timing",
+        "unverified-entitlement"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "life-admin.records.independent",
+      "domain": "life-admin",
+      "subskill": "records",
+      "title": "Private records, forms and reminders · independent",
+      "mode": "independent",
+      "criterion": "Organise fictional records and a renewal reminder with minimum data, verified contacts and explicit access limits.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "life-admin.records.foundation"
+      ],
+      "related_competencies": [
+        "life-admin.contracts.independent",
+        "life-admin.complaints.independent"
+      ],
+      "assessment_routes": [
+        "LIFE-ADMIN-RECORDS-I01",
+        "LIFE-ADMIN-RECORDS-I02",
+        "LIFE-ADMIN-RECORDS-I03"
+      ],
+      "learn_path": "guides/11-life-admin.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "reveals-sensitive-information",
+        "fails-independent-verification",
+        "missed-payment-timing",
+        "unverified-entitlement"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "life-admin.complaints.foundation",
+      "domain": "life-admin",
+      "subskill": "complaints",
+      "title": "Billing queries and complaints · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Reconcile a fictional disputed charge and prepare a factual request with evidence boundaries and a verified next route.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "life-admin.contracts.independent",
+        "life-admin.records.independent",
+        "life-admin.complaints.independent"
+      ],
+      "assessment_routes": [
+        "LIFE-ADMIN-COMPLAINTS-F01",
+        "LIFE-ADMIN-COMPLAINTS-F02"
+      ],
+      "learn_path": "guides/11-life-admin.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "reveals-sensitive-information",
+        "fails-independent-verification",
+        "unverified-entitlement"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "life-admin.complaints.independent",
+      "domain": "life-admin",
+      "subskill": "complaints",
+      "title": "Billing queries and complaints · independent",
+      "mode": "independent",
+      "criterion": "Reconcile a fictional disputed charge and prepare a factual request with evidence boundaries and a verified next route.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "life-admin.complaints.foundation",
+        "digital-safety.scams.foundation"
+      ],
+      "related_competencies": [
+        "life-admin.contracts.independent",
+        "life-admin.records.independent"
+      ],
+      "assessment_routes": [
+        "LIFE-ADMIN-COMPLAINTS-I01",
+        "LIFE-ADMIN-COMPLAINTS-I02",
+        "LIFE-ADMIN-COMPLAINTS-I03"
+      ],
+      "learn_path": "guides/11-life-admin.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "reveals-sensitive-information",
+        "fails-independent-verification",
+        "unverified-entitlement"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "major-decisions.comparison.foundation",
+      "domain": "major-decisions",
+      "subskill": "comparison",
+      "title": "Full costs and reversibility · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Compare options using full ongoing and upfront costs, essential needs, uncertainties and a reversible alternative.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "major-decisions.comparison.independent",
+        "major-decisions.housing.independent",
+        "major-decisions.access.independent"
+      ],
+      "assessment_routes": [
+        "MAJOR-DECISIONS-COMPARISON-F01",
+        "MAJOR-DECISIONS-COMPARISON-F02"
+      ],
+      "learn_path": "guides/12-major-decisions.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "assumes-missing-information",
+        "misses-access-constraint",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "major-decisions.comparison.independent",
+      "domain": "major-decisions",
+      "subskill": "comparison",
+      "title": "Full costs and reversibility · independent",
+      "mode": "independent",
+      "criterion": "Compare options using full ongoing and upfront costs, essential needs, uncertainties and a reversible alternative.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "major-decisions.comparison.foundation",
+        "money.budget.foundation"
+      ],
+      "related_competencies": [
+        "major-decisions.housing.independent",
+        "major-decisions.access.independent"
+      ],
+      "assessment_routes": [
+        "MAJOR-DECISIONS-COMPARISON-I01",
+        "MAJOR-DECISIONS-COMPARISON-I02",
+        "MAJOR-DECISIONS-COMPARISON-I03"
+      ],
+      "learn_path": "guides/12-major-decisions.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "assumes-missing-information",
+        "misses-access-constraint",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "major-decisions.housing.foundation",
+      "domain": "major-decisions",
+      "subskill": "housing",
+      "title": "Wales housing and occupation-contract verification · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Use Wales housing sources to identify occupation-contract questions, access and costs without substituting England rules or declaring legal validity.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "major-decisions.comparison.independent",
+        "major-decisions.housing.independent",
+        "major-decisions.access.independent"
+      ],
+      "assessment_routes": [
+        "MAJOR-DECISIONS-HOUSING-F01",
+        "MAJOR-DECISIONS-HOUSING-F02"
+      ],
+      "learn_path": "guides/12-major-decisions.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "wrong-jurisdiction",
+        "unverified-entitlement",
+        "fails-independent-verification",
+        "assumes-missing-information"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "major-decisions.housing.independent",
+      "domain": "major-decisions",
+      "subskill": "housing",
+      "title": "Wales housing and occupation-contract verification · independent",
+      "mode": "independent",
+      "criterion": "Use Wales housing sources to identify occupation-contract questions, access and costs without substituting England rules or declaring legal validity.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "major-decisions.housing.foundation"
+      ],
+      "related_competencies": [
+        "major-decisions.comparison.independent",
+        "major-decisions.access.independent"
+      ],
+      "assessment_routes": [
+        "W-HO-01",
+        "W-HO-02",
+        "W-HO-03",
+        "W-HO-04",
+        "W-HO-05"
+      ],
+      "learn_path": "guides/12-major-decisions.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "wrong-jurisdiction",
+        "unverified-entitlement",
+        "fails-independent-verification",
+        "assumes-missing-information"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "major-decisions.access.foundation",
+      "domain": "major-decisions",
+      "subskill": "access",
+      "title": "Transport and local-service access · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Verify a feasible route to work or services with timing, access, cost and a fallback.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "major-decisions.comparison.independent",
+        "major-decisions.housing.independent",
+        "major-decisions.access.independent"
+      ],
+      "assessment_routes": [
+        "MAJOR-DECISIONS-ACCESS-F01",
+        "MAJOR-DECISIONS-ACCESS-F02"
+      ],
+      "learn_path": "guides/12-major-decisions.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "misses-access-constraint",
+        "fails-independent-verification",
+        "assumes-missing-information",
+        "no-fallback"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "major-decisions.access.independent",
+      "domain": "major-decisions",
+      "subskill": "access",
+      "title": "Transport and local-service access · independent",
+      "mode": "independent",
+      "criterion": "Verify a feasible route to work or services with timing, access, cost and a fallback.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "major-decisions.access.foundation"
+      ],
+      "related_competencies": [
+        "major-decisions.comparison.independent",
+        "major-decisions.housing.independent"
+      ],
+      "assessment_routes": [
+        "MAJOR-DECISIONS-ACCESS-I01",
+        "MAJOR-DECISIONS-ACCESS-I02",
+        "MAJOR-DECISIONS-ACCESS-I03"
+      ],
+      "learn_path": "guides/12-major-decisions.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "misses-access-constraint",
+        "fails-independent-verification",
+        "assumes-missing-information",
+        "no-fallback"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "emergencies.response.adaptive",
+      "domain": "emergencies",
+      "subskill": "response",
+      "title": "Safe response and escalation · adaptation",
+      "mode": "adaptation",
+      "criterion": "Adapt the plan for a failed phone and an additional access need; identify professional limits.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "emergencies.response.independent"
+      ],
+      "related_competencies": [
+        "emergencies.response.independent",
+        "emergencies.preparedness.independent",
+        "emergencies.training.independent"
+      ],
+      "assessment_routes": [
+        "EMERGENCIES-AD-01",
+        "EMERGENCIES-AD-02"
+      ],
+      "learn_path": "guides/01-emergencies.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "fails-independent-verification",
+        "misses-access-constraint",
+        "no-fallback"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.credit.adaptive",
+      "domain": "money",
+      "subskill": "credit",
+      "title": "Borrowing and debt trade-offs · adaptation",
+      "mode": "adaptation",
+      "criterion": "Compare credit offers by total repayment, timing, risk, and unanswered terms.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "money.credit.independent"
+      ],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-AD-01",
+        "MONEY-AD-02"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "missed-payment-timing",
+        "ignores-essential-cost",
+        "assumes-missing-information",
+        "unverified-entitlement"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "health.medicine.adaptive",
+      "domain": "health",
+      "subskill": "medicine",
+      "title": "Medicine safety and information · adaptation",
+      "mode": "adaptation",
+      "criterion": "Evaluate a persuasive health claim and adapt practical arrangements for an access barrier.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "health.medicine.independent"
+      ],
+      "related_competencies": [
+        "health.access.independent",
+        "health.medicine.independent",
+        "health.routine.independent"
+      ],
+      "assessment_routes": [
+        "HEALTH-AD-01",
+        "HEALTH-AD-02"
+      ],
+      "learn_path": "guides/03-health.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "assumes-missing-information",
+        "fails-independent-verification",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "wellbeing.support.adaptive",
+      "domain": "wellbeing",
+      "subskill": "support",
+      "title": "Support requests and fallback · adaptation",
+      "mode": "adaptation",
+      "criterion": "Adapt when the first contact is unavailable and identify when urgent professional help takes priority.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "wellbeing.support.independent"
+      ],
+      "related_competencies": [
+        "wellbeing.capacity.independent",
+        "wellbeing.support.independent"
+      ],
+      "assessment_routes": [
+        "WELLBEING-AD-01",
+        "WELLBEING-AD-02"
+      ],
+      "learn_path": "guides/04-wellbeing.md",
+      "jurisdictions": [
+        "wales"
+      ],
+      "error_tags": [
+        "ignores-consent",
+        "fails-independent-verification",
+        "unsafe-advice",
+        "no-fallback"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "relationships.conflict.adaptive",
+      "domain": "relationships",
+      "subskill": "conflict",
+      "title": "Disagreement and safe pauses · adaptation",
+      "mode": "adaptation",
+      "criterion": "Adapt to refusal or escalating behaviour, choosing a safe pause or appropriate support.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "relationships.conflict.independent"
+      ],
+      "related_competencies": [
+        "relationships.communication.independent",
+        "relationships.boundaries.independent",
+        "relationships.conflict.independent"
+      ],
+      "assessment_routes": [
+        "RELATIONSHIPS-AD-01",
+        "RELATIONSHIPS-AD-02"
+      ],
+      "learn_path": "guides/05-relationships.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "ignores-consent",
+        "no-fallback"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "critical-thinking.verification.adaptive",
+      "domain": "critical-thinking",
+      "subskill": "verification",
+      "title": "Evidence, AI and provenance · adaptation",
+      "mode": "adaptation",
+      "criterion": "Adapt the conclusion to manipulated content or incomplete evidence and name what would change it.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "critical-thinking.verification.independent"
+      ],
+      "related_competencies": [
+        "critical-thinking.verification.independent",
+        "critical-thinking.statistics.independent",
+        "critical-thinking.decisions.independent"
+      ],
+      "assessment_routes": [
+        "CRITICAL-THINKING-AD-01",
+        "CRITICAL-THINKING-AD-02"
+      ],
+      "learn_path": "guides/06-thinking.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "fails-independent-verification",
+        "overconfident-conclusion",
+        "assumes-missing-information",
+        "wrong-jurisdiction"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "digital-safety.scams.adaptive",
+      "domain": "digital-safety",
+      "subskill": "scams",
+      "title": "Suspicious requests and independent verification · adaptation",
+      "mode": "adaptation",
+      "criterion": "Adapt after a possible account compromise or realistic impersonation.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "digital-safety.scams.independent"
+      ],
+      "related_competencies": [
+        "digital-safety.accounts.independent",
+        "digital-safety.scams.independent",
+        "digital-safety.backup.independent"
+      ],
+      "assessment_routes": [
+        "DIGITAL-SAFETY-AD-01",
+        "DIGITAL-SAFETY-AD-02"
+      ],
+      "learn_path": "guides/07-digital-safety.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "fails-independent-verification",
+        "reveals-sensitive-information",
+        "unsafe-advice",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "home.maintenance.adaptive",
+      "domain": "home",
+      "subskill": "maintenance",
+      "title": "Repairs and utility escalation · adaptation",
+      "mode": "adaptation",
+      "criterion": "Adapt routines to an equipment failure, move, or access limitation.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "home.maintenance.independent"
+      ],
+      "related_competencies": [
+        "home.meals.independent",
+        "home.routines.independent",
+        "home.maintenance.independent"
+      ],
+      "assessment_routes": [
+        "HOME-AD-01",
+        "HOME-AD-02"
+      ],
+      "learn_path": "guides/08-home.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "unsafe-advice",
+        "fails-independent-verification",
+        "no-fallback"
+      ],
+      "review_policy": "safety",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "work.offers.adaptive",
+      "domain": "work",
+      "subskill": "offers",
+      "title": "Offers, terms and professional questions · adaptation",
+      "mode": "adaptation",
+      "criterion": "Adapt to unclear hours, an access need, or a changed offer without inventing entitlements.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "work.offers.independent"
+      ],
+      "related_competencies": [
+        "work.evidence.independent",
+        "work.offers.independent",
+        "work.pay.independent"
+      ],
+      "assessment_routes": [
+        "WORK-AD-01",
+        "WORK-AD-02"
+      ],
+      "learn_path": "guides/09-work.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "misses-access-constraint",
+        "unverified-entitlement",
+        "reveals-sensitive-information"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "learning-time.planning.adaptive",
+      "domain": "learning-time",
+      "subskill": "planning",
+      "title": "Capacity, priorities and travel · adaptation",
+      "mode": "adaptation",
+      "criterion": "Adapt to a new interruption and use delayed reassessment to revise the plan.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "learning-time.planning.independent"
+      ],
+      "related_competencies": [
+        "learning-time.planning.independent",
+        "learning-time.retrieval.independent",
+        "learning-time.revision.independent"
+      ],
+      "assessment_routes": [
+        "LEARNING-TIME-AD-01",
+        "LEARNING-TIME-AD-02"
+      ],
+      "learn_path": "guides/10-learning-and-time.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "misses-access-constraint",
+        "unrealistic-capacity",
+        "assumes-missing-information",
+        "no-fallback"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "life-admin.complaints.adaptive",
+      "domain": "life-admin",
+      "subskill": "complaints",
+      "title": "Billing queries and complaints · adaptation",
+      "mode": "adaptation",
+      "criterion": "Adapt when cancellation is disputed or correspondence is suspicious, using current local advice.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "life-admin.complaints.independent"
+      ],
+      "related_competencies": [
+        "life-admin.contracts.independent",
+        "life-admin.records.independent",
+        "life-admin.complaints.independent"
+      ],
+      "assessment_routes": [
+        "LIFE-ADMIN-AD-01",
+        "LIFE-ADMIN-AD-02"
+      ],
+      "learn_path": "guides/11-life-admin.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "reveals-sensitive-information",
+        "fails-independent-verification",
+        "unverified-entitlement"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "major-decisions.comparison.adaptive",
+      "domain": "major-decisions",
+      "subskill": "comparison",
+      "title": "Full costs and reversibility · adaptation",
+      "mode": "adaptation",
+      "criterion": "Adapt to changed income, service disruption, or incomplete terms and consider a reversible alternative.",
+      "evidence": "A revised independent plan meeting the original criterion after changed constraints, with limits and fallback explained.",
+      "prerequisites": [
+        "major-decisions.comparison.independent"
+      ],
+      "related_competencies": [
+        "major-decisions.comparison.independent",
+        "major-decisions.housing.independent",
+        "major-decisions.access.independent"
+      ],
+      "assessment_routes": [
+        "MAJOR-DECISIONS-AD-01",
+        "MAJOR-DECISIONS-AD-02"
+      ],
+      "learn_path": "guides/12-major-decisions.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "assumes-missing-information",
+        "misses-access-constraint",
+        "overconfident-conclusion"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.saving.foundation",
+      "domain": "money",
+      "subskill": "saving",
+      "title": "Accessible reserves and saving goals · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Build a feasible dated saving plan while protecting essentials and distinguishing accessible cash from uncertain funds.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-SAVING-F01",
+        "MONEY-SAVING-F02"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "overconfident-conclusion",
+        "ignores-essential-cost",
+        "fails-independent-verification"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.saving.independent",
+      "domain": "money",
+      "subskill": "saving",
+      "title": "Accessible reserves and saving goals · independent",
+      "mode": "independent",
+      "criterion": "Build a feasible dated saving plan while protecting essentials and distinguishing accessible cash from uncertain funds.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "money.saving.foundation",
+        "money.budget.foundation"
+      ],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-SAVING-I01",
+        "MONEY-SAVING-I02",
+        "MONEY-SAVING-I03"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "overconfident-conclusion",
+        "ignores-essential-cost",
+        "fails-independent-verification"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.insurance.foundation",
+      "domain": "money",
+      "subskill": "insurance",
+      "title": "Insurance cost, coverage and exclusions · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Compare fictional premiums, excesses, exclusions and evidence needed for a claim without declaring cover or entitlement.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-INSURANCE-F01",
+        "MONEY-INSURANCE-F02"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "overconfident-conclusion",
+        "ignores-essential-cost",
+        "fails-independent-verification"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.insurance.independent",
+      "domain": "money",
+      "subskill": "insurance",
+      "title": "Insurance cost, coverage and exclusions · independent",
+      "mode": "independent",
+      "criterion": "Compare fictional premiums, excesses, exclusions and evidence needed for a claim without declaring cover or entitlement.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "money.insurance.foundation",
+        "money.budget.foundation"
+      ],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-INSURANCE-I01",
+        "MONEY-INSURANCE-I02",
+        "MONEY-INSURANCE-I03"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "overconfident-conclusion",
+        "ignores-essential-cost",
+        "fails-independent-verification"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.investing.foundation",
+      "domain": "money",
+      "subskill": "investing",
+      "title": "Investment risk, fees and verification · foundation",
+      "mode": "knowledge",
+      "criterion": "Explain the reasoning and produce the basic fictional output for: Evaluate a fictional investment claim using uncertainty, fees, timing and independent verification; keep essential funds separate.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "money.investing.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-INVESTING-F01",
+        "MONEY-INVESTING-F02"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "overconfident-conclusion",
+        "ignores-essential-cost",
+        "fails-independent-verification"
+      ],
+      "review_policy": "knowledge",
+      "practical_scope": "planning-and-judgement-only"
+    },
+    {
+      "id": "money.investing.independent",
+      "domain": "money",
+      "subskill": "investing",
+      "title": "Investment risk, fees and verification · independent",
+      "mode": "independent",
+      "criterion": "Evaluate a fictional investment claim using uncertainty, fees, timing and independent verification; keep essential funds separate.",
+      "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
+      "prerequisites": [
+        "money.investing.foundation",
+        "money.budget.foundation"
+      ],
+      "related_competencies": [
+        "money.budget.independent",
+        "money.cash-flow.independent",
+        "money.credit.independent",
+        "money.banking.independent",
+        "money.payslip.independent",
+        "money.saving.independent",
+        "money.insurance.independent"
+      ],
+      "assessment_routes": [
+        "MONEY-INVESTING-I01",
+        "MONEY-INVESTING-I02",
+        "MONEY-INVESTING-I03"
+      ],
+      "learn_path": "guides/02-money.md",
+      "jurisdictions": [
+        "global"
+      ],
+      "error_tags": [
+        "assumes-missing-information",
+        "overconfident-conclusion",
+        "ignores-essential-cost",
+        "fails-independent-verification"
+      ],
+      "review_policy": "default",
+      "practical_scope": "planning-and-judgement-only"
+    }
+  ],
+  "rollups": [
+    {
+      "id": "emergencies.foundation",
+      "requires": [
+        "emergencies.response.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Identify an appropriate emergency help route and explain why scene safety comes first. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "emergencies.applied",
+      "requires": [
+        "emergencies.preparedness.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Use a checklist to make an offline household plan including access needs. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "emergencies.independent",
+      "requires": [
+        "emergencies.response.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Respond to the outage scenario with a safe sequence and verified support routes. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "emergencies.advanced-scenario",
+      "requires": [
+        "emergencies.response.adaptive"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Adapt the plan for a failed phone and an additional access need; identify professional limits. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "money.foundation",
+      "requires": [
+        "money.budget.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Create an arithmetically balanced monthly budget from fictional income and costs. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "money.applied",
+      "requires": [
+        "money.budget.foundation",
+        "money.cash-flow.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Use a checklist to allow for irregular costs and calculate dated cash flow. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "money.independent",
+      "requires": [
+        "money.cash-flow.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Handle a surprise cost without assuming funds exist or neglecting essentials. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "money.advanced-scenario",
+      "requires": [
+        "money.credit.adaptive"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Compare credit offers by total repayment, timing, risk, and unanswered terms. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "health.foundation",
+      "requires": [
+        "health.access.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Identify routine, urgent, and emergency help routes from official local guidance. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "health.applied",
+      "requires": [
+        "health.routine.foundation",
+        "health.access.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Use a checklist to prepare a routine and appointment questions. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "health.independent",
+      "requires": [
+        "health.access.independent",
+        "health.medicine.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Handle a missed appointment and an uncertain medicine instruction by contacting appropriate professionals. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "health.advanced-scenario",
+      "requires": [
+        "health.medicine.adaptive",
+        "health.routine.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Evaluate a persuasive health claim and adapt practical arrangements for an access barrier. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "wellbeing.foundation",
+      "requires": [
+        "wellbeing.capacity.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Identify overload signs and distinguish a manageable task from a need for more support. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "wellbeing.applied",
+      "requires": [
+        "wellbeing.capacity.foundation",
+        "wellbeing.support.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Use a prompt to build a private support plan and divide a problem into steps. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "wellbeing.independent",
+      "requires": [
+        "wellbeing.capacity.independent",
+        "wellbeing.support.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Respond to the overloaded-week scenario with a feasible plan and a clear support request. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "wellbeing.advanced-scenario",
+      "requires": [
+        "wellbeing.support.adaptive"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Adapt when the first contact is unavailable and identify when urgent professional help takes priority. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "relationships.foundation",
+      "requires": [
+        "relationships.communication.foundation",
+        "relationships.boundaries.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Distinguish an observation from a motive claim and recognise that consent can change. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "relationships.applied",
+      "requires": [
+        "relationships.communication.foundation",
+        "relationships.boundaries.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Use a script to make a request, reflect a reply, and define a boundary. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "relationships.independent",
+      "requires": [
+        "relationships.communication.independent",
+        "relationships.boundaries.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Handle a realistic disagreement with listening, a clear request, and a workable boundary. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "relationships.advanced-scenario",
+      "requires": [
+        "relationships.conflict.adaptive"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Adapt to refusal or escalating behaviour, choosing a safe pause or appropriate support. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "critical-thinking.foundation",
+      "requires": [
+        "critical-thinking.verification.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Separate a claim, its evidence, and an assumption. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "critical-thinking.applied",
+      "requires": [
+        "critical-thinking.verification.foundation",
+        "critical-thinking.statistics.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Use a checklist to trace a source and calculate relative and absolute differences. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "critical-thinking.independent",
+      "requires": [
+        "critical-thinking.verification.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Assess an unfamiliar social or AI claim using original evidence and independent verification. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "critical-thinking.advanced-scenario",
+      "requires": [
+        "critical-thinking.verification.adaptive"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Adapt the conclusion to manipulated content or incomplete evidence and name what would change it. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "digital-safety.foundation",
+      "requires": [
+        "digital-safety.accounts.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Explain why email, unique passwords, updates, and MFA matter. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "digital-safety.applied",
+      "requires": [
+        "digital-safety.accounts.independent",
+        "digital-safety.backup.independent"
+      ],
+      "additional_evidence": [
+        "observed-sample-restore",
+        "observed-account-protection"
+      ],
+      "scope": "Legacy criterion only: Use official settings to review account protection and restore a sample backup. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "digital-safety.independent",
+      "requires": [
+        "digital-safety.scams.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Handle a suspicious message without clicking its link or sharing codes. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "digital-safety.advanced-scenario",
+      "requires": [
+        "digital-safety.scams.adaptive"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Adapt after a possible account compromise or realistic impersonation. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "home.foundation",
+      "requires": [
+        "home.meals.foundation",
+        "home.maintenance.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Plan a simple meal and identify key food-safety and hazardous-repair limits. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "home.applied",
+      "requires": [
+        "home.meals.independent",
+        "home.routines.independent"
+      ],
+      "additional_evidence": [
+        "observed-meal-preparation"
+      ],
+      "scope": "Legacy criterion only: Use instructions to prepare a meal and make a household checklist. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "home.independent",
+      "requires": [
+        "home.meals.independent",
+        "home.maintenance.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Handle the household scenario with a costed shopping plan and safe repair escalation. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "home.advanced-scenario",
+      "requires": [
+        "home.maintenance.adaptive"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Adapt routines to an equipment failure, move, or access limitation. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "work.foundation",
+      "requires": [
+        "work.evidence.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Identify job requirements and write one truthful evidence statement. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "work.applied",
+      "requires": [
+        "work.evidence.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Use a structure to prepare an application and interview answer. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "work.independent",
+      "requires": [
+        "work.offers.independent",
+        "work.pay.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Evaluate a fictional offer and reconcile its payslip before asking clear questions. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "work.advanced-scenario",
+      "requires": [
+        "work.offers.adaptive"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Adapt to unclear hours, an access need, or a changed offer without inventing entitlements. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "learning-time.foundation",
+      "requires": [
+        "learning-time.planning.foundation",
+        "learning-time.retrieval.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Identify fixed commitments and explain the difference between retrieval and rereading. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "learning-time.applied",
+      "requires": [
+        "learning-time.planning.foundation",
+        "learning-time.retrieval.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Use a checklist to schedule realistic tasks, travel, and two later reviews. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "learning-time.independent",
+      "requires": [
+        "learning-time.planning.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Resolve a busy-week conflict by comparing consequences and contacting affected people. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "learning-time.advanced-scenario",
+      "requires": [
+        "learning-time.planning.adaptive",
+        "learning-time.retrieval.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Adapt to a new interruption and use delayed reassessment to revise the plan. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "life-admin.foundation",
+      "requires": [
+        "life-admin.contracts.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Identify an agreement's cost, duration, responsibility, and cancellation questions. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "life-admin.applied",
+      "requires": [
+        "life-admin.records.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Use a checklist to organise records, reminders, and verified contacts. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "life-admin.independent",
+      "requires": [
+        "life-admin.contracts.independent",
+        "life-admin.complaints.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Resolve the billing scenario with correct totals and a documented clarification or complaint. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "life-admin.advanced-scenario",
+      "requires": [
+        "life-admin.complaints.adaptive"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Adapt when cancellation is disputed or correspondence is suspicious, using current local advice. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "major-decisions.foundation",
+      "requires": [
+        "major-decisions.comparison.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Identify essential needs and full costs for two options. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "major-decisions.applied",
+      "requires": [
+        "major-decisions.comparison.foundation",
+        "major-decisions.access.foundation"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Use a checklist to compare housing, transport, and contract questions. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "major-decisions.independent",
+      "requires": [
+        "major-decisions.comparison.independent",
+        "major-decisions.access.independent"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Choose between realistic options and plan feasible transport and an administrative next step. Any required practical evidence must be observed separately."
+    },
+    {
+      "id": "major-decisions.advanced-scenario",
+      "requires": [
+        "major-decisions.comparison.adaptive"
+      ],
+      "additional_evidence": [],
+      "scope": "Legacy criterion only: Adapt to changed income, service disruption, or incomplete terms and consider a reversible alternative. Any required practical evidence must be observed separately."
+    }
+  ],
+  "error_tags": [
+    {
+      "id": "arithmetic-error",
+      "label": "Check the arithmetic and units"
+    },
+    {
+      "id": "missed-payment-timing",
+      "label": "Place money in date order"
+    },
+    {
+      "id": "assumes-missing-information",
+      "label": "Name missing facts before deciding"
+    },
+    {
+      "id": "fails-independent-verification",
+      "label": "Verify through an independent official route"
+    },
+    {
+      "id": "ignores-essential-cost",
+      "label": "Protect every essential cost"
+    },
+    {
+      "id": "unsafe-advice",
+      "label": "Recognise a safety limit and seek appropriate help"
+    },
+    {
+      "id": "reveals-sensitive-information",
+      "label": "Keep secrets and personal records private"
+    },
+    {
+      "id": "overconfident-conclusion",
+      "label": "Match the conclusion to the evidence"
+    },
+    {
+      "id": "wrong-jurisdiction",
+      "label": "Check the nation and the guidance scope"
+    },
+    {
+      "id": "misses-access-constraint",
+      "label": "Include access needs and realistic travel"
+    },
+    {
+      "id": "unrealistic-capacity",
+      "label": "Allow time, rest, and contingencies"
+    },
+    {
+      "id": "ignores-consent",
+      "label": "Respect consent, refusal, and boundaries"
+    },
+    {
+      "id": "unverified-entitlement",
+      "label": "Verify legal scope without promising an entitlement"
+    },
+    {
+      "id": "confuses-relative-absolute",
+      "label": "Use the correct denominator and difference"
+    },
+    {
+      "id": "no-fallback",
+      "label": "Prepare a feasible fallback"
+    },
+    {
+      "id": "memorised-answer",
+      "label": "Apply the criterion to changed materials"
+    }
+  ],
+  "review_policy": {
+    "default": {
+      "intervals_days": [
+        3,
+        7,
+        21,
+        60
+      ],
+      "retry_days": 2
+    },
+    "overrides": {
+      "safety": {
+        "intervals_days": [
+          2,
+          7,
+          21,
+          45
+        ],
+        "retry_days": 1
+      },
+      "knowledge": {
+        "intervals_days": [
+          14,
+          45,
+          120
+        ],
+        "retry_days": 2
+      }
+    }
+  },
+  "priority_families": [
+    "money.cash-flow",
+    "money.credit",
+    "digital-safety.scams",
+    "learning-time.planning",
+    "major-decisions.housing"
+  ]
+}

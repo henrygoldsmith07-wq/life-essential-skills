@@ -73,3 +73,5 @@ There may be several defensible choices. Assess the reasoning, verification, cal
 - [wales-mental-health](../RESOURCES.md#wales-mental-health)
 
 [UK/Wales packs](../locales/README.md). Keep records local; do not make real payments, disclose documents, change treatment, or undertake hazardous repairs for an assessment.
+
+Jurisdiction check: General fictional planning task. Any nation-specific references are optional routes only within their declared scope; choose the learner’s relevant locality before relying on services or rules.

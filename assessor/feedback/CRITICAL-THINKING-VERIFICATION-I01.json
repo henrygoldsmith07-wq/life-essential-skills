@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Identify missing provenance, trace the original current source and jurisdiction, and do not treat fluent text or a second copy as independent confirmation.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "fails-independent-verification": "Verify through an independent official route",
+    "overconfident-conclusion": "Match the conclusion to the evidence",
+    "assumes-missing-information": "Name missing facts before deciding",
+    "wrong-jurisdiction": "Check the nation and the guidance scope"
+  },
+  "next_steps": {
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "wrong-jurisdiction": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

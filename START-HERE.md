@@ -1,5 +1,9 @@
 # Your first 20 minutes
 
+[Open the learner dashboard](learner/index.html) · [How evidence works](curriculum/adaptive-learning.md)
+
+Use **Today → Learn → Practice → Feedback → Next task → Reassess**. The dashboard adapts to educational evidence stored locally in your browser. The text curriculum below remains available. To launch the interface, follow the short [dashboard instructions](learner/README.md).
+
 [Curriculum](README.md) · [Diagnostic](curriculum/diagnostic.md) · [Pathways](learning-plan/README.md)
 
 Choose something useful this week: a bill, an account-security concern, a move, a job application, a conversation, or a routine. Use fictional details for learning and appropriate professional services for urgent or personal high-stakes needs.

@@ -63,9 +63,12 @@ Prefer official authorities, recognised professional/advice bodies, high-quality
 - Jurisdiction: United States
 - Source type: professional-organisation
 - Last checked: 2026-10-03
+- Machine-readable scope: united-states
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
-Dependent lessons and assessments: [capstones/moving-out.md](capstones/moving-out.md), [domains/emergencies.md](domains/emergencies.md), [guides/01-emergencies.md](guides/01-emergencies.md), [scenarios/01-emergencies.md](scenarios/01-emergencies.md)
+Dependent lessons and assessments: [domains/emergencies.md](domains/emergencies.md), [guides/01-emergencies.md](guides/01-emergencies.md), [scenarios/01-emergencies.md](scenarios/01-emergencies.md)
 
 ## red-cross-training
 
@@ -76,9 +79,12 @@ Dependent lessons and assessments: [capstones/moving-out.md](capstones/moving-ou
 - Jurisdiction: United States
 - Source type: professional-organisation
 - Last checked: 2026-10-03
+- Machine-readable scope: united-states
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
-Dependent lessons and assessments: [capstones/moving-out.md](capstones/moving-out.md), [domains/emergencies.md](domains/emergencies.md), [guides/01-emergencies.md](guides/01-emergencies.md), [scenarios/01-emergencies.md](scenarios/01-emergencies.md)
+Dependent lessons and assessments: [domains/emergencies.md](domains/emergencies.md), [guides/01-emergencies.md](guides/01-emergencies.md)
 
 ## consumer-budget
 
@@ -89,9 +95,12 @@ Dependent lessons and assessments: [capstones/moving-out.md](capstones/moving-ou
 - Jurisdiction: United States
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: united-states
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
-Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/money.md](domains/money.md), [guides/02-money.md](guides/02-money.md), [scenarios/02-money.md](scenarios/02-money.md)
+Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/money.md](domains/money.md), [guides/02-money.md](guides/02-money.md), [scenarios/02-money.md](scenarios/02-money.md)
 
 ## cfpb-buffer
 
@@ -102,9 +111,12 @@ Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.
 - Jurisdiction: United States
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: united-states
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
-Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/money.md](domains/money.md), [guides/02-money.md](guides/02-money.md), [scenarios/02-money.md](scenarios/02-money.md)
+Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/money.md](domains/money.md), [guides/02-money.md](guides/02-money.md), [scenarios/02-money.md](scenarios/02-money.md)
 
 ## who-diet
 
@@ -115,6 +127,9 @@ Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.
 - Jurisdiction: International
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: global
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [domains/health.md](domains/health.md), [guides/03-health.md](guides/03-health.md), [scenarios/03-health.md](scenarios/03-health.md)
@@ -128,6 +143,9 @@ Dependent lessons and assessments: [domains/health.md](domains/health.md), [guid
 - Jurisdiction: International
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: global
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [domains/health.md](domains/health.md), [guides/03-health.md](guides/03-health.md), [scenarios/03-health.md](scenarios/03-health.md)
@@ -141,6 +159,9 @@ Dependent lessons and assessments: [domains/health.md](domains/health.md), [guid
 - Jurisdiction: England service context
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: england
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/health.md](domains/health.md), [domains/wellbeing.md](domains/wellbeing.md), [guides/03-health.md](guides/03-health.md), [guides/04-wellbeing.md](guides/04-wellbeing.md), [scenarios/03-health.md](scenarios/03-health.md), [scenarios/04-wellbeing.md](scenarios/04-wellbeing.md)
@@ -154,6 +175,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: England service context
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: england
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [domains/relationships.md](domains/relationships.md), [guides/05-relationships.md](guides/05-relationships.md), [scenarios/05-relationships.md](scenarios/05-relationships.md)
@@ -167,6 +191,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: United Kingdom
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: uk
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [domains/digital-safety.md](domains/digital-safety.md), [guides/07-digital-safety.md](guides/07-digital-safety.md), [scenarios/07-digital-safety.md](scenarios/07-digital-safety.md)
@@ -180,6 +207,9 @@ Dependent lessons and assessments: [capstones/suspicious-payment.md](capstones/s
 - Jurisdiction: United Kingdom
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: uk
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Published in 2023; used for general verification/privacy risks, not current product features or data policies.
 
 Dependent lessons and assessments: [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/critical-thinking.md](domains/critical-thinking.md), [domains/digital-safety.md](domains/digital-safety.md), [guides/06-thinking.md](guides/06-thinking.md), [guides/07-digital-safety.md](guides/07-digital-safety.md), [scenarios/06-critical-thinking.md](scenarios/06-critical-thinking.md), [scenarios/07-digital-safety.md](scenarios/07-digital-safety.md)
@@ -193,6 +223,9 @@ Dependent lessons and assessments: [capstones/suspicious-payment.md](capstones/s
 - Jurisdiction: England, Wales, Northern Ireland; community cooking
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: england, wales, northern-ireland
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/home.md](domains/home.md), [guides/08-home.md](guides/08-home.md), [scenarios/08-home.md](scenarios/08-home.md)
@@ -206,6 +239,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: England, Wales, Northern Ireland
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: england, wales, northern-ireland
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/home.md](domains/home.md), [guides/08-home.md](guides/08-home.md), [scenarios/08-home.md](scenarios/08-home.md)
@@ -219,9 +255,12 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: England
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: england
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
-Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.md), [domains/work.md](domains/work.md), [guides/09-work.md](guides/09-work.md), [scenarios/09-work.md](scenarios/09-work.md)
+Dependent lessons and assessments: [domains/work.md](domains/work.md), [guides/09-work.md](guides/09-work.md)
 
 ## spacing-review
 
@@ -232,6 +271,9 @@ Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.
 - Jurisdiction: International research context
 - Source type: research-review
 - Last checked: 2026-10-03
+- Machine-readable scope: global
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Publisher access may be restricted; accessible practice guidance is linked separately. A research review is not a validated personal assessment tool.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [domains/learning-time.md](domains/learning-time.md), [guides/10-learning-and-time.md](guides/10-learning-and-time.md), [scenarios/10-learning-time.md](scenarios/10-learning-time.md)
@@ -245,6 +287,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: General education
 - Source type: educational-source
 - Last checked: 2026-10-03
+- Machine-readable scope: global
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [domains/learning-time.md](domains/learning-time.md), [guides/10-learning-and-time.md](guides/10-learning-and-time.md), [scenarios/10-learning-time.md](scenarios/10-learning-time.md)
@@ -258,9 +303,12 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Check each linked page; many rules are England-specific
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: england
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
-Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/major-decisions.md](domains/major-decisions.md), [guides/12-major-decisions.md](guides/12-major-decisions.md), [scenarios/12-major-decisions.md](scenarios/12-major-decisions.md)
+Dependent lessons and assessments: [domains/major-decisions.md](domains/major-decisions.md), [guides/12-major-decisions.md](guides/12-major-decisions.md)
 
 ## uk-money
 
@@ -271,6 +319,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: United Kingdom; check individual guidance
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: uk
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/life-admin.md](domains/life-admin.md), [domains/money.md](domains/money.md), [guides/02-money.md](guides/02-money.md), [guides/11-life-admin.md](guides/11-life-admin.md), [scenarios/02-money.md](scenarios/02-money.md), [scenarios/11-life-admin.md](scenarios/11-life-admin.md)
@@ -284,6 +335,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: United Kingdom; devolved tax differences may apply
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: uk
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/life-admin.md](domains/life-admin.md), [domains/money.md](domains/money.md), [domains/work.md](domains/work.md), [guides/02-money.md](guides/02-money.md), [guides/09-work.md](guides/09-work.md), [guides/11-life-admin.md](guides/11-life-admin.md), [scenarios/02-money.md](scenarios/02-money.md), [scenarios/09-work.md](scenarios/09-work.md), [scenarios/11-life-admin.md](scenarios/11-life-admin.md)
@@ -297,6 +351,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Great Britain; Northern Ireland has a different advice route
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: great-britain
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/life-admin.md](domains/life-admin.md), [domains/work.md](domains/work.md), [guides/09-work.md](guides/09-work.md), [guides/11-life-admin.md](guides/11-life-admin.md), [scenarios/09-work.md](scenarios/09-work.md), [scenarios/11-life-admin.md](scenarios/11-life-admin.md)
@@ -310,6 +367,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Great Britain
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: great-britain
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/money.md](domains/money.md), [domains/work.md](domains/work.md), [guides/02-money.md](guides/02-money.md), [guides/09-work.md](guides/09-work.md), [scenarios/02-money.md](scenarios/02-money.md), [scenarios/09-work.md](scenarios/09-work.md)
@@ -323,6 +383,9 @@ Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.
 - Jurisdiction: United Kingdom; regional advice routes differ
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: uk
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/life-admin.md](domains/life-admin.md), [domains/money.md](domains/money.md), [guides/02-money.md](guides/02-money.md), [guides/11-life-admin.md](guides/11-life-admin.md), [scenarios/02-money.md](scenarios/02-money.md), [scenarios/11-life-admin.md](scenarios/11-life-admin.md)
@@ -336,6 +399,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: United Kingdom
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: uk
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/critical-thinking.md](domains/critical-thinking.md), [domains/money.md](domains/money.md), [guides/02-money.md](guides/02-money.md), [guides/06-thinking.md](guides/06-thinking.md), [scenarios/02-money.md](scenarios/02-money.md), [scenarios/06-critical-thinking.md](scenarios/06-critical-thinking.md)
@@ -349,6 +415,9 @@ Dependent lessons and assessments: [capstones/first-job.md](capstones/first-job.
 - Jurisdiction: United Kingdom
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: uk
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/major-decisions.md](domains/major-decisions.md), [guides/12-major-decisions.md](guides/12-major-decisions.md), [scenarios/12-major-decisions.md](scenarios/12-major-decisions.md)
@@ -362,6 +431,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: United Kingdom; eligibility differs by election and nation
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: uk
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/major-decisions.md](domains/major-decisions.md), [guides/12-major-decisions.md](guides/12-major-decisions.md), [scenarios/12-major-decisions.md](scenarios/12-major-decisions.md)
@@ -375,6 +447,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: United Kingdom; reporting differs by nation and incident
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: uk
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [domains/digital-safety.md](domains/digital-safety.md), [guides/07-digital-safety.md](guides/07-digital-safety.md), [scenarios/07-digital-safety.md](scenarios/07-digital-safety.md)
@@ -388,6 +463,9 @@ Dependent lessons and assessments: [capstones/suspicious-payment.md](capstones/s
 - Jurisdiction: Great Britain
 - Source type: official-service
 - Last checked: 2026-10-03
+- Machine-readable scope: great-britain
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/emergencies.md](domains/emergencies.md), [domains/home.md](domains/home.md), [guides/01-emergencies.md](guides/01-emergencies.md), [guides/08-home.md](guides/08-home.md), [scenarios/01-emergencies.md](scenarios/01-emergencies.md), [scenarios/08-home.md](scenarios/08-home.md)
@@ -401,6 +479,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Wales and south-west England
 - Source type: official-service
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/emergencies.md](domains/emergencies.md), [domains/home.md](domains/home.md), [guides/01-emergencies.md](guides/01-emergencies.md), [guides/08-home.md](guides/08-home.md), [scenarios/01-emergencies.md](scenarios/01-emergencies.md), [scenarios/08-home.md](scenarios/08-home.md)
@@ -414,6 +495,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Wales
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/moving-out.md](capstones/moving-out.md), [domains/emergencies.md](domains/emergencies.md), [guides/01-emergencies.md](guides/01-emergencies.md), [scenarios/01-emergencies.md](scenarios/01-emergencies.md)
@@ -427,6 +511,9 @@ Dependent lessons and assessments: [capstones/moving-out.md](capstones/moving-ou
 - Jurisdiction: Wales
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/health.md](domains/health.md), [domains/wellbeing.md](domains/wellbeing.md), [guides/03-health.md](guides/03-health.md), [guides/04-wellbeing.md](guides/04-wellbeing.md), [scenarios/03-health.md](scenarios/03-health.md), [scenarios/04-wellbeing.md](scenarios/04-wellbeing.md)
@@ -440,6 +527,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Wales
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/wellbeing.md](domains/wellbeing.md), [guides/04-wellbeing.md](guides/04-wellbeing.md), [scenarios/04-wellbeing.md](scenarios/04-wellbeing.md)
@@ -453,6 +543,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Wales
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: reviewed baseline recorded
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [domains/health.md](domains/health.md), [guides/03-health.md](guides/03-health.md), [scenarios/03-health.md](scenarios/03-health.md)
@@ -466,6 +559,9 @@ Dependent lessons and assessments: [domains/health.md](domains/health.md), [guid
 - Jurisdiction: Wales
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: reviewed baseline recorded
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/home.md](domains/home.md), [domains/major-decisions.md](domains/major-decisions.md), [guides/08-home.md](guides/08-home.md), [guides/12-major-decisions.md](guides/12-major-decisions.md), [scenarios/08-home.md](scenarios/08-home.md), [scenarios/12-major-decisions.md](scenarios/12-major-decisions.md)
@@ -479,6 +575,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Wales
 - Source type: recognised-advice-organisation
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/major-decisions.md](domains/major-decisions.md), [guides/12-major-decisions.md](guides/12-major-decisions.md), [scenarios/12-major-decisions.md](scenarios/12-major-decisions.md)
@@ -492,6 +591,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Wales
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/life-admin.md](domains/life-admin.md), [guides/11-life-admin.md](guides/11-life-admin.md), [scenarios/11-life-admin.md](scenarios/11-life-admin.md)
@@ -505,6 +607,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Wales
 - Source type: recognised-advice-organisation
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/life-admin.md](domains/life-admin.md), [domains/major-decisions.md](domains/major-decisions.md), [guides/11-life-admin.md](guides/11-life-admin.md), [guides/12-major-decisions.md](guides/12-major-decisions.md), [scenarios/11-life-admin.md](scenarios/11-life-admin.md), [scenarios/12-major-decisions.md](scenarios/12-major-decisions.md)
@@ -518,6 +623,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: England and Wales; verify eligibility and issue scope
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: england, wales
+- Substantive review interval: 90 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/life-admin.md](domains/life-admin.md), [domains/major-decisions.md](domains/major-decisions.md), [guides/11-life-admin.md](guides/11-life-admin.md), [guides/12-major-decisions.md](guides/12-major-decisions.md), [scenarios/11-life-admin.md](scenarios/11-life-admin.md), [scenarios/12-major-decisions.md](scenarios/12-major-decisions.md)
@@ -531,6 +639,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Wales
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/first-job.md](capstones/first-job.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/major-decisions.md](domains/major-decisions.md), [domains/work.md](domains/work.md), [guides/09-work.md](guides/09-work.md), [guides/12-major-decisions.md](guides/12-major-decisions.md), [scenarios/09-work.md](scenarios/09-work.md), [scenarios/12-major-decisions.md](scenarios/12-major-decisions.md)
@@ -544,6 +655,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Wales; verify operator fares and live disruptions
 - Source type: official-service
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.md), [capstones/moving-out.md](capstones/moving-out.md), [domains/major-decisions.md](domains/major-decisions.md), [guides/12-major-decisions.md](guides/12-major-decisions.md), [scenarios/12-major-decisions.md](scenarios/12-major-decisions.md)
@@ -557,6 +671,9 @@ Dependent lessons and assessments: [capstones/busy-week.md](capstones/busy-week.
 - Jurisdiction: Wales
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/moving-out.md](capstones/moving-out.md), [domains/emergencies.md](domains/emergencies.md), [guides/01-emergencies.md](guides/01-emergencies.md), [scenarios/01-emergencies.md](scenarios/01-emergencies.md)
@@ -570,6 +687,9 @@ Dependent lessons and assessments: [capstones/moving-out.md](capstones/moving-ou
 - Jurisdiction: Wales
 - Source type: professional-organisation
 - Last checked: 2026-10-03
+- Machine-readable scope: wales
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/moving-out.md](capstones/moving-out.md), [domains/emergencies.md](domains/emergencies.md), [guides/01-emergencies.md](guides/01-emergencies.md), [scenarios/01-emergencies.md](scenarios/01-emergencies.md)
@@ -583,6 +703,9 @@ Dependent lessons and assessments: [capstones/moving-out.md](capstones/moving-ou
 - Jurisdiction: United Kingdom
 - Source type: official-authority
 - Last checked: 2026-10-03
+- Machine-readable scope: uk
+- Substantive review interval: 180 days; human review required
+- Content fingerprint: no baseline; manual review needed before comparison
 - Notes: Review scope and current guidance before personal decisions.
 
 Dependent lessons and assessments: [capstones/suspicious-payment.md](capstones/suspicious-payment.md), [capstones/unexpected-expense.md](capstones/unexpected-expense.md), [domains/critical-thinking.md](domains/critical-thinking.md), [domains/digital-safety.md](domains/digital-safety.md), [guides/06-thinking.md](guides/06-thinking.md), [guides/07-digital-safety.md](guides/07-digital-safety.md), [scenarios/06-critical-thinking.md](scenarios/06-critical-thinking.md), [scenarios/07-digital-safety.md](scenarios/07-digital-safety.md)
@@ -591,6 +714,6 @@ Dependent lessons and assessments: [capstones/suspicious-payment.md](capstones/s
 
 Check scope, authorship, current status, date, and relevance when editing a lesson. Do not copy changing rates, eligibility rules, contact hours, or entitlements into generic exercises. A source being reachable does not mean it supports a claim.
 
-The validator warns when a source review is over 180 days old. Update a review date only after actually reviewing the resource. Replace withdrawn guidance, and keep any restricted-access or historical-use limitation explicit. Document external-link exceptions with a reason and expiry; never treat a blocked page as verified reachable.
+The validator warns when a source review is over 180 days old and when its substantive review exceeds the configured interval. Update a review date only after actually reviewing the resource. Replace withdrawn guidance, and keep any restricted-access or historical-use limitation explicit. Document external-link exceptions with a reason and expiry; never treat a blocked page as verified reachable. See the [source-change review process](docs/source-review.md).
 
 Linked publications retain their own copyright and licence. Repository licensing applies to original curriculum content and code.

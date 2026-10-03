@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Balances40,-30,-120,380 on day14. Minimum -120 day6 and gap persists until pay. Clarify safe repair timing/support; voucher is not cash. Do not invent deferral agreement.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "arithmetic-error": "Check the arithmetic and units",
+    "missed-payment-timing": "Place money in date order",
+    "ignores-essential-cost": "Protect every essential cost",
+    "assumes-missing-information": "Name missing facts before deciding"
+  },
+  "next_steps": {
+    "arithmetic-error": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "missed-payment-timing": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "ignores-essential-cost": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

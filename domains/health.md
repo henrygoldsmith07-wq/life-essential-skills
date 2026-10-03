@@ -43,3 +43,21 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [wales-medicine](../RESOURCES.md#wales-medicine)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `health.access.foundation` | Explain the reasoning and produce the basic fictional output for: Choose a verified local service route and prepare appointment/access questions without diagnosing or delaying urgent help. | knowledge |
+| `health.access.independent` | Choose a verified local service route and prepare appointment/access questions without diagnosing or delaying urgent help. | independent |
+| `health.medicine.foundation` | Explain the reasoning and produce the basic fictional output for: Resolve uncertain medicine directions through a qualified verified route without inventing a dose or changing treatment. | knowledge |
+| `health.medicine.independent` | Resolve uncertain medicine directions through a qualified verified route without inventing a dose or changing treatment. | independent |
+| `health.routine.foundation` | Explain the reasoning and produce the basic fictional output for: Plan a realistic food, rest and movement routine and evaluate a health claim with an appropriate professional limit. | knowledge |
+| `health.routine.independent` | Plan a realistic food, rest and movement routine and evaluate a health claim with an appropriate professional limit. | independent |
+| `health.medicine.adaptive` | Evaluate a persuasive health claim and adapt practical arrangements for an access barrier. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

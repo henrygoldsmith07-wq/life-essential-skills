@@ -1,5 +1,9 @@
 # Life Essential Skills
 
+[Open the learner dashboard](learner/index.html) · [How evidence works](curriculum/adaptive-learning.md)
+
+Use **Today → Learn → Practice → Feedback → Next task → Reassess**. The dashboard adapts to educational evidence stored locally in your browser. The text curriculum below remains available. To launch the interface, follow the short [dashboard instructions](learner/README.md).
+
 **Learn, practise, demonstrate, revisit: practical skills for an independent life.**
 
 Twelve short guides support a competency-based curriculum. Progress means what you can do with realistic situations, not how many pages you read. Everything works in Markdown; no app or paid subscription is required.

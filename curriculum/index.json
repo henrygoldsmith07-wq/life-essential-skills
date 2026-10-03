@@ -30,25 +30,41 @@
           "id": "emergencies.foundation",
           "mastery_level": "foundation",
           "criterion": "Identify an appropriate emergency help route and explain why scene safety comes first.",
-          "evidence": "A fictional call outline and verified local contact."
+          "evidence": "A fictional call outline and verified local contact.",
+          "derived_from": [
+            "emergencies.response.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "emergencies.applied",
           "mastery_level": "applied",
           "criterion": "Use a checklist to make an offline household plan including access needs.",
-          "evidence": "A plan with exits, meeting point, contacts, and named gaps."
+          "evidence": "A plan with exits, meeting point, contacts, and named gaps.",
+          "derived_from": [
+            "emergencies.preparedness.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "emergencies.independent",
           "mastery_level": "independent",
           "criterion": "Respond to the outage scenario with a safe sequence and verified support routes.",
-          "evidence": "An unprompted action sequence that avoids entering hazards."
+          "evidence": "An unprompted action sequence that avoids entering hazards.",
+          "derived_from": [
+            "emergencies.response.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "emergencies.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Adapt the plan for a failed phone and an additional access need; identify professional limits.",
-          "evidence": "A revised plan with a fallback and escalation trigger."
+          "evidence": "A revised plan with a fallback and escalation trigger.",
+          "derived_from": [
+            "emergencies.response.adaptive"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -80,6 +96,67 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "red-cross-preparedness",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "red-cross-training",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-999",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-floods",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-first-aid",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-utilities",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-gas",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -108,25 +185,42 @@
           "id": "money.foundation",
           "mastery_level": "foundation",
           "criterion": "Create an arithmetically balanced monthly budget from fictional income and costs.",
-          "evidence": "Income, allocations, and unallocated amount."
+          "evidence": "Income, allocations, and unallocated amount.",
+          "derived_from": [
+            "money.budget.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "money.applied",
           "mastery_level": "applied",
           "criterion": "Use a checklist to allow for irregular costs and calculate dated cash flow.",
-          "evidence": "Dated running balance and an irregular-cost allowance."
+          "evidence": "Dated running balance and an irregular-cost allowance.",
+          "derived_from": [
+            "money.budget.foundation",
+            "money.cash-flow.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "money.independent",
           "mastery_level": "independent",
           "criterion": "Handle a surprise cost without assuming funds exist or neglecting essentials.",
-          "evidence": "A revised budget and a legitimate support route if needed."
+          "evidence": "A revised budget and a legitimate support route if needed.",
+          "derived_from": [
+            "money.cash-flow.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "money.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Compare credit offers by total repayment, timing, risk, and unanswered terms.",
-          "evidence": "Calculations plus an affordability and contract explanation."
+          "evidence": "Calculations plus an affordability and contract explanation.",
+          "derived_from": [
+            "money.credit.adaptive"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -164,6 +258,67 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "consumer-budget",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "cfpb-buffer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-money",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-payslips",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-investing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-consumer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -190,25 +345,44 @@
           "id": "health.foundation",
           "mastery_level": "foundation",
           "criterion": "Identify routine, urgent, and emergency help routes from official local guidance.",
-          "evidence": "Correctly labelled routes and their sources."
+          "evidence": "Correctly labelled routes and their sources.",
+          "derived_from": [
+            "health.access.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "health.applied",
           "mastery_level": "applied",
           "criterion": "Use a checklist to prepare a routine and appointment questions.",
-          "evidence": "A feasible routine and concise appointment checklist."
+          "evidence": "A feasible routine and concise appointment checklist.",
+          "derived_from": [
+            "health.routine.foundation",
+            "health.access.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "health.independent",
           "mastery_level": "independent",
           "criterion": "Handle a missed appointment and an uncertain medicine instruction by contacting appropriate professionals.",
-          "evidence": "An independent contact plan without changing treatment."
+          "evidence": "An independent contact plan without changing treatment.",
+          "derived_from": [
+            "health.access.independent",
+            "health.medicine.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "health.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Evaluate a persuasive health claim and adapt practical arrangements for an access barrier.",
-          "evidence": "Verification steps, an accessible alternative, and clear limits."
+          "evidence": "Verification steps, an accessible alternative, and clear limits.",
+          "derived_from": [
+            "health.medicine.adaptive",
+            "health.routine.independent"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -239,6 +413,49 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "who-diet",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        },
+        {
+          "source_id": "who-movement",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        },
+        {
+          "source_id": "nhs-wellbeing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-health",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-medicine",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -265,25 +482,43 @@
           "id": "wellbeing.foundation",
           "mastery_level": "foundation",
           "criterion": "Identify overload signs and distinguish a manageable task from a need for more support.",
-          "evidence": "A specific observation and next action."
+          "evidence": "A specific observation and next action.",
+          "derived_from": [
+            "wellbeing.capacity.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "wellbeing.applied",
           "mastery_level": "applied",
           "criterion": "Use a prompt to build a private support plan and divide a problem into steps.",
-          "evidence": "Named support roles and one realistic first step."
+          "evidence": "Named support roles and one realistic first step.",
+          "derived_from": [
+            "wellbeing.capacity.foundation",
+            "wellbeing.support.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "wellbeing.independent",
           "mastery_level": "independent",
           "criterion": "Respond to the overloaded-week scenario with a feasible plan and a clear support request.",
-          "evidence": "A plan that protects basic needs and contacts appropriate help."
+          "evidence": "A plan that protects basic needs and contacts appropriate help.",
+          "derived_from": [
+            "wellbeing.capacity.independent",
+            "wellbeing.support.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "wellbeing.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Adapt when the first contact is unavailable and identify when urgent professional help takes priority.",
-          "evidence": "A verified fallback route without diagnosis or treatment advice."
+          "evidence": "A verified fallback route without diagnosis or treatment advice.",
+          "derived_from": [
+            "wellbeing.support.adaptive"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -310,6 +545,35 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "nhs-wellbeing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-health",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-mental-health",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -335,25 +599,44 @@
           "id": "relationships.foundation",
           "mastery_level": "foundation",
           "criterion": "Distinguish an observation from a motive claim and recognise that consent can change.",
-          "evidence": "A rewritten statement and consent explanation."
+          "evidence": "A rewritten statement and consent explanation.",
+          "derived_from": [
+            "relationships.communication.foundation",
+            "relationships.boundaries.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "relationships.applied",
           "mastery_level": "applied",
           "criterion": "Use a script to make a request, reflect a reply, and define a boundary.",
-          "evidence": "A short two-person role-play."
+          "evidence": "A short two-person role-play.",
+          "derived_from": [
+            "relationships.communication.foundation",
+            "relationships.boundaries.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "relationships.independent",
           "mastery_level": "independent",
           "criterion": "Handle a realistic disagreement with listening, a clear request, and a workable boundary.",
-          "evidence": "An unscripted written or spoken response."
+          "evidence": "An unscripted written or spoken response.",
+          "derived_from": [
+            "relationships.communication.independent",
+            "relationships.boundaries.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "relationships.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Adapt to refusal or escalating behaviour, choosing a safe pause or appropriate support.",
-          "evidence": "A response that avoids coercion and recognises safety limits."
+          "evidence": "A response that avoids coercion and recognises safety limits.",
+          "derived_from": [
+            "relationships.conflict.adaptive"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -378,6 +661,19 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "nhs-relationships",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -404,25 +700,42 @@
           "id": "critical-thinking.foundation",
           "mastery_level": "foundation",
           "criterion": "Separate a claim, its evidence, and an assumption.",
-          "evidence": "A labelled claim and a missing fact."
+          "evidence": "A labelled claim and a missing fact.",
+          "derived_from": [
+            "critical-thinking.verification.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "critical-thinking.applied",
           "mastery_level": "applied",
           "criterion": "Use a checklist to trace a source and calculate relative and absolute differences.",
-          "evidence": "Correct calculations and source notes."
+          "evidence": "Correct calculations and source notes.",
+          "derived_from": [
+            "critical-thinking.verification.foundation",
+            "critical-thinking.statistics.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "critical-thinking.independent",
           "mastery_level": "independent",
           "criterion": "Assess an unfamiliar social or AI claim using original evidence and independent verification.",
-          "evidence": "An independent conclusion with limitations."
+          "evidence": "An independent conclusion with limitations.",
+          "derived_from": [
+            "critical-thinking.verification.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "critical-thinking.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Adapt the conclusion to manipulated content or incomplete evidence and name what would change it.",
-          "evidence": "A revised judgement that does not invent certainty."
+          "evidence": "A revised judgement that does not invent certainty.",
+          "derived_from": [
+            "critical-thinking.verification.adaptive"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -450,6 +763,35 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "ncsc-ai",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-investing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-integrity",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -477,25 +819,45 @@
           "id": "digital-safety.foundation",
           "mastery_level": "foundation",
           "criterion": "Explain why email, unique passwords, updates, and MFA matter.",
-          "evidence": "An account-protection checklist with no secrets."
+          "evidence": "An account-protection checklist with no secrets.",
+          "derived_from": [
+            "digital-safety.accounts.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "digital-safety.applied",
           "mastery_level": "applied",
           "criterion": "Use official settings to review account protection and restore a sample backup.",
-          "evidence": "A private settings review and restored sample."
+          "evidence": "A private settings review and restored sample.",
+          "derived_from": [
+            "digital-safety.accounts.independent",
+            "digital-safety.backup.independent"
+          ],
+          "additional_evidence": [
+            "observed-sample-restore",
+            "observed-account-protection"
+          ]
         },
         {
           "id": "digital-safety.independent",
           "mastery_level": "independent",
           "criterion": "Handle a suspicious message without clicking its link or sharing codes.",
-          "evidence": "An independent verification and payment-hold sequence."
+          "evidence": "An independent verification and payment-hold sequence.",
+          "derived_from": [
+            "digital-safety.scams.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "digital-safety.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Adapt after a possible account compromise or realistic impersonation.",
-          "evidence": "Official recovery, relevant provider contact, and local reporting steps."
+          "evidence": "Official recovery, relevant provider contact, and local reporting steps.",
+          "derived_from": [
+            "digital-safety.scams.adaptive"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -527,6 +889,43 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "ncsc-security",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-ai",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-fraud",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-integrity",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -556,25 +955,46 @@
           "id": "home.foundation",
           "mastery_level": "foundation",
           "criterion": "Plan a simple meal and identify key food-safety and hazardous-repair limits.",
-          "evidence": "A shopping list and safe task boundaries."
+          "evidence": "A shopping list and safe task boundaries.",
+          "derived_from": [
+            "home.meals.foundation",
+            "home.maintenance.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "home.applied",
           "mastery_level": "applied",
           "criterion": "Use instructions to prepare a meal and make a household checklist.",
-          "evidence": "Practical meal evidence and a feasible routine."
+          "evidence": "Practical meal evidence and a feasible routine.",
+          "derived_from": [
+            "home.meals.independent",
+            "home.routines.independent"
+          ],
+          "additional_evidence": [
+            "observed-meal-preparation"
+          ]
         },
         {
           "id": "home.independent",
           "mastery_level": "independent",
           "criterion": "Handle the household scenario with a costed shopping plan and safe repair escalation.",
-          "evidence": "Independent calculations and a repair request."
+          "evidence": "Independent calculations and a repair request.",
+          "derived_from": [
+            "home.meals.independent",
+            "home.maintenance.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "home.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Adapt routines to an equipment failure, move, or access limitation.",
-          "evidence": "A revised plan with a workable safe alternative."
+          "evidence": "A revised plan with a workable safe alternative.",
+          "derived_from": [
+            "home.maintenance.adaptive"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -608,6 +1028,55 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "fsa-hygiene",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales",
+            "northern-ireland"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "fsa-cooking",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales",
+            "northern-ireland"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-utilities",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-housing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-gas",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -636,25 +1105,42 @@
           "id": "work.foundation",
           "mastery_level": "foundation",
           "criterion": "Identify job requirements and write one truthful evidence statement.",
-          "evidence": "An advert annotated with matching evidence."
+          "evidence": "An advert annotated with matching evidence.",
+          "derived_from": [
+            "work.evidence.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "work.applied",
           "mastery_level": "applied",
           "criterion": "Use a structure to prepare an application and interview answer.",
-          "evidence": "A targeted paragraph and practised answer."
+          "evidence": "A targeted paragraph and practised answer.",
+          "derived_from": [
+            "work.evidence.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "work.independent",
           "mastery_level": "independent",
           "criterion": "Evaluate a fictional offer and reconcile its payslip before asking clear questions.",
-          "evidence": "An independent offer review and pay calculation."
+          "evidence": "An independent offer review and pay calculation.",
+          "derived_from": [
+            "work.offers.independent",
+            "work.pay.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "work.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Adapt to unclear hours, an access need, or a changed offer without inventing entitlements.",
-          "evidence": "A professional clarification and appropriate advice route."
+          "evidence": "A professional clarification and appropriate advice route.",
+          "derived_from": [
+            "work.offers.adaptive"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -688,6 +1174,51 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "england-careers",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-careers",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-employment",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-payslips",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -714,25 +1245,44 @@
           "id": "learning-time.foundation",
           "mastery_level": "foundation",
           "criterion": "Identify fixed commitments and explain the difference between retrieval and rereading.",
-          "evidence": "A commitment list and memory-first question."
+          "evidence": "A commitment list and memory-first question.",
+          "derived_from": [
+            "learning-time.planning.foundation",
+            "learning-time.retrieval.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "learning-time.applied",
           "mastery_level": "applied",
           "criterion": "Use a checklist to schedule realistic tasks, travel, and two later reviews.",
-          "evidence": "A calendar with buffer."
+          "evidence": "A calendar with buffer.",
+          "derived_from": [
+            "learning-time.planning.foundation",
+            "learning-time.retrieval.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "learning-time.independent",
           "mastery_level": "independent",
           "criterion": "Resolve a busy-week conflict by comparing consequences and contacting affected people.",
-          "evidence": "An independent schedule and communication plan."
+          "evidence": "An independent schedule and communication plan.",
+          "derived_from": [
+            "learning-time.planning.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "learning-time.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Adapt to a new interruption and use delayed reassessment to revise the plan.",
-          "evidence": "A feasible replacement plan and recorded reassessment."
+          "evidence": "A feasible replacement plan and recorded reassessment.",
+          "derived_from": [
+            "learning-time.planning.adaptive",
+            "learning-time.retrieval.independent"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -757,6 +1307,25 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "spacing-review",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        },
+        {
+          "source_id": "retrieval-practice",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        }
       ]
     },
     {
@@ -785,25 +1354,42 @@
           "id": "life-admin.foundation",
           "mastery_level": "foundation",
           "criterion": "Identify an agreement's cost, duration, responsibility, and cancellation questions.",
-          "evidence": "An annotated fictional agreement."
+          "evidence": "An annotated fictional agreement.",
+          "derived_from": [
+            "life-admin.contracts.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "life-admin.applied",
           "mastery_level": "applied",
           "criterion": "Use a checklist to organise records, reminders, and verified contacts.",
-          "evidence": "A private inventory and dated action list."
+          "evidence": "A private inventory and dated action list.",
+          "derived_from": [
+            "life-admin.records.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "life-admin.independent",
           "mastery_level": "independent",
           "criterion": "Resolve the billing scenario with correct totals and a documented clarification or complaint.",
-          "evidence": "An independent email and next-step timeline."
+          "evidence": "An independent email and next-step timeline.",
+          "derived_from": [
+            "life-admin.contracts.independent",
+            "life-admin.complaints.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "life-admin.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Adapt when cancellation is disputed or correspondence is suspicious, using current local advice.",
-          "evidence": "An evidence log, verified advice route, and safe follow-up."
+          "evidence": "An evidence log, verified advice route, and safe follow-up.",
+          "derived_from": [
+            "life-admin.complaints.adaptive"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -839,6 +1425,68 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "uk-consumer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-employment",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-money",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-legal",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -866,25 +1514,43 @@
           "id": "major-decisions.foundation",
           "mastery_level": "foundation",
           "criterion": "Identify essential needs and full costs for two options.",
-          "evidence": "A comparison with explicit assumptions."
+          "evidence": "A comparison with explicit assumptions.",
+          "derived_from": [
+            "major-decisions.comparison.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "major-decisions.applied",
           "mastery_level": "applied",
           "criterion": "Use a checklist to compare housing, transport, and contract questions.",
-          "evidence": "A costed comparison and verified local source."
+          "evidence": "A costed comparison and verified local source.",
+          "derived_from": [
+            "major-decisions.comparison.foundation",
+            "major-decisions.access.foundation"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "major-decisions.independent",
           "mastery_level": "independent",
           "criterion": "Choose between realistic options and plan feasible transport and an administrative next step.",
-          "evidence": "An independent choice with a clear tradeoff."
+          "evidence": "An independent choice with a clear tradeoff.",
+          "derived_from": [
+            "major-decisions.comparison.independent",
+            "major-decisions.access.independent"
+          ],
+          "additional_evidence": []
         },
         {
           "id": "major-decisions.advanced-scenario",
           "mastery_level": "advanced-scenario",
           "criterion": "Adapt to changed income, service disruption, or incomplete terms and consider a reversible alternative.",
-          "evidence": "A revised choice, missing-fact check, and fallback."
+          "evidence": "A revised choice, missing-fact check, and fallback.",
+          "derived_from": [
+            "major-decisions.comparison.adaptive"
+          ],
+          "additional_evidence": []
         }
       ],
       "subskills": [
@@ -922,6 +1588,84 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "england-housing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-housing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-housing-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-careers",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-transport",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-council",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-civic",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-legal",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     }
   ],
@@ -943,7 +1687,6 @@
       ],
       "source_dependencies": [
         "red-cross-preparedness",
-        "red-cross-training",
         "wales-999",
         "wales-floods",
         "wales-first-aid",
@@ -959,6 +1702,59 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "red-cross-preparedness",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-999",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-floods",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-first-aid",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-utilities",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-gas",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -998,6 +1794,67 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "consumer-budget",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "cfpb-buffer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-money",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-payslips",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-investing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-consumer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1030,6 +1887,49 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "who-diet",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        },
+        {
+          "source_id": "who-movement",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        },
+        {
+          "source_id": "nhs-wellbeing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-health",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-medicine",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1060,6 +1960,35 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "nhs-wellbeing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-health",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-mental-health",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1087,6 +2016,19 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "nhs-relationships",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1116,6 +2058,35 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "ncsc-ai",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-investing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-integrity",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1149,6 +2120,43 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "ncsc-security",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-ai",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-fraud",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-integrity",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1186,6 +2194,55 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "fsa-hygiene",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales",
+            "northern-ireland"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "fsa-cooking",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales",
+            "northern-ireland"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-utilities",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-housing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-gas",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1207,7 +2264,6 @@
         "work.advanced-scenario"
       ],
       "source_dependencies": [
-        "england-careers",
         "wales-careers",
         "gb-employment",
         "gb-payslips",
@@ -1222,6 +2278,43 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "wales-careers",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-employment",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-payslips",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1248,6 +2341,25 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "spacing-review",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        },
+        {
+          "source_id": "retrieval-practice",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        }
       ]
     },
     {
@@ -1288,6 +2400,68 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "uk-consumer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-employment",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-money",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-legal",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1311,7 +2485,6 @@
         "major-decisions.advanced-scenario"
       ],
       "source_dependencies": [
-        "england-housing",
         "wales-housing",
         "wales-housing-advice",
         "wales-careers",
@@ -1332,6 +2505,70 @@
         3,
         7,
         21
+      ],
+      "jurisdictions": [
+        "wales"
+      ],
+      "source_uses": [
+        {
+          "source_id": "wales-housing",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-housing-advice",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-careers",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-transport",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "uk-council",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "uk-civic",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "uk-legal",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        }
+      ],
+      "regulated_topics": [
+        "housing"
       ]
     }
   ],
@@ -1365,16 +2602,11 @@
         "emergencies.independent"
       ],
       "source_dependencies": [
-        "cfpb-buffer",
-        "consumer-budget",
-        "england-housing",
         "fsa-cooking",
         "fsa-hygiene",
         "gb-employment",
         "gb-payslips",
         "gb-utilities",
-        "red-cross-preparedness",
-        "red-cross-training",
         "uk-civic",
         "uk-consumer",
         "uk-council",
@@ -1396,6 +2628,168 @@
       "review_interval_days": [
         7,
         21
+      ],
+      "jurisdictions": [
+        "wales"
+      ],
+      "source_uses": [
+        {
+          "source_id": "fsa-cooking",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "fsa-hygiene",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "gb-employment",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "gb-payslips",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "gb-utilities",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "uk-civic",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "uk-consumer",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "uk-council",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "uk-investing",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "uk-legal",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "uk-money",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-999",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-advice",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-careers",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-first-aid",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-floods",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-gas",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-housing",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-housing-advice",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-transport",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        }
+      ],
+      "regulated_topics": [
+        "housing"
       ]
     },
     {
@@ -1429,7 +2823,6 @@
       "source_dependencies": [
         "cfpb-buffer",
         "consumer-budget",
-        "england-careers",
         "gb-employment",
         "gb-payslips",
         "nhs-relationships",
@@ -1447,6 +2840,130 @@
       "review_interval_days": [
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "cfpb-buffer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "consumer-budget",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-employment",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-payslips",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "nhs-relationships",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "retrieval-practice",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        },
+        {
+          "source_id": "spacing-review",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        },
+        {
+          "source_id": "uk-consumer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-investing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-legal",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-money",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-careers",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1495,6 +3012,140 @@
       "review_interval_days": [
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "cfpb-buffer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "consumer-budget",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-employment",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-payslips",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-ai",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-integrity",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "nhs-wellbeing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-consumer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-investing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-legal",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-money",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-health",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-mental-health",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1546,6 +3197,140 @@
       "review_interval_days": [
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "cfpb-buffer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "consumer-budget",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "united-states"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-employment",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-payslips",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-ai",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-integrity",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "ncsc-security",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "nhs-relationships",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-consumer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-fraud",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-investing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-legal",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-money",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     },
     {
@@ -1580,7 +3365,6 @@
         "major-decisions.independent"
       ],
       "source_dependencies": [
-        "england-housing",
         "fsa-cooking",
         "fsa-hygiene",
         "gb-employment",
@@ -1608,6 +3392,198 @@
       "review_interval_days": [
         7,
         21
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "source_uses": [
+        {
+          "source_id": "fsa-cooking",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales",
+            "northern-ireland"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "fsa-hygiene",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales",
+            "northern-ireland"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-employment",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "gb-utilities",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "great-britain"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "nhs-relationships",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "nhs-wellbeing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "retrieval-practice",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        },
+        {
+          "source_id": "spacing-review",
+          "role": "authority",
+          "jurisdictions": [
+            "global"
+          ]
+        },
+        {
+          "source_id": "uk-civic",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-consumer",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-council",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-legal",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "england",
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-money",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "uk-tax",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "uk"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-careers",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-gas",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-health",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-housing",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-housing-advice",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-mental-health",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        },
+        {
+          "source_id": "wales-transport",
+          "role": "local-alternative",
+          "jurisdictions": [
+            "wales"
+          ],
+          "justification": "Country-specific optional reference. Select only when the learner/property/service locality is within this scope; it establishes no rule for other nations."
+        }
       ]
     }
   ],
@@ -1856,7 +3832,12 @@
           "path": "templates/weekly-review.md",
           "competencies": []
         }
-      ]
+      ],
+      "supported_localities": [
+        "uk",
+        "wales"
+      ],
+      "jurisdiction_rule": "Resolve optional nation-specific resources to the learner and task locality. UK unspecified does not mean England; Wales-only housing tasks require Wales."
     },
     {
       "id": "independent-living",
@@ -2096,7 +4077,12 @@
           "path": "templates/weekly-review.md",
           "competencies": []
         }
-      ]
+      ],
+      "supported_localities": [
+        "uk",
+        "wales"
+      ],
+      "jurisdiction_rule": "Resolve optional nation-specific resources to the learner and task locality. UK unspecified does not mean England; Wales-only housing tasks require Wales."
     },
     {
       "id": "money-admin",
@@ -2335,7 +4321,12 @@
           "path": "templates/weekly-review.md",
           "competencies": []
         }
-      ]
+      ],
+      "supported_localities": [
+        "uk",
+        "wales"
+      ],
+      "jurisdiction_rule": "Resolve optional nation-specific resources to the learner and task locality. UK unspecified does not mean England; Wales-only housing tasks require Wales."
     },
     {
       "id": "digital-safety",
@@ -2574,7 +4565,12 @@
           "path": "templates/weekly-review.md",
           "competencies": []
         }
-      ]
+      ],
+      "supported_localities": [
+        "uk",
+        "wales"
+      ],
+      "jurisdiction_rule": "Resolve optional nation-specific resources to the learner and task locality. UK unspecified does not mean England; Wales-only housing tasks require Wales."
     },
     {
       "id": "school-to-work",
@@ -2815,7 +4811,12 @@
           "path": "templates/weekly-review.md",
           "competencies": []
         }
-      ]
+      ],
+      "supported_localities": [
+        "uk",
+        "wales"
+      ],
+      "jurisdiction_rule": "Resolve optional nation-specific resources to the learner and task locality. UK unspecified does not mean England; Wales-only housing tasks require Wales."
     }
   ],
   "locales": [
@@ -2829,5 +4830,12 @@
       "path": "locales/uk-wales/README.md",
       "data_path": "locales/uk-wales/sources.json"
     }
-  ]
+  ],
+  "adaptive": {
+    "subskills_path": "curriculum/subskills.json",
+    "assessment_bank_path": "assessments/bank.json",
+    "learner_state_schema": "schemas/learner-state.schema.json",
+    "dashboard_path": "learner/index.html",
+    "assessor_path": "assessor/README.md"
+  }
 }

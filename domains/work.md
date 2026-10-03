@@ -45,3 +45,21 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [uk-tax](../RESOURCES.md#uk-tax)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `work.evidence.foundation` | Explain the reasoning and produce the basic fictional output for: Match a job requirement to a truthful specific example with an action, outcome and limitation. | knowledge |
+| `work.evidence.independent` | Match a job requirement to a truthful specific example with an action, outcome and limitation. | independent |
+| `work.offers.foundation` | Explain the reasoning and produce the basic fictional output for: Evaluate a fictional offer’s hours, costs, access and uncertain terms and draft a specific verified clarification. | knowledge |
+| `work.offers.independent` | Evaluate a fictional offer’s hours, costs, access and uncertain terms and draft a specific verified clarification. | independent |
+| `work.pay.foundation` | Explain the reasoning and produce the basic fictional output for: Reconcile a fictional pay discrepancy and draft a factual professional query with a safe escalation route. | knowledge |
+| `work.pay.independent` | Reconcile a fictional pay discrepancy and draft a factual professional query with a safe escalation route. | independent |
+| `work.offers.adaptive` | Adapt to unclear hours, an access need, or a changed offer without inventing entitlements. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

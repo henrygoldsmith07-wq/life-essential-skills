@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "fictional": true,
+  "results": [
+    {
+      "competency_id": "money.budget.foundation",
+      "pre": {
+        "outcome": "demonstrated",
+        "criteria_met": 4,
+        "criteria_total": 4,
+        "help_used": false,
+        "error_tags": [],
+        "item_id": "MONEY-BUDGET-F01",
+        "date": "2026-09-01"
+      },
+      "unseen_post": null,
+      "delayed": null,
+      "errors_removed": [],
+      "comparable_criteria": false
+    },
+    {
+      "competency_id": "money.cash-flow.foundation",
+      "pre": {
+        "outcome": "demonstrated",
+        "criteria_met": 4,
+        "criteria_total": 4,
+        "help_used": false,
+        "error_tags": [],
+        "item_id": "MONEY-CASH-FLOW-F01",
+        "date": "2026-09-02"
+      },
+      "unseen_post": null,
+      "delayed": null,
+      "errors_removed": [],
+      "comparable_criteria": false
+    },
+    {
+      "competency_id": "money.cash-flow.independent",
+      "pre": {
+        "outcome": "not-yet",
+        "criteria_met": 1,
+        "criteria_total": 4,
+        "help_used": false,
+        "error_tags": [
+          "missed-payment-timing"
+        ],
+        "item_id": "M-CF-03",
+        "date": "2026-09-03"
+      },
+      "unseen_post": {
+        "outcome": "demonstrated",
+        "criteria_met": 4,
+        "criteria_total": 4,
+        "help_used": false,
+        "error_tags": [],
+        "item_id": "M-CF-02",
+        "date": "2026-09-07"
+      },
+      "delayed": {
+        "outcome": "demonstrated",
+        "criteria_met": 4,
+        "criteria_total": 4,
+        "help_used": false,
+        "error_tags": [],
+        "item_id": "M-CF-05",
+        "date": "2026-09-15"
+      },
+      "errors_removed": [
+        "missed-payment-timing"
+      ],
+      "comparable_criteria": true
+    }
+  ]
+}

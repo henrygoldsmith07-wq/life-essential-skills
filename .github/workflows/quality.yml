@@ -25,7 +25,13 @@ jobs:
         run: python3 scripts/validate_curriculum.py
       - name: Verify source registry render
         run: python3 scripts/render_registry.py --check
+      - name: Verify learner assets contain current canonical data
+        run: python3 scripts/build_learner.py --check
       - name: Test validator and link-check failure cases
         run: python3 -m unittest discover -s tests -v
+      - name: Test the shared learner rules engine
+        run: node --test tests/engine.test.js
+      - name: Check dashboard JavaScript syntax
+        run: node --check learner/app.js
       - name: Lint Markdown
         run: npx --yes markdownlint-cli2@0.18.1

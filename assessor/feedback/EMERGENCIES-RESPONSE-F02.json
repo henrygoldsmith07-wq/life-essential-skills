@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Avoid the blocked route; seek staff/professional instructions and communicate access needs. Do not promise an unverified route or leave someone without a safe plan. Record the missing route and fallback.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "fails-independent-verification": "Verify through an independent official route",
+    "misses-access-constraint": "Include access needs and realistic travel",
+    "no-fallback": "Prepare a feasible fallback"
+  },
+  "next_steps": {
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "misses-access-constraint": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "no-fallback": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

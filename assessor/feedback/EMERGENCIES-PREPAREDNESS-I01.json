@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Use placeholders, verify exits with responsible staff, plan access support without carrying people unsafely, identify a meeting point and offline contacts, and mark unverified details.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "reveals-sensitive-information": "Keep secrets and personal records private",
+    "misses-access-constraint": "Include access needs and realistic travel",
+    "no-fallback": "Prepare a feasible fallback"
+  },
+  "next_steps": {
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "reveals-sensitive-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "misses-access-constraint": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "no-fallback": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

@@ -4,6 +4,7 @@ from datetime import date
 import json
 from pathlib import Path
 import re
+from validate_adaptive import validate as validate_adaptive
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -349,6 +350,9 @@ def validate(root=ROOT, today=None):
             elif parts.fragment and resolved.suffix == '.md':
                 if unquote(parts.fragment) not in anchors(markdown.get(resolved, resolved.read_text(encoding='utf-8'))):
                     errors.append(f'{path.relative_to(root)}: broken anchor {target}')
+    new_errors,new_warnings=validate_adaptive(root,today)
+    errors.extend(new_errors)
+    warnings.extend(new_warnings)
     return errors, warnings
 
 

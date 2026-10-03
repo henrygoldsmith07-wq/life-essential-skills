@@ -1,0 +1,281 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "competencies",
+    "rollups",
+    "error_tags",
+    "review_policy",
+    "priority_families"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "competencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "domain",
+          "subskill",
+          "title",
+          "mode",
+          "criterion",
+          "evidence",
+          "prerequisites",
+          "related_competencies",
+          "assessment_routes",
+          "learn_path",
+          "jurisdictions",
+          "error_tags",
+          "review_policy",
+          "practical_scope"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+\\.[a-z-]+$"
+          },
+          "domain": {
+            "type": "string",
+            "enum": [
+              "emergencies",
+              "money",
+              "health",
+              "wellbeing",
+              "relationships",
+              "critical-thinking",
+              "digital-safety",
+              "home",
+              "work",
+              "learning-time",
+              "life-admin",
+              "major-decisions"
+            ]
+          },
+          "subskill": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "knowledge",
+              "independent",
+              "adaptation"
+            ]
+          },
+          "criterion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+\\.[a-z-]+$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "related_competencies": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+\\.[a-z-]+$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "assessment_routes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "learn_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "jurisdictions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "error_tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "review_policy": {
+            "type": "string",
+            "minLength": 1
+          },
+          "practical_scope": {
+            "const": "planning-and-judgement-only"
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "rollups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "requires",
+          "additional_evidence",
+          "scope"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+\\.[a-z-]+$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "additional_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 48,
+      "uniqueItems": true
+    },
+    "error_tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "review_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "default",
+        "overrides"
+      ],
+      "properties": {
+        "default": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "intervals_days",
+            "retry_days"
+          ],
+          "properties": {
+            "intervals_days": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "retry_days": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "overrides": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "intervals_days",
+              "retry_days"
+            ],
+            "properties": {
+              "intervals_days": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "retry_days": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "priority_families": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

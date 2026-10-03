@@ -18,5 +18,101 @@
     "wales-first-aid",
     "wales-gas"
   ],
-  "last_checked": "2026-10-03"
+  "last_checked": "2026-10-03",
+  "jurisdictions": [
+    "wales"
+  ],
+  "source_uses": [
+    {
+      "source_id": "wales-999",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-health",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-mental-health",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-medicine",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-housing",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-housing-advice",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-advice",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-general-advice",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-careers",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-transport",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-floods",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-first-aid",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    },
+    {
+      "source_id": "wales-gas",
+      "role": "authority",
+      "jurisdictions": [
+        "wales"
+      ]
+    }
+  ]
 }

@@ -52,10 +52,11 @@ Other solutions can meet the criteria when they are correct, feasible, and safel
 
 ## Sources and locality
 
-- [england-careers](../RESOURCES.md#england-careers)
 - [wales-careers](../RESOURCES.md#wales-careers)
 - [gb-employment](../RESOURCES.md#gb-employment)
 - [gb-payslips](../RESOURCES.md#gb-payslips)
 - [uk-tax](../RESOURCES.md#uk-tax)
 
 [UK/Wales packs](../locales/README.md) provide verified starting points. No simulated contract, pay rate, or health situation establishes an entitlement, diagnosis, or treatment.
+
+Jurisdiction check: General fictional planning task. Any nation-specific references are optional routes only within their declared scope; choose the learner’s relevant locality before relying on services or rules.

@@ -45,3 +45,7 @@ Start with reviews around 3, 7, and 21 days after practice. These are practical 
 Allow spoken, typed, visual, or supported communication and accessible alternatives. Record the adaptation without treating an access aid as lack of ability. Do not grade feelings or personal life circumstances. Use fictional details and a neutral alternative to distressing scenarios.
 
 For health, emergencies, law, and money, recognising when and how to seek qualified help can be an independent action. Never create a real hazard, change treatment, make a payment, or disclose sensitive documents to prove mastery.
+
+## Subskill evidence
+
+Each domain now has observable subskill criteria with separate knowledge, independent and adaptation routes. Domain stages derive only the relevant legacy criterion. The [adaptive evidence rules](adaptive-learning.md) explain assistance, fresh exposure groups, configurable delayed checks and practical observation gates. Self-reviewed dashboard records are provisional educational evidence.

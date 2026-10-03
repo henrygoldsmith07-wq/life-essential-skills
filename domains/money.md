@@ -48,3 +48,31 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [uk-consumer](../RESOURCES.md#uk-consumer)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `money.budget.foundation` | Explain the reasoning and produce the basic fictional output for: Balance a fictional monthly budget including essentials, irregular reserves and a stated unallocated amount. | knowledge |
+| `money.budget.independent` | Balance a fictional monthly budget including essentials, irregular reserves and a stated unallocated amount. | independent |
+| `money.cash-flow.foundation` | Explain the reasoning and produce the basic fictional output for: Calculate the lowest dated balance and a feasible response to a shortfall without assuming funds or consent. | knowledge |
+| `money.cash-flow.independent` | Calculate the lowest dated balance and a feasible response to a shortfall without assuming funds or consent. | independent |
+| `money.credit.foundation` | Explain the reasoning and produce the basic fictional output for: Compare total repayment, payment timing, essential costs and uncertain terms; identify when borrowing is not demonstrably affordable. | knowledge |
+| `money.credit.independent` | Compare total repayment, payment timing, essential costs and uncertain terms; identify when borrowing is not demonstrably affordable. | independent |
+| `money.banking.foundation` | Explain the reasoning and produce the basic fictional output for: Reconcile a fictional statement, distinguish available from pending funds, and verify an unexpected payment request independently. | knowledge |
+| `money.banking.independent` | Reconcile a fictional statement, distinguish available from pending funds, and verify an unexpected payment request independently. | independent |
+| `money.payslip.foundation` | Explain the reasoning and produce the basic fictional output for: Reconcile gross pay, stated deductions and received pay; raise a specific query without inventing tax liability or sharing records. | knowledge |
+| `money.payslip.independent` | Reconcile gross pay, stated deductions and received pay; raise a specific query without inventing tax liability or sharing records. | independent |
+| `money.credit.adaptive` | Compare credit offers by total repayment, timing, risk, and unanswered terms. | adaptation |
+| `money.saving.foundation` | Explain the reasoning and produce the basic fictional output for: Build a feasible dated saving plan while protecting essentials and distinguishing accessible cash from uncertain funds. | knowledge |
+| `money.saving.independent` | Build a feasible dated saving plan while protecting essentials and distinguishing accessible cash from uncertain funds. | independent |
+| `money.insurance.foundation` | Explain the reasoning and produce the basic fictional output for: Compare fictional premiums, excesses, exclusions and evidence needed for a claim without declaring cover or entitlement. | knowledge |
+| `money.insurance.independent` | Compare fictional premiums, excesses, exclusions and evidence needed for a claim without declaring cover or entitlement. | independent |
+| `money.investing.foundation` | Explain the reasoning and produce the basic fictional output for: Evaluate a fictional investment claim using uncertainty, fees, timing and independent verification; keep essential funds separate. | knowledge |
+| `money.investing.independent` | Evaluate a fictional investment claim using uncertainty, fees, timing and independent verification; keep essential funds separate. | independent |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

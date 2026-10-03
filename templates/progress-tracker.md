@@ -48,3 +48,7 @@ This is an illustration, not a completed learner record or automatic stage award
 | Major decisions and community | | | | |
 
 Historical 0–3 confidence scores can be retained in notes; they do not map automatically to mastery. A lower reassessment result is useful information for planning, not a reason to delete earlier achievements.
+
+## Adaptive local tracking
+
+Use the [learner dashboard](../learner/index.html) for recommendations, separate subskill evidence and due reviews. The [educational state schema](../schemas/learner-state.schema.json) stores bounded observations without private prose; first/last demonstrated, attempts and next-review dates are derived. The tracker above remains a text alternative and does not automatically establish competence.

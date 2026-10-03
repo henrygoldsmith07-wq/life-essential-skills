@@ -53,7 +53,6 @@ Other solutions can meet the criteria when they are correct, feasible, and safel
 
 ## Sources and locality
 
-- [england-housing](../RESOURCES.md#england-housing)
 - [wales-housing](../RESOURCES.md#wales-housing)
 - [wales-housing-advice](../RESOURCES.md#wales-housing-advice)
 - [wales-careers](../RESOURCES.md#wales-careers)
@@ -64,3 +63,5 @@ Other solutions can meet the criteria when they are correct, feasible, and safel
 - [uk-legal](../RESOURCES.md#uk-legal)
 
 [UK/Wales packs](../locales/README.md) provide verified starting points. No simulated contract, pay rate, or health situation establishes an entitlement, diagnosis, or treatment.
+
+Jurisdiction check: This assessment uses Wales housing routes. England rules must not establish its housing obligations.

@@ -40,3 +40,21 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [retrieval-practice](../RESOURCES.md#retrieval-practice)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `learning-time.planning.foundation` | Explain the reasoning and produce the basic fictional output for: Detect a scheduling conflict, protect basic needs and seek a feasible arrangement without assuming consent. | knowledge |
+| `learning-time.planning.independent` | Detect a scheduling conflict, protect basic needs and seek a feasible arrangement without assuming consent. | independent |
+| `learning-time.retrieval.foundation` | Explain the reasoning and produce the basic fictional output for: Design a retrieval check with different materials, feedback and later reviews rather than equating rereading with competence. | knowledge |
+| `learning-time.retrieval.independent` | Design a retrieval check with different materials, feedback and later reviews rather than equating rereading with competence. | independent |
+| `learning-time.revision.foundation` | Explain the reasoning and produce the basic fictional output for: Revise a plan after an interruption using consequences, capacity and communication rather than compressing impossible work. | knowledge |
+| `learning-time.revision.independent` | Revise a plan after an interruption using consequences, capacity and communication rather than compressing impossible work. | independent |
+| `learning-time.planning.adaptive` | Adapt to a new interruption and use delayed reassessment to revise the plan. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

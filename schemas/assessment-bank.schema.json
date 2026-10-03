@@ -1,0 +1,254 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "version",
+          "title",
+          "family",
+          "competencies",
+          "mode",
+          "difficulty",
+          "estimated_time_minutes",
+          "prerequisites",
+          "jurisdictions",
+          "regulated_topics",
+          "materials",
+          "task",
+          "scoring",
+          "safety_constraints",
+          "source_uses",
+          "error_tags",
+          "next_recommended_tasks",
+          "answer_ref",
+          "variant_axes",
+          "exposure_group",
+          "focus_errors"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "family": {
+            "type": "string",
+            "minLength": 1
+          },
+          "competencies": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+\\.[a-z-]+$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "knowledge",
+              "independent",
+              "adaptation"
+            ]
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "foundation",
+              "independent",
+              "adaptive"
+            ]
+          },
+          "estimated_time_minutes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+\\.[a-z-]+$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "jurisdictions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "regulated_topics": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "materials": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "task": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scoring": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "criterion",
+                "essential"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "criterion": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "essential": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "safety_constraints": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "source_uses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "role"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "role": {
+                  "type": "string",
+                  "enum": [
+                    "authority",
+                    "general-principle",
+                    "local-alternative"
+                  ]
+                },
+                "jurisdictions": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                },
+                "justification": {
+                  "type": "string",
+                  "minLength": 40
+                }
+              }
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "error_tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "next_recommended_tasks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "answer_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "variant_axes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "exposure_group": {
+            "type": "string",
+            "minLength": 1
+          },
+          "focus_errors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

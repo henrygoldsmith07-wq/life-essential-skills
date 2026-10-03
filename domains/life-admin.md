@@ -46,3 +46,21 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [uk-legal](../RESOURCES.md#uk-legal)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `life-admin.contracts.foundation` | Explain the reasoning and produce the basic fictional output for: Compare costs over a defined term and identify renewal, cancellation, responsibility and coverage questions. | knowledge |
+| `life-admin.contracts.independent` | Compare costs over a defined term and identify renewal, cancellation, responsibility and coverage questions. | independent |
+| `life-admin.records.foundation` | Explain the reasoning and produce the basic fictional output for: Organise fictional records and a renewal reminder with minimum data, verified contacts and explicit access limits. | knowledge |
+| `life-admin.records.independent` | Organise fictional records and a renewal reminder with minimum data, verified contacts and explicit access limits. | independent |
+| `life-admin.complaints.foundation` | Explain the reasoning and produce the basic fictional output for: Reconcile a fictional disputed charge and prepare a factual request with evidence boundaries and a verified next route. | knowledge |
+| `life-admin.complaints.independent` | Reconcile a fictional disputed charge and prepare a factual request with evidence boundaries and a verified next route. | independent |
+| `life-admin.complaints.adaptive` | Adapt when cancellation is disputed or correspondence is suspicious, using current local advice. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

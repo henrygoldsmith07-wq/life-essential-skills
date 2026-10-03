@@ -29,3 +29,7 @@ Copy into `personal/` locally. Keep fictional/redacted outputs only. Use one rec
 - Reassessment evidence:
 
 Opening a model solution before completing the output makes that attempt assisted. Official sources and access aids can be used independently; document them so the evidence is interpretable.
+
+## Structured local evidence
+
+The [learner dashboard](../learner/index.html) exports bounded records containing competency/item IDs, version, date, phase, criterion evidence, outcome, help, access supports and error tags. See the [state schema](../schemas/learner-state.schema.json) and [fictional profile](../examples/learners/cash-flow-gap.json). Attempts, first/last demonstrations, retention and next-review dates are derived from this history. Never insert passwords, bank/medical records or private contacts.

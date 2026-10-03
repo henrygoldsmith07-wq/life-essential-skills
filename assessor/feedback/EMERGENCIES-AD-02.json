@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Stay clear of water/electrical hazards and lifts; do not improvise a rescue. Seek the responsible staff/emergency route appropriate to danger; communicate location/access needs and use an offline fallback. Revalidate facts, feasibility and scope after the change; do not simply repeat the base answer. Seek appropriate support or renegotiation where the constraints cannot safely be satisfied.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot. Changed condition: An official steward corrects the original exit information. A visitor cannot hear the announcement and the offline plan gives the old route. Assess the revised plan against this actual change; an unresolved feasibility gap must be named honestly.",
+  "common_mistakes": {
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "fails-independent-verification": "Verify through an independent official route",
+    "misses-access-constraint": "Include access needs and realistic travel",
+    "no-fallback": "Prepare a feasible fallback"
+  },
+  "next_steps": {
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "misses-access-constraint": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "no-fallback": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

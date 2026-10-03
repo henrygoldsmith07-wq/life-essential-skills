@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "20% versus 15%: 5 percentage points and about 33.3% relative increase, not twice. Unequal denominators and unknown methods matter; do not infer causation.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "arithmetic-error": "Check the arithmetic and units",
+    "confuses-relative-absolute": "Use the correct denominator and difference",
+    "overconfident-conclusion": "Match the conclusion to the evidence"
+  },
+  "next_steps": {
+    "arithmetic-error": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "confuses-relative-absolute": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Ongoing totals A880/B870; B is 10 less monthly but upfront/access may change suitability. Seek missing facts and a reversible next step before committing. Revalidate facts, feasibility and scope after the change; do not simply repeat the base answer. Seek appropriate support or renegotiation where the constraints cannot safely be satisfied.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot. Changed condition: The cheaper route is disrupted and the alternative’s access information proves incorrect. A supposedly refundable payment has unverified conditions. Assess the revised plan against this actual change; an unresolved feasibility gap must be named honestly.",
+  "common_mistakes": {
+    "arithmetic-error": "Check the arithmetic and units",
+    "assumes-missing-information": "Name missing facts before deciding",
+    "misses-access-constraint": "Include access needs and realistic travel",
+    "overconfident-conclusion": "Match the conclusion to the evidence"
+  },
+  "next_steps": {
+    "arithmetic-error": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "misses-access-constraint": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

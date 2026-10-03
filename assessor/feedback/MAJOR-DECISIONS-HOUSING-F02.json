@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "England guidance cannot establish Wales obligations. Obtain the relevant occupation-contract information/access format and use verified Welsh guidance/advice; do not invent notice periods or legal outcomes.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "wrong-jurisdiction": "Check the nation and the guidance scope",
+    "unverified-entitlement": "Verify legal scope without promising an entitlement",
+    "fails-independent-verification": "Verify through an independent official route",
+    "assumes-missing-information": "Name missing facts before deciding"
+  },
+  "next_steps": {
+    "wrong-jurisdiction": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unverified-entitlement": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

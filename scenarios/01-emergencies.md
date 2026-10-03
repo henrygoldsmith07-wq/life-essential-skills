@@ -53,7 +53,6 @@ Other solutions can meet the criteria when they are correct, feasible, and safel
 ## Sources and locality
 
 - [red-cross-preparedness](../RESOURCES.md#red-cross-preparedness)
-- [red-cross-training](../RESOURCES.md#red-cross-training)
 - [wales-999](../RESOURCES.md#wales-999)
 - [wales-floods](../RESOURCES.md#wales-floods)
 - [wales-first-aid](../RESOURCES.md#wales-first-aid)
@@ -61,3 +60,5 @@ Other solutions can meet the criteria when they are correct, feasible, and safel
 - [wales-gas](../RESOURCES.md#wales-gas)
 
 [UK/Wales packs](../locales/README.md) provide verified starting points. No simulated contract, pay rate, or health situation establishes an entitlement, diagnosis, or treatment.
+
+Jurisdiction check: General fictional planning task. Any nation-specific references are optional routes only within their declared scope; choose the learner’s relevant locality before relying on services or rules.

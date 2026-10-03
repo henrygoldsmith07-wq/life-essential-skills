@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Choose one small high-consequence step, protect food/rest, defer or renegotiate less urgent tasks, and identify when more support is needed. Do not diagnose.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "unrealistic-capacity": "Allow time, rest, and contingencies",
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "overconfident-conclusion": "Match the conclusion to the evidence"
+  },
+  "next_steps": {
+    "unrealistic-capacity": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

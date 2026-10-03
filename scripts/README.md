@@ -34,3 +34,7 @@ Automated checks cannot validate medical/legal advice, establish a source's rele
 The small exception file requires an exact URL, permitted status codes, reason, and expiry. It cannot suppress a 404/410 or turn a blocked source into a reachable one. Review expired exceptions. The workflow runs on relevant pushes and manual requests; it does not create scheduled account activity.
 
 GitHub Actions uses read-only repository permission. `quality.yml` checks structure, tests, rendering, and lint; `external-links.yml` isolates network-dependent checks so their limits remain visible.
+
+## Adaptive checks
+
+`validate_adaptive.py` extends the existing validator with subskill graphs, legacy roll-ups, schemas, source scope, benchmarks and learner navigation. `build_learner.py` renders teaching Markdown and public item metadata without answers; `--check` rejects drift. The browser and Node tests use the same `learner/engine.js`. `check_source_changes.py` flags main-text changes and stale reviews without automatically accepting guidance. See [architecture](../docs/architecture.md) and [human source review](../docs/source-review.md).

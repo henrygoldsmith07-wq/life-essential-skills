@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "solution": "A repays 275 (cost 35), B 280 (cost 40). A first payment cannot be funded from 20. B timing is later but affordability/terms remain unproven; do not automatically recommend either. Revalidate facts, feasibility and scope after the change; do not simply repeat the base answer. Seek appropriate support or renegotiation where the constraints cannot safely be satisfied.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot. Changed condition: An upfront fee is deducted from the loan proceeds instead of being separately payable. Actual cash needed is unchanged; the advert still calls the loan cheapest. Assess the revised plan against this actual change; an unresolved feasibility gap must be named honestly.",
+  "common_mistakes": {
+    "arithmetic-error": "Check the arithmetic and units",
+    "missed-payment-timing": "Place money in date order",
+    "ignores-essential-cost": "Protect every essential cost",
+    "assumes-missing-information": "Name missing facts before deciding",
+    "unverified-entitlement": "Verify legal scope without promising an entitlement"
+  },
+  "next_steps": {
+    "arithmetic-error": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "missed-payment-timing": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "ignores-essential-cost": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unverified-entitlement": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

@@ -16,3 +16,7 @@ No Scotland, US, or other-country pack is presented as verified yet. Use the wor
 ## Using a pack
 
 Find the relevant topic, open the original source, and check current eligibility, territory, and contact process. Store personal contacts and reference numbers privately. Source verification dates describe checks of public resources, not a guarantee that rules or service availability never change.
+
+## Automatic scope checks
+
+Sources and assessment uses now declare typed jurisdictions and authority roles. Wales housing items reject England-only authority; UK unspecified cannot assume England. The [scope model](../docs/architecture.md#jurisdiction-rules) distinguishes reusable principles from local alternatives and operative rules. Incompatible authority use fails quality CI even when the page is reachable.

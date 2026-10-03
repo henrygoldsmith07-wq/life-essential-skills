@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Property jurisdiction governs the relevant housing check. Use Welsh guidance for the Wales option, keep England guidance scoped to England, compare full costs and request occupation-contract details; do not transfer rules.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "wrong-jurisdiction": "Check the nation and the guidance scope",
+    "unverified-entitlement": "Verify legal scope without promising an entitlement",
+    "fails-independent-verification": "Verify through an independent official route",
+    "assumes-missing-information": "Name missing facts before deciding"
+  },
+  "next_steps": {
+    "wrong-jurisdiction": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unverified-entitlement": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

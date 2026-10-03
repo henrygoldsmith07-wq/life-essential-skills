@@ -43,3 +43,21 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [wales-gas](../RESOURCES.md#wales-gas)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `emergencies.response.foundation` | Explain the reasoning and produce the basic fictional output for: Produce a safe ordered response, verify a local help route, and identify a professional limit. | knowledge |
+| `emergencies.response.independent` | Produce a safe ordered response, verify a local help route, and identify a professional limit. | independent |
+| `emergencies.preparedness.foundation` | Explain the reasoning and produce the basic fictional output for: Create an offline plan with safe exits, a meeting arrangement, access needs, verified contacts, and unresolved gaps. | knowledge |
+| `emergencies.preparedness.independent` | Create an offline plan with safe exits, a meeting arrangement, access needs, verified contacts, and unresolved gaps. | independent |
+| `emergencies.training.foundation` | Explain the reasoning and produce the basic fictional output for: Select verified practical training and explain which abilities a written answer cannot demonstrate. | knowledge |
+| `emergencies.training.independent` | Select verified practical training and explain which abilities a written answer cannot demonstrate. | independent |
+| `emergencies.response.adaptive` | Adapt the plan for a failed phone and an additional access need; identify professional limits. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

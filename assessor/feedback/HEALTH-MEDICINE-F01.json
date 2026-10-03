@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Cannot choose a dose from missing information; contact the dispensing pharmacist/appropriate health service using verified information. Do not double, stop or change treatment on this assessment.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "assumes-missing-information": "Name missing facts before deciding",
+    "fails-independent-verification": "Verify through an independent official route",
+    "overconfident-conclusion": "Match the conclusion to the evidence"
+  },
+  "next_steps": {
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

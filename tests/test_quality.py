@@ -15,14 +15,21 @@ from check_external_links import apply_exception, check_url, load_exceptions
 
 
 class CurriculumValidationTests(unittest.TestCase):
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='life-skills-quality-')
-        self.root = Path(self.temp.name).resolve() / 'repo'
-        assert self.root.is_relative_to(Path(self.temp.name).resolve())
-        shutil.copytree(ROOT, self.root, ignore=shutil.ignore_patterns('.git','node_modules','personal','private','__pycache__'))
+    @classmethod
+    def setUpClass(cls):
+        cls.temp = tempfile.TemporaryDirectory(prefix='life-skills-quality-')
+        cls.root = Path(cls.temp.name).resolve() / 'repo'
+        assert cls.root.is_relative_to(Path(cls.temp.name).resolve())
+        shutil.copytree(ROOT, cls.root, ignore=shutil.ignore_patterns('.git','node_modules','personal','private','__pycache__'))
+        cls.original = {p: (cls.root / p).read_bytes() for p in ['curriculum/index.json','guides/02-money.md','scenarios/02-money.md','README.md']}
 
     def tearDown(self):
-        self.temp.cleanup()
+        for path, content in self.original.items():
+            (self.root / path).write_bytes(content)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.temp.cleanup()
 
     def change_index(self, edit):
         path = self.root / 'curriculum/index.json'

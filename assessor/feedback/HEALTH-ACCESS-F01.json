@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Verify the clinic independently, ask about access and a feasible time/transport alternative. Do not assume a missed visit is clinically harmless; ask the service about urgency.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "fails-independent-verification": "Verify through an independent official route",
+    "misses-access-constraint": "Include access needs and realistic travel",
+    "reveals-sensitive-information": "Keep secrets and personal records private",
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help"
+  },
+  "next_steps": {
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "misses-access-constraint": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "reveals-sensitive-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

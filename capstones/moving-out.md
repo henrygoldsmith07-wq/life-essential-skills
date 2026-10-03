@@ -56,16 +56,11 @@ There may be several defensible choices. Assess the reasoning, verification, cal
 
 ## Sources and locality
 
-- [cfpb-buffer](../RESOURCES.md#cfpb-buffer)
-- [consumer-budget](../RESOURCES.md#consumer-budget)
-- [england-housing](../RESOURCES.md#england-housing)
 - [fsa-cooking](../RESOURCES.md#fsa-cooking)
 - [fsa-hygiene](../RESOURCES.md#fsa-hygiene)
 - [gb-employment](../RESOURCES.md#gb-employment)
 - [gb-payslips](../RESOURCES.md#gb-payslips)
 - [gb-utilities](../RESOURCES.md#gb-utilities)
-- [red-cross-preparedness](../RESOURCES.md#red-cross-preparedness)
-- [red-cross-training](../RESOURCES.md#red-cross-training)
 - [uk-civic](../RESOURCES.md#uk-civic)
 - [uk-consumer](../RESOURCES.md#uk-consumer)
 - [uk-council](../RESOURCES.md#uk-council)
@@ -85,3 +80,5 @@ There may be several defensible choices. Assess the reasoning, verification, cal
 - [wales-transport](../RESOURCES.md#wales-transport)
 
 [UK/Wales packs](../locales/README.md). Keep records local; do not make real payments, disclose documents, change treatment, or undertake hazardous repairs for an assessment.
+
+Jurisdiction check: This assessment uses Wales housing routes. England rules must not establish its housing obligations.

@@ -19,3 +19,7 @@
 Keep IDs stable. Update Markdown and corresponding data together, and update dependent source records when adding a reference. Run `python scripts/render_registry.py`, then the [repository checks](../scripts/README.md). The validator checks required fields/types, paths, IDs, source relationships, competency levels, preparation cycles, scenario sections/hidden solutions, and all thirty sessions in each pathway.
 
 Times and review intervals are practical planning suggestions, not claims about how long every learner needs. Locality requirements identify information that must be checked, not a promise that every jurisdiction has a verified pack.
+
+## Adaptive extension
+
+The existing index now points to observable subskills, assessment routes and a lightweight learner view. See the separate [maintainer architecture](../docs/architecture.md), [evaluation framework](../docs/evaluation.md) and [source-change review](../docs/source-review.md). The 48 legacy IDs retain their criterion scope; their evidence derives from subskill records.

@@ -7,6 +7,7 @@ on:
       - '**/*.md'
       - 'data/sources.json'
       - 'scripts/check_external_links.py'
+      - 'scripts/check_source_changes.py'
       - '.external-link-exceptions.json'
       - '.github/workflows/external-links.yml'
   workflow_dispatch:
@@ -24,3 +25,5 @@ jobs:
           persist-credentials: false
       - name: Check public URLs with retries
         run: python3 scripts/check_external_links.py
+      - name: Flag substantive source changes for human review
+        run: python3 scripts/check_source_changes.py --report source-change-report.json

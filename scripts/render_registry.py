@@ -27,10 +27,13 @@ def render(root=ROOT):
                   f'- Jurisdiction: {source["jurisdiction"]}',
                   f'- Source type: {source["source_type"]}',
                   f'- Last checked: {source["last_checked"]}',
+                  f'- Machine-readable scope: {", ".join(source.get("jurisdictions", []))}',
+                  f'- Substantive review interval: {source.get("review_interval_days", 180)} days; human review required',
+                  f'- Content fingerprint: {"reviewed baseline recorded" if source.get("change_tracking", {}).get("baseline") else "no baseline; manual review needed before comparison"}',
                   f'- Notes: {source["notes"]}', '', f'Dependent lessons and assessments: {dependencies}']
     lines += ['', '## Review policy', '',
               'Check scope, authorship, current status, date, and relevance when editing a lesson. Do not copy changing rates, eligibility rules, contact hours, or entitlements into generic exercises. A source being reachable does not mean it supports a claim.', '',
-              'The validator warns when a source review is over 180 days old. Update a review date only after actually reviewing the resource. Replace withdrawn guidance, and keep any restricted-access or historical-use limitation explicit. Document external-link exceptions with a reason and expiry; never treat a blocked page as verified reachable.', '',
+              'The validator warns when a source review is over 180 days old and when its substantive review exceeds the configured interval. Update a review date only after actually reviewing the resource. Replace withdrawn guidance, and keep any restricted-access or historical-use limitation explicit. Document external-link exceptions with a reason and expiry; never treat a blocked page as verified reachable. See the [source-change review process](docs/source-review.md).', '',
               'Linked publications retain their own copyright and licence. Repository licensing applies to original curriculum content and code.']
     return '\n'.join(lines) + '\n'
 

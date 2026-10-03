@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Do not treat a guaranteed advert as verified or risk needed funds. Check independent FCA/provider information and fees/withdrawal/risk, recognising possible loss. No investment purchase is required.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "assumes-missing-information": "Name missing facts before deciding",
+    "overconfident-conclusion": "Match the conclusion to the evidence",
+    "ignores-essential-cost": "Protect every essential cost",
+    "fails-independent-verification": "Verify through an independent official route"
+  },
+  "next_steps": {
+    "assumes-missing-information": "Revisit the guide, practise this missing step and try an unseen case.",
+    "overconfident-conclusion": "Revisit the guide, practise this missing step and try an unseen case.",
+    "ignores-essential-cost": "Revisit the guide, practise this missing step and try an unseen case.",
+    "fails-independent-verification": "Revisit the guide, practise this missing step and try an unseen case."
+  }
+}

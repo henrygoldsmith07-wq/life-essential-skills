@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "locality": "uk",
+  "pathway": "money-admin",
+  "goal_competencies": [
+    "money.cash-flow.independent"
+  ],
+  "records": [
+    {
+      "id": "fictional-MONEY-BUDGET-F01-2026-09-01",
+      "competency_id": "money.budget.foundation",
+      "item_id": "MONEY-BUDGET-F01",
+      "assessment_version": 1,
+      "date": "2026-09-01",
+      "phase": "diagnostic",
+      "outcome": "demonstrated",
+      "help_used": false,
+      "access_supports": [],
+      "error_tags": [],
+      "criteria_met": [
+        "criterion",
+        "constraints",
+        "safety",
+        "reasoning"
+      ],
+      "reviewed_by": "assessor",
+      "solution_seen": false
+    },
+    {
+      "id": "fictional-MONEY-CASH-FLOW-F01-2026-09-02",
+      "competency_id": "money.cash-flow.foundation",
+      "item_id": "MONEY-CASH-FLOW-F01",
+      "assessment_version": 1,
+      "date": "2026-09-02",
+      "phase": "diagnostic",
+      "outcome": "demonstrated",
+      "help_used": false,
+      "access_supports": [],
+      "error_tags": [],
+      "criteria_met": [
+        "criterion",
+        "constraints",
+        "safety",
+        "reasoning"
+      ],
+      "reviewed_by": "assessor",
+      "solution_seen": false
+    },
+    {
+      "id": "fictional-M-CF-03-2026-09-03",
+      "competency_id": "money.cash-flow.independent",
+      "item_id": "M-CF-03",
+      "assessment_version": 1,
+      "date": "2026-09-03",
+      "phase": "diagnostic",
+      "outcome": "not-yet",
+      "help_used": false,
+      "access_supports": [],
+      "error_tags": [
+        "missed-payment-timing"
+      ],
+      "criteria_met": [
+        "safety"
+      ],
+      "reviewed_by": "assessor",
+      "solution_seen": false
+    },
+    {
+      "id": "fictional-M-CF-01-2026-09-05",
+      "competency_id": "money.cash-flow.independent",
+      "item_id": "M-CF-01",
+      "assessment_version": 1,
+      "date": "2026-09-05",
+      "phase": "practice",
+      "outcome": "assisted",
+      "help_used": true,
+      "access_supports": [],
+      "error_tags": [],
+      "criteria_met": [
+        "criterion",
+        "constraints",
+        "safety",
+        "reasoning"
+      ],
+      "reviewed_by": "assessor",
+      "solution_seen": false
+    },
+    {
+      "id": "fictional-M-CF-02-2026-09-07",
+      "competency_id": "money.cash-flow.independent",
+      "item_id": "M-CF-02",
+      "assessment_version": 1,
+      "date": "2026-09-07",
+      "phase": "transfer",
+      "outcome": "demonstrated",
+      "help_used": false,
+      "access_supports": [],
+      "error_tags": [],
+      "criteria_met": [
+        "criterion",
+        "constraints",
+        "safety",
+        "reasoning"
+      ],
+      "reviewed_by": "assessor",
+      "solution_seen": false
+    },
+    {
+      "id": "fictional-M-CF-05-2026-09-15",
+      "competency_id": "money.cash-flow.independent",
+      "item_id": "M-CF-05",
+      "assessment_version": 1,
+      "date": "2026-09-15",
+      "phase": "retention",
+      "outcome": "demonstrated",
+      "help_used": false,
+      "access_supports": [],
+      "error_tags": [],
+      "criteria_met": [
+        "criterion",
+        "constraints",
+        "safety",
+        "reasoning"
+      ],
+      "reviewed_by": "assessor",
+      "solution_seen": false
+    }
+  ],
+  "observations": []
+}

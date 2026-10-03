@@ -22,3 +22,7 @@ Use these after a few days, a week, or several weeks. Close the original solutio
 Do not compare answers to the original scenario solution when the inputs have changed. Verify arithmetic independently, consult the current source for jurisdiction-dependent facts, and use the criterion as the rubric. If a key fact is missing, naming it and seeking appropriate clarification can be the correct response.
 
 If a task is retained, record the evidence and schedule the next useful review. If help is needed, mark that result and repeat a smaller exercise. Never erase an earlier successful demonstration; add the new result so progress remains honest.
+
+## Scheduled fresh checks
+
+The [learner dashboard](../learner/index.html) derives next-review dates from configurable policies and chooses an unseen exposure group. A failed or assisted check preserves past evidence and schedules another return. The cards above remain useful manual prompts; do not award retained transfer from a memorised original answer. See [evidence rules](adaptive-learning.md).

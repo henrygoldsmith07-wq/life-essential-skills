@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "benchmarks": [
+    {
+      "item_id": "M-CF-01",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "The month ends at 250 so every payment is affordable.",
+          "why": "Misses the day-5 negative balance; closing funds do not demonstrate payment timing."
+        },
+        "assisted": {
+          "response": "After a prompt to order payments, I find -20 on day 5. I ask about a payment arrangement.",
+          "why": "Correct after a solving prompt; record assistance even though arithmetic is now sound."
+        },
+        "independent": {
+          "response": "Balances are 40,-20,280,250. The unconfirmed refund is excluded. I would seek an agreed arrangement before day 5 and protect food, without assuming approval.",
+          "why": "All essential criteria: arithmetic, timing, uncertainty and feasible safe next action."
+        },
+        "advanced": {
+          "response": "I also test a two-day pay delay, showing the gap persists, verify essential timing and prepare a fallback if the arrangement is refused.",
+          "why": "Adapts to a genuinely changed timing constraint with a reasoned fallback; does not award another competency without its rubric."
+        }
+      }
+    },
+    {
+      "item_id": "M-CR-03",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "A costs only 30 so it is cheapest.",
+          "why": "Confuses advertised principal with cash actually received and misses the funding gap."
+        },
+        "assisted": {
+          "response": "After being reminded about the deducted fee, I calculate 270 cash and 330 repayment.",
+          "why": "Solving reminder makes this assisted performance."
+        },
+        "independent": {
+          "response": "A delivers270 and repays330: finance cost60 and a30 funding gap. B delivers300/repays336: cost36. B’s56 payment fits only the stated60, so I must check timing and all essentials before deciding.",
+          "why": "Uses actual cash, totals, affordability and missing terms rather than simply choosing the smallest instalment."
+        },
+        "advanced": {
+          "response": "If hours fall and headroom becomes40, neither option is established affordable. I seek verified alternatives and safe timing clarification.",
+          "why": "Revises the decision under changed capacity, naming a professional/verification limit."
+        }
+      }
+    },
+    {
+      "item_id": "D-SC-04",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "No money was sent, so nothing needs doing. I will send the recovery code.",
+          "why": "Unsafe secret disclosure and an unjustified conclusion about compromise."
+        },
+        "assisted": {
+          "response": "A checklist tells me not to send the code and to open the official recovery page.",
+          "why": "Appropriate action but supplied by solving guidance."
+        },
+        "independent": {
+          "response": "I do not send codes. I independently reach the account provider to change/recover access and check possible device/download exposure. No payment does not rule out compromise.",
+          "why": "Protects secrets, verifies independently and chooses proportionate recovery without claiming certainty."
+        },
+        "advanced": {
+          "response": "If the trusted device may also be compromised, I use an appropriate clean verified route and plan account/device recovery without experimenting with malware.",
+          "why": "Handles an additional constraint safely rather than relying on the original route."
+        }
+      }
+    },
+    {
+      "item_id": "L-TM-03",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "The trip is35 minutes, so arrival is guaranteed.",
+          "why": "Ignores disruption, check-in and unresolved accessibility."
+        },
+        "assisted": {
+          "response": "After a travel-buffer prompt I calculate14:45 normally and15:05 with disruption.",
+          "why": "Arithmetic is correct but help supplied the essential missing step."
+        },
+        "independent": {
+          "response": "Check-in is14:50. Normal arrival14:45 leaves5 minutes; disrupted arrival15:05 misses it by15. I verify access and live timing and request a feasible alternative without assuming agreement.",
+          "why": "All timing, missing facts and communication constraints addressed."
+        },
+        "advanced": {
+          "response": "If the accessible route is unavailable, I revisit venue/time arrangements rather than merely adding minutes to an inaccessible journey.",
+          "why": "Adapts to a new access constraint; accessibility support itself does not reduce competence."
+        }
+      }
+    },
+    {
+      "item_id": "W-HO-03",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "I can reuse my England tenancy rules in Wales.",
+          "why": "Wrong jurisdiction; current residence does not determine the new property’s housing guidance."
+        },
+        "assisted": {
+          "response": "After an assessor points out the border, I use Welsh Government renting-homes guidance.",
+          "why": "Correct route chosen after solving assistance."
+        },
+        "independent": {
+          "response": "I keep guidance separate by property location, use Welsh occupation-contract sources for Wales, compare full upfront/ongoing costs and ask about missing terms. I do not declare legal validity from an advert.",
+          "why": "Correct jurisdiction, verification, financial comparison and legal limits."
+        },
+        "advanced": {
+          "response": "If the proposed property changes nation or terms change, I recheck scope and costs, seek the relevant qualified advice and keep the next step reversible.",
+          "why": "Re-evaluates jurisdiction and feasibility when the context changes."
+        }
+      }
+    }
+  ]
+}

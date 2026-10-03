@@ -44,3 +44,21 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [ncsc-integrity](../RESOURCES.md#ncsc-integrity)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `digital-safety.accounts.foundation` | Explain the reasoning and produce the basic fictional output for: Explain a safe account-protection and recovery plan using unique credentials, MFA, updates and private recovery methods. | knowledge |
+| `digital-safety.accounts.independent` | Explain a safe account-protection and recovery plan using unique credentials, MFA, updates and private recovery methods. | independent |
+| `digital-safety.scams.foundation` | Explain the reasoning and produce the basic fictional output for: Pause a suspicious request, verify through an independent route, protect secrets and choose proportionate recovery steps. | knowledge |
+| `digital-safety.scams.independent` | Pause a suspicious request, verify through an independent route, protect secrets and choose proportionate recovery steps. | independent |
+| `digital-safety.backup.foundation` | Explain the reasoning and produce the basic fictional output for: Plan and verify a restore of a fictional non-sensitive file, minimise sharing and avoid unsafe downloads. | knowledge |
+| `digital-safety.backup.independent` | Plan and verify a restore of a fictional non-sensitive file, minimise sharing and avoid unsafe downloads. | independent |
+| `digital-safety.scams.adaptive` | Adapt after a possible account compromise or realistic impersonation. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

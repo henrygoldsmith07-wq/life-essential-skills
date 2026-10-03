@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Ask for relevant complete accessible contract information and check Welsh Government/Shelter Cymru. Do not infer legal validity, notice periods or repair duties from an England page or partial extract.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "wrong-jurisdiction": "Check the nation and the guidance scope",
+    "unverified-entitlement": "Verify legal scope without promising an entitlement",
+    "fails-independent-verification": "Verify through an independent official route",
+    "assumes-missing-information": "Name missing facts before deciding"
+  },
+  "next_steps": {
+    "wrong-jurisdiction": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unverified-entitlement": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

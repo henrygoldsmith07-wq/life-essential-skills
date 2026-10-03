@@ -58,7 +58,6 @@ There may be several defensible choices. Assess the reasoning, verification, cal
 
 - [cfpb-buffer](../RESOURCES.md#cfpb-buffer)
 - [consumer-budget](../RESOURCES.md#consumer-budget)
-- [england-careers](../RESOURCES.md#england-careers)
 - [gb-employment](../RESOURCES.md#gb-employment)
 - [gb-payslips](../RESOURCES.md#gb-payslips)
 - [nhs-relationships](../RESOURCES.md#nhs-relationships)
@@ -74,3 +73,5 @@ There may be several defensible choices. Assess the reasoning, verification, cal
 - [wales-general-advice](../RESOURCES.md#wales-general-advice)
 
 [UK/Wales packs](../locales/README.md). Keep records local; do not make real payments, disclose documents, change treatment, or undertake hazardous repairs for an assessment.
+
+Jurisdiction check: General fictional planning task. Any nation-specific references are optional routes only within their declared scope; choose the learner’s relevant locality before relying on services or rules.

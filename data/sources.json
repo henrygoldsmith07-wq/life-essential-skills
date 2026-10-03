@@ -11,12 +11,21 @@
       "source_type": "professional-organisation",
       "last_checked": "2026-10-03",
       "lesson_dependencies": [
-        "capstones/moving-out.md",
         "domains/emergencies.md",
         "guides/01-emergencies.md",
         "scenarios/01-emergencies.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "united-states"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "red-cross-training",
@@ -28,12 +37,20 @@
       "source_type": "professional-organisation",
       "last_checked": "2026-10-03",
       "lesson_dependencies": [
-        "capstones/moving-out.md",
         "domains/emergencies.md",
-        "guides/01-emergencies.md",
-        "scenarios/01-emergencies.md"
+        "guides/01-emergencies.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "united-states"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "consumer-budget",
@@ -46,14 +63,23 @@
       "last_checked": "2026-10-03",
       "lesson_dependencies": [
         "capstones/first-job.md",
-        "capstones/moving-out.md",
         "capstones/suspicious-payment.md",
         "capstones/unexpected-expense.md",
         "domains/money.md",
         "guides/02-money.md",
         "scenarios/02-money.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "united-states"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "cfpb-buffer",
@@ -66,14 +92,23 @@
       "last_checked": "2026-10-03",
       "lesson_dependencies": [
         "capstones/first-job.md",
-        "capstones/moving-out.md",
         "capstones/suspicious-payment.md",
         "capstones/unexpected-expense.md",
         "domains/money.md",
         "guides/02-money.md",
         "scenarios/02-money.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "united-states"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "who-diet",
@@ -89,7 +124,17 @@
         "guides/03-health.md",
         "scenarios/03-health.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "global"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "who-movement",
@@ -105,7 +150,17 @@
         "guides/03-health.md",
         "scenarios/03-health.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "global"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "nhs-wellbeing",
@@ -126,7 +181,17 @@
         "scenarios/03-health.md",
         "scenarios/04-wellbeing.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "england"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "nhs-relationships",
@@ -145,7 +210,17 @@
         "guides/05-relationships.md",
         "scenarios/05-relationships.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "england"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "ncsc-security",
@@ -162,7 +237,17 @@
         "guides/07-digital-safety.md",
         "scenarios/07-digital-safety.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "uk"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "ncsc-ai",
@@ -183,7 +268,17 @@
         "scenarios/06-critical-thinking.md",
         "scenarios/07-digital-safety.md"
       ],
-      "notes": "Published in 2023; used for general verification/privacy risks, not current product features or data policies."
+      "notes": "Published in 2023; used for general verification/privacy risks, not current product features or data policies.",
+      "jurisdictions": [
+        "uk"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "fsa-hygiene",
@@ -201,7 +296,19 @@
         "guides/08-home.md",
         "scenarios/08-home.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "england",
+        "wales",
+        "northern-ireland"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "fsa-cooking",
@@ -219,7 +326,19 @@
         "guides/08-home.md",
         "scenarios/08-home.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "england",
+        "wales",
+        "northern-ireland"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "england-careers",
@@ -231,12 +350,20 @@
       "source_type": "official-authority",
       "last_checked": "2026-10-03",
       "lesson_dependencies": [
-        "capstones/first-job.md",
         "domains/work.md",
-        "guides/09-work.md",
-        "scenarios/09-work.md"
+        "guides/09-work.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "england"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "spacing-review",
@@ -254,7 +381,17 @@
         "guides/10-learning-and-time.md",
         "scenarios/10-learning-time.md"
       ],
-      "notes": "Publisher access may be restricted; accessible practice guidance is linked separately. A research review is not a validated personal assessment tool."
+      "notes": "Publisher access may be restricted; accessible practice guidance is linked separately. A research review is not a validated personal assessment tool.",
+      "jurisdictions": [
+        "global"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "retrieval-practice",
@@ -272,7 +409,17 @@
         "guides/10-learning-and-time.md",
         "scenarios/10-learning-time.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "global"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "england-housing",
@@ -284,13 +431,20 @@
       "source_type": "official-authority",
       "last_checked": "2026-10-03",
       "lesson_dependencies": [
-        "capstones/busy-week.md",
-        "capstones/moving-out.md",
         "domains/major-decisions.md",
-        "guides/12-major-decisions.md",
-        "scenarios/12-major-decisions.md"
+        "guides/12-major-decisions.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "england"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "uk-money",
@@ -314,7 +468,17 @@
         "scenarios/02-money.md",
         "scenarios/11-life-admin.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "uk"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "uk-tax",
@@ -341,7 +505,17 @@
         "scenarios/09-work.md",
         "scenarios/11-life-admin.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "uk"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "gb-employment",
@@ -365,7 +539,17 @@
         "scenarios/09-work.md",
         "scenarios/11-life-admin.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "great-britain"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "gb-payslips",
@@ -388,7 +572,17 @@
         "scenarios/02-money.md",
         "scenarios/09-work.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "great-britain"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "uk-consumer",
@@ -412,7 +606,17 @@
         "scenarios/02-money.md",
         "scenarios/11-life-admin.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "uk"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "uk-investing",
@@ -435,7 +639,17 @@
         "scenarios/02-money.md",
         "scenarios/06-critical-thinking.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "uk"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "uk-council",
@@ -453,7 +667,17 @@
         "guides/12-major-decisions.md",
         "scenarios/12-major-decisions.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "uk"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "uk-civic",
@@ -471,7 +695,17 @@
         "guides/12-major-decisions.md",
         "scenarios/12-major-decisions.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "uk"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "uk-fraud",
@@ -488,7 +722,17 @@
         "guides/07-digital-safety.md",
         "scenarios/07-digital-safety.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "uk"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "gb-utilities",
@@ -509,7 +753,17 @@
         "scenarios/01-emergencies.md",
         "scenarios/08-home.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "great-britain"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-gas",
@@ -530,7 +784,17 @@
         "scenarios/01-emergencies.md",
         "scenarios/08-home.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-999",
@@ -547,7 +811,17 @@
         "guides/01-emergencies.md",
         "scenarios/01-emergencies.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-health",
@@ -568,7 +842,17 @@
         "scenarios/03-health.md",
         "scenarios/04-wellbeing.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-mental-health",
@@ -586,7 +870,17 @@
         "guides/04-wellbeing.md",
         "scenarios/04-wellbeing.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-medicine",
@@ -602,7 +896,23 @@
         "guides/03-health.md",
         "scenarios/03-health.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": {
+          "sha256": "5ca92b588dd9e8362e8ae280b4a35c23249580bd60e74ebc9b8fc8b6348a9b21",
+          "title": "NHS 111 Wales - Health A-Z : Medicines information",
+          "text_length": 5162,
+          "method": "normalised-main-text",
+          "captured_at": "2026-10-03"
+        },
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-housing",
@@ -623,7 +933,23 @@
         "scenarios/08-home.md",
         "scenarios/12-major-decisions.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": {
+          "sha256": "d56d48601813e19d87ed39c1dfe616be5fef7a47997257a34ec44777a4ca5724",
+          "title": "Renting homes: tenants | GOV.WALES",
+          "text_length": 940,
+          "method": "normalised-main-text",
+          "captured_at": "2026-10-03"
+        },
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-housing-advice",
@@ -641,7 +967,17 @@
         "guides/12-major-decisions.md",
         "scenarios/12-major-decisions.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-advice",
@@ -662,7 +998,17 @@
         "guides/11-life-admin.md",
         "scenarios/11-life-admin.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-general-advice",
@@ -686,7 +1032,17 @@
         "scenarios/11-life-admin.md",
         "scenarios/12-major-decisions.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "uk-legal",
@@ -710,7 +1066,18 @@
         "scenarios/11-life-admin.md",
         "scenarios/12-major-decisions.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "england",
+        "wales"
+      ],
+      "review_interval_days": 90,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-careers",
@@ -732,7 +1099,17 @@
         "scenarios/09-work.md",
         "scenarios/12-major-decisions.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-transport",
@@ -750,7 +1127,17 @@
         "guides/12-major-decisions.md",
         "scenarios/12-major-decisions.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-floods",
@@ -767,7 +1154,17 @@
         "guides/01-emergencies.md",
         "scenarios/01-emergencies.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "wales-first-aid",
@@ -784,7 +1181,17 @@
         "guides/01-emergencies.md",
         "scenarios/01-emergencies.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "wales"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     },
     {
       "id": "ncsc-integrity",
@@ -805,7 +1212,17 @@
         "scenarios/06-critical-thinking.md",
         "scenarios/07-digital-safety.md"
       ],
-      "notes": "Review scope and current guidance before personal decisions."
+      "notes": "Review scope and current guidance before personal decisions.",
+      "jurisdictions": [
+        "uk"
+      ],
+      "review_interval_days": 180,
+      "change_tracking": {
+        "method": "normalised-main-text",
+        "baseline": null,
+        "last_content_review": "2026-10-03",
+        "human_review_required": true
+      }
     }
   ]
 }

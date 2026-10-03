@@ -47,3 +47,21 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [uk-legal](../RESOURCES.md#uk-legal)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `major-decisions.comparison.foundation` | Explain the reasoning and produce the basic fictional output for: Compare options using full ongoing and upfront costs, essential needs, uncertainties and a reversible alternative. | knowledge |
+| `major-decisions.comparison.independent` | Compare options using full ongoing and upfront costs, essential needs, uncertainties and a reversible alternative. | independent |
+| `major-decisions.housing.foundation` | Explain the reasoning and produce the basic fictional output for: Use Wales housing sources to identify occupation-contract questions, access and costs without substituting England rules or declaring legal validity. | knowledge |
+| `major-decisions.housing.independent` | Use Wales housing sources to identify occupation-contract questions, access and costs without substituting England rules or declaring legal validity. | independent |
+| `major-decisions.access.foundation` | Explain the reasoning and produce the basic fictional output for: Verify a feasible route to work or services with timing, access, cost and a fallback. | knowledge |
+| `major-decisions.access.independent` | Verify a feasible route to work or services with timing, access, cost and a fallback. | independent |
+| `major-decisions.comparison.adaptive` | Adapt to changed income, service disruption, or incomplete terms and consider a reversible alternative. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Never test with a flame or experiment with gas systems. Follow verified local emergency professional instructions; do not use an advert as proof of qualification.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "fails-independent-verification": "Verify through an independent official route",
+    "no-fallback": "Prepare a feasible fallback"
+  },
+  "next_steps": {
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "no-fallback": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

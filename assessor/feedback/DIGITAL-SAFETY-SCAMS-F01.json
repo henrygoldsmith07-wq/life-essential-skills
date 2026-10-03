@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Do not follow links/attachments or share codes; voice repetition is not independent verification. Contact the known provider separately and use official reporting/recovery if compromise occurred.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "fails-independent-verification": "Verify through an independent official route",
+    "reveals-sensitive-information": "Keep secrets and personal records private",
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "overconfident-conclusion": "Match the conclusion to the evidence"
+  },
+  "next_steps": {
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "reveals-sensitive-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

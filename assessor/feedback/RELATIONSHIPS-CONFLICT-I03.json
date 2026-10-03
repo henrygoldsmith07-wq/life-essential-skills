@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Choose a safe pause and appropriate staff/support route; avoid isolated confrontation and forced resolution. Recognise that ordinary conversation techniques do not remove a safety concern.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "ignores-consent": "Respect consent, refusal, and boundaries",
+    "no-fallback": "Prepare a feasible fallback"
+  },
+  "next_steps": {
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "ignores-consent": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "no-fallback": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

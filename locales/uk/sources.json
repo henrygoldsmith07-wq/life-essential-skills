@@ -17,5 +17,113 @@
     "uk-civic",
     "uk-legal"
   ],
-  "last_checked": "2026-10-03"
+  "last_checked": "2026-10-03",
+  "jurisdictions": [
+    "uk"
+  ],
+  "source_uses": [
+    {
+      "source_id": "uk-money",
+      "role": "authority",
+      "jurisdictions": [
+        "uk"
+      ]
+    },
+    {
+      "source_id": "uk-tax",
+      "role": "authority",
+      "jurisdictions": [
+        "uk"
+      ]
+    },
+    {
+      "source_id": "gb-employment",
+      "role": "local-alternative",
+      "jurisdictions": [
+        "great-britain"
+      ],
+      "justification": "This shared pack indexes a scoped alternative only. It does not establish a common rule or service across the entire UK; select the relevant nation first."
+    },
+    {
+      "source_id": "gb-payslips",
+      "role": "local-alternative",
+      "jurisdictions": [
+        "great-britain"
+      ],
+      "justification": "This shared pack indexes a scoped alternative only. It does not establish a common rule or service across the entire UK; select the relevant nation first."
+    },
+    {
+      "source_id": "uk-consumer",
+      "role": "authority",
+      "jurisdictions": [
+        "uk"
+      ]
+    },
+    {
+      "source_id": "uk-investing",
+      "role": "authority",
+      "jurisdictions": [
+        "uk"
+      ]
+    },
+    {
+      "source_id": "ncsc-security",
+      "role": "authority",
+      "jurisdictions": [
+        "uk"
+      ]
+    },
+    {
+      "source_id": "ncsc-ai",
+      "role": "authority",
+      "jurisdictions": [
+        "uk"
+      ]
+    },
+    {
+      "source_id": "ncsc-integrity",
+      "role": "authority",
+      "jurisdictions": [
+        "uk"
+      ]
+    },
+    {
+      "source_id": "uk-fraud",
+      "role": "authority",
+      "jurisdictions": [
+        "uk"
+      ]
+    },
+    {
+      "source_id": "gb-utilities",
+      "role": "local-alternative",
+      "jurisdictions": [
+        "great-britain"
+      ],
+      "justification": "This shared pack indexes a scoped alternative only. It does not establish a common rule or service across the entire UK; select the relevant nation first."
+    },
+    {
+      "source_id": "uk-council",
+      "role": "authority",
+      "jurisdictions": [
+        "uk"
+      ]
+    },
+    {
+      "source_id": "uk-civic",
+      "role": "authority",
+      "jurisdictions": [
+        "uk"
+      ]
+    },
+    {
+      "source_id": "uk-legal",
+      "role": "local-alternative",
+      "jurisdictions": [
+        "england",
+        "wales"
+      ],
+      "justification": "This shared pack indexes a scoped alternative only. It does not establish a common rule or service across the entire UK; select the relevant nation first."
+    }
+  ]
 }

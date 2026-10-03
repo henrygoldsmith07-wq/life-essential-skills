@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Plan feasible food/rest/activity around constraints and preferences; verify claims using original evidence and qualified guidance when needed. No universal supplement or treatment advice.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "overconfident-conclusion": "Match the conclusion to the evidence",
+    "unrealistic-capacity": "Allow time, rest, and contingencies",
+    "fails-independent-verification": "Verify through an independent official route"
+  },
+  "next_steps": {
+    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unrealistic-capacity": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

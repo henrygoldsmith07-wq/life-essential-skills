@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Invoice totals 95; disputed setup is 15 if the agreement applies. Escalate factually through verified process, ask for clause explanation and never share a code with the caller.",
+  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "common_mistakes": {
+    "arithmetic-error": "Check the arithmetic and units",
+    "reveals-sensitive-information": "Keep secrets and personal records private",
+    "fails-independent-verification": "Verify through an independent official route",
+    "unverified-entitlement": "Verify legal scope without promising an entitlement"
+  },
+  "next_steps": {
+    "arithmetic-error": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "reveals-sensitive-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
+    "unverified-entitlement": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+  }
+}

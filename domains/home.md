@@ -45,3 +45,21 @@ See the [dependency map](../curriculum/dependency-map.md) for related skills, ne
 - [wales-gas](../RESOURCES.md#wales-gas)
 
 [Choose a locality](../locales/README.md). Use official current guidance for personal decisions and changing local rules.
+
+## Observable subskill evidence
+
+[Choose a task in the learner dashboard](../learner/index.html) · [Evidence rules](../curriculum/adaptive-learning.md)
+
+Knowledge checks, guided practice, independent judgement and adaptation are separate. Delayed retention is another observation. Written routes do not prove physical technique.
+
+| ID | Observable criterion | Mode |
+| --- | --- | --- |
+| `home.meals.foundation` | Explain the reasoning and produce the basic fictional output for: Produce a costed feasible meal plan using instructions and safe storage questions; distinguish planning from observed cooking. | knowledge |
+| `home.meals.independent` | Produce a costed feasible meal plan using instructions and safe storage questions; distinguish planning from observed cooking. | independent |
+| `home.routines.foundation` | Explain the reasoning and produce the basic fictional output for: Use label instructions to plan a feasible household routine without mixing products or assuming equipment suitability. | knowledge |
+| `home.routines.independent` | Use label instructions to plan a feasible household routine without mixing products or assuming equipment suitability. | independent |
+| `home.maintenance.foundation` | Explain the reasoning and produce the basic fictional output for: Recognise hazardous repair limits and contact a verified responsible service using a factual fictional report. | knowledge |
+| `home.maintenance.independent` | Recognise hazardous repair limits and contact a verified responsible service using a factual fictional report. | independent |
+| `home.maintenance.adaptive` | Adapt routines to an equipment failure, move, or access limitation. | adaptation |
+
+Legacy stage IDs derive only their stated criterion, with practical observations where required; they do not mean every subskill in the domain has been demonstrated.

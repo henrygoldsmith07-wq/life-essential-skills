@@ -57,7 +57,6 @@ There may be several defensible choices. Assess the reasoning, verification, cal
 
 ## Sources and locality
 
-- [england-housing](../RESOURCES.md#england-housing)
 - [fsa-cooking](../RESOURCES.md#fsa-cooking)
 - [fsa-hygiene](../RESOURCES.md#fsa-hygiene)
 - [gb-employment](../RESOURCES.md#gb-employment)
@@ -83,3 +82,5 @@ There may be several defensible choices. Assess the reasoning, verification, cal
 - [wales-transport](../RESOURCES.md#wales-transport)
 
 [UK/Wales packs](../locales/README.md). Keep records local; do not make real payments, disclose documents, change treatment, or undertake hazardous repairs for an assessment.
+
+Jurisdiction check: General fictional planning task. Any nation-specific references are optional routes only within their declared scope; choose the learner’s relevant locality before relying on services or rules.
