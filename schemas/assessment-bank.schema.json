@@ -132,7 +132,9 @@
               "required": [
                 "id",
                 "criterion",
-                "essential"
+                "essential",
+                "competency_id",
+                "guidance"
               ],
               "properties": {
                 "id": {
@@ -145,6 +147,14 @@
                 },
                 "essential": {
                   "type": "boolean"
+                },
+                "competency_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "guidance": {
+                  "type": "string",
+                  "minLength": 40
                 }
               }
             },

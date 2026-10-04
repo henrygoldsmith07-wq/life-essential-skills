@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.0 · 2026-10-04
+
+- Derive outcomes from explicit criterion judgements, essential gates, errors, help and prior answers; remove the final-outcome selector.
+- Add bounded evidence version 2, checked migration, separate assessor reviews and structured safe practical observations.
+- Integrate all five existing capstones with granular subskill evidence and competency-specific errors.
+- Expand calibration across twelve domains and capstones, with version and material/rubric fingerprints.
+- Record feedback exposure even when a task is abandoned; preserve locality, unseen transfer and delayed-review guarantees.
+- Improve Today, grouped Practice and evidence-strength Progress; split generated content into lazy domain assets.
+- Extend descriptive evaluation with review strength, criterion/error changes, practice and observed evidence.
+- Add locked browser and accessibility tests to normal CI, update maintainer/learner guidance, and publish a candid product review.
+
 ## 0.2.0 — 2026-10-03
 
 - Preserve twelve short guides and add domain subskills with 48 observable competencies.

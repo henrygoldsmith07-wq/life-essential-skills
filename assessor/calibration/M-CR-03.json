@@ -1,0 +1,23 @@
+{
+  "item_id": "M-CR-03",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "A costs only 30 so it is cheapest.",
+      "why": "Confuses advertised principal with cash actually received and misses the funding gap."
+    },
+    "assisted": {
+      "response": "After being reminded about the deducted fee, I calculate 270 cash and 330 repayment.",
+      "why": "Solving reminder makes this assisted performance."
+    },
+    "independent": {
+      "response": "A delivers270 and repays330: finance cost60 and a30 funding gap. B delivers300/repays336: cost36. B’s56 payment fits only the stated60, so I must check timing and all essentials before deciding.",
+      "why": "Uses actual cash, totals, affordability and missing terms rather than simply choosing the smallest instalment."
+    },
+    "advanced": {
+      "response": "If hours fall and headroom becomes40, neither option is established affordable. I seek verified alternatives and safe timing clarification.",
+      "why": "Revises the decision under changed capacity, naming a professional/verification limit."
+    }
+  },
+  "rubric_sha256": "c54a1e46d257ececb8382625b898d4ae9dee842256b41569a7634dee68e1fe96"
+}

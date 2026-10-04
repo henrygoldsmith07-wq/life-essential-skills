@@ -1,0 +1,211 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "locality",
+    "pathway",
+    "goal_competencies",
+    "records",
+    "observations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "locality": {
+      "type": "string",
+      "enum": [
+        "uk",
+        "wales"
+      ]
+    },
+    "pathway": {
+      "type": "string",
+      "enum": [
+        "general",
+        "independent-living",
+        "money-admin",
+        "digital-safety",
+        "school-to-work"
+      ]
+    },
+    "goal_competencies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+\\.[a-z-]+$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "records": {
+      "type": "array",
+      "maxItems": 5000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "competency_id",
+          "item_id",
+          "assessment_version",
+          "date",
+          "phase",
+          "outcome",
+          "help_used",
+          "access_supports",
+          "error_tags",
+          "criteria_met",
+          "reviewed_by",
+          "solution_seen"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9-]{1,80}$"
+          },
+          "competency_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+\\.[a-z-]+$"
+          },
+          "item_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "assessment_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "diagnostic",
+              "practice",
+              "transfer",
+              "retention"
+            ]
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "demonstrated",
+              "assisted",
+              "not-yet"
+            ]
+          },
+          "help_used": {
+            "type": "boolean"
+          },
+          "access_supports": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "screen-reader",
+                "scribe",
+                "extra-time",
+                "spoken-response",
+                "large-print",
+                "translation",
+                "alternative-context"
+              ]
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "error_tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "arithmetic-error",
+                "missed-payment-timing",
+                "assumes-missing-information",
+                "fails-independent-verification",
+                "ignores-essential-cost",
+                "unsafe-advice",
+                "reveals-sensitive-information",
+                "overconfident-conclusion",
+                "wrong-jurisdiction",
+                "misses-access-constraint",
+                "unrealistic-capacity",
+                "ignores-consent",
+                "unverified-entitlement",
+                "confuses-relative-absolute",
+                "no-fallback",
+                "memorised-answer"
+              ]
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "criteria_met": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "reviewed_by": {
+            "type": "string",
+            "enum": [
+              "self",
+              "assessor"
+            ]
+          },
+          "solution_seen": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "observations": {
+      "type": "array",
+      "maxItems": 500,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "date",
+          "outcome",
+          "reviewed_by"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "observed-meal-preparation",
+              "observed-sample-restore",
+              "observed-account-protection"
+            ]
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "demonstrated",
+              "assisted",
+              "not-yet"
+            ]
+          },
+          "reviewed_by": {
+            "const": "assessor"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Educational evidence only: no arbitrary text or personal records"
+}

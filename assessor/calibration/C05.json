@@ -1,0 +1,23 @@
+{
+  "item_id": "C05",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "I schedule the appointment for 16:15 after the 35-minute trip and finish everything by removing rest.",
+      "why": "The earliest arrival is 16:35, and the available capacity is insufficient; consent and basic needs cannot be assumed."
+    },
+    "assisted": {
+      "response": "After an assessor points out the missing constraint, I revise my original plan: The appointment cannot be reached until 16:35 if work ends at 16:00. Seek an agreed earlier departure or another feasible arrangement; do not assume either is available. Ninety minutes of assignment work leaves only 30 evening minutes for food/rest, bill verification, and other needs, so explore an earlier slot or timely contact about constraints. Defer laundry to Wednesday and request help only with consent. Keep reserved bill money separate, use official contact/payment routes, and verify live travel options. The extra assignment hour creates a new capacity gap. A sound answer can identify that no feasible plan is currently established and seek help or renegotiation; it need not pretend to solve every constraint.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+      "why": "The solving prompt must be recorded. Judge each mapped skill separately; a corrected plan cannot overwrite the original missing criterion."
+    },
+    "independent": {
+      "response": "The appointment cannot be reached until 16:35 if work ends at 16:00. Seek an agreed earlier departure or another feasible arrangement; do not assume either is available. Ninety minutes of assignment work leaves only 30 evening minutes for food/rest, bill verification, and other needs, so explore an earlier slot or timely contact about constraints. Defer laundry to Wednesday and request help only with consent. Keep reserved bill money separate, use official contact/payment routes, and verify live travel options. The extra assignment hour creates a new capacity gap. A sound answer can identify that no feasible plan is currently established and seek help or renegotiation; it need not pretend to solve every constraint.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice. For the changed situation, the assignment needs 150 minutes, already 30 more than the entire 120-minute evening before food, rest or bill verification. I identify this unresolved gap, request an agreed work/appointment arrangement early and negotiate assignment support or timing without assuming consent. Keep food/rest, defer laundry to Wednesday and ask whether task sharing is acceptable. Minimal log WEEK-01 records the bill reminder before Tuesday, verified payment route, agreed appointment response and reassessment date; learner-only access with no actual payment details. Persistent distress requires appropriate support rather than a diagnosis from the schedule.",
+      "why": "This illustrates a defensible full response. Each mapped criterion still requires its own judgement and unchanged original evidence. A correct headline calculation alone is insufficient; no whole-domain or physical competence award."
+    },
+    "advanced": {
+      "response": "The fixed appointment still cannot be reached until 16:35 without an agreed work/travel change, and 150 minutes of assignment exceed the evening’s 120 before basics. I report both unresolved constraints, request feasible agreed alternatives or deadline support, and defer laundry without assuming a helper’s consent.",
+      "why": "An assessor must check the revised output against the new constraint, not simply agreement with this statement. Adaptation requires actual updated reasoning; it does not award an extra competency automatically."
+    }
+  },
+  "rubric_sha256": "fc825b22206ef6197296e6ab62041e77b94233e805db1f8e6ce53daf0c989978"
+}

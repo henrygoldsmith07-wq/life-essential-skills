@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "solution": "The appointment cannot be reached until 16:35 if work ends at 16:00. Seek an agreed earlier departure or another feasible arrangement; do not assume either is available. Ninety minutes of assignment work leaves only 30 evening minutes for food/rest, bill verification, and other needs, so explore an earlier slot or timely contact about constraints. Defer laundry to Wednesday and request help only with consent. Keep reserved bill money separate, use official contact/payment routes, and verify live travel options. The extra assignment hour creates a new capacity gap. A sound answer can identify that no feasible plan is currently established and seek help or renegotiation; it need not pretend to solve every constraint.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+  "explanation": "Review each mapped skill separately against its complete criterion. Missing evidence remains not yet even if the rest of the capstone succeeds. Written planning cannot establish physical competence. The variation informs reasoning; it does not award an adaptive competency automatically.",
+  "common_mistakes": {
+    "misses-access-constraint": "Include access needs and realistic travel",
+    "unrealistic-capacity": "Allow time, rest, and contingencies",
+    "assumes-missing-information": "Name missing facts before deciding",
+    "no-fallback": "Prepare a feasible fallback",
+    "ignores-consent": "Respect consent, refusal, and boundaries",
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "overconfident-conclusion": "Match the conclusion to the evidence",
+    "reveals-sensitive-information": "Keep secrets and personal records private",
+    "fails-independent-verification": "Verify through an independent official route",
+    "missed-payment-timing": "Place money in date order",
+    "unverified-entitlement": "Verify legal scope without promising an entitlement"
+  },
+  "next_steps": {}
+}

@@ -13,3 +13,5 @@ Combine skills in realistic decisions. Start after practising the relevant Appli
 | [C05 · Busy week](busy-week.md) | Learning and time, Emotional wellbeing, Life administration, Relationships and communication, Everyday independence, Major decisions and community |
 
 Use the per-challenge rubric and [assessment record](../templates/assessment-record.md). Retain calculations and messages with fictional details, record help used, and repeat later with changed materials. A complete plan may include an unresolved constraint and an appropriate help request; invented certainty does not count as mastery.
+
+In the [dashboard](../learner/index.html#practice), choose **Practice → Capstone challenges**. Each existing challenge now records explicit subskill judgements separately, including help and errors by skill. The dashboard maps only abilities its full rubric elicits; other domain rows in the text activity remain broader learning prompts. C01 requires Wales housing guidance. Familiar capstones are guided practice; use genuinely different materials for later transfer or retention.

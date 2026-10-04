@@ -21,7 +21,8 @@
           "response": "I also test a two-day pay delay, showing the gap persists, verify essential timing and prepare a fallback if the arrangement is refused.",
           "why": "Adapts to a genuinely changed timing constraint with a reasoned fallback; does not award another competency without its rubric."
         }
-      }
+      },
+      "rubric_sha256": "6ff9499bf1e9900b31a29a0f53d3f1da74c5cd9537d61432b740d81da00ea9ea"
     },
     {
       "item_id": "M-CR-03",
@@ -43,7 +44,8 @@
           "response": "If hours fall and headroom becomes40, neither option is established affordable. I seek verified alternatives and safe timing clarification.",
           "why": "Revises the decision under changed capacity, naming a professional/verification limit."
         }
-      }
+      },
+      "rubric_sha256": "c54a1e46d257ececb8382625b898d4ae9dee842256b41569a7634dee68e1fe96"
     },
     {
       "item_id": "D-SC-04",
@@ -65,7 +67,8 @@
           "response": "If the trusted device may also be compromised, I use an appropriate clean verified route and plan account/device recovery without experimenting with malware.",
           "why": "Handles an additional constraint safely rather than relying on the original route."
         }
-      }
+      },
+      "rubric_sha256": "c9551e55bc1dccf14816d93d65faa808c05b00e8e593bea035ee086bbb89443b"
     },
     {
       "item_id": "L-TM-03",
@@ -87,7 +90,8 @@
           "response": "If the accessible route is unavailable, I revisit venue/time arrangements rather than merely adding minutes to an inaccessible journey.",
           "why": "Adapts to a new access constraint; accessibility support itself does not reduce competence."
         }
-      }
+      },
+      "rubric_sha256": "1d23f74976bff23b47dbfdf85ec5994167a6e8f25a5e21615ffb274369be641e"
     },
     {
       "item_id": "W-HO-03",
@@ -109,7 +113,307 @@
           "response": "If the proposed property changes nation or terms change, I recheck scope and costs, seek the relevant qualified advice and keep the next step reversible.",
           "why": "Re-evaluates jurisdiction and feasibility when the context changes."
         }
-      }
+      },
+      "rubric_sha256": "1382db6b6ead6c46e8653f7ed8a50209d8cf10bb3a846a52f89889ba1a223894"
+    },
+    {
+      "item_id": "EMERGENCIES-RESPONSE-I02",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "I tell everyone to use the usual exit and promise a different accessible exit exists.",
+          "why": "The known exit is blocked; the alternative is invented. Both constraints and safety fail."
+        },
+        "assisted": {
+          "response": "After staff prompt me to check the exit, I stop directing people there and report the visitor’s access needs.",
+          "why": "The prompt supplies the critical safety correction. Even a subsequently safe plan remains assisted."
+        },
+        "independent": {
+          "response": "I avoid the blocked exit, notify event staff of the access need, follow verified professional instructions, and state that no safe alternative is confirmed. I do not move someone through an unverified route.",
+          "why": "Ordered safe action, verification, access and professional limits are shown. A written plan is not an evacuation demonstration."
+        },
+        "advanced": {
+          "response": "If staff cannot be reached, I use the event’s verified emergency escalation route and communicate the unresolved access constraint. I do not search hazardous areas or promise a route.",
+          "why": "A new unavailable-contact constraint has a safe fallback. This extends reasoning, not proof of practical rescue."
+        }
+      },
+      "rubric_sha256": "082099f4522ee3635d4f453d249ace183224e818102553f42cbaecec01027745"
+    },
+    {
+      "item_id": "HEALTH-MEDICINE-I02",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "The AI says double it; I will do that tonight.",
+          "why": "Invented dose advice is unsafe and fails the essential professional-limit criterion."
+        },
+        "assisted": {
+          "response": "With a pharmacist’s prompting I reject the AI dose and ask about the packaging.",
+          "why": "A correct route with a solving prompt is assisted, not independent."
+        },
+        "independent": {
+          "response": "Appearance alone does not establish a dispensing error. I will not invent a dose or change treatment based on AI. With the pharmacy closed I verify an appropriate qualified Wales service route; immediate danger takes priority. Medicine-specific directions remain unresolved.",
+          "why": "Separates evidence from assumptions, uses the correct locality and recognises qualified advice and urgent-help limits."
+        },
+        "advanced": {
+          "response": "If the suggested service is unavailable I recheck current qualified local routes, explain the missing medicine-specific facts privately, and avoid guessing until appropriate advice is obtained.",
+          "why": "Safely adapts to a changed access constraint without turning uncertainty into dose advice."
+        }
+      },
+      "rubric_sha256": "4713f046643f7cfb1355ec337788a119c19ea9405e807ecdffe3a0d144a903ce"
+    },
+    {
+      "item_id": "WELLBEING-CAPACITY-I02",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "I remove sleep and finish everything tonight.",
+          "why": "Ignores capacity and basic needs; an impossible plan is not demonstrated."
+        },
+        "assisted": {
+          "response": "A helper tells me to postpone the household task and restore my break; I do so.",
+          "why": "The helper supplied the prioritisation, so the output is assisted even if feasible."
+        },
+        "independent": {
+          "response": "I restore food, rest and a break, defer the household task and identify one manageable step on the form due tomorrow. I check the remaining form time and request support or clarification without assuming it. This is planning, not a diagnosis; persistent or urgent distress needs appropriate help.",
+          "why": "Shows capacity, basic needs, uncertainty and professional limits. Unfinished work can be a responsible result."
+        },
+        "advanced": {
+          "response": "If the form takes longer than available capacity, I contact the verified service about options early and choose the highest-consequence step rather than compressing impossible work.",
+          "why": "Revises the plan under changed workload and preserves basic needs."
+        }
+      },
+      "rubric_sha256": "16b5243368518ae7c448fefbf35608b49f847633bbc297316470a7ddc0da16cd"
+    },
+    {
+      "item_id": "RELATIONSHIPS-BOUNDARIES-I02",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "They agreed before, so I post the photo anyway.",
+          "why": "Withdrawn consent is ignored; the essential consent boundary fails."
+        },
+        "assisted": {
+          "response": "After a consent reminder I cancel the post and tell my friend I cannot share it.",
+          "why": "The reminder supplies the core judgement; record solving help."
+        },
+        "independent": {
+          "response": "I do not post the photo. I explain that permission has changed and I control what I share; I will not use old consent to override the person’s current boundary. I decline pressure without coercing anyone else.",
+          "why": "Responds to changed consent with actions within own control and a non-coercive boundary."
+        },
+        "advanced": {
+          "response": "If another friend has already reposted it, I request removal through an appropriate safe route and respect a refusal by seeking support rather than threats or retaliation.",
+          "why": "Adapts to a new sharing situation with safe escalation; does not promise removal or control others."
+        }
+      },
+      "rubric_sha256": "0ea7427eb49b1a71a9f3993a8d5b9101c945ae42d69ad816460159822df9a1cb"
+    },
+    {
+      "item_id": "CRITICAL-THINKING-STATISTICS-I02",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "18 is larger than 12 so non-users do better; the campaign proves causation.",
+          "why": "Unequal denominators are ignored and causation is invented."
+        },
+        "assisted": {
+          "response": "With a denominator prompt I calculate 20% and 15%, and say the difference is five percentage points.",
+          "why": "Correct calculation after a solving prompt is assisted."
+        },
+        "independent": {
+          "response": "12/60 is 20%; 18/120 is 15%. The absolute difference is 5 percentage points; relative increase is 5/15, about 33.3%, not twice. Selection and follow-up are unknown; this does not establish that the campaign caused the difference.",
+          "why": "Arithmetic, denominators, relative/absolute distinction, missing methods and causal limits are all shown."
+        },
+        "advanced": {
+          "response": "If follow-up differs between groups, I check comparable measurement before using even the descriptive comparison. I seek the original methods rather than treating the headline as evidence.",
+          "why": "Handles a changed measurement constraint and lowers the certainty of the conclusion appropriately."
+        }
+      },
+      "rubric_sha256": "47346096ff6f9415a0f410b57cf244ccf38ae5e410da9a060d30ee8fee4356b9"
+    },
+    {
+      "item_id": "HOME-MEALS-I02",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "The meal is cheap so I put it in the unreliable fridge and use the broken cooker.",
+          "why": "Costs alone do not make equipment or storage safe; essential constraints fail."
+        },
+        "assisted": {
+          "response": "After a storage reminder I calculate 6.50 and ask which food is safe without chilling.",
+          "why": "Prompted identification of the critical missing step makes the attempt assisted."
+        },
+        "independent": {
+          "response": "3.50+1.40+1.60 is 6.50, leaving 1.50 of the 8 budget. The cooker is unavailable and chilling is uncertain, so I check the food’s current preparation/storage instructions and choose a safe feasible alternative if these cannot be met. I cannot infer safe storage or demonstrate cooking with a written plan.",
+          "why": "Correct budget and feasible safe instructions, missing storage information and practical limits are all addressed."
+        },
+        "advanced": {
+          "response": "If an alternative needs refrigeration too, I revisit the purchase and timing with suitable safe instructions rather than holding it in unsafe conditions. I retain the budget limit.",
+          "why": "Adapts to a new storage constraint while preserving cost and safety; practical observation is still needed."
+        }
+      },
+      "rubric_sha256": "37f9107f399d6b0c4690f293e1633481dc8703cf2c1d07b27df45c60643f1795"
+    },
+    {
+      "item_id": "WORK-EVIDENCE-I02",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "My checklist improved performance by 40%.",
+          "why": "The result is invented; truthful evidence is an essential criterion."
+        },
+        "assisted": {
+          "response": "After an assessor points out the invented number, I remove it and describe the missing-supplies checklist.",
+          "why": "The factual correction was prompted, so this is assisted."
+        },
+        "independent": {
+          "response": "For problem solving: I noticed missing supplies and proposed a checklist to make checking consistent. This shows identifying a problem and proposing an action. Results have not been measured, so I do not claim 40% improvement. I would compare recorded missing supplies before and after, with limitations.",
+          "why": "Connects the requirement to a truthful specific action and an explicit outcome limitation, without fabricated numbers."
+        },
+        "advanced": {
+          "response": "If the role also requires teamwork, I explain which collaboration facts are actually known and identify the missing example rather than inventing participation.",
+          "why": "Responds to a changed job requirement with evidence boundaries and an honest limitation."
+        }
+      },
+      "rubric_sha256": "b3535938c041c9d98933de32460922ed745b6188798ea278a2967c9f1bacb11c"
+    },
+    {
+      "item_id": "LIFE-ADMIN-CONTRACTS-I02",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "The 18 premium proves the first policy is best and the claim will be covered.",
+          "why": "A lower premium is not proof of coverage or entitlement; important terms are missing."
+        },
+        "assisted": {
+          "response": "After a full-term cost prompt I calculate 216 and 300 and ask what events are covered.",
+          "why": "Correct after solving help; still assisted."
+        },
+        "independent": {
+          "response": "12×18=216 and 12×25=300. The excesses are 200 and 100; premiums and excess alone do not establish value. I request covered events, exclusions, renewal/cancellation and responsibility terms through a verified route, and compare like-for-like scenarios without claiming entitlement.",
+          "why": "Defined-term arithmetic, missing contract terms, independent verification and professional limits all met."
+        },
+        "advanced": {
+          "response": "If the renewal price or covered event changes, I recompute term cost and compare the actual terms again before committing; I do not assume the previous comparison still holds.",
+          "why": "Adapts to changed price and scope without declaring coverage."
+        }
+      },
+      "rubric_sha256": "0b0f4d006b09a4abf5cd9ab71ac22cd943979a1a958ca039bb5caac01a84cb63"
+    },
+    {
+      "item_id": "C01",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "I choose B because rent is higher; I will sign without checking access or Welsh contract terms.",
+          "why": "Fails full-cost comparison, jurisdiction and missing access verification."
+        },
+        "assisted": {
+          "response": "After an assessor points out the missing constraint, I revise my original plan: Recurring housing/transport is 860 for A and 840 for B. With other essentials of 325, totals are 1,185 and 1,165, leaving 315 and 335 before other costs and savings. Upfront costs are 1,350 and 1,500; both fit the stated 1,550 fund, leaving 200 or 50. B's recurring cost is lower but its upfront buffer is much smaller. A's late shift needs another verified transport option; B's access needs checking. At income 1,250, remaining amounts fall to 65 or 85 before other costs, making missing costs and disruption important. A responsible answer can choose either, defer, or seek advice; it must explain affordability, access, written terms, verification, and gaps. Include offline emergency contacts and safe household responsibilities. A written menu does not demonstrate cooking.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+          "why": "The solving prompt must be recorded. Judge each mapped skill separately; a corrected plan cannot overwrite the original missing criterion."
+        },
+        "independent": {
+          "response": "Recurring housing/transport is 860 for A and 840 for B. With other essentials of 325, totals are 1,185 and 1,165, leaving 315 and 335 before other costs and savings. Upfront costs are 1,350 and 1,500; both fit the stated 1,550 fund, leaving 200 or 50. B's recurring cost is lower but its upfront buffer is much smaller. A's late shift needs another verified transport option; B's access needs checking. At income 1,250, remaining amounts fall to 65 or 85 before other costs, making missing costs and disruption important. A responsible answer can choose either, defer, or seek advice; it must explain affordability, access, written terms, verification, and gaps. Include offline emergency contacts and safe household responsibilities. A written menu does not demonstrate cooking.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice. I defer commitment until B’s step-free route and written Welsh occupation-contract/notice/repair terms are checked through current Welsh Government and relevant housing advice routes. My reversible alternative is to delay moving while clarifying access and all omitted costs. Fictional records: MOVE-01 comparison, TERMS-01 questions, ROUTE-01 route check; access restricted to the learner, no account data; reminder before the proposed signing date. Offline emergency plan: ask the responsible site contact to verify the primary and accessible exits; agree an assembly point and helper consent; verify official help contacts, keep an offline copy, and explicitly leave the unknown safe route unresolved rather than inventing one.",
+          "why": "This illustrates a defensible full response. Each mapped criterion still requires its own judgement and unchanged original evidence. A correct headline calculation alone is insufficient; no whole-domain or physical competence award."
+        },
+        "advanced": {
+          "response": "At income 1250, A leaves 65 and B 85 before missing costs; B’s week-long access disruption is unresolved. I recheck accessible transport cost and timings and both upfront buffers (200/50), then defer or request a verified alternative before signing. I do not use hypothetical borrowing to fill the gap.",
+          "why": "An assessor must check the revised output against the new constraint, not simply agreement with this statement. Adaptation requires actual updated reasoning; it does not award an extra competency automatically."
+        }
+      },
+      "rubric_sha256": "74765245285d7a2764cffe0619b54d48e3a347497de324e7fec9787950babbf1"
+    },
+    {
+      "item_id": "C02",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "I use the invented 40% achievement and assume the missing 10 payment is tax.",
+          "why": "Invents an application fact and a cause for the pay discrepancy; also ignores the travel clash."
+        },
+        "assisted": {
+          "response": "After an assessor points out the missing constraint, I revise my original plan: The experience can show organisation and accurate record keeping without pretending it was paid work. Gross is 60 × 13 = 780; 780 − 40 − 20 − 30 = 690, so the payment is 10 short. Ask payroll to reconcile it rather than deciding why. The earliest arrival after class is 16:15, so seek an agreed change or alternative; do not claim the 16:00 slot fits. Ask about hours, rota, training, pay, notice, and secure document handling. Verify the organisation and official recipient before sharing sensitive documents. Use current Acas/HMRC and Wales or relevant careers guidance. A changed interview date requires checking capacity and a clear response, not automatically sacrificing other commitments.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+          "why": "The solving prompt must be recorded. Judge each mapped skill separately; a corrected plan cannot overwrite the original missing criterion."
+        },
+        "independent": {
+          "response": "The experience can show organisation and accurate record keeping without pretending it was paid work. Gross is 60 × 13 = 780; 780 − 40 − 20 − 30 = 690, so the payment is 10 short. Ask payroll to reconcile it rather than deciding why. The earliest arrival after class is 16:15, so seek an agreed change or alternative; do not claim the 16:00 slot fits. Ask about hours, rota, training, pay, notice, and secure document handling. Verify the organisation and official recipient before sharing sensitive documents. Use current Acas/HMRC and Wales or relevant careers guidance. A changed interview date requires checking capacity and a clear response, not automatically sacrificing other commitments.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice. Application: I organised a club rota and checked attendance records to keep scheduling accurate; this is unpaid experience and I cannot claim unmeasured improvement. Payroll query: the stated gross and deductions imply 690, but 680 was received; please reconcile the 10 difference through the official payroll route. Calendar message: class ends 15:30 and travel needs 45 minutes; can we agree a later slot or alternative? I check food/rest and other commitments before agreeing, rather than assuming extra capacity. Minimal records JOB-01, PAY-01 and CAL-01 stay learner-only; verify employer/payroll recipients independently and set a reminder before the agreed interview and for the payroll follow-up.",
+          "why": "This illustrates a defensible full response. Each mapped criterion still requires its own judgement and unchanged original evidence. A correct headline calculation alone is insufficient; no whole-domain or physical competence award."
+        },
+        "advanced": {
+          "response": "For tomorrow’s interview I recheck coursework, travel and food/rest capacity and request an agreed change if needed. The personal identity-document route is unverified: independently confirm the official employer and secure recipient before any sharing. I do not upload identity documents to this assessment tool.",
+          "why": "An assessor must check the revised output against the new constraint, not simply agreement with this statement. Adaptation requires actual updated reasoning; it does not award an extra competency automatically."
+        }
+      },
+      "rubric_sha256": "9af3ab690bf550d4df28edd3ee51dd247091e17122bcc9d9b751045e7a7a5522"
+    },
+    {
+      "item_id": "C03",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "Guaranteed approval means affordable; B costs only 52 and my next pay covers everything.",
+          "why": "Confuses instalments with total cost and misses pre-income payments and missing essential commitments."
+        },
+        "assisted": {
+          "response": "After an assessor points out the missing constraint, I revise my original plan: After reserving 240, only 60 remains; the repair creates a 120 shortfall. A costs 10 + 3 × 65 = 205, a borrowing cost of 25; B costs 4 × 52 = 208, a cost of 28. A's fee is immediate; B requires a payment before the stated next income. Future commitments are missing, so neither can be declared affordable. Check the repair's necessity, timing, possible alternatives, complete terms, and legitimate advice or arrangements. Approval is a lender decision, not proof that repayment fits Rae's life. Break the task into gathering bills and making one verified enquiry. A delayed income requires revisiting dates and assumptions early.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+          "why": "The solving prompt must be recorded. Judge each mapped skill separately; a corrected plan cannot overwrite the original missing criterion."
+        },
+        "independent": {
+          "response": "After reserving 240, only 60 remains; the repair creates a 120 shortfall. A costs 10 + 3 × 65 = 205, a borrowing cost of 25; B costs 4 × 52 = 208, a cost of 28. A's fee is immediate; B requires a payment before the stated next income. Future commitments are missing, so neither can be declared affordable. Check the repair's necessity, timing, possible alternatives, complete terms, and legitimate advice or arrangements. Approval is a lender decision, not proof that repayment fits Rae's life. Break the task into gathering bills and making one verified enquiry. A delayed income requires revisiting dates and assumptions early.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice. I separate the lender’s approval claim from the original offer facts; I obtain full original terms through an independently verified provider/advice route before deciding. Neither option is established affordable. Preserve food/rest, postpone a lower-consequence household task and take one manageable step: gather fictional bill timings for the enquiry. This is a planning problem, not a diagnosis; if distress requires professional support I use an appropriate verified route. Minimal log EXPENSE-01: relative dates, quoted totals, missing terms, verified contact route and a reminder before the day-five payment; learner-only access, no actual financial records.",
+          "why": "This illustrates a defensible full response. Each mapped criterion still requires its own judgement and unchanged original evidence. A correct headline calculation alone is insufficient; no whole-domain or physical competence award."
+        },
+        "advanced": {
+          "response": "With income delayed a further week, B’s first repayment still falls before income and A’s immediate fee reduces available funds further. I revisit essential bill dates and ask the verified provider/adviser about alternatives early, without assuming approval, eligibility or a compulsory payment arrangement.",
+          "why": "An assessor must check the revised output against the new constraint, not simply agreement with this statement. Adaptation requires actual updated reasoning; it does not award an extra competency automatically."
+        }
+      },
+      "rubric_sha256": "9cce240b36436f4d6ec0541ba37ef92298022d2f97f61aa8142255c3dcb4753b"
+    },
+    {
+      "item_id": "C04",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "The voice sounds familiar, so I send 450 to the new details and keep it secret.",
+          "why": "Fails independent identity/authority/invoice verification, secrets/privacy and the 200 funding gap."
+        },
+        "assisted": {
+          "response": "After an assessor points out the missing constraint, I revise my original plan: Uncommitted funds are 900 − 650 = 250. The requested 450 is 200 more, even if genuine. Hold action while independently verifying the chair's identity/authority, the invoice, and the account change using trusted existing contacts. Urgency, secrecy, genuine details, and a realistic voice do not replace verification. A good message states the discrepancy and asks for confirmation through the agreed process. If money or codes were shared, use relevant official bank/account support and current local fraud routes promptly; record dates and references privately. Do not promise a particular recovery outcome.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+          "why": "The solving prompt must be recorded. Judge each mapped skill separately; a corrected plan cannot overwrite the original missing criterion."
+        },
+        "independent": {
+          "response": "Uncommitted funds are 900 − 650 = 250. The requested 450 is 200 more, even if genuine. Hold action while independently verifying the chair's identity/authority, the invoice, and the account change using trusted existing contacts. Urgency, secrecy, genuine details, and a realistic voice do not replace verification. A good message states the discrepancy and asks for confirmation through the agreed process. If money or codes were shared, use relevant official bank/account support and current local fraud routes promptly; record dates and references privately. Do not promise a particular recovery outcome.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice. Claim, identity, authority, invoice and account change are separate checks; trace the original invoice and use independently established official contacts. I would change the decision only when authorised purpose, correct invoice/details and funds are all verified; even a genuine request cannot fit the current 250 without a separately confirmed arrangement. My reversible action is to hold payment and seek clarification. Minimal log REQUEST-01 records relative date, unconfirmed claims, verification questions and a follow-up reminder before any deadline; learner-only access, no codes, contacts or real account details.",
+          "why": "This illustrates a defensible full response. Each mapped criterion still requires its own judgement and unchanged original evidence. A correct headline calculation alone is insufficient; no whole-domain or physical competence award."
+        },
+        "advanced": {
+          "response": "Genuine event details and a familiar voice still do not prove identity, authority, invoice or replacement-account validity. I hold payment, verify all checks through existing trusted channels, and retain the 250 uncommitted limit; a changed voice recording cannot resolve the 200 gap.",
+          "why": "An assessor must check the revised output against the new constraint, not simply agreement with this statement. Adaptation requires actual updated reasoning; it does not award an extra competency automatically."
+        }
+      },
+      "rubric_sha256": "52cdb2b1465d026d16d3e847d5c8e9a20488bf99a16d9d3ed6d53eb78e7ea943"
+    },
+    {
+      "item_id": "C05",
+      "version": 1,
+      "levels": {
+        "not-yet": {
+          "response": "I schedule the appointment for 16:15 after the 35-minute trip and finish everything by removing rest.",
+          "why": "The earliest arrival is 16:35, and the available capacity is insufficient; consent and basic needs cannot be assumed."
+        },
+        "assisted": {
+          "response": "After an assessor points out the missing constraint, I revise my original plan: The appointment cannot be reached until 16:35 if work ends at 16:00. Seek an agreed earlier departure or another feasible arrangement; do not assume either is available. Ninety minutes of assignment work leaves only 30 evening minutes for food/rest, bill verification, and other needs, so explore an earlier slot or timely contact about constraints. Defer laundry to Wednesday and request help only with consent. Keep reserved bill money separate, use official contact/payment routes, and verify live travel options. The extra assignment hour creates a new capacity gap. A sound answer can identify that no feasible plan is currently established and seek help or renegotiation; it need not pretend to solve every constraint.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+          "why": "The solving prompt must be recorded. Judge each mapped skill separately; a corrected plan cannot overwrite the original missing criterion."
+        },
+        "independent": {
+          "response": "The appointment cannot be reached until 16:35 if work ends at 16:00. Seek an agreed earlier departure or another feasible arrangement; do not assume either is available. Ninety minutes of assignment work leaves only 30 evening minutes for food/rest, bill verification, and other needs, so explore an earlier slot or timely contact about constraints. Defer laundry to Wednesday and request help only with consent. Keep reserved bill money separate, use official contact/payment routes, and verify live travel options. The extra assignment hour creates a new capacity gap. A sound answer can identify that no feasible plan is currently established and seek help or renegotiation; it need not pretend to solve every constraint.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice. For the changed situation, the assignment needs 150 minutes, already 30 more than the entire 120-minute evening before food, rest or bill verification. I identify this unresolved gap, request an agreed work/appointment arrangement early and negotiate assignment support or timing without assuming consent. Keep food/rest, defer laundry to Wednesday and ask whether task sharing is acceptable. Minimal log WEEK-01 records the bill reminder before Tuesday, verified payment route, agreed appointment response and reassessment date; learner-only access with no actual payment details. Persistent distress requires appropriate support rather than a diagnosis from the schedule.",
+          "why": "This illustrates a defensible full response. Each mapped criterion still requires its own judgement and unchanged original evidence. A correct headline calculation alone is insufficient; no whole-domain or physical competence award."
+        },
+        "advanced": {
+          "response": "The fixed appointment still cannot be reached until 16:35 without an agreed work/travel change, and 150 minutes of assignment exceed the evening’s 120 before basics. I report both unresolved constraints, request feasible agreed alternatives or deadline support, and defer laundry without assuming a helper’s consent.",
+          "why": "An assessor must check the revised output against the new constraint, not simply agreement with this statement. Adaptation requires actual updated reasoning; it does not award an extra competency automatically."
+        }
+      },
+      "rubric_sha256": "fc825b22206ef6197296e6ab62041e77b94233e805db1f8e6ce53daf0c989978"
     }
   ]
 }

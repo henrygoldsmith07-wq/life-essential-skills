@@ -1,0 +1,23 @@
+{
+  "item_id": "D-SC-04",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "No money was sent, so nothing needs doing. I will send the recovery code.",
+      "why": "Unsafe secret disclosure and an unjustified conclusion about compromise."
+    },
+    "assisted": {
+      "response": "A checklist tells me not to send the code and to open the official recovery page.",
+      "why": "Appropriate action but supplied by solving guidance."
+    },
+    "independent": {
+      "response": "I do not send codes. I independently reach the account provider to change/recover access and check possible device/download exposure. No payment does not rule out compromise.",
+      "why": "Protects secrets, verifies independently and chooses proportionate recovery without claiming certainty."
+    },
+    "advanced": {
+      "response": "If the trusted device may also be compromised, I use an appropriate clean verified route and plan account/device recovery without experimenting with malware.",
+      "why": "Handles an additional constraint safely rather than relying on the original route."
+    }
+  },
+  "rubric_sha256": "c9551e55bc1dccf14816d93d65faa808c05b00e8e593bea035ee086bbb89443b"
+}

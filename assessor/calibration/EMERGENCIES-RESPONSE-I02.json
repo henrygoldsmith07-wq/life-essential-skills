@@ -1,0 +1,23 @@
+{
+  "item_id": "EMERGENCIES-RESPONSE-I02",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "I tell everyone to use the usual exit and promise a different accessible exit exists.",
+      "why": "The known exit is blocked; the alternative is invented. Both constraints and safety fail."
+    },
+    "assisted": {
+      "response": "After staff prompt me to check the exit, I stop directing people there and report the visitor’s access needs.",
+      "why": "The prompt supplies the critical safety correction. Even a subsequently safe plan remains assisted."
+    },
+    "independent": {
+      "response": "I avoid the blocked exit, notify event staff of the access need, follow verified professional instructions, and state that no safe alternative is confirmed. I do not move someone through an unverified route.",
+      "why": "Ordered safe action, verification, access and professional limits are shown. A written plan is not an evacuation demonstration."
+    },
+    "advanced": {
+      "response": "If staff cannot be reached, I use the event’s verified emergency escalation route and communicate the unresolved access constraint. I do not search hazardous areas or promise a route.",
+      "why": "A new unavailable-contact constraint has a safe fallback. This extends reasoning, not proof of practical rescue."
+    }
+  },
+  "rubric_sha256": "082099f4522ee3635d4f453d249ace183224e818102553f42cbaecec01027745"
+}

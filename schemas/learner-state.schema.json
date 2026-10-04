@@ -7,11 +7,14 @@
     "pathway",
     "goal_competencies",
     "records",
-    "observations"
+    "reviews",
+    "observations",
+    "legacy_observations",
+    "exposures"
   ],
   "properties": {
     "schema_version": {
-      "const": 1
+      "const": 2
     },
     "locality": {
       "type": "string",
@@ -41,7 +44,6 @@
     },
     "records": {
       "type": "array",
-      "maxItems": 5000,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -56,9 +58,11 @@
           "help_used",
           "access_supports",
           "error_tags",
-          "criteria_met",
-          "reviewed_by",
-          "solution_seen"
+          "solution_seen",
+          "attempt_id",
+          "criteria_judgements",
+          "evidence_level",
+          "reviewer_type"
         ],
         "properties": {
           "id": {
@@ -144,29 +148,287 @@
             "minItems": 0,
             "uniqueItems": true
           },
-          "criteria_met": {
+          "solution_seen": {
+            "type": "boolean"
+          },
+          "attempt_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9-]{1,80}$"
+          },
+          "criteria_judgements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "criterion_id",
+                "judgement"
+              ],
+              "properties": {
+                "criterion_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "judgement": {
+                  "type": "string",
+                  "enum": [
+                    "met",
+                    "partly-met",
+                    "not-met"
+                  ]
+                }
+              }
+            },
+            "maxItems": 80
+          },
+          "evidence_level": {
+            "type": "string",
+            "enum": [
+              "self-reviewed",
+              "assessor-reviewed"
+            ]
+          },
+          "reviewer_type": {
+            "type": "string",
+            "enum": [
+              "learner",
+              "assessor"
+            ]
+          }
+        }
+      },
+      "maxItems": 5000
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "record_id",
+          "date",
+          "criteria_judgements",
+          "error_tags",
+          "evidence_level",
+          "reviewer_type",
+          "basis"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9-]{1,80}$"
+          },
+          "record_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9-]{1,80}$"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "criteria_judgements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "criterion_id",
+                "judgement"
+              ],
+              "properties": {
+                "criterion_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "judgement": {
+                  "type": "string",
+                  "enum": [
+                    "met",
+                    "partly-met",
+                    "not-met"
+                  ]
+                }
+              }
+            },
+            "maxItems": 80
+          },
+          "error_tags": {
             "type": "array",
             "items": {
               "type": "string",
-              "minLength": 1
+              "enum": [
+                "arithmetic-error",
+                "missed-payment-timing",
+                "assumes-missing-information",
+                "fails-independent-verification",
+                "ignores-essential-cost",
+                "unsafe-advice",
+                "reveals-sensitive-information",
+                "overconfident-conclusion",
+                "wrong-jurisdiction",
+                "misses-access-constraint",
+                "unrealistic-capacity",
+                "ignores-consent",
+                "unverified-entitlement",
+                "confuses-relative-absolute",
+                "no-fallback",
+                "memorised-answer"
+              ]
             },
             "minItems": 0,
             "uniqueItems": true
           },
-          "reviewed_by": {
+          "evidence_level": {
+            "const": "assessor-reviewed"
+          },
+          "reviewer_type": {
+            "const": "assessor"
+          },
+          "basis": {
             "type": "string",
             "enum": [
-              "self",
-              "assessor"
+              "original-output",
+              "directly-observed"
             ]
-          },
-          "solution_seen": {
-            "type": "boolean"
           }
         }
-      }
+      },
+      "maxItems": 5000
     },
     "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "assessment_version",
+          "date",
+          "criteria_judgements",
+          "error_tags",
+          "help_used",
+          "access_supports",
+          "outcome",
+          "evidence_level",
+          "reviewer_type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9-]{1,80}$"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "observed-meal-preparation",
+              "observed-sample-restore",
+              "observed-account-protection"
+            ]
+          },
+          "assessment_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "criteria_judgements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "criterion_id",
+                "judgement"
+              ],
+              "properties": {
+                "criterion_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "judgement": {
+                  "type": "string",
+                  "enum": [
+                    "met",
+                    "partly-met",
+                    "not-met"
+                  ]
+                }
+              }
+            },
+            "maxItems": 80
+          },
+          "error_tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "arithmetic-error",
+                "missed-payment-timing",
+                "assumes-missing-information",
+                "fails-independent-verification",
+                "ignores-essential-cost",
+                "unsafe-advice",
+                "reveals-sensitive-information",
+                "overconfident-conclusion",
+                "wrong-jurisdiction",
+                "misses-access-constraint",
+                "unrealistic-capacity",
+                "ignores-consent",
+                "unverified-entitlement",
+                "confuses-relative-absolute",
+                "no-fallback",
+                "memorised-answer"
+              ]
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "help_used": {
+            "type": "boolean"
+          },
+          "access_supports": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "screen-reader",
+                "scribe",
+                "extra-time",
+                "spoken-response",
+                "large-print",
+                "translation",
+                "alternative-context"
+              ]
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "demonstrated",
+              "assisted",
+              "not-yet"
+            ]
+          },
+          "evidence_level": {
+            "const": "practical-observed"
+          },
+          "reviewer_type": {
+            "const": "assessor"
+          }
+        }
+      },
+      "maxItems": 500
+    },
+    "legacy_observations": {
       "type": "array",
       "maxItems": 500,
       "items": {
@@ -204,8 +466,40 @@
           }
         }
       }
+    },
+    "exposures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item_id",
+          "assessment_version",
+          "date",
+          "attempt_id"
+        ],
+        "properties": {
+          "item_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "assessment_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "attempt_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9-]{1,80}$"
+          }
+        }
+      },
+      "maxItems": 5000
     }
   },
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Educational evidence only: no arbitrary text or personal records"
+  "title": "Bounded educational evidence, version 2; no responses or personal notes",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

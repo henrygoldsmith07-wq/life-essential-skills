@@ -4836,6 +4836,8 @@
     "assessment_bank_path": "assessments/bank.json",
     "learner_state_schema": "schemas/learner-state.schema.json",
     "dashboard_path": "learner/index.html",
-    "assessor_path": "assessor/README.md"
+    "assessor_path": "assessor/README.md",
+    "capstone_bank_path": "assessments/capstones.json",
+    "practical_rubrics_path": "assessor/practical-rubrics.json"
   }
 }

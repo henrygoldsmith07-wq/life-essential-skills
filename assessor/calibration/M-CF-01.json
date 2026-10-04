@@ -1,0 +1,23 @@
+{
+  "item_id": "M-CF-01",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "The month ends at 250 so every payment is affordable.",
+      "why": "Misses the day-5 negative balance; closing funds do not demonstrate payment timing."
+    },
+    "assisted": {
+      "response": "After a prompt to order payments, I find -20 on day 5. I ask about a payment arrangement.",
+      "why": "Correct after a solving prompt; record assistance even though arithmetic is now sound."
+    },
+    "independent": {
+      "response": "Balances are 40,-20,280,250. The unconfirmed refund is excluded. I would seek an agreed arrangement before day 5 and protect food, without assuming approval.",
+      "why": "All essential criteria: arithmetic, timing, uncertainty and feasible safe next action."
+    },
+    "advanced": {
+      "response": "I also test a two-day pay delay, showing the gap persists, verify essential timing and prepare a fallback if the arrangement is refused.",
+      "why": "Adapts to a genuinely changed timing constraint with a reasoned fallback; does not award another competency without its rubric."
+    }
+  },
+  "rubric_sha256": "6ff9499bf1e9900b31a29a0f53d3f1da74c5cd9537d61432b740d81da00ea9ea"
+}

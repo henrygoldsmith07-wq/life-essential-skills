@@ -1,0 +1,23 @@
+{
+  "item_id": "L-TM-03",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "The trip is35 minutes, so arrival is guaranteed.",
+      "why": "Ignores disruption, check-in and unresolved accessibility."
+    },
+    "assisted": {
+      "response": "After a travel-buffer prompt I calculate14:45 normally and15:05 with disruption.",
+      "why": "Arithmetic is correct but help supplied the essential missing step."
+    },
+    "independent": {
+      "response": "Check-in is14:50. Normal arrival14:45 leaves5 minutes; disrupted arrival15:05 misses it by15. I verify access and live timing and request a feasible alternative without assuming agreement.",
+      "why": "All timing, missing facts and communication constraints addressed."
+    },
+    "advanced": {
+      "response": "If the accessible route is unavailable, I revisit venue/time arrangements rather than merely adding minutes to an inaccessible journey.",
+      "why": "Adapts to a new access constraint; accessibility support itself does not reduce competence."
+    }
+  },
+  "rubric_sha256": "1d23f74976bff23b47dbfdf85ec5994167a6e8f25a5e21615ffb274369be641e"
+}

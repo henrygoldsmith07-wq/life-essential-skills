@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "locality": "wales",
+  "pathway": "independent-living",
+  "goal_competencies": [
+    "major-decisions.housing.independent"
+  ],
+  "records": [
+    {
+      "id": "fictional-MAJOR-DECISIONS-HOUSING-F01-2026-09-25",
+      "competency_id": "major-decisions.housing.foundation",
+      "item_id": "MAJOR-DECISIONS-HOUSING-F01",
+      "assessment_version": 1,
+      "date": "2026-09-25",
+      "phase": "diagnostic",
+      "outcome": "demonstrated",
+      "help_used": false,
+      "access_supports": [],
+      "error_tags": [],
+      "criteria_met": [
+        "criterion",
+        "constraints",
+        "safety",
+        "reasoning"
+      ],
+      "reviewed_by": "assessor",
+      "solution_seen": false
+    },
+    {
+      "id": "fictional-W-HO-03-2026-09-27",
+      "competency_id": "major-decisions.housing.independent",
+      "item_id": "W-HO-03",
+      "assessment_version": 1,
+      "date": "2026-09-27",
+      "phase": "transfer",
+      "outcome": "not-yet",
+      "help_used": false,
+      "access_supports": [],
+      "error_tags": [
+        "wrong-jurisdiction"
+      ],
+      "criteria_met": [
+        "safety"
+      ],
+      "reviewed_by": "assessor",
+      "solution_seen": false
+    }
+  ],
+  "observations": []
+}

@@ -1,0 +1,23 @@
+{
+  "item_id": "C02",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "I use the invented 40% achievement and assume the missing 10 payment is tax.",
+      "why": "Invents an application fact and a cause for the pay discrepancy; also ignores the travel clash."
+    },
+    "assisted": {
+      "response": "After an assessor points out the missing constraint, I revise my original plan: The experience can show organisation and accurate record keeping without pretending it was paid work. Gross is 60 × 13 = 780; 780 − 40 − 20 − 30 = 690, so the payment is 10 short. Ask payroll to reconcile it rather than deciding why. The earliest arrival after class is 16:15, so seek an agreed change or alternative; do not claim the 16:00 slot fits. Ask about hours, rota, training, pay, notice, and secure document handling. Verify the organisation and official recipient before sharing sensitive documents. Use current Acas/HMRC and Wales or relevant careers guidance. A changed interview date requires checking capacity and a clear response, not automatically sacrificing other commitments.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+      "why": "The solving prompt must be recorded. Judge each mapped skill separately; a corrected plan cannot overwrite the original missing criterion."
+    },
+    "independent": {
+      "response": "The experience can show organisation and accurate record keeping without pretending it was paid work. Gross is 60 × 13 = 780; 780 − 40 − 20 − 30 = 690, so the payment is 10 short. Ask payroll to reconcile it rather than deciding why. The earliest arrival after class is 16:15, so seek an agreed change or alternative; do not claim the 16:00 slot fits. Ask about hours, rota, training, pay, notice, and secure document handling. Verify the organisation and official recipient before sharing sensitive documents. Use current Acas/HMRC and Wales or relevant careers guidance. A changed interview date requires checking capacity and a clear response, not automatically sacrificing other commitments.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice. Application: I organised a club rota and checked attendance records to keep scheduling accurate; this is unpaid experience and I cannot claim unmeasured improvement. Payroll query: the stated gross and deductions imply 690, but 680 was received; please reconcile the 10 difference through the official payroll route. Calendar message: class ends 15:30 and travel needs 45 minutes; can we agree a later slot or alternative? I check food/rest and other commitments before agreeing, rather than assuming extra capacity. Minimal records JOB-01, PAY-01 and CAL-01 stay learner-only; verify employer/payroll recipients independently and set a reminder before the agreed interview and for the payroll follow-up.",
+      "why": "This illustrates a defensible full response. Each mapped criterion still requires its own judgement and unchanged original evidence. A correct headline calculation alone is insufficient; no whole-domain or physical competence award."
+    },
+    "advanced": {
+      "response": "For tomorrow’s interview I recheck coursework, travel and food/rest capacity and request an agreed change if needed. The personal identity-document route is unverified: independently confirm the official employer and secure recipient before any sharing. I do not upload identity documents to this assessment tool.",
+      "why": "An assessor must check the revised output against the new constraint, not simply agreement with this statement. Adaptation requires actual updated reasoning; it does not award an extra competency automatically."
+    }
+  },
+  "rubric_sha256": "9af3ab690bf550d4df28edd3ee51dd247091e17122bcc9d9b751045e7a7a5522"
+}

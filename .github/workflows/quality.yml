@@ -30,8 +30,21 @@ jobs:
       - name: Test validator and link-check failure cases
         run: python3 -m unittest discover -s tests -v
       - name: Test the shared learner rules engine
-        run: node --test tests/engine.test.js
+        run: node --test tests/engine.test.js tests/evidence.test.js
       - name: Check dashboard JavaScript syntax
         run: node --check learner/app.js
       - name: Lint Markdown
         run: npx --yes markdownlint-cli2@0.18.1
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Install locked development dependencies
+        run: npm ci
+      - name: Install Chromium and its system dependencies
+        run: npx playwright install --with-deps chromium
+      - name: Verify learner, assessor, privacy and accessibility journeys
+        run: npm run test:e2e

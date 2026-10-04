@@ -80,6 +80,27 @@ class AdaptiveIntegrityTests(unittest.TestCase):
         self.change('assessments/bank.json',lambda d:d['items'][0].update(title='changed title'));self.assertTrue(build(self.root,check=True))
     def test_unknown_learner_fields_refused(self):
         schema=json.loads((self.root/'schemas/learner-state.schema.json').read_text());state=json.loads((self.root/'examples/learners/new-learner.json').read_text());state['password']='secret';self.assertTrue(validate_schema(state,schema))
+    def test_rubric_change_requires_benchmark_review(self):
+        self.change('assessments/bank.json',lambda d:next(i for i in d['items'] if i['id']=='M-CF-01')['scoring'][0].update(criterion='Changed criterion'));self.reject('benchmark rubric changed')
+    def test_material_change_requires_benchmark_review(self):
+        self.change('assessments/bank.json',lambda d:next(i for i in d['items'] if i['id']=='M-CF-01')['materials'].append('A changed constraint'));self.reject('benchmark rubric changed')
+    def test_every_domain_needs_calibration(self):
+        self.change('assessor/benchmarks.json',lambda d:d.update(benchmarks=[b for b in d['benchmarks'] if not b['item_id'].startswith('HEALTH-')]));self.reject('representative calibration')
+    def test_capstone_criterion_mapping(self):
+        self.change('assessments/capstones.json',lambda d:d['items'][0]['scoring'][0].update(competency_id='money.budget.independent'));self.reject('criterion mapping')
+    def test_capstone_missing_skill_safety_gate(self):
+        self.change('assessments/capstones.json',lambda d:next(s for s in d['items'][0]['scoring'] if s['id']=='skill-1-safety').update(essential=False));self.reject('safety gates must be essential')
+    def test_capstone_missing_calibration(self):
+        self.change('assessor/benchmarks.json',lambda d:d.update(benchmarks=[b for b in d['benchmarks'] if b['item_id']!='C03']));self.reject('capstone calibration')
+    def test_structured_judgement_is_bounded_and_no_personal_notes(self):
+        schema=json.loads((self.root/'schemas/learner-state.schema.json').read_text());s=json.loads((self.root/'examples/learners/assessor-reviewed.json').read_text());self.assertEqual(validate_schema(s,schema),[])
+        s['reviews'][0]['notes']='private';self.assertTrue(validate_schema(s,schema))
+    def test_initial_core_has_no_task_content_and_stays_small(self):
+        text=(self.root/'learner/data.js').read_text(encoding='utf-8');self.assertNotIn('"materials":',text);self.assertNotIn('"task":',text);self.assertLess(len(text.encode()),400000)
+    def test_capstone_materials_cannot_drift_from_markdown(self):
+        self.change('assessments/capstones.json',lambda d:d['items'][0]['materials'].append('Different fictional costs'));self.reject('Markdown/data drift')
+    def test_duplicate_calibration_references_refused(self):
+        self.change('assessor/benchmarks.json',lambda d:d['benchmarks'].append(d['benchmarks'][0].copy()));self.reject('Duplicate calibration')
 
 class SourceSignalTests(unittest.TestCase):
     def source(self):return {'id':'test','review_interval_days':90,'change_tracking':{'last_content_review':'2026-10-01','baseline':None}}

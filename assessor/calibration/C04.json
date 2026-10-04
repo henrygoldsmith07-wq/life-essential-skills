@@ -1,0 +1,23 @@
+{
+  "item_id": "C04",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "The voice sounds familiar, so I send 450 to the new details and keep it secret.",
+      "why": "Fails independent identity/authority/invoice verification, secrets/privacy and the 200 funding gap."
+    },
+    "assisted": {
+      "response": "After an assessor points out the missing constraint, I revise my original plan: Uncommitted funds are 900 − 650 = 250. The requested 450 is 200 more, even if genuine. Hold action while independently verifying the chair's identity/authority, the invoice, and the account change using trusted existing contacts. Urgency, secrecy, genuine details, and a realistic voice do not replace verification. A good message states the discrepancy and asks for confirmation through the agreed process. If money or codes were shared, use relevant official bank/account support and current local fraud routes promptly; record dates and references privately. Do not promise a particular recovery outcome.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+      "why": "The solving prompt must be recorded. Judge each mapped skill separately; a corrected plan cannot overwrite the original missing criterion."
+    },
+    "independent": {
+      "response": "Uncommitted funds are 900 − 650 = 250. The requested 450 is 200 more, even if genuine. Hold action while independently verifying the chair's identity/authority, the invoice, and the account change using trusted existing contacts. Urgency, secrecy, genuine details, and a realistic voice do not replace verification. A good message states the discrepancy and asks for confirmation through the agreed process. If money or codes were shared, use relevant official bank/account support and current local fraud routes promptly; record dates and references privately. Do not promise a particular recovery outcome.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice. Claim, identity, authority, invoice and account change are separate checks; trace the original invoice and use independently established official contacts. I would change the decision only when authorised purpose, correct invoice/details and funds are all verified; even a genuine request cannot fit the current 250 without a separately confirmed arrangement. My reversible action is to hold payment and seek clarification. Minimal log REQUEST-01 records relative date, unconfirmed claims, verification questions and a follow-up reminder before any deadline; learner-only access, no codes, contacts or real account details.",
+      "why": "This illustrates a defensible full response. Each mapped criterion still requires its own judgement and unchanged original evidence. A correct headline calculation alone is insufficient; no whole-domain or physical competence award."
+    },
+    "advanced": {
+      "response": "Genuine event details and a familiar voice still do not prove identity, authority, invoice or replacement-account validity. I hold payment, verify all checks through existing trusted channels, and retain the 250 uncommitted limit; a changed voice recording cannot resolve the 200 gap.",
+      "why": "An assessor must check the revised output against the new constraint, not simply agreement with this statement. Adaptation requires actual updated reasoning; it does not award an extra competency automatically."
+    }
+  },
+  "rubric_sha256": "52cdb2b1465d026d16d3e847d5c8e9a20488bf99a16d9d3ed6d53eb78e7ea943"
+}

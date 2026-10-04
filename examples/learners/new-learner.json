@@ -1,10 +1,13 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "locality": "uk",
   "pathway": "money-admin",
   "goal_competencies": [
     "money.cash-flow.independent"
   ],
   "records": [],
-  "observations": []
+  "observations": [],
+  "reviews": [],
+  "exposures": [],
+  "legacy_observations": []
 }

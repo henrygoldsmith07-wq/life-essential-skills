@@ -37,3 +37,5 @@ Keep competency IDs stable and never make urgent help dependent on curriculum pr
 ## Adaptive product maintenance
 
 Use the [architecture guide](docs/architecture.md) for canonical files, schemas and build commands. Review new variants for genuine changes in constraints and uncertainty. Preserve legacy IDs, source scope, safety gates, exposure history and access equity. Keep assessor solutions out of initial learner data and learner-facing navigation. Run the [evaluation cycle](docs/evaluation.md) with fictional evidence and the [source review process](docs/source-review.md) when guidance changes.
+
+Use explicit per-criterion judgements and derive results; never restore a learner-selectable success label. Reviews must append without rewriting original attempt facts. Keep capstone criteria mapped to complete observable subskills. Recheck benchmark material/rubric fingerprints when changing tasks. Run the locked browser suite as well as the existing offline checks, and use the [accessibility release checks](docs/accessibility.md). Do not accept automatic source accessibility or a schema-valid self-review as independent verification.

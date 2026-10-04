@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "locality": "uk",
   "pathway": "money-admin",
   "goal_competencies": [
@@ -17,14 +17,28 @@
       "help_used": false,
       "access_supports": [],
       "error_tags": [],
-      "criteria_met": [
-        "criterion",
-        "constraints",
-        "safety",
-        "reasoning"
+      "solution_seen": false,
+      "attempt_id": "legacy-fictional-MONEY-BUDGET-F01-2026-09-01",
+      "criteria_judgements": [
+        {
+          "criterion_id": "criterion",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "constraints",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "safety",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "reasoning",
+          "judgement": "met"
+        }
       ],
-      "reviewed_by": "assessor",
-      "solution_seen": false
+      "evidence_level": "assessor-reviewed",
+      "reviewer_type": "assessor"
     },
     {
       "id": "fictional-MONEY-CASH-FLOW-F01-2026-09-02",
@@ -37,14 +51,28 @@
       "help_used": false,
       "access_supports": [],
       "error_tags": [],
-      "criteria_met": [
-        "criterion",
-        "constraints",
-        "safety",
-        "reasoning"
+      "solution_seen": false,
+      "attempt_id": "legacy-fictional-MONEY-CASH-FLOW-F01-2026-09-02",
+      "criteria_judgements": [
+        {
+          "criterion_id": "criterion",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "constraints",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "safety",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "reasoning",
+          "judgement": "met"
+        }
       ],
-      "reviewed_by": "assessor",
-      "solution_seen": false
+      "evidence_level": "assessor-reviewed",
+      "reviewer_type": "assessor"
     },
     {
       "id": "fictional-M-CF-03-2026-09-03",
@@ -59,11 +87,28 @@
       "error_tags": [
         "missed-payment-timing"
       ],
-      "criteria_met": [
-        "safety"
+      "solution_seen": false,
+      "attempt_id": "legacy-fictional-M-CF-03-2026-09-03",
+      "criteria_judgements": [
+        {
+          "criterion_id": "criterion",
+          "judgement": "not-met"
+        },
+        {
+          "criterion_id": "constraints",
+          "judgement": "not-met"
+        },
+        {
+          "criterion_id": "safety",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "reasoning",
+          "judgement": "not-met"
+        }
       ],
-      "reviewed_by": "assessor",
-      "solution_seen": false
+      "evidence_level": "assessor-reviewed",
+      "reviewer_type": "assessor"
     },
     {
       "id": "fictional-M-CF-01-2026-09-05",
@@ -76,14 +121,28 @@
       "help_used": true,
       "access_supports": [],
       "error_tags": [],
-      "criteria_met": [
-        "criterion",
-        "constraints",
-        "safety",
-        "reasoning"
+      "solution_seen": true,
+      "attempt_id": "legacy-fictional-M-CF-01-2026-09-05",
+      "criteria_judgements": [
+        {
+          "criterion_id": "criterion",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "constraints",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "safety",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "reasoning",
+          "judgement": "met"
+        }
       ],
-      "reviewed_by": "assessor",
-      "solution_seen": false
+      "evidence_level": "assessor-reviewed",
+      "reviewer_type": "assessor"
     },
     {
       "id": "fictional-M-CF-02-2026-09-07",
@@ -96,14 +155,28 @@
       "help_used": false,
       "access_supports": [],
       "error_tags": [],
-      "criteria_met": [
-        "criterion",
-        "constraints",
-        "safety",
-        "reasoning"
+      "solution_seen": false,
+      "attempt_id": "legacy-fictional-M-CF-02-2026-09-07",
+      "criteria_judgements": [
+        {
+          "criterion_id": "criterion",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "constraints",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "safety",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "reasoning",
+          "judgement": "met"
+        }
       ],
-      "reviewed_by": "assessor",
-      "solution_seen": false
+      "evidence_level": "assessor-reviewed",
+      "reviewer_type": "assessor"
     },
     {
       "id": "fictional-M-CF-05-2026-09-15",
@@ -116,15 +189,32 @@
       "help_used": false,
       "access_supports": [],
       "error_tags": [],
-      "criteria_met": [
-        "criterion",
-        "constraints",
-        "safety",
-        "reasoning"
+      "solution_seen": false,
+      "attempt_id": "legacy-fictional-M-CF-05-2026-09-15",
+      "criteria_judgements": [
+        {
+          "criterion_id": "criterion",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "constraints",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "safety",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "reasoning",
+          "judgement": "met"
+        }
       ],
-      "reviewed_by": "assessor",
-      "solution_seen": false
+      "evidence_level": "assessor-reviewed",
+      "reviewer_type": "assessor"
     }
   ],
-  "observations": []
+  "observations": [],
+  "reviews": [],
+  "exposures": [],
+  "legacy_observations": []
 }

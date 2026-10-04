@@ -1,0 +1,23 @@
+{
+  "item_id": "RELATIONSHIPS-BOUNDARIES-I02",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "They agreed before, so I post the photo anyway.",
+      "why": "Withdrawn consent is ignored; the essential consent boundary fails."
+    },
+    "assisted": {
+      "response": "After a consent reminder I cancel the post and tell my friend I cannot share it.",
+      "why": "The reminder supplies the core judgement; record solving help."
+    },
+    "independent": {
+      "response": "I do not post the photo. I explain that permission has changed and I control what I share; I will not use old consent to override the person’s current boundary. I decline pressure without coercing anyone else.",
+      "why": "Responds to changed consent with actions within own control and a non-coercive boundary."
+    },
+    "advanced": {
+      "response": "If another friend has already reposted it, I request removal through an appropriate safe route and respect a refusal by seeking support rather than threats or retaliation.",
+      "why": "Adapts to a new sharing situation with safe escalation; does not promise removal or control others."
+    }
+  },
+  "rubric_sha256": "0ea7427eb49b1a71a9f3993a8d5b9101c945ae42d69ad816460159822df9a1cb"
+}

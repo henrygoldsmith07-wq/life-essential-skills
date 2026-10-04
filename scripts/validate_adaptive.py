@@ -24,17 +24,21 @@ def load(root, path, errors):
         errors.append(f'{path}: {exc}')
         return {}
 
+def rubric_fingerprint(item):
+    return hashlib.sha256(json.dumps({k:item[k] for k in ['version','scoring','materials','task']},sort_keys=True,ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
+
 def validate(root=ROOT, today=None):
     root=Path(root); today=today or date.today(); errors=[]; warnings=[]
     index=load(root,'curriculum/index.json',errors)
     skills=load(root,'curriculum/subskills.json',errors)
     bank=load(root,'assessments/bank.json',errors)
+    caps=load(root,'assessments/capstones.json',errors)
     answers=load(root,'assessor/answers.json',errors).get('answers',{})
     benchmarks=load(root,'assessor/benchmarks.json',errors)
     registry=load(root,'data/sources.json',errors)
-    expected_extension={'subskills_path':'curriculum/subskills.json','assessment_bank_path':'assessments/bank.json','learner_state_schema':'schemas/learner-state.schema.json','dashboard_path':'learner/index.html','assessor_path':'assessor/README.md'}
+    expected_extension={'subskills_path':'curriculum/subskills.json','assessment_bank_path':'assessments/bank.json','learner_state_schema':'schemas/learner-state.schema.json','dashboard_path':'learner/index.html','assessor_path':'assessor/README.md','capstone_bank_path':'assessments/capstones.json','practical_rubrics_path':'assessor/practical-rubrics.json'}
     if index.get('adaptive')!=expected_extension:errors.append('Missing or invalid adaptive architecture pointers')
-    for schema_path,value in [('schemas/subskills.schema.json',skills),('schemas/assessment-bank.schema.json',bank)]:
+    for schema_path,value in [('schemas/subskills.schema.json',skills),('schemas/assessment-bank.schema.json',bank),('schemas/assessment-bank.schema.json',caps)]:
         schema=load(root,schema_path,errors)
         if schema:errors+=validate_schema(value,schema,schema_path)
     state_schema=load(root,'schemas/learner-state.schema.json',errors)
@@ -60,7 +64,10 @@ def validate(root=ROOT, today=None):
         return True
     sources={r.get('id'):r for r in records(registry,'sources') if isinstance(r.get('id'),str)}
     comps={r.get('id'):r for r in records(skills,'competencies') if isinstance(r.get('id'),str)}
-    items={r.get('id'):r for r in records(bank,'items') if isinstance(r.get('id'),str)}
+    rows=records(bank,'items')+records(caps,'items')
+    items={r.get('id'):r for r in rows if isinstance(r.get('id'),str)}
+    if len(items)!=len(rows):errors.append('Duplicate assessment IDs across banks')
+    if {r.get('id') for r in caps.get('items',[])}!={r['id'] for r in index.get('capstones',[])}:errors.append('Capstone bank must map all existing capstones')
     tags={r.get('id') for r in records(skills,'error_tags')}
     domains={d.get('id') for d in index.get('domains',[]) if isinstance(d,dict)}
     for data,label in [(skills,'subskills'),(bank,'bank'),(benchmarks,'benchmarks')]:
@@ -151,7 +158,7 @@ def validate(root=ROOT, today=None):
         targets=strings(i,'competencies',ident,True)
         for cid in targets:
             if cid not in comps or comps[cid]['mode']!=i.get('mode'):errors.append(f'{ident}: assessment/competency mismatch')
-        if len(targets)!=1:errors.append(f'{ident}: bank tasks assess one observable target; capstones stay separate')
+        if i.get('family')!='capstone' and len(targets)!=1:errors.append(f'{ident}: bank tasks assess one observable target; capstones stay separate')
         materials=strings(i,'materials',ident,True)
         normal=lambda text:re.sub(r'\s+',' ',text).strip().lower()
         signature=hashlib.sha256(json.dumps([[normal(t) for t in materials],normal(i.get('task',''))],sort_keys=True).encode()).hexdigest()
@@ -159,7 +166,7 @@ def validate(root=ROOT, today=None):
         fingerprints.add(signature)
         for pre in strings(i,'prerequisites',ident):
             if pre not in comps:errors.append(f'{ident}: unknown prerequisite')
-        if targets and targets[0] in comps and i.get('prerequisites')!=comps[targets[0]]['prerequisites']:errors.append(f'{ident}: assessment prerequisite mismatch')
+        if i.get('family')!='capstone' and targets and targets[0] in comps and i.get('prerequisites')!=comps[targets[0]]['prerequisites']:errors.append(f'{ident}: assessment prerequisite mismatch')
         scopes(i,ident);uses(i,ident)
         safety=strings(i,'safety_constraints',ident,True)
         if not any('Fictional data only' in s for s in safety) or not any('No real payment' in s for s in safety):errors.append(f'{ident}: unsafe task: missing simulation/privacy boundaries')
@@ -168,9 +175,24 @@ def validate(root=ROOT, today=None):
         scoring=i.get('scoring')
         if not isinstance(scoring,list) or not scoring or any(not isinstance(s,dict) or not s.get('id') or not s.get('criterion') or type(s.get('essential'))is not bool for s in scoring):errors.append(f'{ident}: missing scoring criteria')
         elif len({s['id'] for s in scoring})!=len(scoring) or not any(s['essential'] for s in scoring):errors.append(f'{ident}: invalid criterion IDs/essential gates')
-        if isinstance(scoring,list) and any(not any(isinstance(s,dict) and s.get('id')==gate and s.get('essential') is True for s in scoring) for gate in ['criterion','constraints','safety']):errors.append(f'{ident}: criterion, constraint and safety gates must be essential')
+        if isinstance(scoring,list) and any(not any(isinstance(s,dict) and s.get('competency_id')==cid and (s.get('id')==gate or (i.get('family')=='capstone' and s.get('id','').endswith('-'+gate))) and s.get('essential') is True for s in scoring) for cid in targets for gate in ['criterion','constraints','safety']):errors.append(f'{ident}: criterion, constraint and safety gates must be essential')
+        if isinstance(scoring,list):
+            for row in scoring:
+                if row.get('competency_id') not in targets or not row.get('guidance'):errors.append(f'{ident}: invalid criterion mapping/guidance')
+            if i.get('family')=='capstone':
+                if len(targets)<2:errors.append(f'{ident}: capstone needs multiple explicit subskills')
+                expected=list(dict.fromkeys(p for cid in targets if cid in comps for p in comps[cid]['prerequisites']))
+                if i.get('prerequisites')!=expected:errors.append(f'{ident}: capstone prerequisite mismatch')
+                meta=next((c for c in index.get('capstones',[]) if c['id']==ident),{})
+                if i.get('jurisdictions')!=meta.get('jurisdictions'):errors.append(f'{ident}: capstone locality mismatch')
+                if safe_file(meta.get('path'),ident):
+                    markdown=(root/meta['path']).read_text(encoding='utf-8')
+                    def section(name):return markdown.split('## '+name+'\n',1)[1].split('\n## ',1)[0].strip()
+                    try:
+                        if i.get('materials')!=[section('Context'),section('Materials')] or not i.get('task','').startswith(section('Your task')) or section('Advanced variation') not in i.get('task',''):errors.append(f'{ident}: capstone Markdown/data drift')
+                    except IndexError:errors.append(f'{ident}: missing canonical capstone section')
         for tag in strings(i,'error_tags',ident,True):
-            if tag not in tags or any(tag not in comps.get(c,{}).get('error_tags',[]) for c in targets):errors.append(f'{ident}: assessment error mismatch')
+            if tag not in tags or not any(tag in comps.get(c,{}).get('error_tags',[]) for c in targets):errors.append(f'{ident}: assessment error mismatch')
         if set(strings(i,'focus_errors',ident,True))-set(i.get('error_tags',[])):errors.append(f'{ident}: unknown remediation focus')
         for task in strings(i,'next_recommended_tasks',ident,True):
             if task not in items or task==ident:errors.append(f'{ident}: dead-end or invalid next task')
@@ -187,8 +209,11 @@ def validate(root=ROOT, today=None):
             if len(strings(i,'variant_axes',i['id'],True))<5:errors.append(f'{i["id"]}: insufficient transfer variation')
     seen_bench=set()
     for b in records(benchmarks,'benchmarks'):
-        ident=b.get('item_id');seen_bench.add(ident)
+        ident=b.get('item_id')
+        if ident in seen_bench:errors.append('Duplicate calibration reference')
+        seen_bench.add(ident)
         if ident not in items or b.get('version')!=items[ident]['version']:errors.append('Benchmark assessment/version mismatch')
+        if ident in items and b.get('rubric_sha256')!=rubric_fingerprint(items[ident]):errors.append(f'{ident}: benchmark rubric changed; review calibration')
         levels=b.get('levels',{})
         if not isinstance(levels,dict) or set(levels)!={'not-yet','assisted','independent','advanced'}:errors.append(f'{ident}: missing benchmark levels');continue
         for level,row in levels.items():
@@ -196,6 +221,14 @@ def validate(root=ROOT, today=None):
             text(row,'response',ident);text(row,'why',ident)
     for family in skills.get('priority_families',[]):
         if not any(items.get(i,{}).get('family')==family for i in seen_bench):errors.append(f'{family}: missing calibration benchmark')
+    for domain in domains:
+        if not any(any(c.split('.')[0]==domain for c in items.get(i,{}).get('competencies',[])) for i in seen_bench):errors.append(f'{domain}: missing representative calibration')
+    if set(c['id'] for c in caps.get('items',[]))-seen_bench:errors.append('Missing capstone calibration')
+    practical=load(root,'assessor/practical-rubrics.json',errors)
+    expected_kinds={'observed-meal-preparation','observed-sample-restore','observed-account-protection'}
+    if {r.get('id') for r in practical.get('rubrics',[])}!=expected_kinds:errors.append('Missing practical observation rubrics')
+    for r in practical.get('rubrics',[]):
+        if r.get('gate') not in legacy or not r.get('safety') or not r.get('scoring') or any(not s.get('essential') or not s.get('guidance') for s in r.get('scoring',[])):errors.append('Invalid practical safety rubric')
     for group in ['domains','scenarios','capstones']:
         for r in index.get(group,[]):scopes(r,r['id']);uses(r,r['id'],r['source_dependencies'])
     for p in index.get('pathways',[]):
@@ -208,7 +241,7 @@ def validate(root=ROOT, today=None):
     html=(root/'learner/index.html').read_text(encoding='utf-8') if (root/'learner/index.html').exists() else ''
     for asset in re.findall(r'(?:src|href)="([^"]+)"',html):
         if not asset.startswith(('http','#')):safe_file('learner/'+asset,'Learner navigation')
-    for target in ['today','progress','practice','pathways','settings']:
+    for target in ['today','progress','practice','pathways','settings','assessor']:
         if f'id="{target}"' not in html:errors.append(f'Broken learner navigation: {target}')
     if 'answers.json' in html or 'benchmarks.json' in html:errors.append('Exposed solutions in initial learner page')
     return errors,warnings

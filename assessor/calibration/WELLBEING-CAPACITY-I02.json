@@ -1,0 +1,23 @@
+{
+  "item_id": "WELLBEING-CAPACITY-I02",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "I remove sleep and finish everything tonight.",
+      "why": "Ignores capacity and basic needs; an impossible plan is not demonstrated."
+    },
+    "assisted": {
+      "response": "A helper tells me to postpone the household task and restore my break; I do so.",
+      "why": "The helper supplied the prioritisation, so the output is assisted even if feasible."
+    },
+    "independent": {
+      "response": "I restore food, rest and a break, defer the household task and identify one manageable step on the form due tomorrow. I check the remaining form time and request support or clarification without assuming it. This is planning, not a diagnosis; persistent or urgent distress needs appropriate help.",
+      "why": "Shows capacity, basic needs, uncertainty and professional limits. Unfinished work can be a responsible result."
+    },
+    "advanced": {
+      "response": "If the form takes longer than available capacity, I contact the verified service about options early and choose the highest-consequence step rather than compressing impossible work.",
+      "why": "Revises the plan under changed workload and preserves basic needs."
+    }
+  },
+  "rubric_sha256": "16b5243368518ae7c448fefbf35608b49f847633bbc297316470a7ddc0da16cd"
+}

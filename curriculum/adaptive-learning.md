@@ -18,7 +18,9 @@ Reading and confidence never award competence. A safe conclusion that informatio
 
 Knowledge is counted separately from independent or adaptive judgement. Access support, including a scribe, screen reader, translation and extra time, does not reduce the rating. An official source supplying relevant facts can be part of independent verification; a source supplying the answer is solving help.
 
-The dashboard supports self-review. These records are provisional educational evidence, not certification. For important assessments, ask an assessor to check the original output against the rubric. Written emergency, meal or device plans do not prove CPR, cooking or actual technical configuration. Practical requirements remain separate, and the two existing practical roll-ups require an assessor's observed record.
+The dashboard requires an explicit met/partly met/not met judgement for every criterion. The outcome is derived: missing essential steps or recorded errors mean not yet; complete work with solving help or prior answers is assisted. Access support is separate. Self-reviewed success remains an unverified educational claim, not certification. Use **Assessor** to review the unchanged original output privately and append a separate judgement. A review cannot remove the help or solution exposure used during that attempt.
+
+Written emergency, meal or device plans do not prove CPR, cooking or technical configuration. Practical requirements remain separate. Assessor mode provides structured safe meal, sample-restore and demonstration-account observations; the latest observed result controls the gate and earlier history stays available. Old binary practical flags require a new structured check.
 
 ## Why a task is recommended
 
@@ -26,7 +28,7 @@ The rules use this order: due delayed reviews; unresolved safety, privacy, conse
 
 Only eligible locality and prerequisite routes are suggested. Your chosen goal also brings its missing prerequisite skills into the queue. Recent error tags select a fresh variant focused on the missed step when one is available; they never produce an opaque numerical score. Upcoming review dates appear on Today and in Progress.
 
-Foundation and independent items can share materials. The engine tracks **exposure groups**, so changing the item ID does not turn a known answer into an unseen test. When fresh variants run out, it says fresh materials are needed. Practising a known case remains useful but cannot count as transfer or retention.
+Foundation and independent items can share materials. The engine remembers those shared materials, including feedback opened on a task you later close without saving. Changing a title or task identifier cannot make a known answer fresh. When fresh variants run out, it says fresh materials are needed. Practising a known case remains useful but cannot count as transfer or retention.
 
 ## Returning later
 

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "locality": "wales",
   "pathway": "independent-living",
   "goal_competencies": [
@@ -17,14 +17,28 @@
       "help_used": false,
       "access_supports": [],
       "error_tags": [],
-      "criteria_met": [
-        "criterion",
-        "constraints",
-        "safety",
-        "reasoning"
+      "solution_seen": false,
+      "attempt_id": "legacy-fictional-MAJOR-DECISIONS-HOUSING-F01-2026-09-25",
+      "criteria_judgements": [
+        {
+          "criterion_id": "criterion",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "constraints",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "safety",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "reasoning",
+          "judgement": "met"
+        }
       ],
-      "reviewed_by": "assessor",
-      "solution_seen": false
+      "evidence_level": "assessor-reviewed",
+      "reviewer_type": "assessor"
     },
     {
       "id": "fictional-W-HO-03-2026-09-27",
@@ -39,12 +53,32 @@
       "error_tags": [
         "wrong-jurisdiction"
       ],
-      "criteria_met": [
-        "safety"
+      "solution_seen": false,
+      "attempt_id": "legacy-fictional-W-HO-03-2026-09-27",
+      "criteria_judgements": [
+        {
+          "criterion_id": "criterion",
+          "judgement": "not-met"
+        },
+        {
+          "criterion_id": "constraints",
+          "judgement": "not-met"
+        },
+        {
+          "criterion_id": "safety",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "reasoning",
+          "judgement": "not-met"
+        }
       ],
-      "reviewed_by": "assessor",
-      "solution_seen": false
+      "evidence_level": "assessor-reviewed",
+      "reviewer_type": "assessor"
     }
   ],
-  "observations": []
+  "observations": [],
+  "reviews": [],
+  "exposures": [],
+  "legacy_observations": []
 }

@@ -25,4 +25,16 @@ Two assessors can independently classify the same fictional response, compare de
 
 Author a fresh item when an exposure group has already been seen. Change constraints, missing facts, timing and trade-offs, not just a person's name. Record its ID, version, exposure group, jurisdiction, source role and essential rubric. Never create a real hazard, payment, treatment change or secret disclosure as an assessment requirement.
 
-Use only fictional evidence in shared examples. Do not put learner responses, contact details or assessor names into the local state schema. `reviewed_by` records only `self` or `assessor`, and practical observations require the latter.
+Use only fictional evidence in shared examples. Do not put learner responses, contact details or assessor names into the local state. Version 2 records `evidence_level` and `reviewer_type`, with separate review history. Version 1's `reviewed_by` is accepted only through checked migration.
+
+## Review in the dashboard
+
+Open **Assessor** in the [dashboard](../learner/index.html#assessor). Use the current local profile, or download a backup before importing another file. Choose a specific attempt, review its unchanged original response privately, compare each criterion as met/partly met/not met, and record errors. Confirm that the original output is available or that you observed the original performance directly. Save a separate assessor review and download the updated evidence file. Original attempt facts cannot be changed by this action; solving help still prevents an independent result.
+
+Calibration references for the selected attempt are available after opening that existing record. They illustrate rubric judgements, not a preferred life choice. References cover representative cases in all domains and each capstone; uncovered items use the complete rubric and must not be treated as calibrated by association. The material/task/rubric fingerprint fails validation when a reference needs review.
+
+## Observe safe practical performance
+
+Choose meal preparation, harmless sample restore or demonstration-account protection, read the permitted setting and safety limits, and directly observe the actions in [practical rubrics](practical-rubrics.json). Use an appropriate trained observer for the activity, stop unsafe actions, and record help and access adjustments separately. Use fictional placeholders and safe sample materials only; no secret, real payment, personal account or hazardous intervention is needed. Mark each observed criterion explicitly and save. A later failure changes the current gate while preserving the earlier observation. Observing someone write a plan is not practical observation.
+
+This local workflow records a review declaration; it cannot authenticate a reviewer, make an editable file tamper-proof, or certify professional competence. Do not claim those assurances from a label alone.

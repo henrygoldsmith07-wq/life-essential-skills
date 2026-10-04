@@ -1,0 +1,23 @@
+{
+  "item_id": "WORK-EVIDENCE-I02",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "My checklist improved performance by 40%.",
+      "why": "The result is invented; truthful evidence is an essential criterion."
+    },
+    "assisted": {
+      "response": "After an assessor points out the invented number, I remove it and describe the missing-supplies checklist.",
+      "why": "The factual correction was prompted, so this is assisted."
+    },
+    "independent": {
+      "response": "For problem solving: I noticed missing supplies and proposed a checklist to make checking consistent. This shows identifying a problem and proposing an action. Results have not been measured, so I do not claim 40% improvement. I would compare recorded missing supplies before and after, with limitations.",
+      "why": "Connects the requirement to a truthful specific action and an explicit outcome limitation, without fabricated numbers."
+    },
+    "advanced": {
+      "response": "If the role also requires teamwork, I explain which collaboration facts are actually known and identify the missing example rather than inventing participation.",
+      "why": "Responds to a changed job requirement with evidence boundaries and an honest limitation."
+    }
+  },
+  "rubric_sha256": "b3535938c041c9d98933de32460922ed745b6188798ea278a2967c9f1bacb11c"
+}

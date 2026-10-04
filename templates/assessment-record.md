@@ -13,14 +13,19 @@ Copy into `personal/` locally. Keep fictional/redacted outputs only. Use one rec
 - Help/checklist/prompts/solution/AI used:
 - Access adaptations:
 
-| Check | Evidence | Met / assisted / not yet |
+| Check | Evidence in the original output | Met / partly met / not met |
 | --- | --- | --- |
 | Correct calculations or explanation | | |
 | Feasible action and verification | | |
 | Appropriate safety/professional limits | | |
 | Full domain criterion, including practical evidence | | |
 
-- Result and reason:
+- Derived result and reason (missing essential step = not yet; complete with solving help = assisted):
+- Evidence level: self-reviewed / assessor-reviewed / practical-observed
+- Reviewer type: learner / assessor (no name or identifying notes)
+- Separate assessor review date and judgement, leaving original facts intact:
+- Assessment version and phase: diagnostic / practice / transfer / retention
+- Error categories identified:
 - Correction or smaller next practice:
 - Next recommended skill:
 - Next review date:

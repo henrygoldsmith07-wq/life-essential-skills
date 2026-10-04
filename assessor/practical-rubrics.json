@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "rubrics": [
+    {
+      "id": "observed-meal-preparation",
+      "title": "Prepare a simple meal safely",
+      "gate": "home.applied",
+      "competencies": [
+        "home.meals.independent"
+      ],
+      "safety": "Use a familiar safe recipe, suitable equipment and an appropriate trained observer. Stop when unsafe; no live hazards or required allergens. Written plans cannot prove cooking. Access adjustments are welcome.",
+      "version": 1,
+      "scoring": [
+        {
+          "id": "instructions",
+          "criterion": "Follows the chosen instructions and checks suitability with the observer before beginning.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        },
+        {
+          "id": "hygiene",
+          "criterion": "Uses appropriate hand, surface and food hygiene without unsafe product mixing.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        },
+        {
+          "id": "preparation",
+          "criterion": "Handles the familiar equipment and food safely; stops and seeks help when needed.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        },
+        {
+          "id": "storage",
+          "criterion": "Checks safe serving/storage instructions and completes a safe cleanup.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        }
+      ]
+    },
+    {
+      "id": "observed-sample-restore",
+      "title": "Restore a harmless sample file",
+      "gate": "digital-safety.applied",
+      "competencies": [
+        "digital-safety.backup.independent"
+      ],
+      "safety": "Use only a new harmless sample file in a sandbox or local practice folder. No deletion of real files, account secrets, unsafe downloads or remote sharing. A verbal plan cannot prove a restore.",
+      "version": 1,
+      "scoring": [
+        {
+          "id": "sample",
+          "criterion": "Creates a fictional non-sensitive sample and a separate backup without exposing other files.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        },
+        {
+          "id": "restore",
+          "criterion": "Restores a separate copy without overwriting or deleting real data.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        },
+        {
+          "id": "verification",
+          "criterion": "Opens the restored sample and checks its content matches the original.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        },
+        {
+          "id": "privacy",
+          "criterion": "Uses a trusted permitted tool and keeps data and access private.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        }
+      ]
+    },
+    {
+      "id": "observed-account-protection",
+      "title": "Protect a demonstration account",
+      "gate": "digital-safety.applied",
+      "competencies": [
+        "digital-safety.accounts.independent"
+      ],
+      "safety": "Use an offline mock interface or authorised demonstration account only. Never show or store passwords, recovery codes, personal accounts or real credentials. No login required in this product.",
+      "version": 1,
+      "scoring": [
+        {
+          "id": "credentials",
+          "criterion": "Demonstrates a unique credential strategy without revealing any secret.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        },
+        {
+          "id": "mfa",
+          "criterion": "Locates and explains the supported MFA controls in the mock interface.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        },
+        {
+          "id": "recovery",
+          "criterion": "Demonstrates a private recovery and access plan using fictional placeholders.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        },
+        {
+          "id": "updates",
+          "criterion": "Checks trusted update/recovery routes and explains how to avoid unverified prompts.",
+          "essential": true,
+          "guidance": "An assessor must observe this action safely. Met means independently performed; partly met means incomplete; not met includes any unsafe action. Record solving help separately from access support."
+        }
+      ]
+    }
+  ]
+}

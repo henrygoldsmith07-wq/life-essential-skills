@@ -1,0 +1,23 @@
+{
+  "item_id": "W-HO-03",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "I can reuse my England tenancy rules in Wales.",
+      "why": "Wrong jurisdiction; current residence does not determine the new property’s housing guidance."
+    },
+    "assisted": {
+      "response": "After an assessor points out the border, I use Welsh Government renting-homes guidance.",
+      "why": "Correct route chosen after solving assistance."
+    },
+    "independent": {
+      "response": "I keep guidance separate by property location, use Welsh occupation-contract sources for Wales, compare full upfront/ongoing costs and ask about missing terms. I do not declare legal validity from an advert.",
+      "why": "Correct jurisdiction, verification, financial comparison and legal limits."
+    },
+    "advanced": {
+      "response": "If the proposed property changes nation or terms change, I recheck scope and costs, seek the relevant qualified advice and keep the next step reversible.",
+      "why": "Re-evaluates jurisdiction and feasibility when the context changes."
+    }
+  },
+  "rubric_sha256": "1382db6b6ead6c46e8653f7ed8a50209d8cf10bb3a846a52f89889ba1a223894"
+}

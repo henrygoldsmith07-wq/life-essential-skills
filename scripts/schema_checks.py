@@ -7,7 +7,7 @@ from datetime import date
 import json
 import re
 
-KEYS={'$schema','title','description','type','const','enum','required','properties','additionalProperties','items','minItems','maxItems','uniqueItems','minLength','pattern','format','minimum'}
+KEYS={'$schema','title','description','type','const','enum','required','properties','additionalProperties','items','minItems','maxItems','uniqueItems','minLength','maxLength','pattern','format','minimum'}
 
 def validate_schema(value,schema,context='$'):
     errors=[]
@@ -31,6 +31,7 @@ def validate_schema(value,schema,context='$'):
         for n,v in enumerate(value):errors+=validate_schema(v,schema.get('items',{}),context+f'[{n}]')
     if isinstance(value,str):
         if len(value)<schema.get('minLength',0):errors.append(context+': text too short')
+        if len(value)>schema.get('maxLength',float('inf')):errors.append(context+': text too long')
         if 'pattern' in schema and not re.search(schema['pattern'],value):errors.append(context+': invalid pattern')
         if schema.get('format')=='date':
             try:

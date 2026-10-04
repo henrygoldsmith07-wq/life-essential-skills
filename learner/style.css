@@ -3,3 +3,7 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}@media print{.nav,.actions,button,footer{display:none}main{padding:0}.card{break-inside:avoid}}
 
 .table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.85rem}th,td{padding:10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}pre{white-space:pre-wrap;background:var(--pale);padding:15px;border-radius:7px}
+
+.filters{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr))}.filters select,input[type=search]{width:100%}input[type=search]{padding:12px;border:1px solid #8d9f93;border-radius:7px;color:var(--ink);background:var(--white)}.skill-card,.criterion{border-bottom:1px solid var(--line);padding:18px 0}.skill-card:last-child,.criterion:last-child{border:0}.task-text{white-space:pre-line}.time{font-weight:700;color:var(--green)}input[type=file]{max-width:100%}body{overflow-wrap:anywhere}.criterion label{display:block}.criterion select{max-width:100%}@media(max-width:650px){.filters{grid-template-columns:1fr}.nav{flex-wrap:wrap;overflow:visible}.nav a{min-height:44px}}
+
+.feature .actions button:first-child{background:var(--green);color:white}

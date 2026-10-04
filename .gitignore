@@ -25,3 +25,5 @@ __pycache__/
 node_modules/
 external-link-report.json
 source-change-report.json
+test-results/
+playwright-report/

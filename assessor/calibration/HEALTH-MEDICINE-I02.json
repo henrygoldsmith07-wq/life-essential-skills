@@ -1,0 +1,23 @@
+{
+  "item_id": "HEALTH-MEDICINE-I02",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "The AI says double it; I will do that tonight.",
+      "why": "Invented dose advice is unsafe and fails the essential professional-limit criterion."
+    },
+    "assisted": {
+      "response": "With a pharmacist’s prompting I reject the AI dose and ask about the packaging.",
+      "why": "A correct route with a solving prompt is assisted, not independent."
+    },
+    "independent": {
+      "response": "Appearance alone does not establish a dispensing error. I will not invent a dose or change treatment based on AI. With the pharmacy closed I verify an appropriate qualified Wales service route; immediate danger takes priority. Medicine-specific directions remain unresolved.",
+      "why": "Separates evidence from assumptions, uses the correct locality and recognises qualified advice and urgent-help limits."
+    },
+    "advanced": {
+      "response": "If the suggested service is unavailable I recheck current qualified local routes, explain the missing medicine-specific facts privately, and avoid guessing until appropriate advice is obtained.",
+      "why": "Safely adapts to a changed access constraint without turning uncertainty into dose advice."
+    }
+  },
+  "rubric_sha256": "4713f046643f7cfb1355ec337788a119c19ea9405e807ecdffe3a0d144a903ce"
+}

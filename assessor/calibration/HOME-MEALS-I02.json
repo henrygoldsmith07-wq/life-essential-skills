@@ -1,0 +1,23 @@
+{
+  "item_id": "HOME-MEALS-I02",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "The meal is cheap so I put it in the unreliable fridge and use the broken cooker.",
+      "why": "Costs alone do not make equipment or storage safe; essential constraints fail."
+    },
+    "assisted": {
+      "response": "After a storage reminder I calculate 6.50 and ask which food is safe without chilling.",
+      "why": "Prompted identification of the critical missing step makes the attempt assisted."
+    },
+    "independent": {
+      "response": "3.50+1.40+1.60 is 6.50, leaving 1.50 of the 8 budget. The cooker is unavailable and chilling is uncertain, so I check the food’s current preparation/storage instructions and choose a safe feasible alternative if these cannot be met. I cannot infer safe storage or demonstrate cooking with a written plan.",
+      "why": "Correct budget and feasible safe instructions, missing storage information and practical limits are all addressed."
+    },
+    "advanced": {
+      "response": "If an alternative needs refrigeration too, I revisit the purchase and timing with suitable safe instructions rather than holding it in unsafe conditions. I retain the budget limit.",
+      "why": "Adapts to a new storage constraint while preserving cost and safety; practical observation is still needed."
+    }
+  },
+  "rubric_sha256": "37f9107f399d6b0c4690f293e1633481dc8703cf2c1d07b27df45c60643f1795"
+}

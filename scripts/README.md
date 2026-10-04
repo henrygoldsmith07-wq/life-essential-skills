@@ -38,3 +38,5 @@ GitHub Actions uses read-only repository permission. `quality.yml` checks struct
 ## Adaptive checks
 
 `validate_adaptive.py` extends the existing validator with subskill graphs, legacy roll-ups, schemas, source scope, benchmarks and learner navigation. `build_learner.py` renders teaching Markdown and public item metadata without answers; `--check` rejects drift. The browser and Node tests use the same `learner/engine.js`. `check_source_changes.py` flags main-text changes and stale reviews without automatically accepting guidance. See [architecture](../docs/architecture.md) and [human source review](../docs/source-review.md).
+
+Version-2 evidence tests additionally cover structured outcomes, separate assessor reviews, practical observation gates, checked migration, abandoned-feedback exposure and granular capstones. Run `node --test tests/engine.test.js tests/evidence.test.js`. The normal quality workflow also runs the locked Playwright/axe suite: `npm ci`, `npx playwright install chromium`, `npm run test:e2e`. These packages are development-only; the static learner app has no runtime package dependencies.

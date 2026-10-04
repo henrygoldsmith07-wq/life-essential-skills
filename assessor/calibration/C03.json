@@ -1,0 +1,23 @@
+{
+  "item_id": "C03",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "Guaranteed approval means affordable; B costs only 52 and my next pay covers everything.",
+      "why": "Confuses instalments with total cost and misses pre-income payments and missing essential commitments."
+    },
+    "assisted": {
+      "response": "After an assessor points out the missing constraint, I revise my original plan: After reserving 240, only 60 remains; the repair creates a 120 shortfall. A costs 10 + 3 × 65 = 205, a borrowing cost of 25; B costs 4 × 52 = 208, a cost of 28. A's fee is immediate; B requires a payment before the stated next income. Future commitments are missing, so neither can be declared affordable. Check the repair's necessity, timing, possible alternatives, complete terms, and legitimate advice or arrangements. Approval is a lender decision, not proof that repayment fits Rae's life. Break the task into gathering bills and making one verified enquiry. A delayed income requires revisiting dates and assumptions early.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+      "why": "The solving prompt must be recorded. Judge each mapped skill separately; a corrected plan cannot overwrite the original missing criterion."
+    },
+    "independent": {
+      "response": "After reserving 240, only 60 remains; the repair creates a 120 shortfall. A costs 10 + 3 × 65 = 205, a borrowing cost of 25; B costs 4 × 52 = 208, a cost of 28. A's fee is immediate; B requires a payment before the stated next income. Future commitments are missing, so neither can be declared affordable. Check the repair's necessity, timing, possible alternatives, complete terms, and legitimate advice or arrangements. Approval is a lender decision, not proof that repayment fits Rae's life. Break the task into gathering bills and making one verified enquiry. A delayed income requires revisiting dates and assumptions early.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice. I separate the lender’s approval claim from the original offer facts; I obtain full original terms through an independently verified provider/advice route before deciding. Neither option is established affordable. Preserve food/rest, postpone a lower-consequence household task and take one manageable step: gather fictional bill timings for the enquiry. This is a planning problem, not a diagnosis; if distress requires professional support I use an appropriate verified route. Minimal log EXPENSE-01: relative dates, quoted totals, missing terms, verified contact route and a reminder before the day-five payment; learner-only access, no actual financial records.",
+      "why": "This illustrates a defensible full response. Each mapped criterion still requires its own judgement and unchanged original evidence. A correct headline calculation alone is insufficient; no whole-domain or physical competence award."
+    },
+    "advanced": {
+      "response": "With income delayed a further week, B’s first repayment still falls before income and A’s immediate fee reduces available funds further. I revisit essential bill dates and ask the verified provider/adviser about alternatives early, without assuming approval, eligibility or a compulsory payment arrangement.",
+      "why": "An assessor must check the revised output against the new constraint, not simply agreement with this statement. Adaptation requires actual updated reasoning; it does not award an extra competency automatically."
+    }
+  },
+  "rubric_sha256": "9cce240b36436f4d6ec0541ba37ef92298022d2f97f61aa8142255c3dcb4753b"
+}

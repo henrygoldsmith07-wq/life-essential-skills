@@ -1,74 +1,406 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "fictional": true,
   "results": [
     {
       "competency_id": "money.budget.foundation",
-      "pre": {
+      "attempts": 1,
+      "latest": {
         "outcome": "demonstrated",
-        "criteria_met": 4,
-        "criteria_total": 4,
+        "original_outcome": "demonstrated",
+        "criteria_met": [
+          "criterion",
+          "constraints",
+          "safety",
+          "reasoning"
+        ],
+        "criteria_judgements": [
+          {
+            "criterion_id": "criterion",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "constraints",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "safety",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "reasoning",
+            "judgement": "met"
+          }
+        ],
         "help_used": false,
+        "solution_seen": false,
         "error_tags": [],
         "item_id": "MONEY-BUDGET-F01",
-        "date": "2026-09-01"
+        "assessment_version": 1,
+        "date": "2026-09-01",
+        "evidence_level": "assessor-reviewed",
+        "reviewer_type": "assessor",
+        "review_basis": null
+      },
+      "practice": [],
+      "pre": {
+        "outcome": "demonstrated",
+        "original_outcome": "demonstrated",
+        "criteria_met": [
+          "criterion",
+          "constraints",
+          "safety",
+          "reasoning"
+        ],
+        "criteria_judgements": [
+          {
+            "criterion_id": "criterion",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "constraints",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "safety",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "reasoning",
+            "judgement": "met"
+          }
+        ],
+        "help_used": false,
+        "solution_seen": false,
+        "error_tags": [],
+        "item_id": "MONEY-BUDGET-F01",
+        "assessment_version": 1,
+        "date": "2026-09-01",
+        "evidence_level": "assessor-reviewed",
+        "reviewer_type": "assessor",
+        "review_basis": null
       },
       "unseen_post": null,
       "delayed": null,
+      "criteria_gained": null,
+      "criteria_lost": null,
       "errors_removed": [],
-      "comparable_criteria": false
+      "errors_introduced": [],
+      "retention_change": {
+        "criteria_gained": null,
+        "criteria_lost": null,
+        "errors_removed": [],
+        "errors_introduced": []
+      },
+      "comparable_criteria": false,
+      "practical_evidence": [],
+      "review_history": [],
+      "note": "Descriptive evidence; self-review is unverified. No causal effectiveness claim."
     },
     {
       "competency_id": "money.cash-flow.foundation",
-      "pre": {
+      "attempts": 1,
+      "latest": {
         "outcome": "demonstrated",
-        "criteria_met": 4,
-        "criteria_total": 4,
+        "original_outcome": "demonstrated",
+        "criteria_met": [
+          "criterion",
+          "constraints",
+          "safety",
+          "reasoning"
+        ],
+        "criteria_judgements": [
+          {
+            "criterion_id": "criterion",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "constraints",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "safety",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "reasoning",
+            "judgement": "met"
+          }
+        ],
         "help_used": false,
+        "solution_seen": false,
         "error_tags": [],
         "item_id": "MONEY-CASH-FLOW-F01",
-        "date": "2026-09-02"
+        "assessment_version": 1,
+        "date": "2026-09-02",
+        "evidence_level": "assessor-reviewed",
+        "reviewer_type": "assessor",
+        "review_basis": null
+      },
+      "practice": [],
+      "pre": {
+        "outcome": "demonstrated",
+        "original_outcome": "demonstrated",
+        "criteria_met": [
+          "criterion",
+          "constraints",
+          "safety",
+          "reasoning"
+        ],
+        "criteria_judgements": [
+          {
+            "criterion_id": "criterion",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "constraints",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "safety",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "reasoning",
+            "judgement": "met"
+          }
+        ],
+        "help_used": false,
+        "solution_seen": false,
+        "error_tags": [],
+        "item_id": "MONEY-CASH-FLOW-F01",
+        "assessment_version": 1,
+        "date": "2026-09-02",
+        "evidence_level": "assessor-reviewed",
+        "reviewer_type": "assessor",
+        "review_basis": null
       },
       "unseen_post": null,
       "delayed": null,
+      "criteria_gained": null,
+      "criteria_lost": null,
       "errors_removed": [],
-      "comparable_criteria": false
+      "errors_introduced": [],
+      "retention_change": {
+        "criteria_gained": null,
+        "criteria_lost": null,
+        "errors_removed": [],
+        "errors_introduced": []
+      },
+      "comparable_criteria": false,
+      "practical_evidence": [],
+      "review_history": [],
+      "note": "Descriptive evidence; self-review is unverified. No causal effectiveness claim."
     },
     {
       "competency_id": "money.cash-flow.independent",
+      "attempts": 4,
+      "latest": {
+        "outcome": "demonstrated",
+        "original_outcome": "demonstrated",
+        "criteria_met": [
+          "criterion",
+          "constraints",
+          "safety",
+          "reasoning"
+        ],
+        "criteria_judgements": [
+          {
+            "criterion_id": "criterion",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "constraints",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "safety",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "reasoning",
+            "judgement": "met"
+          }
+        ],
+        "help_used": false,
+        "solution_seen": false,
+        "error_tags": [],
+        "item_id": "M-CF-05",
+        "assessment_version": 1,
+        "date": "2026-09-15",
+        "evidence_level": "assessor-reviewed",
+        "reviewer_type": "assessor",
+        "review_basis": null
+      },
+      "practice": [
+        {
+          "outcome": "assisted",
+          "original_outcome": "assisted",
+          "criteria_met": [
+            "criterion",
+            "constraints",
+            "safety",
+            "reasoning"
+          ],
+          "criteria_judgements": [
+            {
+              "criterion_id": "criterion",
+              "judgement": "met"
+            },
+            {
+              "criterion_id": "constraints",
+              "judgement": "met"
+            },
+            {
+              "criterion_id": "safety",
+              "judgement": "met"
+            },
+            {
+              "criterion_id": "reasoning",
+              "judgement": "met"
+            }
+          ],
+          "help_used": true,
+          "solution_seen": true,
+          "error_tags": [],
+          "item_id": "M-CF-01",
+          "assessment_version": 1,
+          "date": "2026-09-05",
+          "evidence_level": "assessor-reviewed",
+          "reviewer_type": "assessor",
+          "review_basis": null
+        }
+      ],
       "pre": {
         "outcome": "not-yet",
-        "criteria_met": 1,
-        "criteria_total": 4,
+        "original_outcome": "not-yet",
+        "criteria_met": [
+          "safety"
+        ],
+        "criteria_judgements": [
+          {
+            "criterion_id": "criterion",
+            "judgement": "not-met"
+          },
+          {
+            "criterion_id": "constraints",
+            "judgement": "not-met"
+          },
+          {
+            "criterion_id": "safety",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "reasoning",
+            "judgement": "not-met"
+          }
+        ],
         "help_used": false,
+        "solution_seen": false,
         "error_tags": [
           "missed-payment-timing"
         ],
         "item_id": "M-CF-03",
-        "date": "2026-09-03"
+        "assessment_version": 1,
+        "date": "2026-09-03",
+        "evidence_level": "assessor-reviewed",
+        "reviewer_type": "assessor",
+        "review_basis": null
       },
       "unseen_post": {
         "outcome": "demonstrated",
-        "criteria_met": 4,
-        "criteria_total": 4,
+        "original_outcome": "demonstrated",
+        "criteria_met": [
+          "criterion",
+          "constraints",
+          "safety",
+          "reasoning"
+        ],
+        "criteria_judgements": [
+          {
+            "criterion_id": "criterion",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "constraints",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "safety",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "reasoning",
+            "judgement": "met"
+          }
+        ],
         "help_used": false,
+        "solution_seen": false,
         "error_tags": [],
         "item_id": "M-CF-02",
-        "date": "2026-09-07"
+        "assessment_version": 1,
+        "date": "2026-09-07",
+        "evidence_level": "assessor-reviewed",
+        "reviewer_type": "assessor",
+        "review_basis": null
       },
       "delayed": {
         "outcome": "demonstrated",
-        "criteria_met": 4,
-        "criteria_total": 4,
+        "original_outcome": "demonstrated",
+        "criteria_met": [
+          "criterion",
+          "constraints",
+          "safety",
+          "reasoning"
+        ],
+        "criteria_judgements": [
+          {
+            "criterion_id": "criterion",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "constraints",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "safety",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "reasoning",
+            "judgement": "met"
+          }
+        ],
         "help_used": false,
+        "solution_seen": false,
         "error_tags": [],
         "item_id": "M-CF-05",
-        "date": "2026-09-15"
+        "assessment_version": 1,
+        "date": "2026-09-15",
+        "evidence_level": "assessor-reviewed",
+        "reviewer_type": "assessor",
+        "review_basis": null
       },
+      "criteria_gained": [
+        "criterion",
+        "constraints",
+        "reasoning"
+      ],
+      "criteria_lost": [],
       "errors_removed": [
         "missed-payment-timing"
       ],
-      "comparable_criteria": true
+      "errors_introduced": [],
+      "retention_change": {
+        "criteria_gained": [],
+        "criteria_lost": [],
+        "errors_removed": [],
+        "errors_introduced": []
+      },
+      "comparable_criteria": true,
+      "practical_evidence": [],
+      "review_history": [],
+      "note": "Descriptive evidence; self-review is unverified. No causal effectiveness claim."
     }
   ]
 }

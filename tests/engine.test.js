@@ -6,12 +6,17 @@ const path=require('node:path');
 const E=require('../learner/engine.js');
 const root=path.resolve(__dirname,'..');
 const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
-const D={index:read('curriculum/index.json'),skills:read('curriculum/subskills.json'),bank:read('assessments/bank.json')};
+const D={index:read('curriculum/index.json'),skills:read('curriculum/subskills.json'),bank:{items:[...read('assessments/bank.json').items,...read('assessments/capstones.json').items]},practical:read('assessor/practical-rubrics.json')};
 const TODAY='2026-10-03';
 const clone=v=>JSON.parse(JSON.stringify(v));
 function add(state,id,date=TODAY,extra={}) {
-  const i=D.bank.items.find(i=>i.id===id);
-  return E.recordAttempt(state,D,id,{outcome:'demonstrated',criteria_met:i.scoring.filter(s=>s.essential).map(s=>s.id),...extra},date);
+  const i=D.bank.items.find(i=>i.id===id),{criteria_met,outcome,...facts}=extra;
+  const met=criteria_met||(outcome==='not-yet'?[]:i.scoring.map(s=>s.id));
+  return E.recordAttempt(state,D,id,{criteria_judgements:i.scoring.map(s=>({criterion_id:s.id,judgement:met.includes(s.id)?'met':'not-met'})),...facts},date);
+}
+function observe(state,kind,date,outcome='demonstrated'){
+  const r=D.practical.rubrics.find(r=>r.id===kind);
+  return E.recordObservation(state,D,kind,{criteria_judgements:r.scoring.map(s=>({criterion_id:s.id,judgement:outcome==='demonstrated'?'met':'not-met'}))},date);
 }
 function readyCash(){let s=E.emptyState('uk','money-admin');s.goal_competencies=['money.cash-flow.independent'];s=add(s,'MONEY-BUDGET-F01','2026-09-20');s=add(s,'MONEY-CASH-FLOW-F01','2026-09-21');return s;}
 
@@ -37,8 +42,8 @@ test('access supports preserve independent outcome',()=>{
   assert.equal(E.summary(s,'money.cash-flow.independent',D).status,'demonstrated');
 });
 test('all essential criteria and no error tags are required',()=>{
-  assert.throws(()=>add(readyCash(),'M-CF-02',TODAY,{criteria_met:['criterion']}),/essential/);
-  assert.throws(()=>add(readyCash(),'M-CF-02',TODAY,{error_tags:['arithmetic-error']}),/essential/);
+  assert.equal(add(readyCash(),'M-CF-02',TODAY,{criteria_met:['criterion']}).records.at(-1).outcome,'not-yet');
+  assert.equal(add(readyCash(),'M-CF-02',TODAY,{error_tags:['arithmetic-error']}).records.at(-1).outcome,'not-yet');
 });
 test('unsafe error repair is prioritised within eligible goals',()=>{
   let s=E.emptyState('uk','general');s=add(s,'DIGITAL-SAFETY-SCAMS-F01','2026-10-01',{outcome:'not-yet',error_tags:['reveals-sensitive-information'],criteria_met:[]});
@@ -58,14 +63,14 @@ test('due reviews outrank unassessed goals and select unseen material',()=>{
   const r=E.recommend(s,D,TODAY);assert.equal(r.kind,'retention');assert.ok(!s.records.some(a=>a.item_id===r.item.id));assert.ok(r.reason[0].includes('due'));
 });
 test('transfer blocks foundation material recycled under a different item ID',()=>{
-  assert.throws(()=>add(readyCash(),'M-CF-01','2026-09-22'),/unseen materials/);
+  assert.throws(()=>add(readyCash(),'M-CF-01','2026-09-22',{phase:'transfer'}),/unseen materials/);
 });
 test('retention requires earlier independent performance and a later date',()=>{
   assert.throws(()=>add(E.emptyState(),'M-CF-01',TODAY,{phase:'retention'}),/earlier demonstration/);
   let s=add(E.emptyState(),'M-CF-01',TODAY);assert.throws(()=>add(s,'M-CF-02',TODAY,{phase:'retention'}),/delayed materials/);
 });
 test('seen answers can be practised but not accepted as new transfer',()=>{
-  let s=add(E.emptyState(),'M-CF-01','2026-09-20');assert.throws(()=>add(s,'M-CF-01','2026-09-21'),/unseen/);
+  let s=add(E.emptyState(),'M-CF-01','2026-09-20');assert.throws(()=>add(s,'M-CF-01','2026-09-21',{phase:'transfer'}),/unseen/);
   s=add(s,'M-CF-01','2026-09-21',{phase:'practice',solution_seen:true});assert.equal(s.records.at(-1).outcome,'assisted');
 });
 test('UK unspecified never inherits England or Wales law and GB excludes NI',()=>{
@@ -85,7 +90,7 @@ test('malformed record objects are refused without crashing validation',()=>{
   s.records.at(-1).phase='retention';assert.ok(E.validateState(s,D,TODAY).length);
 });
 test('invalid dates, versions, outcomes, errors and duplicate IDs are refused',()=>{
-  for(const edit of [r=>r.date='2026-02-30',r=>r.date='2099-01-01',r=>r.assessment_version=99,r=>r.outcome='confident',r=>r.error_tags=['unknown'],r=>r.error_tags=null,r=>r.criteria_met=null,r=>r.competency_id='home.meals.independent']){
+  for(const edit of [r=>r.date='2026-02-30',r=>r.date='2099-01-01',r=>r.assessment_version=99,r=>r.outcome='confident',r=>r.error_tags=['unknown'],r=>r.error_tags=null,r=>r.criteria_judgements=null,r=>r.competency_id='home.meals.independent']){
     const s=readyCash();edit(s.records[0]);assert.ok(E.validateState(s,D,TODAY).length);
   }
   const s=readyCash();s.records[1].id=s.records[0].id;assert.ok(E.validateState(s,D,TODAY).length);
@@ -93,15 +98,15 @@ test('invalid dates, versions, outcomes, errors and duplicate IDs are refused',(
 test('legacy rollup uses only stated relevant subskills and practical evidence gate',()=>{
   const s=add(E.emptyState(),'MONEY-BUDGET-F01',TODAY);assert.equal(E.rollup(s,'money.foundation',D).status,'demonstrated');assert.notEqual(E.rollup(s,'money.independent',D).status,'demonstrated');
   let h=E.emptyState();h=add(h,'HOME-MEALS-I01','2026-09-01');h=add(h,'HOME-ROUTINES-I01','2026-09-02');assert.equal(E.rollup(h,'home.applied',D).status,'practical-evidence-required');
-  h.observations=[{kind:'observed-meal-preparation',date:'2026-09-03',outcome:'demonstrated',reviewed_by:'assessor'}];assert.equal(E.rollup(h,'home.applied',D).status,'demonstrated');
+  h=observe(h,'observed-meal-preparation','2026-09-03');assert.equal(E.rollup(h,'home.applied',D).status,'demonstrated');
 });
 test('a failed practical observation revokes current practical rollup',()=>{
-  let h=add(E.emptyState(),'HOME-MEALS-I01','2026-09-01');h=add(h,'HOME-ROUTINES-I01','2026-09-02');h.observations=[{kind:'observed-meal-preparation',date:'2026-09-03',outcome:'demonstrated',reviewed_by:'assessor'},{kind:'observed-meal-preparation',date:'2026-09-04',outcome:'not-yet',reviewed_by:'assessor'}];assert.equal(E.rollup(h,'home.applied',D).status,'practical-evidence-required');
+  let h=add(E.emptyState(),'HOME-MEALS-I01','2026-09-01');h=add(h,'HOME-ROUTINES-I01','2026-09-02');h=observe(h,'observed-meal-preparation','2026-09-03');h=observe(h,'observed-meal-preparation','2026-09-04','not-yet');assert.equal(E.rollup(h,'home.applied',D).status,'practical-evidence-required');
 });
 test('fresh-bank exhaustion is explicit and never substitutes an old answer',()=>{
   let s=E.emptyState();s.goal_competencies=['money.cash-flow.independent'];
   const custom=clone(D);custom.bank.items=custom.bank.items.filter(i=>i.competencies[0]==='money.cash-flow.foundation');custom.skills.competencies=custom.skills.competencies.filter(c=>c.id==='money.cash-flow.foundation');custom.skills.rollups=[];s.goal_competencies=['money.cash-flow.foundation'];
-  for(const i of custom.bank.items)s=E.recordAttempt(s,custom,i.id,{outcome:'not-yet',criteria_met:[],phase:'practice'},TODAY);
+  for(const i of custom.bank.items)s=E.recordAttempt(s,custom,i.id,{criteria_judgements:i.scoring.map(s=>({criterion_id:s.id,judgement:'not-met'})),phase:'practice'},TODAY);
   assert.equal(E.recommend(s,custom,TODAY).kind,'fresh-materials-needed');
 });
 test('determinism: same state/date yields byte-identical recommendation',()=>{
@@ -116,7 +121,7 @@ test('evaluation separates missing observations, unseen post and retained eviden
   const newResult=E.evaluate(add(E.emptyState(),'M-CF-01'),D)[0];assert.equal(newResult.pre,null);assert.equal(newResult.delayed,null);
 });
 test('published fictional evaluation output matches the shared engine',()=>{
-  assert.deepEqual(read('examples/evaluation-output.json'),{schema_version:1,fictional:true,results:E.evaluate(read('examples/learners/evaluation-cycle.json'),D)});
+  assert.deepEqual(read('examples/evaluation-output.json'),{schema_version:2,fictional:true,results:E.evaluate(read('examples/learners/evaluation-cycle.json'),D)});
 });
 test('progress separates knowledge and independent performance; no vanity metrics',()=>{
   const p=E.progress(add(E.emptyState(),'MONEY-BUDGET-F01'),D,TODAY);assert.equal(p.totals.knowledge,1);assert.equal(p.totals.demonstrated,0);assert.equal(p.totals.retention_passed,0);assert.equal(p.totals.xp,undefined);
@@ -134,4 +139,4 @@ test('knowledge item cannot be claimed as transfer; solution exposure forces hel
   assert.equal(add(E.emptyState(),'M-CF-01',TODAY,{solution_seen:true}).records[0].outcome,'assisted');
 });
 
-if(process.argv.includes('--write-example'))fs.writeFileSync(path.join(root,'examples/evaluation-output.json'),JSON.stringify({schema_version:1,fictional:true,results:E.evaluate(read('examples/learners/evaluation-cycle.json'),D)},null,2)+'\n');
+if(process.argv.includes('--write-example'))fs.writeFileSync(path.join(root,'examples/evaluation-output.json'),JSON.stringify({schema_version:2,fictional:true,results:E.evaluate(read('examples/learners/evaluation-cycle.json'),D)},null,2)+'\n');

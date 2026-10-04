@@ -1,0 +1,23 @@
+{
+  "item_id": "CRITICAL-THINKING-STATISTICS-I02",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "18 is larger than 12 so non-users do better; the campaign proves causation.",
+      "why": "Unequal denominators are ignored and causation is invented."
+    },
+    "assisted": {
+      "response": "With a denominator prompt I calculate 20% and 15%, and say the difference is five percentage points.",
+      "why": "Correct calculation after a solving prompt is assisted."
+    },
+    "independent": {
+      "response": "12/60 is 20%; 18/120 is 15%. The absolute difference is 5 percentage points; relative increase is 5/15, about 33.3%, not twice. Selection and follow-up are unknown; this does not establish that the campaign caused the difference.",
+      "why": "Arithmetic, denominators, relative/absolute distinction, missing methods and causal limits are all shown."
+    },
+    "advanced": {
+      "response": "If follow-up differs between groups, I check comparable measurement before using even the descriptive comparison. I seek the original methods rather than treating the headline as evidence.",
+      "why": "Handles a changed measurement constraint and lowers the certainty of the conclusion appropriately."
+    }
+  },
+  "rubric_sha256": "47346096ff6f9415a0f410b57cf244ccf38ae5e410da9a060d30ee8fee4356b9"
+}

@@ -1,0 +1,23 @@
+{
+  "item_id": "LIFE-ADMIN-CONTRACTS-I02",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "The 18 premium proves the first policy is best and the claim will be covered.",
+      "why": "A lower premium is not proof of coverage or entitlement; important terms are missing."
+    },
+    "assisted": {
+      "response": "After a full-term cost prompt I calculate 216 and 300 and ask what events are covered.",
+      "why": "Correct after solving help; still assisted."
+    },
+    "independent": {
+      "response": "12×18=216 and 12×25=300. The excesses are 200 and 100; premiums and excess alone do not establish value. I request covered events, exclusions, renewal/cancellation and responsibility terms through a verified route, and compare like-for-like scenarios without claiming entitlement.",
+      "why": "Defined-term arithmetic, missing contract terms, independent verification and professional limits all met."
+    },
+    "advanced": {
+      "response": "If the renewal price or covered event changes, I recompute term cost and compare the actual terms again before committing; I do not assume the previous comparison still holds.",
+      "why": "Adapts to changed price and scope without declaring coverage."
+    }
+  },
+  "rubric_sha256": "0b0f4d006b09a4abf5cd9ab71ac22cd943979a1a958ca039bb5caac01a84cb63"
+}

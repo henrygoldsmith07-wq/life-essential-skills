@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "solution": "Recurring housing/transport is 860 for A and 840 for B. With other essentials of 325, totals are 1,185 and 1,165, leaving 315 and 335 before other costs and savings. Upfront costs are 1,350 and 1,500; both fit the stated 1,550 fund, leaving 200 or 50. B's recurring cost is lower but its upfront buffer is much smaller. A's late shift needs another verified transport option; B's access needs checking. At income 1,250, remaining amounts fall to 65 or 85 before other costs, making missing costs and disruption important. A responsible answer can choose either, defer, or seek advice; it must explain affordability, access, written terms, verification, and gaps. Include offline emergency contacts and safe household responsibilities. A written menu does not demonstrate cooking.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+  "explanation": "Review each mapped skill separately against its complete criterion. Missing evidence remains not yet even if the rest of the capstone succeeds. Written planning cannot establish physical competence. The variation informs reasoning; it does not award an adaptive competency automatically.",
+  "common_mistakes": {
+    "arithmetic-error": "Check the arithmetic and units",
+    "assumes-missing-information": "Name missing facts before deciding",
+    "misses-access-constraint": "Include access needs and realistic travel",
+    "overconfident-conclusion": "Match the conclusion to the evidence",
+    "wrong-jurisdiction": "Check the nation and the guidance scope",
+    "unverified-entitlement": "Verify legal scope without promising an entitlement",
+    "fails-independent-verification": "Verify through an independent official route",
+    "reveals-sensitive-information": "Keep secrets and personal records private",
+    "missed-payment-timing": "Place money in date order",
+    "unsafe-advice": "Recognise a safety limit and seek appropriate help",
+    "no-fallback": "Prepare a feasible fallback"
+  },
+  "next_steps": {}
+}

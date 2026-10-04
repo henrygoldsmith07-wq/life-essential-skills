@@ -4,6 +4,8 @@
 
 Use **Today → Learn → Practice → Feedback → Next task → Reassess**. The dashboard adapts to educational evidence stored locally in your browser. The text curriculum below remains available. To launch the interface, follow the short [dashboard instructions](learner/README.md).
 
+Outcomes follow structured criterion judgements, help and errors. Progress distinguishes self-review, assessor review and observed practical checks. The [local assessor workflow](assessor/README.md) keeps reviews separate from original attempts; five integrated capstones record results by subskill. See the candid [product review](docs/product-review.md) for remaining limits.
+
 **Learn, practise, demonstrate, revisit: practical skills for an independent life.**
 
 Twelve short guides support a competency-based curriculum. Progress means what you can do with realistic situations, not how many pages you read. Everything works in Markdown; no app or paid subscription is required.

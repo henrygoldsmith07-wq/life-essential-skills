@@ -1,0 +1,23 @@
+{
+  "item_id": "C01",
+  "version": 1,
+  "levels": {
+    "not-yet": {
+      "response": "I choose B because rent is higher; I will sign without checking access or Welsh contract terms.",
+      "why": "Fails full-cost comparison, jurisdiction and missing access verification."
+    },
+    "assisted": {
+      "response": "After an assessor points out the missing constraint, I revise my original plan: Recurring housing/transport is 860 for A and 840 for B. With other essentials of 325, totals are 1,185 and 1,165, leaving 315 and 335 before other costs and savings. Upfront costs are 1,350 and 1,500; both fit the stated 1,550 fund, leaving 200 or 50. B's recurring cost is lower but its upfront buffer is much smaller. A's late shift needs another verified transport option; B's access needs checking. At income 1,250, remaining amounts fall to 65 or 85 before other costs, making missing costs and disruption important. A responsible answer can choose either, defer, or seek advice; it must explain affordability, access, written terms, verification, and gaps. Include offline emergency contacts and safe household responsibilities. A written menu does not demonstrate cooking.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice.",
+      "why": "The solving prompt must be recorded. Judge each mapped skill separately; a corrected plan cannot overwrite the original missing criterion."
+    },
+    "independent": {
+      "response": "Recurring housing/transport is 860 for A and 840 for B. With other essentials of 325, totals are 1,185 and 1,165, leaving 315 and 335 before other costs and savings. Upfront costs are 1,350 and 1,500; both fit the stated 1,550 fund, leaving 200 or 50. B's recurring cost is lower but its upfront buffer is much smaller. A's late shift needs another verified transport option; B's access needs checking. At income 1,250, remaining amounts fall to 65 or 85 before other costs, making missing costs and disruption important. A responsible answer can choose either, defer, or seek advice; it must explain affordability, access, written terms, verification, and gaps. Include offline emergency contacts and safe household responsibilities. A written menu does not demonstrate cooking.\n\nThere may be several defensible choices. Assess the reasoning, verification, calculations, and feasible actions rather than agreement with a preferred life choice. I defer commitment until B’s step-free route and written Welsh occupation-contract/notice/repair terms are checked through current Welsh Government and relevant housing advice routes. My reversible alternative is to delay moving while clarifying access and all omitted costs. Fictional records: MOVE-01 comparison, TERMS-01 questions, ROUTE-01 route check; access restricted to the learner, no account data; reminder before the proposed signing date. Offline emergency plan: ask the responsible site contact to verify the primary and accessible exits; agree an assembly point and helper consent; verify official help contacts, keep an offline copy, and explicitly leave the unknown safe route unresolved rather than inventing one.",
+      "why": "This illustrates a defensible full response. Each mapped criterion still requires its own judgement and unchanged original evidence. A correct headline calculation alone is insufficient; no whole-domain or physical competence award."
+    },
+    "advanced": {
+      "response": "At income 1250, A leaves 65 and B 85 before missing costs; B’s week-long access disruption is unresolved. I recheck accessible transport cost and timings and both upfront buffers (200/50), then defer or request a verified alternative before signing. I do not use hypothetical borrowing to fill the gap.",
+      "why": "An assessor must check the revised output against the new constraint, not simply agreement with this statement. Adaptation requires actual updated reasoning; it does not award an extra competency automatically."
+    }
+  },
+  "rubric_sha256": "74765245285d7a2764cffe0619b54d48e3a347497de324e7fec9787950babbf1"
+}
