@@ -18,8 +18,13 @@
       "prerequisites": [
         "major-decisions.comparison.foundation",
         "money.budget.foundation",
+        "home.meals.foundation",
+        "life-admin.contracts.foundation",
+        "critical-thinking.verification.foundation",
         "major-decisions.housing.foundation",
         "life-admin.records.foundation",
+        "digital-safety.accounts.foundation",
+        "work.evidence.foundation",
         "emergencies.preparedness.foundation"
       ],
       "jurisdictions": [
@@ -364,10 +369,14 @@
       "estimated_time_minutes": 60,
       "prerequisites": [
         "work.evidence.foundation",
-        "money.payslip.foundation",
-        "work.pay.foundation",
         "learning-time.planning.foundation",
-        "life-admin.records.foundation"
+        "relationships.communication.foundation",
+        "money.payslip.foundation",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation",
+        "work.pay.foundation",
+        "life-admin.records.foundation",
+        "money.budget.foundation"
       ],
       "jurisdictions": [
         "global"
@@ -701,8 +710,11 @@
         "money.credit.foundation",
         "money.cash-flow.independent",
         "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation",
         "wellbeing.capacity.foundation",
-        "life-admin.records.foundation"
+        "life-admin.records.foundation",
+        "money.budget.foundation",
+        "work.evidence.foundation"
       ],
       "jurisdictions": [
         "global"
@@ -1020,7 +1032,10 @@
         "digital-safety.scams.foundation",
         "critical-thinking.verification.foundation",
         "critical-thinking.decisions.foundation",
-        "life-admin.records.foundation"
+        "life-admin.records.foundation",
+        "money.budget.foundation",
+        "digital-safety.accounts.foundation",
+        "work.evidence.foundation"
       ],
       "jurisdictions": [
         "global"
@@ -1332,7 +1347,10 @@
         "learning-time.planning.foundation",
         "learning-time.revision.foundation",
         "wellbeing.capacity.foundation",
-        "life-admin.records.foundation"
+        "life-admin.records.foundation",
+        "money.budget.foundation",
+        "digital-safety.accounts.foundation",
+        "work.evidence.foundation"
       ],
       "jurisdictions": [
         "global"

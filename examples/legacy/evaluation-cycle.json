@@ -21,7 +21,8 @@
         "criterion",
         "constraints",
         "safety",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false
@@ -41,7 +42,8 @@
         "criterion",
         "constraints",
         "safety",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false
@@ -60,7 +62,8 @@
         "missed-payment-timing"
       ],
       "criteria_met": [
-        "safety"
+        "safety",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false
@@ -80,7 +83,8 @@
         "criterion",
         "constraints",
         "safety",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false
@@ -100,7 +104,8 @@
         "criterion",
         "constraints",
         "safety",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false
@@ -120,7 +125,8 @@
         "criterion",
         "constraints",
         "safety",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false

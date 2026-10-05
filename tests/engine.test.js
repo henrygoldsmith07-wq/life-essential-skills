@@ -18,7 +18,7 @@ function observe(state,kind,date,outcome='demonstrated'){
   const r=D.practical.rubrics.find(r=>r.id===kind);
   return E.recordObservation(state,D,kind,{criteria_judgements:r.scoring.map(s=>({criterion_id:s.id,judgement:outcome==='demonstrated'?'met':'not-met'}))},date);
 }
-function readyCash(){let s=E.emptyState('uk','money-admin');s.goal_competencies=['money.cash-flow.independent'];s=add(s,'MONEY-BUDGET-F01','2026-09-20');s=add(s,'MONEY-CASH-FLOW-F01','2026-09-21');return s;}
+function readyCash(){let s=E.emptyState('uk','money-admin');s.goal_competencies=['money.cash-flow.independent'];s=add(s,'CRITICAL-THINKING-VERIFICATION-F01','2026-09-19');s=add(s,'DIGITAL-SAFETY-ACCOUNTS-F01','2026-09-19');s=add(s,'MONEY-BUDGET-F01','2026-09-20');s=add(s,'MONEY-CASH-FLOW-F01','2026-09-21');return s;}
 
 test('every fictional profile passes strict state and semantic validation',()=>{
   for(const file of fs.readdirSync(path.join(root,'examples/learners')))assert.deepEqual(E.validateState(read('examples/learners/'+file),D,TODAY),[],file);
@@ -137,6 +137,43 @@ test('full current performance avoids redundant knowledge review without inventi
 test('knowledge item cannot be claimed as transfer; solution exposure forces help',()=>{
   assert.throws(()=>add(E.emptyState(),'MONEY-BUDGET-F01',TODAY,{phase:'transfer'}),/knowledge task/);
   assert.equal(add(E.emptyState(),'M-CF-01',TODAY,{solution_seen:true}).records[0].outcome,'assisted');
+});
+test('the case-decision gate blocks a fluent generic answer that misses the case decision',()=>{
+  // All the shared rubric rows met (safety/reasoning/criterion/constraints), but the
+  // case-specific `case-decision` is not met: this is "I read this", not "I can do
+  // this", and must not score demonstrated.
+  const good=add(readyCash(),'M-CF-02',TODAY,{criteria_met:['criterion','constraints','safety','reasoning','case-decision']});
+  assert.equal(good.records.at(-1).outcome,'demonstrated');
+  const generic=add(readyCash(),'M-CF-02',TODAY,{criteria_met:['criterion','constraints','safety','reasoning']});
+  assert.equal(generic.records.at(-1).outcome,'not-yet');
+});
+test('every bank item carries a case-specific case-decision gate',()=>{
+  const nonCapstone=D.bank.items.filter(i=>i.family!=='capstone');
+  assert.ok(nonCapstone.length>200);
+  for(const i of nonCapstone){
+    const row=i.scoring.find(s=>s.id==='case-decision');
+    assert.ok(row,'missing case-decision: '+i.id);
+    assert.equal(row.essential,true);
+    assert.ok(row.criterion.length>20,'empty case-decision: '+i.id);
+  }
+  // The gate must be case-specific, not the shared boilerplate rows.
+  const texts=new Set(nonCapstone.map(i=>i.scoring.find(s=>s.id==='case-decision').criterion));
+  assert.ok(texts.size>100,'case-decision is not varied across items: '+texts.size);
+});
+test('cross-domain prerequisites block a task until the source foundation is demonstrated',()=>{
+  // major-decisions.housing.independent now requires the documented cross-domain
+  // foundations (money.budget, home.meals, life-admin.contracts, critical-thinking.verification).
+  const comp=D.skills.competencies.find(c=>c.id==='major-decisions.housing.independent');
+  assert.ok(comp.prerequisites.includes('critical-thinking.verification.foundation'));
+  assert.ok(comp.prerequisites.includes('money.budget.foundation'));
+  // The engine surfaces the target as blocked with those missing prerequisites, and
+  // recommends a prerequisite first rather than the blocked task.
+  const s=E.emptyState('wales','independent-living');s.goal_competencies=['major-decisions.housing.independent'];
+  const r=E.recommend(s,D,TODAY);
+  const blocked=r.blocked.find(b=>b.competency_id==='major-decisions.housing.independent');
+  assert.ok(blocked,'target should be reported as blocked');
+  assert.ok(blocked.missing.includes('critical-thinking.verification.foundation'));
+  assert.notEqual(r.competency.id,'major-decisions.housing.independent');
 });
 
 if(process.argv.includes('--write-example'))fs.writeFileSync(path.join(root,'examples/evaluation-output.json'),JSON.stringify({schema_version:2,fictional:true,results:E.evaluate(read('examples/learners/evaluation-cycle.json'),D)},null,2)+'\n');

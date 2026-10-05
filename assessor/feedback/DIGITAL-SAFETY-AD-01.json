@@ -1,7 +1,7 @@
 {
   "version": 1,
   "solution": "QR codes and small fees do not prove legitimacy. Use a separately verified delivery/provider route, protect card details and take proportionate action for any actual exposure. Revalidate facts, feasibility and scope after the change; do not simply repeat the base answer. Seek appropriate support or renegotiation where the constraints cannot safely be satisfied.",
-  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot. Changed condition: The fictional password was entered before the warning was noticed. A familiar voice now asks for a recovery code and secrecy. Assess the revised plan against this actual change; an unresolved feasibility gap must be named honestly.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: QR codes and small fees do not prove legitimacy. This item is set up to catch: Verify through a route you reach independently, not one supplied in the message; Describe the verification step only; State the safety limit and the qualified help you would seek; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
   "common_mistakes": {
     "fails-independent-verification": "Verify through an independent official route",
     "reveals-sensitive-information": "Keep secrets and personal records private",
@@ -9,9 +9,9 @@
     "overconfident-conclusion": "Match the conclusion to the evidence"
   },
   "next_steps": {
-    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "reveals-sensitive-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+    "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+    "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+    "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+    "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
   }
 }

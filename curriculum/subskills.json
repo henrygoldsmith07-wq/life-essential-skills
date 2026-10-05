@@ -236,7 +236,9 @@
       "criterion": "Balance a fictional monthly budget including essentials, irregular reserves and a stated unallocated amount.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "money.budget.foundation"
+        "money.budget.foundation",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
       ],
       "related_competencies": [
         "money.cash-flow.independent",
@@ -310,7 +312,9 @@
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
         "money.cash-flow.foundation",
-        "money.budget.foundation"
+        "money.budget.foundation",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
       ],
       "related_competencies": [
         "money.budget.independent",
@@ -388,7 +392,9 @@
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
         "money.credit.foundation",
-        "money.cash-flow.independent"
+        "money.cash-flow.independent",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
       ],
       "related_competencies": [
         "money.budget.independent",
@@ -466,7 +472,9 @@
       "criterion": "Reconcile a fictional statement, distinguish available from pending funds, and verify an unexpected payment request independently.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "money.banking.foundation"
+        "money.banking.foundation",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
       ],
       "related_competencies": [
         "money.budget.independent",
@@ -540,7 +548,9 @@
       "criterion": "Reconcile gross pay, stated deductions and received pay; raise a specific query without inventing tax liability or sharing records.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "money.payslip.foundation"
+        "money.payslip.foundation",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
       ],
       "related_competencies": [
         "money.budget.independent",
@@ -1302,7 +1312,8 @@
       "criterion": "Explain a safe account-protection and recovery plan using unique credentials, MFA, updates and private recovery methods.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "digital-safety.accounts.foundation"
+        "digital-safety.accounts.foundation",
+        "critical-thinking.verification.foundation"
       ],
       "related_competencies": [
         "digital-safety.scams.independent",
@@ -1365,7 +1376,8 @@
       "criterion": "Pause a suspicious request, verify through an independent route, protect secrets and choose proportionate recovery steps.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "digital-safety.scams.foundation"
+        "digital-safety.scams.foundation",
+        "critical-thinking.verification.foundation"
       ],
       "related_competencies": [
         "digital-safety.accounts.independent",
@@ -1432,7 +1444,8 @@
       "criterion": "Plan and verify a restore of a fictional non-sensitive file, minimise sharing and avoid unsafe downloads.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "digital-safety.backup.foundation"
+        "digital-safety.backup.foundation",
+        "critical-thinking.verification.foundation"
       ],
       "related_competencies": [
         "digital-safety.accounts.independent",
@@ -1495,7 +1508,10 @@
       "criterion": "Produce a costed feasible meal plan using instructions and safe storage questions; distinguish planning from observed cooking.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "home.meals.foundation"
+        "home.meals.foundation",
+        "emergencies.preparedness.foundation",
+        "health.access.foundation",
+        "money.budget.foundation"
       ],
       "related_competencies": [
         "home.routines.independent",
@@ -1557,7 +1573,10 @@
       "criterion": "Use label instructions to plan a feasible household routine without mixing products or assuming equipment suitability.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "home.routines.foundation"
+        "home.routines.foundation",
+        "emergencies.preparedness.foundation",
+        "health.access.foundation",
+        "money.budget.foundation"
       ],
       "related_competencies": [
         "home.meals.independent",
@@ -1619,7 +1638,10 @@
       "criterion": "Recognise hazardous repair limits and contact a verified responsible service using a factual fictional report.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "home.maintenance.foundation"
+        "home.maintenance.foundation",
+        "emergencies.preparedness.foundation",
+        "health.access.foundation",
+        "money.budget.foundation"
       ],
       "related_competencies": [
         "home.meals.independent",
@@ -1681,7 +1703,9 @@
       "criterion": "Match a job requirement to a truthful specific example with an action, outcome and limitation.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "work.evidence.foundation"
+        "work.evidence.foundation",
+        "learning-time.planning.foundation",
+        "relationships.communication.foundation"
       ],
       "related_competencies": [
         "work.offers.independent",
@@ -1745,7 +1769,9 @@
       "criterion": "Evaluate a fictional offer’s hours, costs, access and uncertain terms and draft a specific verified clarification.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "work.offers.foundation"
+        "work.offers.foundation",
+        "learning-time.planning.foundation",
+        "relationships.communication.foundation"
       ],
       "related_competencies": [
         "work.evidence.independent",
@@ -1810,7 +1836,9 @@
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
         "work.pay.foundation",
-        "money.payslip.foundation"
+        "money.payslip.foundation",
+        "learning-time.planning.foundation",
+        "relationships.communication.foundation"
       ],
       "related_competencies": [
         "work.evidence.independent",
@@ -2069,7 +2097,10 @@
       "criterion": "Compare costs over a defined term and identify renewal, cancellation, responsibility and coverage questions.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "life-admin.contracts.foundation"
+        "life-admin.contracts.foundation",
+        "money.budget.foundation",
+        "digital-safety.accounts.foundation",
+        "work.evidence.foundation"
       ],
       "related_competencies": [
         "life-admin.records.independent",
@@ -2132,7 +2163,10 @@
       "criterion": "Organise fictional records and a renewal reminder with minimum data, verified contacts and explicit access limits.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "life-admin.records.foundation"
+        "life-admin.records.foundation",
+        "money.budget.foundation",
+        "digital-safety.accounts.foundation",
+        "work.evidence.foundation"
       ],
       "related_competencies": [
         "life-admin.contracts.independent",
@@ -2202,7 +2236,10 @@
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
         "life-admin.complaints.foundation",
-        "digital-safety.scams.foundation"
+        "digital-safety.scams.foundation",
+        "money.budget.foundation",
+        "digital-safety.accounts.foundation",
+        "work.evidence.foundation"
       ],
       "related_competencies": [
         "life-admin.contracts.independent",
@@ -2267,7 +2304,10 @@
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
         "major-decisions.comparison.foundation",
-        "money.budget.foundation"
+        "money.budget.foundation",
+        "home.meals.foundation",
+        "life-admin.contracts.foundation",
+        "critical-thinking.verification.foundation"
       ],
       "related_competencies": [
         "major-decisions.housing.independent",
@@ -2332,7 +2372,11 @@
       "criterion": "Use Wales housing sources to identify occupation-contract questions, access and costs without substituting England rules or declaring legal validity.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "major-decisions.housing.foundation"
+        "major-decisions.housing.foundation",
+        "money.budget.foundation",
+        "home.meals.foundation",
+        "life-admin.contracts.foundation",
+        "critical-thinking.verification.foundation"
       ],
       "related_competencies": [
         "major-decisions.comparison.independent",
@@ -2399,7 +2443,11 @@
       "criterion": "Verify a feasible route to work or services with timing, access, cost and a fallback.",
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
-        "major-decisions.access.foundation"
+        "major-decisions.access.foundation",
+        "money.budget.foundation",
+        "home.meals.foundation",
+        "life-admin.contracts.foundation",
+        "critical-thinking.verification.foundation"
       ],
       "related_competencies": [
         "major-decisions.comparison.independent",
@@ -2868,7 +2916,9 @@
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
         "money.saving.foundation",
-        "money.budget.foundation"
+        "money.budget.foundation",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
       ],
       "related_competencies": [
         "money.budget.independent",
@@ -2943,7 +2993,9 @@
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
         "money.insurance.foundation",
-        "money.budget.foundation"
+        "money.budget.foundation",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
       ],
       "related_competencies": [
         "money.budget.independent",
@@ -3018,7 +3070,9 @@
       "evidence": "A fictional, criterion-checked output; solving help and access supports recorded separately.",
       "prerequisites": [
         "money.investing.foundation",
-        "money.budget.foundation"
+        "money.budget.foundation",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
       ],
       "related_competencies": [
         "money.budget.independent",
