@@ -18,10 +18,22 @@
 - Add `scripts/build_adaptive_coverage.py` to report how many families lack an Advanced route. It is **report-only by default and CI-safe**; `--apply` is opt-in and deliberately has a human gate, because every new adaptive item needs an authored answer and calibration before it may award evidence. The gap is tracked, not papered over with uncalibrated content.
 - Express the four evidence stages in plain language in the interface (practise with help / do it yourself / adapt / a later check) so learners meet the assessment terminology only when they need it.
 
+### Verification added
+
+- `scripts/verify_roadmap.js`, `scripts/verify_views.js` and `scripts/verify_styles.js` run in CI. Between them they assert that the roadmap never contradicts the engine, that the product views render from real data, that the AI boundary cannot be bypassed, that every class a view emits is actually styled, and that no raw error-tag id reaches the learner.
+
 ### Boundaries and integrity
 
 - Add `learner/ai-boundary.js`: the interface and guards for optional AI assistance (scenario generation, alternative examples, personalised explanations, practice coaching). AI may never grade, derive an outcome, or turn an assisted performance into independent evidence; every AI artefact is labelled a draft, counts as solving help and is never persisted into learner evidence. The product ships with no provider and works fully without one.
 - The deterministic evidence model is unchanged. `evidence.js` remains the only thing that can derive an outcome; onboarding cannot create evidence; a simulation cannot alter how evidence is recorded. The engine and evidence test suites pass unmodified.
+
+### Fixed (found by reviewing the above)
+
+- **"Can still do this" could outlive its evidence.** A capability kept the retained label even after the learner had done newer fresh transfer, so the latest attempt was no longer a retention check. The label now requires the most recent attempt to actually be a retention check, and can only under-claim, never over-claim.
+- **Raw error-tag ids reached the learner.** The roadmap and the feedback panel showed ids such as `assumes-missing-information` verbatim. Both now resolve the curriculum's learner-facing wording, with a readable fallback so a machine id can never be shown.
+- **Onboarding discarded the goal's declared order.** Diagnostic answers were inserted ahead of the goal's own backbone, reordering a "first job" plan around unrelated competencies. The backbone now keeps its declared order and the diagnostic refines it.
+- **Missing styles for two emitted classes** (`.ms--todo`, affecting most milestones, and `.domain__loading`), found by a new automated check rather than by reading the stylesheet.
+- Dead code removed: a repeated `capState` evaluation (four per capability, 92 times per render), an unused map and an unused variable, an identity `map`, and a view dependency on a window global rather than the date already passed in.
 
 ### Performance
 
