@@ -108,3 +108,15 @@ It is explicitly **a learning record, not a qualification**. Most of it is self-
 Local-first and unchanged. No mandatory login, no analytics, no backend. Your written response is temporary and never stored. Only bounded educational evidence is kept, in this browser. Download a backup if you want one.
 
 The state and interfaces are structured so encrypted sync or accounts could be added later without rewriting the competency engine.
+
+## What CI enforces
+
+The product's promises are checked automatically, so they cannot quietly stop being true:
+
+- The roadmap never contradicts the engine, and the Profile never claims more than the engine says.
+- No milestone can be earned without real evidence behind it.
+- Every simulation develops across at least three stages, poses a real decision, and genuinely changes the situation rather than only reporting an outcome.
+- No content reaches the page unescaped, and no raw internal id is shown to a learner.
+- Every control has a label; radio groups are in a fieldset with a legend.
+- Damaged or outdated stored evidence renders safely instead of being shown as achievement.
+- The roadmap stays within a time budget and derives each capability's summary once per render.

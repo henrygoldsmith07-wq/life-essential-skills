@@ -20,7 +20,7 @@
 
 ### Verification added
 
-- `scripts/verify_roadmap.js`, `verify_views.js`, `verify_styles.js` and `verify_content.js` run in CI. Between them they assert that the roadmap never contradicts the engine, that the product views render from real data, that the AI boundary cannot be bypassed, that every class a view emits is actually styled, that no raw error-tag id reaches the learner, that no milestone can be earned without real evidence, and that every simulation genuinely develops and changes the situation.
+- `scripts/verify_roadmap.js`, `verify_views.js`, `verify_styles.js`, `verify_content.js`, `verify_accessibility.js`, `verify_performance.js` and `verify_resilience.js` run in CI. Between them they assert that the roadmap never contradicts the engine, that the product views render from real data, that the AI boundary cannot be bypassed, that every class a view emits is styled, that no raw error-tag id reaches the learner, that no milestone can be earned without real evidence, that every simulation genuinely develops and changes the situation, that no content is rendered unescaped, that every control is labelled, that the roadmap stays fast and linear, and that damaged stored evidence degrades safely instead of being shown as achievement.
 
 ### Boundaries and integrity
 
@@ -34,12 +34,14 @@
 - **Raw error-tag ids reached the learner** in all three surfaces that show them: the roadmap, the feedback panel and the Profile. Each now resolves the curriculum's learner-facing wording, with a readable fallback so a machine id can never be shown.
 - **Onboarding discarded the goal's declared order.** Diagnostic answers were inserted ahead of the goal's own backbone, reordering a "first job" plan around unrelated competencies. The backbone now keeps its declared order and the diagnostic refines it.
 - **Three of the five simulations did not actually change the constraint** in their final stage — an outcome, not a new fact. They now end with concrete changed circumstances that force a fresh decision, which is what the product promises.
+- **Onboarding radio options had no ids**, so their label association was not programmatic and each option was not individually addressable. They now have stable ids.
 - **Missing styles for two emitted classes** (`.ms--todo`, affecting most milestones, and `.domain__loading`), found by a new automated check rather than by reading the stylesheet.
 - Dead code removed: a repeated `capState` evaluation (four per capability, 92 times per render), an unused map and an unused variable, an identity `map`, and a view dependency on a window global rather than the date already passed in.
 
 ### Performance
 
 - Render the roadmap's capability lists lazily on domain expansion, cutting first-paint markup from ~81 KB to ~22 KB (a 73% reduction) so the capability map stays usable on ordinary phones.
+- Stop recomputing the same evidence summary up to three times per capability. A per-render memo reduced engine summary calls from 260 to exactly 92 (one per competency) and cut derivation from 26.3 ms to 12.1 ms for a learner with 200 records — on a path that runs after every navigation and every saved attempt.
 
 ## Unreleased (earlier)
 
