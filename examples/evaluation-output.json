@@ -12,7 +12,8 @@
           "criterion",
           "constraints",
           "safety",
-          "reasoning"
+          "reasoning",
+          "case-decision"
         ],
         "criteria_judgements": [
           {
@@ -29,6 +30,10 @@
           },
           {
             "criterion_id": "reasoning",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "case-decision",
             "judgement": "met"
           }
         ],
@@ -50,7 +55,8 @@
           "criterion",
           "constraints",
           "safety",
-          "reasoning"
+          "reasoning",
+          "case-decision"
         ],
         "criteria_judgements": [
           {
@@ -67,6 +73,10 @@
           },
           {
             "criterion_id": "reasoning",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "case-decision",
             "judgement": "met"
           }
         ],
@@ -107,7 +117,8 @@
           "criterion",
           "constraints",
           "safety",
-          "reasoning"
+          "reasoning",
+          "case-decision"
         ],
         "criteria_judgements": [
           {
@@ -124,6 +135,10 @@
           },
           {
             "criterion_id": "reasoning",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "case-decision",
             "judgement": "met"
           }
         ],
@@ -145,7 +160,8 @@
           "criterion",
           "constraints",
           "safety",
-          "reasoning"
+          "reasoning",
+          "case-decision"
         ],
         "criteria_judgements": [
           {
@@ -162,6 +178,10 @@
           },
           {
             "criterion_id": "reasoning",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "case-decision",
             "judgement": "met"
           }
         ],
@@ -202,7 +222,8 @@
           "criterion",
           "constraints",
           "safety",
-          "reasoning"
+          "reasoning",
+          "case-decision"
         ],
         "criteria_judgements": [
           {
@@ -219,6 +240,10 @@
           },
           {
             "criterion_id": "reasoning",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "case-decision",
             "judgement": "met"
           }
         ],
@@ -240,7 +265,8 @@
             "criterion",
             "constraints",
             "safety",
-            "reasoning"
+            "reasoning",
+            "case-decision"
           ],
           "criteria_judgements": [
             {
@@ -257,6 +283,10 @@
             },
             {
               "criterion_id": "reasoning",
+              "judgement": "met"
+            },
+            {
+              "criterion_id": "case-decision",
               "judgement": "met"
             }
           ],
@@ -293,6 +323,10 @@
           {
             "criterion_id": "reasoning",
             "judgement": "not-met"
+          },
+          {
+            "criterion_id": "case-decision",
+            "judgement": "not-met"
           }
         ],
         "help_used": false,
@@ -314,7 +348,8 @@
           "criterion",
           "constraints",
           "safety",
-          "reasoning"
+          "reasoning",
+          "case-decision"
         ],
         "criteria_judgements": [
           {
@@ -331,6 +366,10 @@
           },
           {
             "criterion_id": "reasoning",
+            "judgement": "met"
+          },
+          {
+            "criterion_id": "case-decision",
             "judgement": "met"
           }
         ],
@@ -351,7 +390,8 @@
           "criterion",
           "constraints",
           "safety",
-          "reasoning"
+          "reasoning",
+          "case-decision"
         ],
         "criteria_judgements": [
           {
@@ -369,6 +409,10 @@
           {
             "criterion_id": "reasoning",
             "judgement": "met"
+          },
+          {
+            "criterion_id": "case-decision",
+            "judgement": "met"
           }
         ],
         "help_used": false,
@@ -384,7 +428,8 @@
       "criteria_gained": [
         "criterion",
         "constraints",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "criteria_lost": [],
       "errors_removed": [

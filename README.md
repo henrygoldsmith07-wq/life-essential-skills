@@ -1,10 +1,10 @@
 # Life Essential Skills
 
-[Open the learner dashboard](learner/index.html) · [How evidence works](curriculum/adaptive-learning.md)
+[Open the learner dashboard](learner/index.html) · [How evidence works](curriculum/adaptive-learning.md) · [Deploying to Vercel](#deploying-to-vercel)
 
 Use **Today → Learn → Practice → Feedback → Next task → Reassess**. The dashboard adapts to educational evidence stored locally in your browser. The text curriculum below remains available. To launch the interface, follow the short [dashboard instructions](learner/README.md).
 
-Outcomes follow structured criterion judgements, help and errors. Progress distinguishes self-review, assessor review and observed practical checks. The [local assessor workflow](assessor/README.md) keeps reviews separate from original attempts; five integrated capstones record results by subskill. See the candid [product review](docs/product-review.md) for remaining limits.
+Outcomes follow structured criterion judgements, help and errors. Progress distinguishes self-review, assessor review and observed practical checks. The [local assessor workflow](assessor/README.md) keeps reviews separate from original attempts; five integrated capstones record results by subskill. See the candid [product review](docs/product-review.md) for remaining limits and the [curriculum review](docs/curriculum-review.md) for a competency-system assessment of the learn–practise–feedback–reassess loop.
 
 **Learn, practise, demonstrate, revisit: practical skills for an independent life.**
 
@@ -77,6 +77,19 @@ Use the maintained [source register](RESOURCES.md) for organisation, purpose, ju
 Copy worksheets into `personal/` locally; that folder is ignored by Git. Keep actual identity documents, account details, passwords, recovery codes, contacts, and health records out of GitHub, including private repositories. Use fictional or redacted evidence. `.gitignore` is a guardrail, not secure storage.
 
 Use spoken, typed, or other accessible responses; adapt tasks to your abilities and equipment. Split sessions as needed. No real payment, treatment change, hazardous repair, or disclosure is required for assessment.
+
+## Deploying to Vercel
+
+The learner app is a **dependency-free static site** — plain HTML, CSS and ES modules with committed generated assets. It needs no build step, no server runtime and no environment variables, because all evidence stays in the learner's browser.
+
+Deploy by importing the repository in Vercel; [`vercel.json`](vercel.json) sets `framework: null`, `buildCommand: null` and `outputDirectory: "."`, so Vercel serves the repository as static files without running a build. The root `index.html` is a landing page linking to `/learner/`.
+
+Two deployment safeguards:
+
+- [`.vercelignore`](.vercelignore) keeps maintainer-only paths (`scripts/`, `tests/`, `.github/`) out of the upload and excludes the aggregate `assessor/answers.json` and `assessor/benchmarks.json`, so a deployed site never serves every reference solution in one request. The browser only ever loads the per-item `assessor/feedback/<id>.json` and `assessor/calibration/<id>.json`, and only after an attempt.
+- `scripts/static_smoke.js` verifies every runtime asset resolves over HTTP with the right content type, that `learner/data.js` embeds no solutions, and that `.vercelignore` neither drops a required asset nor leaks the aggregate answer files. It runs in CI.
+
+To preview locally before deploying, serve the repository root over HTTP (`python -m http.server 8000`) and open `/learner/`. Re-run the drift checks after editing content: `python scripts/build_learner.py`, then `python scripts/static_smoke.js`.
 
 ## Maintaining the curriculum
 

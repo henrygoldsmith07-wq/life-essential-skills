@@ -207,6 +207,31 @@ def validate(root=ROOT, today=None):
         if len(variants)<5:errors.append(f'{family}: needs five meaningful variants')
         for i in variants:
             if len(strings(i,'variant_axes',i['id'],True))<5:errors.append(f'{i["id"]}: insufficient transfer variation')
+    # Reassessment runway: a family needs enough distinct unseen independent cases
+    # to survive the foundation step plus every promised retention interval. The
+    # engine already refuses to reuse a known case (fresh-materials-needed), so
+    # this is measured honestly as a warning with a tracked target, not a hard gate.
+    policy=skills.get('review_policy',{})
+    max_intervals=max([len((policy.get('default') or {}).get('intervals_days') or [1])]+[len((p or {}).get('intervals_days') or [1]) for p in (policy.get('overrides') or {}).values()] or [1])
+    families=set(i.get('family') for i in items.values() if i.get('family') and i.get('family')!='capstone')
+    for family in sorted(f for f in families if f):
+        cases=len({i['exposure_group'] for i in items.values() if i.get('family')==family and i.get('mode')=='independent'})
+        needed=max_intervals+1
+        if cases<needed:
+            warnings.append(f'{family}: only {cases} fresh independent case(s) for {needed} retention slots; families need >= {needed} distinct unseen cases to finish the default review schedule')
+    # Adaptive coverage: a family only reaches the fourth stage ("Advanced
+    # scenario") if it has an adaptive (adaptation-mode) subskill. Track how many
+    # do, so the gap between the four-stage promise and the current inventory is
+    # visible rather than assumed. Honest measurement, not a fabricated pass.
+    fam_modes={}
+    for i in items.values():
+        fam=i.get('family')
+        if not fam or fam=='capstone':continue
+        fam_modes.setdefault(fam,set()).add(i.get('mode'))
+    with_adaptive=sum(1 for modes in fam_modes.values() if 'adaptation' in modes)
+    total_fams=len(fam_modes)
+    if with_adaptive<total_fams:
+        warnings.append(f'adaptive coverage: {with_adaptive}/{total_fams} families have an adaptation (Advanced) route; the other {total_fams-with_adaptive} top out at independent. Widen the adaptation subskills or state the three-stage ceiling honestly.')
     seen_bench=set()
     for b in records(benchmarks,'benchmarks'):
         ident=b.get('item_id')
@@ -224,6 +249,13 @@ def validate(root=ROOT, today=None):
     for domain in domains:
         if not any(any(c.split('.')[0]==domain for c in items.get(i,{}).get('competencies',[])) for i in seen_bench):errors.append(f'{domain}: missing representative calibration')
     if set(c['id'] for c in caps.get('items',[]))-seen_bench:errors.append('Missing capstone calibration')
+    # Benchmarked items whose rubric now carries the case-specific `case-decision`
+    # gate were re-baselined by scripts/build_case_criteria.py. Re-check assessor
+    # calibration against the widened rubric; this is a human-review signal, not a
+    # build failure.
+    for ident in sorted(seen_bench):
+        if ident in items and any(s.get('id')=='case-decision' for s in items[ident].get('scoring',[])):
+            warnings.append(f'{ident}: calibration rubric includes the case-decision gate; confirm assessor references still match')
     practical=load(root,'assessor/practical-rubrics.json',errors)
     expected_kinds={'observed-meal-preparation','observed-sample-restore','observed-account-protection'}
     if {r.get('id') for r in practical.get('rubrics',[])}!=expected_kinds:errors.append('Missing practical observation rubrics')

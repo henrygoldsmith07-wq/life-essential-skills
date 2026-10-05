@@ -7,6 +7,52 @@
   ],
   "records": [
     {
+      "id": "fictional-CRITICAL-THINKING-VERIFICATION-F01-2026-09-22",
+      "competency_id": "critical-thinking.verification.foundation",
+      "item_id": "CRITICAL-THINKING-VERIFICATION-F01",
+      "assessment_version": 1,
+      "date": "2026-09-22",
+      "phase": "diagnostic",
+      "outcome": "demonstrated",
+      "help_used": false,
+      "access_supports": [],
+      "error_tags": [],
+      "solution_seen": false,
+      "attempt_id": "legacy-fictional-CRITICAL-THINKING-VERIFICATION-F01-2026-09-22",
+      "criteria_judgements": [
+        { "criterion_id": "criterion", "judgement": "met" },
+        { "criterion_id": "constraints", "judgement": "met" },
+        { "criterion_id": "safety", "judgement": "met" },
+        { "criterion_id": "reasoning", "judgement": "met" },
+        { "criterion_id": "case-decision", "judgement": "met" }
+      ],
+      "evidence_level": "assessor-reviewed",
+      "reviewer_type": "assessor"
+    },
+    {
+      "id": "fictional-DIGITAL-SAFETY-ACCOUNTS-F01-2026-09-22",
+      "competency_id": "digital-safety.accounts.foundation",
+      "item_id": "DIGITAL-SAFETY-ACCOUNTS-F01",
+      "assessment_version": 1,
+      "date": "2026-09-22",
+      "phase": "diagnostic",
+      "outcome": "demonstrated",
+      "help_used": false,
+      "access_supports": [],
+      "error_tags": [],
+      "solution_seen": false,
+      "attempt_id": "legacy-fictional-DIGITAL-SAFETY-ACCOUNTS-F01-2026-09-22",
+      "criteria_judgements": [
+        { "criterion_id": "criterion", "judgement": "met" },
+        { "criterion_id": "constraints", "judgement": "met" },
+        { "criterion_id": "safety", "judgement": "met" },
+        { "criterion_id": "reasoning", "judgement": "met" },
+        { "criterion_id": "case-decision", "judgement": "met" }
+      ],
+      "evidence_level": "assessor-reviewed",
+      "reviewer_type": "assessor"
+    },
+    {
       "id": "fictional-MONEY-BUDGET-F01-2026-09-23",
       "competency_id": "money.budget.foundation",
       "item_id": "MONEY-BUDGET-F01",
@@ -34,6 +80,10 @@
         },
         {
           "criterion_id": "reasoning",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "case-decision",
           "judgement": "met"
         }
       ],
@@ -68,6 +118,10 @@
         },
         {
           "criterion_id": "reasoning",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "case-decision",
           "judgement": "met"
         }
       ],
@@ -104,6 +158,10 @@
         },
         {
           "criterion_id": "reasoning",
+          "judgement": "not-met"
+        },
+        {
+          "criterion_id": "case-decision",
           "judgement": "not-met"
         }
       ],

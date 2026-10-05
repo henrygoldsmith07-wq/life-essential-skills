@@ -21,7 +21,8 @@
         "criterion",
         "constraints",
         "safety",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false
@@ -41,7 +42,8 @@
         "criterion",
         "constraints",
         "safety",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false
@@ -61,7 +63,8 @@
         "criterion",
         "constraints",
         "safety",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false
@@ -81,7 +84,8 @@
         "criterion",
         "constraints",
         "safety",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false

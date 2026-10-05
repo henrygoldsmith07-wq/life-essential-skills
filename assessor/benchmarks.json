@@ -22,7 +22,7 @@
           "why": "Adapts to a genuinely changed timing constraint with a reasoned fallback; does not award another competency without its rubric."
         }
       },
-      "rubric_sha256": "6ff9499bf1e9900b31a29a0f53d3f1da74c5cd9537d61432b740d81da00ea9ea"
+      "rubric_sha256": "63fb9d850fba9e0166ce8065850ece0e3f2ce2dbaf489c92d7b28071484e1101"
     },
     {
       "item_id": "M-CR-03",
@@ -45,7 +45,7 @@
           "why": "Revises the decision under changed capacity, naming a professional/verification limit."
         }
       },
-      "rubric_sha256": "c54a1e46d257ececb8382625b898d4ae9dee842256b41569a7634dee68e1fe96"
+      "rubric_sha256": "211075b924f1be249e4c9c4fef04adf2c78e3aab1efa8252325484a785387ab0"
     },
     {
       "item_id": "D-SC-04",
@@ -68,7 +68,7 @@
           "why": "Handles an additional constraint safely rather than relying on the original route."
         }
       },
-      "rubric_sha256": "c9551e55bc1dccf14816d93d65faa808c05b00e8e593bea035ee086bbb89443b"
+      "rubric_sha256": "31abfced282a493809ddbd86d0c4b5fc71dd3b58afc26c8350d0d8212b2eb49f"
     },
     {
       "item_id": "L-TM-03",
@@ -91,7 +91,7 @@
           "why": "Adapts to a new access constraint; accessibility support itself does not reduce competence."
         }
       },
-      "rubric_sha256": "1d23f74976bff23b47dbfdf85ec5994167a6e8f25a5e21615ffb274369be641e"
+      "rubric_sha256": "b59dc8d9b1d8d2f2a44e04660749637f02dc4e09ea438bf0b56c3c5c9eac5d63"
     },
     {
       "item_id": "W-HO-03",
@@ -114,7 +114,7 @@
           "why": "Re-evaluates jurisdiction and feasibility when the context changes."
         }
       },
-      "rubric_sha256": "1382db6b6ead6c46e8653f7ed8a50209d8cf10bb3a846a52f89889ba1a223894"
+      "rubric_sha256": "90d15e8266f51ad9bffb6f943d0b56894b028f3d13346cc781a9dd73c997a2e3"
     },
     {
       "item_id": "EMERGENCIES-RESPONSE-I02",
@@ -137,7 +137,7 @@
           "why": "A new unavailable-contact constraint has a safe fallback. This extends reasoning, not proof of practical rescue."
         }
       },
-      "rubric_sha256": "082099f4522ee3635d4f453d249ace183224e818102553f42cbaecec01027745"
+      "rubric_sha256": "07b86bd97152e4398c7d7be68fb3781d639298b111b93b811be0ccbe85745364"
     },
     {
       "item_id": "HEALTH-MEDICINE-I02",
@@ -160,7 +160,7 @@
           "why": "Safely adapts to a changed access constraint without turning uncertainty into dose advice."
         }
       },
-      "rubric_sha256": "4713f046643f7cfb1355ec337788a119c19ea9405e807ecdffe3a0d144a903ce"
+      "rubric_sha256": "526887bdef37277db9e3d9f25ff185d3adee9776a38665e081fe485e6f7e7354"
     },
     {
       "item_id": "WELLBEING-CAPACITY-I02",
@@ -183,7 +183,7 @@
           "why": "Revises the plan under changed workload and preserves basic needs."
         }
       },
-      "rubric_sha256": "16b5243368518ae7c448fefbf35608b49f847633bbc297316470a7ddc0da16cd"
+      "rubric_sha256": "29ee756d70031fac1686d5223544eb6fea1aa95763fb9e2f85c1f85ca2b3a9c5"
     },
     {
       "item_id": "RELATIONSHIPS-BOUNDARIES-I02",
@@ -206,7 +206,7 @@
           "why": "Adapts to a new sharing situation with safe escalation; does not promise removal or control others."
         }
       },
-      "rubric_sha256": "0ea7427eb49b1a71a9f3993a8d5b9101c945ae42d69ad816460159822df9a1cb"
+      "rubric_sha256": "b952f8e54ce10ccc26d8af5cad1b5709d03e3ecb5df2d1367c1220fd29a90072"
     },
     {
       "item_id": "CRITICAL-THINKING-STATISTICS-I02",
@@ -229,7 +229,7 @@
           "why": "Handles a changed measurement constraint and lowers the certainty of the conclusion appropriately."
         }
       },
-      "rubric_sha256": "47346096ff6f9415a0f410b57cf244ccf38ae5e410da9a060d30ee8fee4356b9"
+      "rubric_sha256": "494b253c96fdd876828f21f83b87de8b6c0123a223a1e139b39595f461af74d2"
     },
     {
       "item_id": "HOME-MEALS-I02",
@@ -252,7 +252,7 @@
           "why": "Adapts to a new storage constraint while preserving cost and safety; practical observation is still needed."
         }
       },
-      "rubric_sha256": "37f9107f399d6b0c4690f293e1633481dc8703cf2c1d07b27df45c60643f1795"
+      "rubric_sha256": "f7fc1ed281ed4c509c60b4ae9156dc95b4f0e1dd8fafd114e2f05174f517268c"
     },
     {
       "item_id": "WORK-EVIDENCE-I02",
@@ -275,7 +275,7 @@
           "why": "Responds to a changed job requirement with evidence boundaries and an honest limitation."
         }
       },
-      "rubric_sha256": "b3535938c041c9d98933de32460922ed745b6188798ea278a2967c9f1bacb11c"
+      "rubric_sha256": "1fb70bf2cba527eb82c8711667e3e0ee47967ceac26f7cb3f61f53f699e3067f"
     },
     {
       "item_id": "LIFE-ADMIN-CONTRACTS-I02",
@@ -298,7 +298,7 @@
           "why": "Adapts to changed price and scope without declaring coverage."
         }
       },
-      "rubric_sha256": "0b0f4d006b09a4abf5cd9ab71ac22cd943979a1a958ca039bb5caac01a84cb63"
+      "rubric_sha256": "16dce7eb644fcf39a2df17ccf159611fa2134203decbcb847ad3c4bc15da773e"
     },
     {
       "item_id": "C01",

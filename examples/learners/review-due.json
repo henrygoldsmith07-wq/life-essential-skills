@@ -35,6 +35,10 @@
         {
           "criterion_id": "reasoning",
           "judgement": "met"
+        },
+        {
+          "criterion_id": "case-decision",
+          "judgement": "met"
         }
       ],
       "evidence_level": "assessor-reviewed",
@@ -68,6 +72,10 @@
         },
         {
           "criterion_id": "reasoning",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "case-decision",
           "judgement": "met"
         }
       ],
@@ -103,6 +111,10 @@
         {
           "criterion_id": "reasoning",
           "judgement": "met"
+        },
+        {
+          "criterion_id": "case-decision",
+          "judgement": "met"
         }
       ],
       "evidence_level": "assessor-reviewed",
@@ -136,6 +148,10 @@
         },
         {
           "criterion_id": "reasoning",
+          "judgement": "met"
+        },
+        {
+          "criterion_id": "case-decision",
           "judgement": "met"
         }
       ],

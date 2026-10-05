@@ -1,7 +1,7 @@
 {
   "version": 1,
   "solution": "Sample reminder day15; three days from today. Use minimal private placeholders, independently verify required forms/data and never place ID/health records in the public worksheet.",
-  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Sample reminder day15; three days from today. This item is set up to catch: Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Put the statements in date order and identify the earliest day the balance goes negative; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
   "common_mistakes": {
     "reveals-sensitive-information": "Keep secrets and personal records private",
     "fails-independent-verification": "Verify through an independent official route",
@@ -9,9 +9,9 @@
     "unverified-entitlement": "Verify legal scope without promising an entitlement"
   },
   "next_steps": {
-    "reveals-sensitive-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "missed-payment-timing": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "unverified-entitlement": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+    "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+    "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+    "missed-payment-timing": "Put the statements in date order and identify the earliest day the balance goes negative. Timing decides whether the month works, not the total. Then attempt an unseen variant with a different context.",
+    "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
   }
 }

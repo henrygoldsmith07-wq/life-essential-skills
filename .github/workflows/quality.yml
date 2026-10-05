@@ -23,10 +23,20 @@ jobs:
           persist-credentials: false
       - name: Validate curriculum, sources, sections, and internal links
         run: python3 scripts/validate_curriculum.py
+      - name: Validate adaptive evidence graph, safety and calibration
+        run: python3 scripts/validate_adaptive.py
       - name: Verify source registry render
         run: python3 scripts/render_registry.py --check
       - name: Verify learner assets contain current canonical data
         run: python3 scripts/build_learner.py --check
+      - name: Verify feedback remediation text is current and case-specific
+        run: python3 scripts/build_feedback_text.py --check
+      - name: Verify case-decision criteria are current and fingerprints re-baselined
+        run: python3 scripts/build_case_criteria.py --check
+      - name: Verify cross-domain prerequisite graph matches the dependency map
+        run: python3 scripts/build_cross_domain_prerequisites.py --check
+      - name: Verify the static site serves every runtime asset and excludes solutions
+        run: node scripts/static_smoke.js
       - name: Test validator and link-check failure cases
         run: python3 -m unittest discover -s tests -v
       - name: Test the shared learner rules engine

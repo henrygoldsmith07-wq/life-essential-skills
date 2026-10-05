@@ -1,15 +1,15 @@
 {
   "version": 1,
   "solution": "Use a closed-solution fresh task with changed dates, criterion feedback and scheduled delayed review; confidence and repetition are not transfer evidence.",
-  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Use a closed-solution fresh task with changed dates, criterion feedback and scheduled delayed review; confidence and repetition are not transfer evidence. This item is set up to catch: Apply the criterion to the changed numbers and wording in this case; Match the strength of the conclusion to the evidence; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
   "common_mistakes": {
     "memorised-answer": "Apply the criterion to changed materials",
     "overconfident-conclusion": "Match the conclusion to the evidence",
     "assumes-missing-information": "Name missing facts before deciding"
   },
   "next_steps": {
-    "memorised-answer": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+    "memorised-answer": "Apply the criterion to the changed numbers and wording in this case. An answer recalled from a previous item is not evidence. Then attempt an unseen variant with a different context.",
+    "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
   }
 }

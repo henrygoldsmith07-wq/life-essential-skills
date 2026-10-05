@@ -19,5 +19,5 @@
       "why": "Handles a changed measurement constraint and lowers the certainty of the conclusion appropriately."
     }
   },
-  "rubric_sha256": "47346096ff6f9415a0f410b57cf244ccf38ae5e410da9a060d30ee8fee4356b9"
+  "rubric_sha256": "494b253c96fdd876828f21f83b87de8b6c0123a223a1e139b39595f461af74d2"
 }

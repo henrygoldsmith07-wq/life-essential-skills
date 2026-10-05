@@ -21,7 +21,8 @@
         "criterion",
         "constraints",
         "safety",
-        "reasoning"
+        "reasoning",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false
@@ -40,7 +41,8 @@
         "wrong-jurisdiction"
       ],
       "criteria_met": [
-        "safety"
+        "safety",
+        "case-decision"
       ],
       "reviewed_by": "assessor",
       "solution_seen": false

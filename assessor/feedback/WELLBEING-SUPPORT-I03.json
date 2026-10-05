@@ -1,7 +1,7 @@
 {
   "version": 1,
   "solution": "Verify the appropriate service independently, make a specific bounded request respecting the friend’s boundary, and prepare an appropriate fallback. Urgent wellbeing support takes precedence over learning.",
-  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Verify the appropriate service independently, make a specific bounded request respecting the friend’s boundary, and prepare an appropriate fallback. This item is set up to catch: Respect consent and refusal; Verify through a route you reach independently, not one supplied in the message; State the safety limit and the qualified help you would seek; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
   "common_mistakes": {
     "ignores-consent": "Respect consent, refusal, and boundaries",
     "fails-independent-verification": "Verify through an independent official route",
@@ -9,9 +9,9 @@
     "no-fallback": "Prepare a feasible fallback"
   },
   "next_steps": {
-    "ignores-consent": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "unsafe-advice": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "no-fallback": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+    "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+    "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+    "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+    "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
   }
 }

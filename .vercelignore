@@ -1,0 +1,28 @@
+# Files not needed to serve the learner app, excluded from the Vercel upload.
+#
+# The browser app loads ONLY:
+#   - index.html
+#   - learner/**            (index.html, style.css, the JS modules, data.js, chunks/*.json, favicon.svg)
+#   - assessor/feedback/<item-id>.json   (per-item feedback, fetched only after an attempt)
+#   - assessor/calibration/<item-id>.json(per-item calibration, fetched only from Assessor mode)
+# plus the Markdown text curriculum linked from the pages.
+#
+# The aggregate answer/benchmark files are excluded so a deployed static site
+# never serves every reference solution in one request — matching the product
+# rule that answers must not be reachable before an attempt (see
+# validate_adaptive.py "exposed solution" checks). They remain in git for
+# maintainers and CI.
+
+assessor/answers.json
+assessor/benchmarks.json
+
+# Maintainer-only source, tests and CI config are not part of the served site.
+scripts/
+tests/
+.github/
+.github/**
+node_modules/
+**/__pycache__/
+**/*.pyc
+playwright.config.js
+package-lock.json

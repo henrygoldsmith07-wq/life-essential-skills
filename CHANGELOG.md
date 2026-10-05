@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+- Add Vercel static deployment support: `vercel.json` (no build, `outputDirectory: "."`), a root `index.html` landing page, and `.vercelignore` that keeps maintainer-only paths out of the upload and excludes the aggregate answer/benchmark files so a deployed site never serves every reference solution at once.
+- Add `scripts/static_smoke.js`: verifies every runtime asset resolves over HTTP with the right content type, that `learner/data.js` embeds no solutions, and that `.vercelignore` neither drops a required asset nor leaks the aggregate answer files. Runs in CI.
+- Review the curriculum as a competency system rather than a content library; findings and priorities in `docs/curriculum-review.md`.
+- Add a case-specific, essential `case-decision` criterion to all 234 bank items (new generator `scripts/build_case_criteria.py`, with a `--check` drift guard). A response that meets every shared rubric row but never reaches the case's specific decision now scores `not-yet` — the concrete change that separates "I read this" from "I can do this". Matching calibration fingerprints for the 13 re-baselined benchmark items are refreshed and flagged by a validator warning for human re-check.
+- Make learner feedback case-specific: regenerate `explanation` and `next_steps` per item from its own reference solution and error tags. Distinct learner-facing explanations 26 → 141; distinct remediation strings 2 → 29 across 866 entries (`scripts/build_feedback_text.py`, idempotent with a `--check` guard).
+- Encode the documented cross-domain dependency map into machine prerequisites (new generator `scripts/build_cross_domain_prerequisites.py`). 23 subskills gain the cross-domain foundations the dependency map already described; assessment-item prerequisites are synced. The engine now surfaces these as a `blocked` list and recommends prerequisites first.
+- Add a reassessment-runway validator invariant: report, per family, whether fresh independent cases can cover the promised review schedule. Emitted as an honest warning (38 of 40 families currently short) so the target is tracked as cases are authored.
+- Add an adaptive-coverage validator warning: only 12 of 40 families currently have an adaptation (Advanced) route; the four-stage promise and the inventory gap are now measured rather than assumed.
+- Keep the initial learner payload under its size budget by projecting documentation-only competency metadata (`related_competencies`, `assessment_routes`, `practical_scope`, `criterion`, `evidence`) out of `learner/data.js` (405 KB → 352 KB; provably unused by the engine/app).
+- Run `validate_adaptive.py` and the new drift checks (feedback, case-criteria, cross-domain prerequisites) explicitly in CI.
+- Add engine regression tests locking in the case-decision gate and cross-domain prerequisite blocking.
+
 ## 0.4.0 · 2026-10-04
 
 - Derive outcomes from explicit criterion judgements, essential gates, errors, help and prior answers; remove the final-outcome selector.

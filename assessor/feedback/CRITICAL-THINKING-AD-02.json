@@ -1,7 +1,7 @@
 {
   "version": 1,
   "solution": "Identify missing provenance, trace the original current source and jurisdiction, and do not treat fluent text or a second copy as independent confirmation. Revalidate facts, feasibility and scope after the change; do not simply repeat the base answer. Seek appropriate support or renegotiation where the constraints cannot safely be satisfied.",
-  "explanation": "Assess the observable output against every essential criterion. A safe justified refusal or a named unresolved gap can meet the criterion; invented certainty cannot. Changed condition: A correction removes the central numerical claim. An AI explanation remains confident but its original source cannot be traced. Assess the revised plan against this actual change; an unresolved feasibility gap must be named honestly.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Identify missing provenance, trace the original current source and jurisdiction, and do not treat fluent text or a second copy as independent confirmation. This item is set up to catch: Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence; Name the facts that were not given and state what you would need to confirm them; Check the nation and the scope of the guidance before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
   "common_mistakes": {
     "fails-independent-verification": "Verify through an independent official route",
     "overconfident-conclusion": "Match the conclusion to the evidence",
@@ -9,9 +9,9 @@
     "wrong-jurisdiction": "Check the nation and the guidance scope"
   },
   "next_steps": {
-    "fails-independent-verification": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "overconfident-conclusion": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "assumes-missing-information": "Revisit the relevant guide, practise the missing step with help, then use an unseen task.",
-    "wrong-jurisdiction": "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
+    "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+    "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+    "wrong-jurisdiction": "Check the nation and the scope of the guidance before relying on it. Do not carry a rule from one nation into another. Then attempt an unseen variant with a different context."
   }
 }
