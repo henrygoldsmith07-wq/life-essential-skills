@@ -46,12 +46,12 @@ The five simulations turn the capstones into evolving situations rather than wor
 | Simulation | Situation |
 | --- | --- |
 | Moving out in six weeks | Compare two homes, read the paperwork, then a change of income and transport forces you to decide again |
-| Your first job | Check an offer, reconcile a payslip, then three shifts go unpaid |
-| An unexpected £300 | Size the shock, compare the real cost of the options, then change something so it happens less expensively next time |
+| Your first job | Check an offer, reconcile a payslip, then two problems compete for attention and you must choose which to raise first |
+| An unexpected £300 | Size the shock, compare the real cost of the options, then the plan you chose is hit by a cut in hours before the payment is due |
 | A suspicious payment request | Notice the pressure, verify through a route the requester did not choose, then protect next time |
-| The week that overloaded | See the real shape of the week, revise by testing yourself, then decide what to drop |
+| The week that overloaded | See the real shape of the week, revise by testing yourself, then hours are cut and the deadline moves |
 
-Each works in three parts, and **each part changes the situation** — a fact you relied on stops being true and a new constraint appears. The point is to make a decision and then adapt it, not to answer a quiz.
+Each works in three parts, and **each part changes the situation** — a fact you relied on stops being true and a new constraint appears. This is checked in the data, not just intended: `scripts/verify_content.js` fails if a final stage reports an outcome rather than introducing a changed circumstance, or fails to pose a real decision.
 
 **Evidence is unaffected.** A simulation is a presentation layer over the existing capstone assessment. It stores evidence per subskill exactly as before, and it cannot change how an outcome is derived.
 
@@ -99,7 +99,7 @@ Every AI-produced artefact is marked as an AI-assisted draft, counts as solving 
 
 ## Your Independence Profile
 
-A human-readable progress report you can print or save as PDF. It shows demonstrated capabilities, developing areas, milestones, retention status, observed practical evidence and what to do next.
+A human-readable progress report you can print or save as PDF. It shows demonstrated capabilities, developing areas, milestones, retention status, observed practical evidence and what to do next. A milestone is only reported as "under way" once you have actually engaged with something it depends on — an untouched milestone is shown as not started, because calling all 23 of them in progress would flatter you rather than inform you.
 
 It is explicitly **a learning record, not a qualification**. Most of it is self-reviewed, which is a local judgement rather than independent verification. It contains no written responses, no account details and no identifiers.
 

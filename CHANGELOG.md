@@ -20,7 +20,7 @@
 
 ### Verification added
 
-- `scripts/verify_roadmap.js`, `scripts/verify_views.js` and `scripts/verify_styles.js` run in CI. Between them they assert that the roadmap never contradicts the engine, that the product views render from real data, that the AI boundary cannot be bypassed, that every class a view emits is actually styled, and that no raw error-tag id reaches the learner.
+- `scripts/verify_roadmap.js`, `verify_views.js`, `verify_styles.js` and `verify_content.js` run in CI. Between them they assert that the roadmap never contradicts the engine, that the product views render from real data, that the AI boundary cannot be bypassed, that every class a view emits is actually styled, that no raw error-tag id reaches the learner, that no milestone can be earned without real evidence, and that every simulation genuinely develops and changes the situation.
 
 ### Boundaries and integrity
 
@@ -29,9 +29,11 @@
 
 ### Fixed (found by reviewing the above)
 
+- **The Profile claimed every milestone was "in progress".** It listed all unearned milestones as work already under way, so a brand-new learner saw all 23 as in progress. It now requires real engagement with something the milestone depends on, and reports the rest as not started.
 - **"Can still do this" could outlive its evidence.** A capability kept the retained label even after the learner had done newer fresh transfer, so the latest attempt was no longer a retention check. The label now requires the most recent attempt to actually be a retention check, and can only under-claim, never over-claim.
-- **Raw error-tag ids reached the learner.** The roadmap and the feedback panel showed ids such as `assumes-missing-information` verbatim. Both now resolve the curriculum's learner-facing wording, with a readable fallback so a machine id can never be shown.
+- **Raw error-tag ids reached the learner** in all three surfaces that show them: the roadmap, the feedback panel and the Profile. Each now resolves the curriculum's learner-facing wording, with a readable fallback so a machine id can never be shown.
 - **Onboarding discarded the goal's declared order.** Diagnostic answers were inserted ahead of the goal's own backbone, reordering a "first job" plan around unrelated competencies. The backbone now keeps its declared order and the diagnostic refines it.
+- **Three of the five simulations did not actually change the constraint** in their final stage — an outcome, not a new fact. They now end with concrete changed circumstances that force a fresh decision, which is what the product promises.
 - **Missing styles for two emitted classes** (`.ms--todo`, affecting most milestones, and `.domain__loading`), found by a new automated check rather than by reading the stylesheet.
 - Dead code removed: a repeated `capState` evaluation (four per capability, 92 times per render), an unused map and an unused variable, an identity `map`, and a view dependency on a window global rather than the date already passed in.
 
