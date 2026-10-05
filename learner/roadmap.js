@@ -279,13 +279,26 @@
       const last = state.observations.filter(o => o.kind === r.id).at(-1);
       return { title: r.title, kind: r.id, outcome: last ? last.outcome : 'unobserved', date: last ? last.date : null };
     });
+
+    // A milestone counts as "in progress" only once the learner has actually
+    // engaged with something it depends on. Being merely blocked on a
+    // prerequisite does not count: every milestone is blocked for a new
+    // learner, so counting that would claim all of them are under way.
+    const touched = new Set();
+    for (const cid of [...demonstrated.map(c => c.id), ...developing.map(c => c.id)]) touched.add(cid);
+    for (const o of state.observations) if (o.outcome) touched.add('obs:' + o.kind);
+    const engaged = m => (m.requires || []).some(cid => touched.has(cid))
+      || (m.requires_any || []).some(cid => touched.has(cid))
+      || (m.requires_practical || []).some(k => touched.has('obs:' + k));
+
     return {
       generated: today,
       locality: state.locality,
       pathway: pathway ? pathway.title : state.pathway,
       demonstrated, developing, not_started: notStarted,
       milestones_earned: rm.milestones.filter(m => m.earned),
-      milestones_in_progress: rm.milestones.filter(m => !m.earned),
+      milestones_in_progress: rm.milestones.filter(m => !m.earned && engaged(m)),
+      milestones_not_started: rm.milestones.filter(m => !m.earned && !engaged(m)),
       retention_due: rm.retention_due, retention_upcoming: rm.retention_upcoming,
       recent_improvements: rm.recently_improved,
       next: rm.next, practical,

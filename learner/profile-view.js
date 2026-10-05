@@ -16,7 +16,8 @@
     return '<ul class="profilelist">' + caps.map(c =>
       '<li><strong>' + esc(c.title.replace(/ · (foundation|independent|adaptation)/, '')) + '</strong> — ' + esc(c.label) +
       (c.evidence_level ? ' (' + esc(c.evidence_level.replace('-', ' ')) + ')' : '') +
-      (c.error_tags.length ? '<br><span class="muted">Focus on: ' + esc(c.error_tags.join(', ')) + '</span>' : '') + '</li>').join('') + '</ul>';
+      // error_tags are ids; the roadmap derivation attaches learner-facing labels.
+      (c.error_tags.length ? '<br><span class="muted">Focus on: ' + esc(c.error_tags.map(t => (c.error_labels && c.error_labels[t]) || t.replace(/-/g, ' ')).join(', ')) + '</span>' : '') + '</li>').join('') + '</ul>';
   }
 
   function render(p, localityLabel) {
@@ -48,6 +49,16 @@
       (p.milestones_earned.length
         ? '<ul class="profilelist">' + p.milestones_earned.map(m => '<li><strong>' + esc(m.title) + '</strong> — ' + esc(m.description) + '</li>').join('') + '</ul>'
         : '<p class="empty">No milestones earned yet.</p>') +
+
+      (p.milestones_in_progress.length
+        ? line('Milestones under way') +
+          '<ul class="profilelist">' + p.milestones_in_progress.map(m => '<li><strong>' + esc(m.title) + '</strong> — ' + esc(m.progress) + '</li>').join('') + '</ul>'
+        : '') +
+
+      (p.milestones_not_started && p.milestones_not_started.length
+        ? line('Not started yet') +
+          '<p class="muted">' + p.milestones_not_started.length + ' further milestone' + (p.milestones_not_started.length === 1 ? '' : 's') + ' you have not begun. They are listed on your roadmap in the order they unlock.</p>'
+        : '') +
 
       line('Practical, observed skills') +
       (p.practical.some(x => x.outcome === 'demonstrated')

@@ -51,10 +51,11 @@
           "Basic pay 484.00. A 'service charge deduction' of 61.76 appears with no line explaining it. Tax 40.02. Net pay 374.98."],
           "ask": "Do these numbers add up correctly? Which figure would you query, and to whom, in writing?",
           "trap": "An unexplained deduction is a normal-looking item on a real payslip. Checking is expected, not rude." },
-        { "n": 3, "heading": "Something goes wrong", "beat": "Keep evidence and raise it early.", "reveal": [
-          "Three of your shifts were not paid on this payslip, and no one has responded to your message."],
-          "ask": "What evidence have you kept? What is your next, least-effort step to get it resolved, and when would you escalate?",
-          "trap": "The evidence that protects you is the evidence you gathered while it was normal, not after it went wrong." }
+        { "n": 3, "heading": "It changes again", "beat": "The deduction is not the problem you have to solve today.", "reveal": [
+          "Three of your shifts were not paid, and the unexplained service charge is still on the payslip.",
+          "You have now been in the job for two weeks, and a colleague tells you the same charge appears for everyone — but nobody has seen it in writing."],
+          "ask": "Which of these do you raise first, and why? What would you put in writing, and what would you wait to be asked about before you say it?",
+          "trap": "Raising every possible problem at once can get a real one ignored. Naming the unpaid shifts and the missing hours first is what gets those paid." }
       ],
       "records": [
         "Where will you record shifts worked and pay received?",
@@ -79,10 +80,11 @@
           "Option 1: pay £300 from savings — you cannot, you have 90. Option 2: a 'flexible' loan, 300 over 12 months at a high rate. Option 3: an instalment plan with the supplier."],
           "ask": "Compare what each actually costs in total, not monthly. Which is the least reversible? What would you need to check before any of them?",
           "trap": "A monthly figure that looks affordable can hide a large total cost. Compare totals." },
-        { "n": 3, "heading": "Afterwards", "beat": "Turn the shock into a plan.", "reveal": [
-          "You have resolved the immediate problem. It cost more than you hoped."],
-          "ask": "What changes now so the next 300 is survivable? What would you set aside, and what would you want to happen differently?",
-          "trap": "If nothing changes, this will happen again — and the next one will be harder, because less is in reserve." }
+        { "n": 3, "heading": "It changes again", "beat": "The plan you chose is now under new pressure.", "reveal": [
+          "You took the instalment plan. Two weeks later your hours are cut, and the first payment is due on a Friday you do not get paid until Monday.",
+          "You now have 41 in savings instead of 90, and the supplier will charge a missed-payment fee."],
+          "ask": "What do you do before the payment is missed rather than after? Who do you contact first, what exactly do you say, and what evidence do you need to keep?",
+          "trap": "Missing a payment and then calling is the expensive version. Contacting the provider before it is missed, with your agreement to hand, is the cheap version." }
       ],
       "records": [
         "Where will you keep proof of the quotes, the loan or plan terms, and what you paid?"
@@ -108,8 +110,7 @@
         { "n": 3, "heading": "Protecting next time", "beat": "Close the door behind you.", "reveal": [
           "You avoided the loss. Now consider what made you a target and what would make you less so."],
           "ask": "What is one change that would make the next attempt harder — to your account, your backup access, or how requests are confirmed?",
-          "trap": "The strongest protection is a safe backup you already have before you need it, not one you set up in a panic." }
-      ],
+          "trap": "The strongest protection is a safe backup you already have before you need it, not one you set up in a panic." }      ],
       "records": [
         "How will you keep a record of a suspicious contact, and what have you already set up to protect the account that protects everything else?"
       ],
@@ -131,10 +132,12 @@
           "You have read the material three times. You still could not answer a question about it."],
           "ask": "What is different about testing yourself than reading again? What is one thing you could do in 20 minutes that would tell you whether you actually know it?",
           "trap": "Familiarity from re-reading feels like knowledge. It is not the same as being able to recall and apply." },
-        { "n": 3, "heading": "You are still behind", "beat": "Decide what to drop, out loud.", "reveal": [
-          "It is day 4. You have not finished everything you planned."],
-          "ask": "What do you drop, and what do you tell each person involved? Plan for the week you actually have, not the week you wish you had.",
-          "trap": "A plan that quietly assumes you will catch up is not a plan. Deciding what to drop is a skill." }
+        { "n": 3, "heading": "The week changed", "beat": "New information, and less time than you counted on.", "reveal": [
+          "Your shift pattern has changed: you now work two extra hours on Thursday, and Friday is no longer free at all.",
+          "That leaves 13 free hours, not 20 — and the assignment is due in 2 days rather than 5, because the deadline moved.",
+          "The bill you forgot about is also due in 2 days."],
+          "ask": "With 13 hours and a 2-day deadline, what do you drop, and what do you tell each person? What would you negotiate rather than simply abandon?",
+          "trap": "Working out what is still possible from the plan you made on Monday is the failure mode. The plan is now wrong; recompute, do not catch up." }
       ],
       "records": [
         "How will you track what is due and when you last actually practised each skill?"

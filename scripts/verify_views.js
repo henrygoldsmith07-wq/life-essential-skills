@@ -91,6 +91,14 @@ const prof = R.profile(ex, D, TODAY);
 const profHtml = PV.render(prof, 'UK');
 ok('profile renders', profHtml.includes('MY INDEPENDENCE PROFILE'));
 ok('profile has disclaimer', profHtml.includes('not a qualification'));
+ok('profile hides raw error ids', !profHtml.includes('assumes-missing-information'));
+// A brand-new learner must not be told every milestone is under way.
+const freshProf = R.profile(E.emptyState('wales', 'general'), D, TODAY);
+ok('new learner has no milestones in progress', freshProf.milestones_in_progress.length === 0, freshProf.milestones_in_progress.length + ' in progress');
+ok('new learner has no milestones earned', freshProf.milestones_earned.length === 0);
+// The three milestone buckets must partition every milestone exactly once.
+const total = freshProf.milestones_earned.length + freshProf.milestones_in_progress.length + freshProf.milestones_not_started.length;
+ok('milestone buckets partition all milestones', total === freshProf.milestones_not_started.length + freshProf.milestones_in_progress.length + freshProf.milestones_earned.length && total === D.goals.milestones.length, total + '/' + D.goals.milestones.length);
 
 // 7. AI boundary guards
 ok('AI: has no grade capability', !Object.values(AI.ALLOWED).includes('grade'));
