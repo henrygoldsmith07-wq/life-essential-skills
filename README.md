@@ -1,8 +1,20 @@
 # Life Essential Skills
 
-[Open the learner dashboard](learner/index.html) · [How evidence works](curriculum/adaptive-learning.md) · [Deploying to Vercel](#deploying-to-vercel)
+[Open the learner dashboard](learner/index.html) · [The learner product](docs/product.md) · [How evidence works](curriculum/adaptive-learning.md) · [Deploying to Vercel](#deploying-to-vercel)
 
-Use **Today → Learn → Practice → Feedback → Next task → Reassess**. The dashboard adapts to educational evidence stored locally in your browser. The text curriculum below remains available. To launch the interface, follow the short [dashboard instructions](learner/README.md).
+*Prepare for real life before you have to handle it for real.*
+
+Use **Today → Learn → Practice → Feedback → Reassess**. The dashboard adapts to educational evidence stored locally in your browser. The text curriculum below remains available. To launch the interface, follow the short [dashboard instructions](learner/README.md).
+
+## What you get
+
+- An **Independence Roadmap** showing what you can already do, what needs work, what is blocked and why — with no overall score, because a single number would hide the evidence behind it.
+- **Goal-based onboarding**: pick a real situation (moving out, first job, starting university, financial independence, general independence, safer online) and get a roadmap built from what you actually need.
+- **Life-transition simulations** that develop in three parts, where part three changes the situation and you have to decide again.
+- **Milestones** like "Can reconcile a payslip" that appear only when your own evidence backs them.
+- A printable **Independence Profile** — a learning record, not a qualification.
+
+Start from [the learner product guide](docs/product.md).
 
 Outcomes follow structured criterion judgements, help and errors. Progress distinguishes self-review, assessor review and observed practical checks. The [local assessor workflow](assessor/README.md) keeps reviews separate from original attempts; five integrated capstones record results by subskill. See the candid [product review](docs/product-review.md) for remaining limits and the [curriculum review](docs/curriculum-review.md) for a competency-system assessment of the learn–practise–feedback–reassess loop.
 

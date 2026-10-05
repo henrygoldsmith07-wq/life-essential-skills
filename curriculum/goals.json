@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "note": "Learner-facing product framing. Goals drive onboarding and the personalised roadmap; milestones are capability claims that can only be earned through the existing deterministic evidence model. Neither file changes any evidence rule: a goal never awards evidence, and a milestone is only shown as earned when every required competency is already demonstrated in the learner's own state.",
+  "goals": [
+    {
+      "id": "moving-out",
+      "title": "Moving out",
+      "promise": "Be ready for your first weeks somewhere you run yourself.",
+      "situation": "You are moving out in six weeks. You need a place you can actually afford, the paperwork that comes with it, and a plan for the weeks when something goes wrong.",
+      "why_useful": "Most moving-out problems are not about the move. They are about a contract you did not read, a cost you did not count, or a first night with no food in the house.",
+      "pathway": "independent-living",
+      "capstone": "C01",
+      "domains": ["major-decisions", "home", "money", "life-admin", "emergencies"],
+      "focus_competencies": [
+        "major-decisions.comparison.independent",
+        "major-decisions.housing.independent",
+        "money.budget.independent",
+        "home.meals.independent",
+        "home.routines.independent",
+        "life-admin.records.independent",
+        "life-admin.contracts.independent",
+        "emergencies.preparedness.independent"
+      ],
+      "sequence": [
+        "Know your real monthly number before you look at any flat",
+        "Compare two homes on full cost, not the headline rent",
+        "Know what you must do in week one and what you must find out",
+        "Run the whole thing as a changing situation, not a checklist"
+      ],
+      "questions": [
+        { "id": "q-timing", "prompt": "When are you hoping to move?", "options": [
+          { "value": "soon", "label": "Within a couple of months", "focus": ["major-decisions.housing.independent", "money.budget.independent"] },
+          { "value": "planning", "label": "Later — planning ahead", "focus": ["money.budget.independent", "money.saving.independent", "major-decisions.comparison.independent"] },
+          { "value": "already", "label": "I have somewhere and need the essentials right", "focus": ["life-admin.contracts.independent", "life-admin.records.independent", "emergencies.preparedness.independent"] }
+        ]},
+        { "id": "q-support", "prompt": "How much support is around you?", "options": [
+          { "value": "alone", "label": "Mostly on my own", "focus": ["home.routines.independent", "home.meals.independent", "emergencies.response.independent"] },
+          { "value": "some", "label": "Some help from family or friends", "focus": ["home.routines.independent", "major-decisions.comparison.independent"] },
+          { "value": "supported", "label": "I live with others or have regular support", "focus": ["life-admin.contracts.independent", "emergencies.preparedness.independent"] }
+        ]}
+      ]
+    },
+    {
+      "id": "first-job",
+      "title": "Starting my first job",
+      "promise": "Handle a job, a payslip and the paperwork that comes with it.",
+      "situation": "You have received a first job offer. You need to check it properly, understand what you are paid and what is deducted, and keep the records that prove what happened.",
+      "why_useful": "A first job is where people most often agree to something they did not read. The payslip is where errors are easiest to catch and hardest to correct later.",
+      "pathway": "school-to-work",
+      "capstone": "C02",
+      "domains": ["work", "money", "relationships", "critical-thinking"],
+      "focus_competencies": [
+        "work.offers.independent",
+        "work.pay.independent",
+        "money.payslip.independent",
+        "work.evidence.independent",
+        "relationships.communication.independent",
+        "critical-thinking.verification.independent"
+      ],
+      "sequence": [
+        "Read an offer as a set of facts, not a compliment",
+        "Reconcile a payslip line by line and query what does not add up",
+        "Keep evidence of work done and pay received",
+        "Ask about a problem early, in writing"
+      ],
+      "questions": [
+        { "id": "q-stage", "prompt": "Where are you up to?", "options": [
+          { "value": "offer", "label": "I have an offer to check", "focus": ["work.offers.independent", "critical-thinking.verification.independent"] },
+          { "value": "started", "label": "I have started and need to keep on top", "focus": ["money.payslip.independent", "work.evidence.independent"] },
+          { "value": "problems", "label": "Something is wrong at work", "focus": ["relationships.communication.independent", "life-admin.complaints.independent"] }
+        ]},
+        { "id": "q-hours", "prompt": "How is your pay arranged?", "options": [
+          { "value": "hourly", "label": "Hourly, with shifts", "focus": ["money.payslip.independent", "work.pay.independent"] },
+          { "value": "salary", "label": "A fixed salary", "focus": ["money.payslip.independent", "work.pay.independent"] },
+          { "value": "variable", "label": "Tips, commission or variable hours", "focus": ["money.payslip.independent", "critical-thinking.statistics.independent"] }
+        ]}
+      ]
+    },
+    {
+      "id": "starting-study",
+      "title": "Starting university or college",
+      "promise": "Build a study routine that survives a busy week.",
+      "situation": "You are starting university or college. You have more to learn than time to learn it, a budget that does not stretch, and a lot of new systems to understand.",
+      "why_useful": "The students who struggle are rarely the ones who try hardest. They are the ones who never decided what to drop when everything became due at once.",
+      "pathway": "general",
+      "capstone": "C05",
+      "domains": ["learning-time", "money", "critical-thinking", "digital-safety", "wellbeing"],
+      "focus_competencies": [
+        "learning-time.planning.independent",
+        "learning-time.revision.independent",
+        "learning-time.retrieval.independent",
+        "money.budget.independent",
+        "digital-safety.accounts.independent",
+        "wellbeing.capacity.independent"
+      ],
+      "sequence": [
+        "Plan a week that survives contact with reality",
+        "Revise by testing yourself, not re-reading",
+        "Know your budget for the whole academic year, not the week",
+        "Decide what to drop when deadlines collide"
+      ],
+      "questions": [
+        { "id": "q-load", "prompt": "What is hardest right now?", "options": [
+          { "value": "time", "label": "Too much to do, not enough time", "focus": ["learning-time.planning.independent"] },
+          { "value": "memory", "label": "I study but it does not stick", "focus": ["learning-time.retrieval.independent", "learning-time.revision.independent"] },
+          { "value": "money", "label": "Money is the pressure", "focus": ["money.budget.independent", "money.payslip.independent"] },
+          { "value": "stress", "label": "Stress and burnout", "focus": ["wellbeing.capacity.independent", "learning-time.planning.independent"] }
+        ]},
+        { "id": "q-study", "prompt": "How are you studying?", "options": [
+          { "value": "fulltime", "label": "Full time", "focus": ["learning-time.planning.independent", "money.budget.independent"] },
+          { "value": "parttime", "label": "Part time, alongside work or care", "focus": ["learning-time.planning.independent", "work.pay.independent"] }
+        ]}
+      ]
+    },
+    {
+      "id": "financial-independence",
+      "title": "Becoming more financially independent",
+      "promise": "Know exactly where your money goes, and what to change.",
+      "situation": "You want to stop being surprised by your own bank balance. An unexpected cost arrives and you need a plan before it becomes a crisis.",
+      "why_useful": "Financial independence is not about wealth. It is about knowing your real numbers well enough that an unexpected £300 is an inconvenience rather than an emergency.",
+      "pathway": "money-admin",
+      "capstone": "C03",
+      "domains": ["money", "life-admin", "digital-safety", "critical-thinking"],
+      "focus_competencies": [
+        "money.cash-flow.independent",
+        "money.budget.independent",
+        "money.credit.independent",
+        "money.saving.independent",
+        "money.insurance.independent",
+        "life-admin.records.independent"
+      ],
+      "sequence": [
+        "Build a budget from your actual numbers, not a template",
+        "Survive an unexpected cost without borrowing",
+        "Understand what credit is actually costing you",
+        "Keep records that let you check anything later"
+      ],
+      "questions": [
+        { "id": "q-pain", "prompt": "What is the hardest part of money right now?", "options": [
+          { "value": "unknown", "label": "I do not know where the money goes", "focus": ["money.budget.independent", "money.cash-flow.independent"] },
+          { "value": "debt", "label": "Debt or credit I am worried about", "focus": ["money.credit.independent"] },
+          { "value": "shock", "label": "Unexpected costs knock me over", "focus": ["money.cash-flow.independent", "money.insurance.independent"] },
+          { "value": "saving", "label": "I want to save but never do", "focus": ["money.saving.independent", "money.budget.independent"] }
+        ]},
+        { "id": "q-records", "prompt": "Do you keep records of anything?", "options": [
+          { "value": "none", "label": "Not really", "focus": ["life-admin.records.independent"] },
+          { "value": "some", "label": "A bit, but scattered", "focus": ["life-admin.records.independent", "digital-safety.backup.independent"] },
+          { "value": "yes", "label": "Yes, carefully", "focus": ["money.saving.independent", "money.investing.independent"] }
+        ]}
+      ]
+    },
+    {
+      "id": "general-independence",
+      "title": "Improving general independence",
+      "promise": "Run the everyday things that used to need someone else.",
+      "situation": "You are becoming more independent: your own meals, your own home, your own appointments, your own documents, your own decisions.",
+      "why_useful": "Independence is not doing everything yourself. It is knowing what to do, knowing when to check, and knowing who to ask when it matters.",
+      "pathway": "independent-living",
+      "capstone": "C01",
+      "domains": ["home", "health", "life-admin", "emergencies", "wellbeing"],
+      "focus_competencies": [
+        "home.routines.independent",
+        "home.meals.independent",
+        "home.maintenance.independent",
+        "health.access.independent",
+        "life-admin.records.independent",
+        "emergencies.response.independent"
+      ],
+      "sequence": [
+        "Keep a home working day to day",
+        "Get to the right service and be understood",
+        "Find, protect and update your own documents",
+        "Know what to do in the first ten minutes of a problem"
+      ],
+      "questions": [
+        { "id": "q-area", "prompt": "Which area is hardest right now?", "options": [
+          { "value": "home", "label": "Keeping my home running", "focus": ["home.routines.independent", "home.maintenance.independent"] },
+          { "value": "health", "label": "Health and appointments", "focus": ["health.access.independent", "health.medicine.independent"] },
+          { "value": "paper", "label": "Paperwork and official letters", "focus": ["life-admin.records.independent", "life-admin.contracts.independent"] },
+          { "value": "crisis", "label": "Knowing what to do in a problem", "focus": ["emergencies.response.independent", "emergencies.preparedness.independent"] }
+        ]}
+      ]
+    },
+    {
+      "id": "safer-online",
+      "title": "Becoming safer online",
+      "promise": "Tell a real request from a fake one, and act before it costs you.",
+      "situation": "You receive a suspicious payment request. You need to check it without falling for it, without losing access to your accounts, and without losing money you cannot replace.",
+      "why_useful": "Almost every online harm works the same way: create urgency, ask you to act privately, and give you a reason not to check with anyone else.",
+      "pathway": "digital-safety",
+      "capstone": "C04",
+      "domains": ["digital-safety", "critical-thinking", "relationships", "life-admin"],
+      "focus_competencies": [
+        "digital-safety.scams.independent",
+        "digital-safety.accounts.independent",
+        "critical-thinking.verification.independent",
+        "digital-safety.backup.independent",
+        "relationships.boundaries.independent"
+      ],
+      "sequence": [
+        "Verify an unusual request through a route the requester did not give you",
+        "Protect the account that protects everything else",
+        "Keep your backup access somewhere safe",
+        "Recognise pressure and isolation as the actual warning sign"
+      ],
+      "questions": [
+        { "id": "q-online-risk", "prompt": "What has happened, or worries you most?", "options": [
+          { "value": "targeted", "label": "I think I was targeted", "focus": ["digital-safety.scams.independent", "critical-thinking.verification.independent"] },
+          { "value": "access", "label": "I am worried about account access", "focus": ["digital-safety.accounts.independent", "digital-safety.backup.independent"] },
+          { "value": "pressure", "label": "People pressure me online", "focus": ["relationships.boundaries.independent", "digital-safety.scams.independent"] },
+          { "value": "general", "label": "Nothing specific — I want to be safer", "focus": ["digital-safety.accounts.independent", "critical-thinking.verification.independent"] }
+        ]}
+      ]
+    }
+  ],
+  "milestones": [
+    { "id": "budget-month", "category": "Money", "title": "Can manage a monthly budget", "description": "Built a working monthly budget from real figures and kept essential costs covered when something changed.", "requires": ["money.budget.independent"] },
+    { "id": "shock-absorber", "category": "Money", "title": "Can absorb an unexpected cost", "description": "Responded to an unplanned expense without turning it into unmanageable debt.", "requires": ["money.cash-flow.independent"] },
+    { "id": "payslip-reconcile", "category": "Money", "title": "Can reconcile a payslip", "description": "Checked that the pay, deductions and net amount on a payslip actually add up, and knew what to query.", "requires": ["money.payslip.independent"] },
+    { "id": "credit-costed", "category": "Money", "title": "Understands what credit really costs", "description": "Compared the true cost of borrowing across options rather than the headline figure.", "requires": ["money.credit.independent"] },
+    { "id": "verify-request", "category": "Digital safety", "title": "Can verify a suspicious request", "description": "Checked an unusual request through an independent route before acting, and recognised pressure tactics.", "requires": ["digital-safety.scams.independent"] },
+    { "id": "account-secure", "category": "Digital safety", "title": "Can secure the account that protects everything", "description": "Hardened and protected the primary account, and kept a working backup route.", "requires": ["digital-safety.accounts.independent"] },
+    { "id": "compare-housing", "category": "Major decisions", "title": "Can compare two housing options", "description": "Compared homes on full ongoing and upfront cost, uncertainty and access, not just rent.", "requires": ["major-decisions.comparison.independent"] },
+    { "id": "housing-decision", "category": "Major decisions", "title": "Can make a housing decision", "description": "Made and justified a housing decision under real constraints and time pressure.", "requires": ["major-decisions.housing.independent"] },
+    { "id": "documents-organised", "category": "Life administration", "title": "Can organise important documents", "description": "Built a findable, protected set of essential records and knows where each one lives.", "requires": ["life-admin.records.independent"] },
+    { "id": "contract-aware", "category": "Life administration", "title": "Can read a contract before signing", "description": "Identified the clauses that matter, including the ones that were missing.", "requires": ["life-admin.contracts.independent"] },
+    { "id": "complaint-works", "category": "Life administration", "title": "Can make a complaint that gets answered", "description": "Escalated a problem in writing and kept a record of what happened next.", "requires": ["life-admin.complaints.independent"] },
+    { "id": "household-problem", "category": "Everyday independence", "title": "Can handle a realistic household problem", "description": "Dealt with an ordinary but inconvenient household issue end to end.", "requires": ["home.maintenance.independent"] },
+    { "id": "feed-yourself", "category": "Everyday independence", "title": "Can plan and prepare food on a budget", "description": "Planned, shopped for and prepared food using limited money and time.", "requires": ["home.meals.independent"] },
+    { "id": "job-offer-checked", "category": "Work", "title": "Can check a job offer before accepting", "description": "Read an offer critically against what was actually agreed.", "requires": ["work.offers.independent"] },
+    { "id": "work-evidence", "category": "Work", "title": "Can keep evidence of work and pay", "description": "Maintained records that prove hours worked and pay received.", "requires": ["work.evidence.independent"] },
+    { "id": "ask-for-help", "category": "Relationships", "title": "Can ask for help and say no", "description": "Raised a problem clearly and held a boundary under pressure.", "requires": ["relationships.communication.independent", "relationships.boundaries.independent"] },
+    { "id": "manage-conflict", "category": "Relationships", "title": "Can manage a disagreement", "description": "Worked through a conflict without it escalating or being avoided.", "requires": ["relationships.conflict.independent"] },
+    { "id": "plan-week", "category": "Learning and time", "title": "Can plan a week that survives", "description": "Built a realistic plan and decided what to drop when it stopped being possible.", "requires": ["learning-time.planning.independent"] },
+    { "id": "reach-service", "category": "Health", "title": "Can get to the right service and be understood", "description": "Navigated access to a health or support service and got the need across.", "requires": ["health.access.independent"] },
+    { "id": "safe-response", "category": "Emergencies", "title": "Can respond to an emergency safely", "description": "Produced a safe ordered response and knew when to stop and call for help.", "requires": ["emergencies.response.independent"] },
+    { "id": "adapt-to-change", "category": "Adaptation", "title": "Can adapt a decision when things change", "description": "Revised an approach when the situation changed underneath it.", "requires_any": ["emergencies.response.adaptive", "money.credit.adaptive", "health.medicine.adaptive", "wellbeing.support.adaptive", "relationships.conflict.adaptive", "critical-thinking.verification.adaptive", "digital-safety.scams.adaptive", "home.maintenance.adaptive", "work.offers.adaptive", "learning-time.planning.adaptive", "life-admin.complaints.adaptive", "major-decisions.comparison.adaptive"] },
+    { "id": "practical-meal", "category": "Practical", "title": "Observed preparing a simple meal", "description": "A suitable observer watched a safe, ordinary meal being prepared.", "requires_practical": ["observed-meal-preparation"] },
+    { "id": "practical-restore", "category": "Practical", "title": "Observed restoring a sample backup", "description": "A suitable observer watched a backup being checked or restored safely.", "requires_practical": ["observed-sample-restore"] }
+  ]
+}

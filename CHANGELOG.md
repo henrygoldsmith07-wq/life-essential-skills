@@ -2,6 +2,33 @@
 
 ## Unreleased
 
+### Product surfaces
+
+- Add the **Independence Roadmap**: a capability map across all twelve domains showing what is demonstrated, developing, needing work, blocked (with the blocking prerequisite named), and due for a retention check, plus one recommended next step. Each of the 92 capabilities carries its own explainable state. There is deliberately **no overall "life score"** — a single number would imply the domains are commensurable and would hide the evidence behind it.
+- Add **capability milestones** ("Can manage a monthly budget", "Can verify a suspicious request") that appear as earned only when the engine already reports every required competency as demonstrated. They cannot be awarded by reading, by choosing a goal, or by time served.
+- Add **goal-based onboarding**: six real situations (moving out, first job, starting university or college, becoming financially independent, general independence, becoming safer online), each with a short diagnostic. Onboarding only sets a pathway and focus competencies — an evidence-free state change validated by the existing rules. Locality selection stays prominent.
+- Upgrade the five capstones into **life-transition simulations** (`curriculum/simulations.json`): three-part situations that progressively reveal information and then change the constraints under the learner's decision. Evidence is still stored per subskill exactly as before; the simulation is a presentation layer and cannot change how an outcome is derived.
+- Add a human-readable **My Independence Profile** — printable progress report covering demonstrated capabilities, developing areas, milestones, retention status, observed practical evidence and next steps. Explicitly a learning record, not a qualification, and free of private data.
+- Make learner feedback substantially more actionable: per-competency breakdown of what was right and what was missing, why the skill matters, a direct "your next practice" action, and when to expect reassessment.
+
+### Assessment quality and scalability
+
+- Add a **fresh-scenario generation architecture** (`curriculum/variation.json`) defining the variation dimensions a generator must change — context, constraints, trade-offs, missing information, ambiguity, irrelevant information, timing, error trap, decision type, difficulty — plus the metadata contract that makes generated material validatable and calibratable later. **Changing numbers alone is explicitly insufficient**: a case differing only by arithmetic can be passed without re-applying the decision.
+- Add `scripts/validate_variation.py` to enforce the meaningful-change rule and report families relying on weak variation. All 40 families currently declare at least one meaningful axis.
+- Add `scripts/build_adaptive_coverage.py` to report how many families lack an Advanced route. It is **report-only by default and CI-safe**; `--apply` is opt-in and deliberately has a human gate, because every new adaptive item needs an authored answer and calibration before it may award evidence. The gap is tracked, not papered over with uncalibrated content.
+- Express the four evidence stages in plain language in the interface (practise with help / do it yourself / adapt / a later check) so learners meet the assessment terminology only when they need it.
+
+### Boundaries and integrity
+
+- Add `learner/ai-boundary.js`: the interface and guards for optional AI assistance (scenario generation, alternative examples, personalised explanations, practice coaching). AI may never grade, derive an outcome, or turn an assisted performance into independent evidence; every AI artefact is labelled a draft, counts as solving help and is never persisted into learner evidence. The product ships with no provider and works fully without one.
+- The deterministic evidence model is unchanged. `evidence.js` remains the only thing that can derive an outcome; onboarding cannot create evidence; a simulation cannot alter how evidence is recorded. The engine and evidence test suites pass unmodified.
+
+### Performance
+
+- Render the roadmap's capability lists lazily on domain expansion, cutting first-paint markup from ~81 KB to ~22 KB (a 73% reduction) so the capability map stays usable on ordinary phones.
+
+## Unreleased (earlier)
+
 - Add Vercel static deployment support: `vercel.json` (no build, `outputDirectory: "."`), a root `index.html` landing page, and `.vercelignore` that keeps maintainer-only paths out of the upload and excludes the aggregate answer/benchmark files so a deployed site never serves every reference solution at once.
 - Add `scripts/static_smoke.js`: verifies every runtime asset resolves over HTTP with the right content type, that `learner/data.js` embeds no solutions, and that `.vercelignore` neither drops a required asset nor leaks the aggregate answer files. Runs in CI.
 - Review the curriculum as a competency system rather than a content library; findings and priorities in `docs/curriculum-review.md`.

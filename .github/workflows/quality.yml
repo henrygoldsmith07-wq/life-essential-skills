@@ -37,6 +37,14 @@ jobs:
         run: python3 scripts/build_cross_domain_prerequisites.py --check
       - name: Verify the static site serves every runtime asset and excludes solutions
         run: node scripts/static_smoke.js
+      - name: Verify the fresh-scenario variation architecture (meaningful change, not numbers alone)
+        run: python3 scripts/validate_variation.py
+      - name: Report adaptive (Advanced) coverage without requiring closure
+        run: python3 scripts/build_adaptive_coverage.py --check
+      - name: Verify the roadmap never contradicts the deterministic engine
+        run: node scripts/verify_roadmap.js
+      - name: Verify the learner product views render and the AI boundary holds
+        run: node scripts/verify_views.js
       - name: Test validator and link-check failure cases
         run: python3 -m unittest discover -s tests -v
       - name: Test the shared learner rules engine

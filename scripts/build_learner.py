@@ -26,7 +26,11 @@ def outputs(root=ROOT):
     skill_fields=['id','domain','subskill','title','mode','prerequisites','review_policy','learn_path','error_tags']
     learner_skills=dict(skills)
     learner_skills['competencies']=[{k:c[k] for k in skill_fields if k in c} for c in skills['competencies']]
-    data={'index':{g:[{k:r[k] for k in ['id','title','path','domains','capstone'] if k in r} for r in index[g]] for g in ['domains','pathways','capstones','scenarios']},'skills':learner_skills,'bank':{'schema_version':1,'items':headers},
+    # Learner-facing product framing (goals for onboarding, milestones for the
+    # roadmap). Shipped whole: it drives onboarding and the capability map, and
+    # it contains no solutions.
+    goals=read('curriculum/goals.json')
+    data={'index':{g:[{k:r[k] for k in ['id','title','path','domains','capstone'] if k in r} for r in index[g]] for g in ['domains','pathways','capstones','scenarios']},'skills':learner_skills,'goals':goals,'simulations':read('curriculum/simulations.json'),'bank':{'schema_version':1,'items':headers},
       'sources':[{k:s[k] for k in ['id','title','url','jurisdictions','last_checked']} for s in read('data/sources.json')['sources']], 'practical':read('assessor/practical-rubrics.json')}
     result={}
     for d in index['domains']:

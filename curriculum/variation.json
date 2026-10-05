@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "note": "Fresh-scenario generation architecture. This file does NOT create assessment items and does NOT weaken any exposure rule. It defines the variation dimensions that a generator (human or AI-assisted, see scripts/build_variants.py) must change to produce a genuinely different case, plus the validation metadata a future calibration step would need. A variant is only a candidate for the bank: it still has to be authored, source-checked, safety-reviewed, and calibrated before it can sit in assessments/bank.json. CRITICAL: changing a number alone is explicitly NOT sufficient variation - see minimum_meaningful_change below.",
+  "variation_dimensions": {
+    "context": {
+      "label": "Setting and who is involved",
+      "description": "Who the situation involves and where it happens, beyond the raw numbers.",
+      "examples": ["First job as a hospital cleaner rather than retail", "Housing search in a different kind of tenancy", "Money issue for someone caring for a relative"],
+      "affects_rubric": true
+    },
+    "constraints": {
+      "label": "Hard limits or competing requirements",
+      "description": "A rule, deadline, budget cap or competing demand that forces a real trade-off.",
+      "examples": ["Move date moved forward by two weeks", "Only one evening available to view the property", "Fixed appointment time that cannot move"],
+      "affects_rubric": true
+    },
+    "trade-offs": {
+      "label": "Two good things that cannot both happen",
+      "description": "A genuine dilemma where any answer has a cost - the point of the adaptation layer.",
+      "examples": ["Pay the deposit or keep the emergency fund", "Attend the training or keep the shift", "Fix the immediate problem or stop the recurring cause"],
+      "affects_rubric": true
+    },
+    "missing-information": {
+      "label": "Something genuinely unknown",
+      "description": "A fact the learner must notice is absent and must handle by asking, verifying, or stating the assumption - rather than inventing.",
+      "examples": ["Cancellation terms not stated", "Shift pattern only known for the first fortnight", "Whether a repair is the landlord's responsibility"],
+      "affects_rubric": true
+    },
+    "ambiguity": {
+      "label": "More than one reasonable reading",
+      "description": "The case admits genuine interpretation, so the learner must say which reading they used and why.",
+      "examples": ["'Available now' that could mean tonight or next month", "A vague notice period that could be read two ways"],
+      "affects_rubric": true
+    },
+    "irrelevant-information": {
+      "label": "Detail that looks relevant but is not",
+      "description": "A distractor the learner must recognise and set aside, rather than being pulled into.",
+      "examples": ["An unrelated annual statement included in the post", "A tempting but irrelevant discount"],
+      "affects_rubric": true
+    },
+    "timing": {
+      "label": "When things happen",
+      "description": "Sequence, deadlines and lead times, as distinct from quantities.",
+      "examples": ["Deadline in 3 days vs 6 weeks", "Payment falls just after payday vs just before", "Problem occurs at the worst possible moment"],
+      "affects_rubric": true
+    },
+    "error-trap": {
+      "label": "A plausible wrong turn",
+      "description": "A specific, tempting mistake a knowledgeable learner could still make, used to surface the competency's error tags.",
+      "examples": ["Comparing only the headline rent", "Assuming a discount is permanent", "Treating a monthly figure as the total cost"],
+      "affects_rubric": true,
+      "status": "declared for generation; not yet a bank axis"
+    },
+    "decision-type": {
+      "label": "The kind of decision being made",
+      "description": "Choose between options, verify a claim, escalate, prioritise, or decline.",
+      "examples": ["Compare and choose", "Verify before acting", "Decide whether to escalate now", "Decide to decline"],
+      "affects_rubric": true,
+      "status": "declared for generation; not yet a bank axis"
+    },
+    "difficulty": {
+      "label": "Depth of reasoning required",
+      "description": "Single-step vs multi-step, and whether the answer survives one reversal.",
+      "examples": ["One reversal mid-task", "Must hold a decision through a change and say whether it still holds"],
+      "affects_rubric": true,
+      "status": "declared for generation; not yet a bank axis"
+    },
+    "access-requirement": {
+      "label": "An access or practical constraint",
+      "description": "Something that changes how the task must be done or evidenced, without lowering the standard.",
+      "examples": ["The only viewing is stairs-only and the learner uses a wheelchair", "No reliable internet, so verification must happen by phone", "Response must be spoken rather than written"],
+      "affects_rubric": false,
+      "status": "declared for generation; not yet a bank axis",
+      "note": "Access changes the route to evidence, never the standard of the evidence. Record via access_supports."
+    },
+    "locality": {
+      "label": "Jurisdiction-specific rule or service",
+      "description": "A rule, service or protection that differs by nation. Never substituted across jurisdictions.",
+      "examples": ["Wales-specific tenancy or council services", "UK-unspecified with no nation assumed"],
+      "affects_rubric": true,
+      "status": "controlled by eligibility/jurisdiction rules, not by free text",
+      "note": "Never generate a nation-specific variant without verified source coverage for that nation."
+    },
+    "numbers": {
+      "label": "Quantities",
+      "description": "The amounts and figures in the case.",
+      "examples": ["Different rent", "A different balance", "A different unexpected cost"],
+      "affects_rubric": false,
+      "status": "NOT sufficient on its own to make a case fresh",
+      "note": "Changing only numbers does not create meaningful variation. See minimum_meaningful_change."
+    },
+    "wording": {
+      "label": "Surface phrasing",
+      "description": "How the same underlying decision is worded.",
+      "examples": ["A letter rather than a text", "A different persona"],
+      "affects_rubric": false,
+      "status": "weak on its own; pairs with a meaningful axis"
+    }
+  },
+  "minimum_meaningful_change": {
+    "rule": "A variant must change at least one of: context, constraints, trade-offs, missing-information, ambiguity, irrelevant-information, timing, error-trap, decision-type, difficulty. Changing quantities alone (the numbers) is NOT sufficient and must be rejected; a numbers- or wording-only change does not create a fresh case.",
+    "required_axes_for_fresh_transfer": 1,
+    "required_axes_for_retention": 2,
+    "why": "The retention promise is four intervals of fresh independent material. If variants differ only by arithmetic, a learner can pass a later check without having re-applied the decision, which would overstate real transfer."
+  },
+  "variant_metadata_contract": {
+    "note": "Every generated variant carries this metadata so it can be validated, calibrated and traced later. It is intentionally reviewable by a human.",
+    "fields": [
+      { "name": "base_item_id", "type": "string", "required": true, "note": "The canonical item this was derived from." },
+      { "name": "variant_axes", "type": "array<string>", "required": true, "note": "Which dimensions changed; must include at least one from the meaningful set." },
+      { "name": "variant_digest", "type": "string", "required": true, "note": "Stable hash of the variant's context/constraint/trap payload, used to detect accidental duplicate cases." },
+      { "name": "competencies", "type": "array<string>", "required": true },
+      { "name": "jurisdictions", "type": "array<string>", "required": true, "note": "Only jurisdictions with verified source coverage." },
+      { "name": "expected_error_tags", "type": "array<string>", "required": true, "note": "Which existing competency error tags this variant is designed to surface." },
+      { "name": "calibration_status", "type": "enum", "required": true, "values": ["uncalibrated", "in-review", "calibrated"], "note": "Only 'calibrated' variants may enter the bank." },
+      { "name": "source_uses", "type": "array<{source_id,role,jurisdictions,justification}>", "required": true }
+    ]
+  },
+  "generation_prompts": {
+    "note": "These are the standing instructions used when AI assists generation. The AI may propose candidate situations and explanations; it may never grade, derive outcomes, or alter the deterministic engine. Every generated candidate is authored, source-checked and calibrated by a human before use. See docs/product.md#ai-boundaries.",
+    "system_rules": [
+      "Do not produce a final answer, mark a criterion, or suggest an outcome. Generate the SITUATION only.",
+      "Do not change only the numbers. Change at least one contextual, constraint, missing-information, trade-off, timing or decision-type dimension.",
+      "Keep every number fictional and non-identifying.",
+      "Never produce guidance specific to a nation unless a verified source for that nation is supplied.",
+      "Attach the expected existing error tags and the metadata contract fields.",
+      "Flag any safety, consent or regulated topic so a human reviews it before it is considered."
+    ]
+  }
+}
