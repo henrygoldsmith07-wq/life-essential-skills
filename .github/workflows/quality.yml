@@ -45,6 +45,8 @@ jobs:
         run: node scripts/verify_roadmap.js
       - name: Verify the learner product views render and the AI boundary holds
         run: node scripts/verify_views.js
+      - name: Verify every class the views emit is actually styled
+        run: node scripts/verify_styles.js
       - name: Test validator and link-check failure cases
         run: python3 -m unittest discover -s tests -v
       - name: Test the shared learner rules engine

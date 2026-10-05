@@ -12,6 +12,11 @@
   catch(e){blocked=true;notice('Stored evidence needs repair and will not be overwritten. Download the original from My setup. '+e.message);}
   function persist(next){state=next;try{if(!blocked)localStorage.setItem(key,JSON.stringify(next));}catch{notice('Browser storage is unavailable. Download a copy to keep this session’s evidence.');}render();}
   const skillName=cid=>D.skills.competencies.find(c=>c.id===cid).title.replace(' · independent','').replace(' · foundation',' · knowledge check').replace(' · adaptation',' · adapting to change');
+  // Learner-facing wording for an error tag id. Raw ids like
+  // 'assumes-missing-information' mean nothing to a learner, so every surface
+  // that shows an error tag resolves it through here.
+  const errorLabelMap=()=>{const m={};for(const t of D.skills.error_tags||[])m[t.id]=t.label;return m;};
+  const errorLabels=tags=>(tags||[]).map(t=>errorLabelMap()[t]||t);
   const taskButton=(id,label='Try task')=>'<button class="secondary" data-task="'+esc(id)+'">'+esc(label)+'</button>';
   const localityLabel=()=>state.locality==='wales'?'Wales':'UK · nation unspecified';
   function downloadText(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
@@ -54,7 +59,7 @@
     $('progress-content').innerHTML='<div class="metric-grid">'+Object.entries(labels).map(([k,l])=>'<div class="metric"><strong>'+p.totals[k]+'</strong><span>'+esc(l)+'</span></div>').join('')+'</div><p>'+p.totals.knowledge+' knowledge checks met. Written planning and judgement do not prove physical performance.</p><div class="card"><h2>Practical checks</h2>'+D.practical.rubrics.map(r=>{const last=state.observations.filter(o=>o.kind===r.id).at(-1),gate=E.rollup(state,r.gate,D);return '<div class="row"><div><h3>'+esc(r.title)+'</h3><p>'+esc(last?U.statuses[last.outcome]+' · observed '+last.date:'Needs an observed practical check')+'</p><p class="muted">Written answers alone are insufficient. '+gate.practical_missing.length+' practical checks still needed for this domain gate.</p></div><a href="#assessor">Arrange an observed check</a></div>';}).join('')+'</div>'+p.domains.map(d=>'<div class="card"><h2>'+esc(d.title)+'</h2><p>'+d.demonstrated+' independent · '+d.assisted+' with help · '+d.due+' checks due</p><details><summary>Skills and next steps</summary>'+p.skills.filter(s=>s.domain===d.id).map(s=>{
       const c=D.skills.competencies.find(c=>c.id===s.competency_id),item=D.bank.items.find(i=>i.competencies.includes(c.id)&&E.eligible(i,state.locality)&&!E.seen(state,i,D));
       const next=s.status==='unassessed'?'Start with the guide and a skill check.':s.status==='not-yet'?'Practise the missing step, then try fresh materials.':s.status==='assisted'?'Try fresh materials without solving prompts.':s.next_review?'Try a different situation on '+s.next_review+'.':'Your current full performance covers this knowledge check.';
-      return '<div class="skill-card"><h3>'+esc(skillName(c.id))+'</h3><p>'+esc(U.statuses[s.status])+(s.evidence_level?' · '+esc(U.levels[s.evidence_level]):'')+'</p><p class="muted">'+esc(s.retention_status==='retained'?'A delayed fresh check was passed.':s.retention_status==='needs-review'?'A delayed check needs more practice.':'Retention has not been checked.')+(s.recent_improvement?' Your latest attempt improved.':'')+'</p>'+(s.error_tags.length?'<p>Work on: '+esc(s.error_tags.map(t=>D.skills.error_tags.find(e=>e.id===t).label).join('; '))+'</p>':'')+'<p>'+esc(next)+'</p><div class="actions"><button class="secondary" data-learn="'+esc(c.learn_path)+'">Learn this skill</button>'+(item?taskButton(item.id,'Try fresh materials'):'<span class="muted">Ask an assessor for fresh materials.</span>')+'</div></div>';
+      return '<div class="skill-card"><h3>'+esc(skillName(c.id))+'</h3><p>'+esc(U.statuses[s.status])+(s.evidence_level?' · '+esc(U.levels[s.evidence_level]):'')+'</p><p class="muted">'+esc(s.retention_status==='retained'?'A delayed fresh check was passed.':s.retention_status==='needs-review'?'A delayed check needs more practice.':'Retention has not been checked.')+(s.recent_improvement?' Your latest attempt improved.':'')+'</p>'+(s.error_tags.length?'<p>Work on: '+esc(errorLabels(s.error_tags).join('; '))+'</p>':'')+'<p>'+esc(next)+'</p><div class="actions"><button class="secondary" data-learn="'+esc(c.learn_path)+'">Learn this skill</button>'+(item?taskButton(item.id,'Try fresh materials'):'<span class="muted">Ask an assessor for fresh materials.</span>')+'</div></div>';
     }).join('')+'</details></div>').join('');
   }
   function renderPractice(){
@@ -175,7 +180,7 @@
       const rm=Roadmap.roadmap(next,D,today());
       const nextReview=rm.capabilities.filter(c=>c.next_review&&rows.some(r=>r.title.startsWith(c.title.split(' · ')[0]))).map(c=>c.next_review).sort()[0];
       $('today-content').insertAdjacentHTML('afterbegin','<div class="card feedback-summary"><p class="eyebrow">HOW THAT WENT</p>'+
-        FV.perCompetency(rows)+FV.nextPractice(rm.next)+FV.reassessment(nextReview)+
+        FV.perCompetency(rows,errorLabelMap())+FV.nextPractice(rm.next)+FV.reassessment(nextReview)+
         '<p class="muted">Saved as self-reviewed evidence. Your roadmap and milestones have updated.</p></div>');
       notice('Evidence saved. Your roadmap and milestones have updated.');
     }catch(e){notice(e.message);}

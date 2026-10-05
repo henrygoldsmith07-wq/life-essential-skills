@@ -27,15 +27,35 @@
     'retention':    { label: 'Later check',       plain: 'A fresh check, days later, to see if it stuck.' }
   };
 
-  function capState(summary, comp) {
+  /* Classify a capability from the engine summary.
+   *
+   * "retained" is only claimed when the MOST RECENT successful evidence was a
+   * retention check. If the learner has since done more fresh transfer, the
+   * older retention pass no longer describes the present state, so we fall back
+   * to "demonstrated" (still true) rather than implying a currency we can't
+   * evidence. This is deliberately conservative: it can under-claim ("Can do
+   * this" instead of "Can still do this"), never over-claim. */
+  function capState(summary, comp, state, today) {
     if (summary.status === 'demonstrated') {
       if (comp.mode === 'knowledge') return 'understood';
-      if (summary.retention_status === 'retained') return 'retained';
-      return summary.retention_checks ? 'retained-pending' : 'demonstrated';
+      // "Can still do this" only when the most recent attempt WAS a retention check.
+      if (summary.retention_status === 'retained' && lastIsRetention(state, summary)) return 'retained';
+      // Demonstrated, but a later check is already scheduled.
+      return summary.next_review ? 'retained-pending' : 'demonstrated';
     }
     if (summary.status === 'assisted') return 'assisted';
     if (summary.status === 'not-yet') return 'needs-work';
     return 'not-started';
+  }
+
+  /* True only when the competency's latest recorded attempt was itself a
+   * retention check. Compares against summary.last_attempt so it works for
+   * assessor-reviewed and migrated records too. */
+  function lastIsRetention(state, summary) {
+    if (!summary.last_attempt) return false;
+    const mine = state.records.filter(r => r.competency_id === summary.competency_id);
+    const last = mine.at(-1);
+    return !!last && last.phase === 'retention' && last.date === summary.last_attempt;
   }
 
   // The five capability states the roadmap exposes. No overall "life score".
@@ -49,20 +69,23 @@
     'not-started':         { label: 'Not started',       tone: 'idle',   detail: 'No evidence recorded yet.' }
   };
 
-  function capability(state, data, comp, today, blockedMap) {
+  function capability(state, data, comp, today, blockedMap, errLabels) {
     const s = summaryOf(state, data, comp.id);
     const blocked = blockedMap.get(comp.id);
+    const cap = capState(s, comp, state, today);
+    const label = CAP_LABEL[cap] || CAP_LABEL['not-started'];
     return {
       id: comp.id,
       title: comp.title,
       mode: comp.mode,
       stage: STAGE[comp.mode] || STAGE.independent,
-      capability: capState(s, comp),
-      label: (CAP_LABEL[capState(s, comp)] || CAP_LABEL['not-started']).label,
-      tone: (CAP_LABEL[capState(s, comp)] || CAP_LABEL['not-started']).tone,
-      detail: (CAP_LABEL[capState(s, comp)] || CAP_LABEL['not-started']).detail,
+      capability: cap,
+      label: label.label,
+      tone: label.tone,
+      detail: label.detail,
       status: s.status,
       error_tags: s.error_tags,
+      error_labels: errLabels,
       evidence_level: s.evidence_level,
       review_basis: s.review_basis,
       next_review: s.next_review,
@@ -71,6 +94,7 @@
       retention_passed: s.retention_passed,
       recent_improvement: s.recent_improvement,
       attempts: s.attempts,
+      today: today,
       blocked: !!blocked,
       blocked_by: blocked ? blocked.missing : [],
       blocked_titles: blocked ? blocked.missing.map(m => title(data, m)) : [],
@@ -81,6 +105,16 @@
   function title(data, cid) {
     const c = data.skills.competencies.find(x => x.id === cid);
     return c ? c.title : cid;
+  }
+
+  /* Learner-facing wording for an error tag id, e.g.
+   * 'assumes-missing-information' -> 'Name missing facts before deciding'.
+   * Showing the raw id to a learner would be meaningless, so this is applied at
+   * the derivation layer rather than patched per view. */
+  function errorLabelMap(data) {
+    const map = {};
+    for (const t of (data.skills.error_tags || [])) if (t && t.id) map[t.id] = t.label || t.id;
+    return map;
   }
 
   /* Read a summary defensively. Content data and the engine must never be able
@@ -95,7 +129,8 @@
    * Returns domains with capabilities, a suggested next step, milestones and a
    * prioritised list of what to do next. Everything is derived from state. */
   function roadmap(state, data, today) {
-    const byId = new Map(data.skills.competencies.map(c => [c.id, c]));
+    // Learner-facing wording for error tags, resolved once per render.
+    const errLabels = errorLabelMap(data);
     // Which competencies are currently blocked, and by what.
     const blockedMap = new Map();
     for (const c of data.skills.competencies) {
@@ -105,7 +140,7 @@
 
     const domains = data.index.domains.map(d => {
       const comps = data.skills.competencies.filter(c => c.domain === d.id);
-      const caps = comps.map(c => capability(state, data, c, today, blockedMap));
+      const caps = comps.map(c => capability(state, data, c, today, blockedMap, errLabels));
       const independent = caps.filter(c => c.mode === 'independent');
       const counts = {
         demonstrated: independent.filter(c => c.status === 'demonstrated').length,
@@ -207,20 +242,27 @@
   function onboarding(data, goalId, answers) {
     const goal = (data.goals?.goals || []).find(g => g.id === goalId);
     if (!goal) return null;
-    const focus = new Set();
+    // The goal's own backbone comes first and keeps its declared order, so the
+    // sequence is deterministic and readable. Competencies the learner's answers
+    // singled out are then appended (deduplicated), because they refine the
+    // focus rather than replace it. Note: the engine treats goal_competencies as
+    // a membership set, so this ordering is for clarity and future-proofing, not
+    // because the recommender currently reads position.
+    const focus = [];
+    const seenCid = new Set();
+    const add = cid => { if (!seenCid.has(cid)) { seenCid.add(cid); focus.push(cid); } };
+    goal.focus_competencies.forEach(add);
     (goal.questions || []).forEach(q => {
       const chosen = (answers || {})[q.id];
       const opt = (q.options || []).find(o => o.value === chosen);
-      if (opt) opt.focus.forEach(f => focus.add(f));
+      if (opt) opt.focus.forEach(add);
     });
-    // Always keep the goal's own ordered backbone so the roadmap has a spine.
-    goal.focus_competencies.forEach(c => focus.add(c));
     return {
       goal_id: goal.id,
       title: goal.title,
       pathway: goal.pathway,
       capstone: goal.capstone,
-      goal_competencies: [...focus],
+      goal_competencies: focus,
       domains: goal.domains,
       sequence: goal.sequence
     };

@@ -48,6 +48,8 @@ h4{font-size:.95rem;margin:0 0 6px;line-height:1.3}
 .bar{grid-column:1/-1;height:6px;background:var(--pale);border-radius:999px;overflow:hidden}
 .bar__fill{display:block;height:100%;background:var(--green);border-radius:999px}
 .domain__body{padding:0 20px 20px;border-top:1px solid var(--line)}
+/* Placeholder shown between opening a domain and its capability list being built. */
+.domain__loading{font-style:italic;color:var(--muted)}
 
 .caplist{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
 .capcard{border:1px solid var(--line);border-left:3px solid var(--line);border-radius:9px;padding:13px 15px;background:var(--white)}
@@ -64,8 +66,10 @@ h4{font-size:.95rem;margin:0 0 6px;line-height:1.3}
 .ms{display:flex;gap:12px;padding:13px 15px;border-radius:10px;border:1px solid var(--line);background:var(--white)}
 .ms--earned{border-color:#8fbfab;background:#f3faf6}
 .ms--near{border-color:#c9b98a;background:#fdf9ee}
+.ms--todo{opacity:.82;border-style:dashed}
 .ms__mark{font-size:1.1rem;line-height:1.4;flex:none;color:var(--muted)}
 .ms--earned .ms__mark{color:var(--green)}
+.ms--near .ms__mark{color:#8a6d1f}
 .ms p{margin:0 0 3px;font-size:.88rem}
 .ms .muted{font-size:.82rem}
 

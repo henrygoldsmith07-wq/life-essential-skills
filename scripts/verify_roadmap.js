@@ -81,5 +81,57 @@ ok('profile: demonstrated matches roadmap', p.demonstrated.length === demonstrat
 const ukRm = R.roadmap(E.migrateState(read('examples/learners/wales-housing.json'), D, TODAY), D, TODAY);
 ok('roadmap: does not crash on wales-only records viewed as uk', Array.isArray(ukRm.domains));
 
+// 8. Regression: "can still do this" must describe the MOST RECENT attempt.
+// A retention pass followed by newer fresh transfer is not "retained".
+const cid = 'money.budget.independent';
+const bItems = D.bank.items.filter(i => i.competencies[0] === cid);
+if (bItems.length >= 3) {
+  const mk = (id, phase, date) => {
+    const it = D.bank.items.find(i => i.id === id);
+    return {
+      id: 'r' + id, attempt_id: 'a' + id, competency_id: cid, item_id: id, phase, date,
+      assessment_version: 1, help_used: false, access_supports: [], solution_seen: false,
+      error_tags: [], evidence_level: 'self-reviewed', reviewer_type: 'learner',
+      criteria_judgements: it.scoring.map(s => ({ criterion_id: s.id, judgement: 'met' }))
+    };
+  };
+  const fresh = E.migrateState(read('examples/learners/wales-housing.json'), D, TODAY);
+  fresh.records.push(mk(bItems[0].id, 'retention', '2026-09-01'));
+  const capStale = R.roadmap(fresh, D, '2026-09-10').capabilities.find(x => x.id === cid);
+  ok('roadmap: retention pass alone reads as retained', capStale.capability === 'retained', capStale.capability);
+
+  fresh.records.push(mk(bItems[1].id, 'transfer', '2026-09-20'));
+  const capNew = R.roadmap(fresh, D, '2026-09-25').capabilities.find(x => x.id === cid);
+  ok('roadmap: newer transfer supersedes the retention label', capNew.capability !== 'retained', capNew.capability);
+  ok('roadmap: still honestly demonstrated', capNew.capability === 'demonstrated' || capNew.capability === 'retained-pending', capNew.capability);
+}
+
+// 9. Regression: goal_competencies must keep the goal's declared order first,
+// so the learner's diagnostic refines the focus instead of reordering it.
+const fj = D.goals.goals.find(g => g.id === 'first-job');
+const fjPlan = R.onboarding(D, 'first-job', { 'q-stage': 'problems', 'q-hours': 'variable' });
+const backbone = fj.focus_competencies;
+const head = fjPlan.goal_competencies.slice(0, backbone.length);
+ok('onboarding: goal backbone keeps its declared order', head.join(',') === backbone.join(','), head.join(','));
+ok('onboarding: diagnostic focus appended, not substituted', fjPlan.goal_competencies.length >= backbone.length);
+ok('onboarding: no duplicate competencies', new Set(fjPlan.goal_competencies).size === fjPlan.goal_competencies.length);
+
+// 10. Regression: error tags must reach the learner as wording, not raw ids.
+// Drive a not-yet outcome so the latest attempt carries an error tag.
+const tagIt = E.migrateState(read('examples/learners/evaluation-cycle.json'), D, TODAY);
+const tkItem = D.bank.items.find(i => i.competencies[0] === 'money.cash-flow.independent');
+const tkComp = D.skills.competencies.find(c => c.id === 'money.cash-flow.independent');
+tagIt.records.push({
+  id: 'r-tagged', attempt_id: 'a-tagged', competency_id: tkComp.id, item_id: tkItem.id,
+  phase: 'transfer', date: '2026-10-01', assessment_version: 1,
+  help_used: false, access_supports: [], solution_seen: false,
+  error_tags: ['assumes-missing-information'], evidence_level: 'self-reviewed', reviewer_type: 'learner',
+  criteria_judgements: tkItem.scoring.map(s => ({ criterion_id: s.id, judgement: 'not-met' }))
+});
+const rmErr = R.roadmap(tagIt, D, TODAY);
+const capErr = rmErr.capabilities.find(c => c.id === tkComp.id);
+ok('roadmap: error tags survive into the capability', capErr.error_tags.includes('assumes-missing-information'));
+ok('roadmap: error tag has a learner-facing label', !!capErr.error_labels['assumes-missing-information'] && capErr.error_labels['assumes-missing-information'] !== 'assumes-missing-information', capErr.error_labels['assumes-missing-information']);
+
 console.log(fail === 0 ? '\nALL ROADMAP CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);

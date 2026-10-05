@@ -23,16 +23,18 @@
   }
 
   function capabilityRow(c) {
-    const next = c.next_review
-      ? (c.next_review <= undefined ? '' : '')
-      : '';
+    // error_tags arrive as ids (e.g. 'assumes-missing-information'). Show the
+    // learner-facing label when we have one; otherwise de-slug it so a raw
+    // machine id is never shown as-is.
+    const errs = (c.error_tags || [])
+      .map(t => (c.error_labels && c.error_labels[t]) || t.replace(/-/g, ' '));
     return '<li class="capcard">' +
       '<div class="capcard__head">' + chip(c) +
-      '<h4>' + esc(c.title.replace(' · foundation', '').replace(' · independent', '').replace(' · adaptation', '')) + '</h4></div>' +
+      '<h4>' + esc(c.title.replace(/ · (foundation|independent|adaptation)/, '')) + '</h4></div>' +
       '<p class="capcard__detail">' + esc(c.detail) + '</p>' +
-      (c.error_tags.length ? '<p class="capcard__work">Work on: ' + esc(c.error_tags.map(t => t).join(', ')) + '</p>' : '') +
+      (errs.length ? '<p class="capcard__work">Work on: ' + esc(errs.join(', ')) + '</p>' : '') +
       (c.blocked ? '<p class="capcard__blocked">Needs first: ' + esc(c.blocked_titles.join(', ')) + '</p>' : '') +
-      (c.next_review ? '<p class="capcard__due">' + (c.next_review <= (window.ROADMAP_TODAY || '9999-12-31') ? 'Check due ' + esc(c.next_review) : 'Next check ' + esc(c.next_review)) + '</p>' : '') +
+      (c.next_review ? '<p class="capcard__due">' + (c.next_review <= (c.today || '9999-12-31') ? 'Check due ' + esc(c.next_review) : 'Next check ' + esc(c.next_review)) + '</p>' : '') +
       (c.recent_improvement ? '<p class="capcard__up">Improved on your last attempt</p>' : '') +
       '</li>';
   }

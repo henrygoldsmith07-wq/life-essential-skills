@@ -40,7 +40,6 @@ const SV = loadModule('simulation-view.js', 'SimulationView');
 const FV = loadModule('feedback-view.js', 'FeedbackView');
 const PV = loadModule('profile-view.js', 'ProfileView');
 const AI = loadModule('ai-boundary.js', 'AIBoundary');
-global.ROADMAP_TODAY = '2026-10-05';
 
 const TODAY = '2026-10-05';
 const empty = E.emptyState('uk', 'general');
@@ -80,7 +79,11 @@ ok('sim writeUp renders', SV.writeUp(sim, capItem, '<p>materials</p>').includes(
 
 // 5. Feedback view
 ok('result banner renders', FV.resultBanner('demonstrated').includes('Shown independently'));
-ok('per-competency renders', FV.perCompetency([{ title: 'X', scoring: [{ id: 'c', criterion: 'do it' }], judgements: { c: 'not-met' }, error_tags: [], comp: { mode: 'independent' } }]).includes('Missing'));
+const fbRow = { title: 'X', scoring: [{ id: 'c', criterion: 'do it' }], judgements: { c: 'not-met' }, error_tags: ['assumes-missing-information'], comp: { mode: 'independent' } };
+ok('per-competency renders', FV.perCompetency([fbRow]).includes('Missing'));
+// Raw error-tag ids must never reach the learner.
+ok('feedback hides raw error ids', !FV.perCompetency([fbRow]).includes('assumes-missing-information'), 'falls back to readable text');
+ok('feedback shows error wording when given labels', FV.perCompetency([fbRow], { 'assumes-missing-information': 'Name missing facts before deciding' }).includes('Name missing facts before deciding'));
 ok('next practice renders', FV.nextPractice({ why: 'because', item_id: 'M-CF-01', kind: 'transfer', learn_path: 'g.md', reason: ['r'] }).toLowerCase().includes('your next practice'));
 
 // 6. Profile view
