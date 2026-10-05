@@ -29,8 +29,13 @@
   }
 
   function question(q, chosen) {
+    // Give every control an id so the label is programmatically associated and
+    // each option is individually reachable by assistive tech and testing.
     return '<fieldset class="q"><legend>' + esc(q.prompt) + '</legend>' +
-      q.options.map(o => '<label class="qopt"><input type="radio" name="' + esc(q.id) + '" value="' + esc(o.value) + '"' + (chosen === o.value ? ' checked' : '') + '> ' + esc(o.label) + '</label>').join('') +
+      q.options.map((o, i) => {
+        const id = esc(q.id) + '-' + esc(o.value);
+        return '<label class="qopt" for="' + id + '"><input type="radio" id="' + id + '" name="' + esc(q.id) + '" value="' + esc(o.value) + '"' + (chosen === o.value ? ' checked' : '') + '> ' + esc(o.label) + '</label>';
+      }).join('') +
       '</fieldset>';
   }
 

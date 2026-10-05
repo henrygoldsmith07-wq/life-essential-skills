@@ -69,9 +69,8 @@
     'not-started':         { label: 'Not started',       tone: 'idle',   detail: 'No evidence recorded yet.' }
   };
 
-  function capability(state, data, comp, today, blockedMap, errLabels) {
-    const s = summaryOf(state, data, comp.id);
-    const blocked = blockedMap.get(comp.id);
+  function capability(state, data, comp, today, blockedMap, errLabels, cache) {
+    const s = summaryOf(state, data, comp.id, cache);    const blocked = blockedMap.get(comp.id);
     const cap = capState(s, comp, state, today);
     const label = CAP_LABEL[cap] || CAP_LABEL['not-started'];
     return {
@@ -103,8 +102,8 @@
   }
 
   function title(data, cid) {
-    const c = data.skills.competencies.find(x => x.id === cid);
-    return c ? c.title : cid;
+    if (!title.cache || title.data !== data) { title.cache = new Map(data.skills.competencies.map(c => [c.id, c.title])); title.data = data; }
+    return title.cache.get(cid) || cid;
   }
 
   /* Learner-facing wording for an error tag id, e.g.
@@ -119,28 +118,40 @@
 
   /* Read a summary defensively. Content data and the engine must never be able
    * to crash the whole roadmap: an unknown or mismatched competency id is
-   * reported as absent, never as evidence, and never as an error. */
-  function summaryOf(state, data, cid) {
-    try { return E.summary(state, cid, data); }
-    catch (e) { return { status: 'unknown', attempts: 0, error_tags: [], retention_status: 'unchecked', retention_checks: 0, retention_passed: 0, recent_improvement: false, next_review: null, evidence_level: null, last_demonstrated: null }; }
+   * reported as absent, never as evidence, and never as an error.
+   *
+   * Memoised per render, and keyed on the state object itself rather than a
+   * caller-supplied key. Every roadmap() call computes an epoch and installs a
+   * fresh cache, so a cache can never outlive the render that created it and
+   * cannot go stale if a caller mutates a state object in place. */
+  function summaryOf(state, data, cid, cache) {
+    const memo = cache || new Map();
+    if (memo.has(cid)) return memo.get(cid);
+    let out;
+    try { out = E.summary(state, cid, data); }
+    catch (e) { out = { status: 'unknown', attempts: 0, error_tags: [], retention_status: 'unchecked', retention_checks: 0, retention_passed: 0, recent_improvement: false, next_review: null, evidence_level: null, last_demonstrated: null, competency_id: cid, last_attempt: null }; }
+    memo.set(cid, out);
+    return out;
   }
 
   /* Build the whole capability roadmap.
    * Returns domains with capabilities, a suggested next step, milestones and a
    * prioritised list of what to do next. Everything is derived from state. */
   function roadmap(state, data, today) {
+    // One memo per render, shared by every summary lookup below.
+    const cache = new Map();
     // Learner-facing wording for error tags, resolved once per render.
     const errLabels = errorLabelMap(data);
     // Which competencies are currently blocked, and by what.
     const blockedMap = new Map();
     for (const c of data.skills.competencies) {
-      const missing = c.prerequisites.filter(p => summaryOf(state, data, p).status !== 'demonstrated');
+      const missing = c.prerequisites.filter(p => summaryOf(state, data, p, cache).status !== 'demonstrated');
       if (missing.length) blockedMap.set(c.id, { missing });
     }
 
     const domains = data.index.domains.map(d => {
       const comps = data.skills.competencies.filter(c => c.domain === d.id);
-      const caps = comps.map(c => capability(state, data, c, today, blockedMap, errLabels));
+      const caps = comps.map(c => capability(state, data, c, today, blockedMap, errLabels, cache));
       const independent = caps.filter(c => c.mode === 'independent');
       const counts = {
         demonstrated: independent.filter(c => c.status === 'demonstrated').length,
@@ -159,7 +170,7 @@
     });
 
     const all = domains.flatMap(d => d.capabilities);
-    const milestones = (data.goals?.milestones || []).map(m => milestone(state, data, m));
+    const milestones = (data.goals?.milestones || []).map(m => milestone(state, data, m, cache));
     const rec = safeRecommend(state, data, today);
 
     return {
@@ -177,12 +188,13 @@
     };
   }
 
-  function milestone(state, data, m) {
+  function milestone(state, data, m, cache) {
+    const memo = cache || new Map();
     const need = m.requires || [];
     const any = m.requires_any || [];
     const practical = m.requires_practical || [];
-    const statuses = need.map(cid => ({ cid, s: summaryOf(state, data, cid) }));
-    const anyDone = any.map(cid => ({ cid, s: summaryOf(state, data, cid) }));
+    const statuses = need.map(cid => ({ cid, s: summaryOf(state, data, cid, memo) }));
+    const anyDone = any.map(cid => ({ cid, s: summaryOf(state, data, cid, memo) }));
     const practicalDone = practical.map(kind => ({
       kind,
       s: state.observations.filter(o => o.kind === kind).at(-1)
@@ -198,7 +210,7 @@
     return {
       ...m,
       earned,
-      requires_detail: need.map(cid => ({ cid, title: title(data, cid), status: summaryOf(state, data, cid).status })),
+      requires_detail: need.map((cid, i) => ({ cid, title: title(data, cid), status: statuses[i].s.status })),
       progress: progressParts.join(' · '),
       near: !earned && needMet && anyMet && practical.length === 0
     };
