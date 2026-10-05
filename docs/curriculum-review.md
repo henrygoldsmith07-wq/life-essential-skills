@@ -50,7 +50,6 @@ Sections **6 (capstone breadth) and 7 (scenario narrative)** are diagnosed but n
 The only two remediation strings in the entire product are:
 
 > "Revisit the relevant guide, practise the missing step with help, then use an unseen task."
-
 > "Revisit the guide, practise this missing step and try an unseen case."
 
 So when a learner misses a criterion, the Feedback stage returns *"re-read the guide"*. Across 866 opportunities. The product is unambiguous that rereading is not evidence (`mastery.md` § "Reading is not demonstration"), and then hands out rereading as its primary remediation for 866 separate failures. This is the loop's own thesis applied to itself, in reverse.
@@ -123,7 +122,7 @@ The validator previously checked only that intervals were positive, sorted and u
 
 **Status: measured, not yet fixed.** This review added the missing invariant to `scripts/validate_adaptive.py` as an honest **warning** (`distinct independent cases >= max(intervals) + 1`), so the shortfall is now visible on every validation run and can be driven down as cases are authored:
 
-```
+```text
 WARNING: money.budget: only 3 fresh independent case(s) for 5 retention slots;
 families need >= 5 distinct unseen cases to finish the default review schedule
 ```
@@ -140,7 +139,7 @@ The promotion model is `knowledge → independent → adaptive`, and `*.adaptive
 
 Worse, each domain's entire `advanced-scenario` rollup resolves through **exactly one** adaptive subskill:
 
-```
+```text
 emergencies.advanced-scenario <- emergencies.response.adaptive
 money.advanced-scenario       <- money.credit.adaptive
 health.advanced-scenario      <- health.medicine.adaptive
