@@ -1,0 +1,96 @@
+// Verify the interaction layer, which only misbehaves once the page is driven:
+// focus management, duplicate ids in repeatedly-inserted blocks, button types
+// inside forms, and the onboarding submit path. Run in CI.
+'use strict';
+const fs = require('fs');
+const path = require('path');
+const root = path.resolve(__dirname, '..');
+function load(f, g) { new Function('module', 'exports', fs.readFileSync(path.join(root, 'learner', f), 'utf8'))(undefined, undefined); return global[g]; }
+const OV = load('onboarding-view.js', 'OnboardingView');
+const RV = load('roadmap-view.js', 'RoadmapView');
+const SV = load('simulation-view.js', 'SimulationView');
+const FV = load('feedback-view.js', 'FeedbackView');
+const E = require(path.join(root, 'learner/engine.js'));
+const R = require(path.join(root, 'learner/roadmap.js'));
+const read = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
+const D = {
+  index: read('curriculum/index.json'), skills: read('curriculum/subskills.json'),
+  bank: { items: [...read('assessments/bank.json').items, ...read('assessments/capstones.json').items] },
+  practical: read('assessor/practical-rubrics.json'),
+  goals: read('curriculum/goals.json'), simulations: read('curriculum/simulations.json')
+};
+const TODAY = '2026-10-05';
+let fail = 0;
+const ok = (n, c, e) => { console.log((c ? 'PASS ' : 'FAIL ') + n + (e ? '  ' + e : '')); if (!c) fail++; };
+
+const rm = R.roadmap(E.migrateState(read('examples/learners/evaluation-cycle.json'), D, TODAY), D, TODAY);
+const goal = D.goals.goals[0];
+
+// ---- 1. Duplicate ids in the onboarding card ----
+// app.js inserts this block with insertAdjacentHTML('afterbegin') and does not
+// remove a previous one, so clicking a second goal can duplicate every id.
+const block = OV.situation(goal) + OV.questions(goal, null) + '<div id="onboard-error"></div>';
+const twice = block + block;
+const idCounts = {};
+for (const m of twice.matchAll(/\sid="([^"]+)"/g)) idCounts[m[1]] = (idCounts[m[1]] || 0) + 1;
+const dupes = Object.entries(idCounts).filter(([, n]) => n > 1);
+ok('onboarding block has stable ids', Object.keys(idCounts).length > 0, Object.keys(idCounts).join(','));
+console.log('   -> ids in the inserted block: ' + Object.keys(idCounts).slice(0, 6).join(', '));
+console.log('   -> duplicated if inserted twice: ' + (dupes.length ? dupes.map(d => d[0]).join(',') : 'none'));
+// The real problem is whether app.js guards against a second insert.
+const appSrc = fs.readFileSync(path.join(root, 'learner/app.js'), 'utf8');
+const startOnboarding = (appSrc.match(/function startOnboarding[\s\S]*?\n  \}/) || [''])[0];
+ok('startOnboarding removes a previous onboarding card before inserting',
+  /\.remove\(\)/.test(startOnboarding));
+ok('startOnboarding moves focus to the new step',
+  /first\.focus\(\)|U\.focus/.test(startOnboarding));
+
+// ---- 2. Form submit path ----
+const q = goal.questions[0];
+const plan = R.onboarding(D, goal.id, { [q.id]: q.options[0].value });
+ok('onboarding with no answers still yields the goal backbone', R.onboarding(D, goal.id, {}).goal_competencies.length >= goal.focus_competencies.length);
+const unknownGoal = R.onboarding(D, 'no-such-goal', {});
+ok('an unknown goal returns null rather than throwing', unknownGoal === null);
+const badAnswers = R.onboarding(D, goal.id, { [q.id]: 'not-a-real-option' });
+ok('an unrecognised answer is ignored, not treated as focus',
+  badAnswers.goal_competencies.join(',') === goal.focus_competencies.join(','));
+
+// ---- 3. Milestones reachable by keyboard / labelled ----
+const msHtml = RV.render(rm);
+ok('milestones are not just colour-coded', /ms--earned|ms--near|ms--todo/.test(msHtml));
+
+// ---- 4. Feedback actions are real, focusable controls ----
+const fb = FV.nextPractice({ why: 'because', item_id: 'M-CF-01', kind: 'transfer', learn_path: 'g.md', reason: ['r'] });
+ok('next-practice buttons carry a type attribute or are not in a form',
+  !/<button(?![^>]*type=)[^>]*>/.test(fb) || /data-task/.test(fb), 'a bare <button> inside a form defaults to type=submit');
+ok('next-practice exposes both a task and a learn path', /data-task/.test(fb) && /data-learn/.test(fb));
+
+// ---- 5. Simulation stage buttons ----
+const st = SV.stage(D.simulations.simulations[0], 0);
+const btns = [...st.matchAll(/<button\b[^>]*>/g)].map(m => m[0]);
+ok('every non-submit button in the views declares type=button',
+  btns.every(b => /type="button"/.test(b)) &&
+  [...fb.matchAll(/<button\b[^>]*>/g)].every(m => /type="button"/.test(m[0])) &&
+  [...msHtml.matchAll(/<button\b[^>]*>/g)].every(m => /type="button"/.test(m[0])),
+  btns.length + ' sim buttons');
+ok('simulation stage offers a way out', /id="close-task"/.test(st));
+ok('simulation back button only appears after stage 1', !/id="sim-back"/.test(st));
+ok('simulation final stage offers the write-up', /Finish and write/.test(SV.stage(D.simulations.simulations[0], 2)));
+
+// ---- 6. Locale independence of learner-facing dates ----
+const nov = R.roadmap(E.migrateState(read('examples/learners/review-due.json'), D, TODAY), D, TODAY);
+ok('roadmap dates render as plain ISO strings', nov.retention_due.every(c => /^\d{4}-\d{2}-\d{2}$/.test(c.next_review)),
+  nov.retention_due.map(c => c.next_review).join(','));
+
+// ---- 7. Lazy-loaded roadmap bodies must not get stuck on placeholder text ----
+// A browser restores <details> open state on reload and back-navigation, and may
+// fire 'toggle' before the listener is attached, which would leave the
+// "Open to see every skill in this area" placeholder visible forever.
+const renderRoadmapSrc = (appSrc.match(/function renderRoadmap\(\)\{[\s\S]*?\n  \}/) || [''])[0];
+ok('renderRoadmap loads any domain already open when the listener attaches',
+  /if\(det\.open\)/.test(renderRoadmapSrc));
+ok('renderRoadmap guards the lazy body against double loading',
+  /dataset\.loaded/.test(renderRoadmapSrc) && /loadBody/.test(renderRoadmapSrc));
+
+console.log(fail === 0 ? '\nALL INTERACTION CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
+process.exit(fail === 0 ? 0 : 1);

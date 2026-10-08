@@ -77,8 +77,8 @@
         (n.estimated_time_minutes ? '<p class="time">About ' + n.estimated_time_minutes + ' minutes</p>' : '') : '') +
       (n.reason && n.reason.length ? '<ul class="reasons">' + n.reason.slice(0, 4).map(r => '<li>' + esc(r) + '</li>').join('') + '</ul>' : '') +
       '<div class="actions">' +
-      (n.item_id ? '<button data-task="' + esc(n.item_id) + '">' + (n.kind === 'retention' ? 'Start the later check' : 'Start this task') + '</button>' : '') +
-      (n.learn_path ? '<button class="secondary" data-learn="' + esc(n.learn_path) + '">Learn the skill first</button>' : '') +
+      (n.item_id ? '<button type="button" data-task="' + esc(n.item_id) + '">' + (n.kind === 'retention' ? 'Start the later check' : 'Start this task') + '</button>' : '') +
+      (n.learn_path ? '<button type="button" class="secondary" data-learn="' + esc(n.learn_path) + '">Learn the skill first</button>' : '') +
       '</div>' +
       '</section>';
   }

@@ -26,8 +26,8 @@
       '<p class="time">About ' + (capstoneItem ? capstoneItem.estimated_time_minutes : 60) + ' minutes, in three parts</p>' +
       '<div class="notice notice--info"><p><strong>How this works.</strong> You will work through the situation in three parts. Each part adds something new — including a change that makes the situation harder. Take notes as you go; write your final answer at the end, as one piece of work.</p>' +
       '<p>Your progress is judged against the same criteria as any other task, and each skill you demonstrate is recorded against that skill on your roadmap.</p></div>' +
-      '<div class="actions"><button id="sim-begin">Begin the simulation</button>' +
-      '<button class="secondary" id="close-task">Not now</button></div>' +
+      '<div class="actions"><button type="button" id="sim-begin">Begin the simulation</button>' +
+      '<button type="button" class="secondary" id="close-task">Not now</button></div>' +
       '</div>';
   }
 
@@ -45,9 +45,9 @@
       '<p class="sim__trap"><span class="visually-hidden">Watch for: </span>' + esc(s.trap) + '</p>' +
       '<div class="sim__progress" aria-hidden="true">' + sim.stages.map((_, k) => '<span class="dot' + (k <= n ? ' dot--on' : '') + '"></span>').join('') + '</div>' +
       '<div class="actions">' +
-      (n > 0 ? '<button class="secondary" id="sim-back">Back</button>' : '') +
-      '<button id="sim-next">' + (n === total - 1 ? 'Finish and write your answer' : 'Continue') + '</button>' +
-      '<button class="secondary" id="close-task">Close</button>' +
+      (n > 0 ? '<button type="button" class="secondary" id="sim-back">Back</button>' : '') +
+      '<button type="button" id="sim-next">' + (n === total - 1 ? 'Finish and write your answer' : 'Continue') + '</button>' +
+      '<button type="button" class="secondary" id="close-task">Close</button>' +
       '</div></div>';
   }
 
@@ -64,8 +64,8 @@
       '<label for="response">Write the whole thing as one response</label>' +
       '<textarea id="response" placeholder="Work through all three parts in a single response, or use paper or speech. This answer is never saved."></textarea>' +
       '<label><input type="checkbox" id="paper-attempt"> I completed a response on paper or by speaking.</label>' +
-      '<div class="actions"><button id="finish-attempt">Finish attempt &amp; check feedback</button>' +
-      '<button class="secondary" id="close-task">Close</button></div>' +
+      '<div class="actions"><button type="button" id="finish-attempt">Finish attempt &amp; check feedback</button>' +
+      '<button type="button" class="secondary" id="close-task">Close</button></div>' +
       '<div id="feedback-area" hidden></div>' +
       '</div>';
   }

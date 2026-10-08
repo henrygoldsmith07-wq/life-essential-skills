@@ -20,7 +20,7 @@
 
 ### Verification added
 
-- `scripts/verify_roadmap.js`, `verify_views.js`, `verify_styles.js`, `verify_content.js`, `verify_accessibility.js`, `verify_performance.js` and `verify_resilience.js` run in CI. Between them they assert that the roadmap never contradicts the engine, that the product views render from real data, that the AI boundary cannot be bypassed, that every class a view emits is styled, that no raw error-tag id reaches the learner, that no milestone can be earned without real evidence, that every simulation genuinely develops and changes the situation, that no content is rendered unescaped, that every control is labelled, that the roadmap stays fast and linear, and that damaged stored evidence degrades safely instead of being shown as achievement.
+- `scripts/verify_roadmap.js`, `verify_views.js`, `verify_styles.js`, `verify_content.js`, `verify_accessibility.js`, `verify_performance.js` and `verify_resilience.js` run in CI. Between them they assert that the roadmap never contradicts the engine, that the product views render from real data, that the AI boundary cannot be bypassed, that every class a view emits is styled, that no raw error-tag id reaches the learner, that no milestone can be earned without real evidence, that every simulation genuinely develops and changes the situation, that no content is rendered unescaped, that every control is labelled, that the roadmap stays fast and linear, and that damaged stored evidence degrades safely instead of being shown as achievement. `scripts/verify_interaction.js` checks focus handling, duplicate ids in repeatedly inserted blocks, explicit button types and lazy-loaded roadmap bodies.
 
 ### Boundaries and integrity
 
@@ -36,6 +36,10 @@
 - **Three of the five simulations did not actually change the constraint** in their final stage — an outcome, not a new fact. They now end with concrete changed circumstances that force a fresh decision, which is what the product promises.
 - **Onboarding radio options had no ids**, so their label association was not programmatic and each option was not individually addressable. They now have stable ids.
 - **Missing styles for two emitted classes** (`.ms--todo`, affecting most milestones, and `.domain__loading`), found by a new automated check rather than by reading the stylesheet.
+- **Onboarding inserted a duplicate form each time a goal was chosen.** Every press added another block with the same ids, so the second form was unreachable. The previous step is now replaced, and focus moves into the new one.
+- **Keyboard and screen-reader users were left on the button they had pressed** when onboarding or a lesson opened. Focus now moves to the new content.
+- **Buttons without an explicit `type`** (in the views and `app.js`) default to submit inside any form. All now declare `type="button"`, except the onboarding submit.
+- **A domain expanded before the page finished loading stayed on placeholder text.** Browsers restore `<details>` open state on reload, and the lazy loader now loads anything already open.
 - Dead code removed: a repeated `capState` evaluation (four per capability, 92 times per render), an unused map and an unused variable, an identity `map`, and a view dependency on a window global rather than the date already passed in.
 
 ### Performance

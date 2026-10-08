@@ -62,8 +62,8 @@
     return '<div class="fb__next"><h4>Your next practice</h4>' +
       '<p>' + esc(n.why) + '</p>' +
       '<div class="actions">' +
-      (n.item_id ? '<button data-task="' + esc(n.item_id) + '">' + esc(n.kind === 'retention' ? 'Start the later check' : 'Try a fresh situation') + '</button>' : '') +
-      (n.learn_path ? '<button class="secondary" data-learn="' + esc(n.learn_path) + '">Revisit the skill</button>' : '') +
+      (n.item_id ? '<button type="button" data-task="' + esc(n.item_id) + '">' + esc(n.kind === 'retention' ? 'Start the later check' : 'Try a fresh situation') + '</button>' : '') +
+      (n.learn_path ? '<button type="button" class="secondary" data-learn="' + esc(n.learn_path) + '">Revisit the skill</button>' : '') +
       '</div>' +
       (n.reason && n.reason.length ? '<details><summary>Why this?</summary><ul>' + n.reason.slice(0, 4).map(r => '<li>' + esc(r) + '</li>').join('') + '</ul></details>' : '') +
       '</div>';

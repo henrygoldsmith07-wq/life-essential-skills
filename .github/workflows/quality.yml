@@ -55,6 +55,8 @@ jobs:
         run: node scripts/verify_performance.js
       - name: Verify damaged stored evidence degrades safely
         run: node scripts/verify_resilience.js
+      - name: Verify focus, ids and button types in the interaction layer
+        run: node scripts/verify_interaction.js
       - name: Test validator and link-check failure cases
         run: python3 -m unittest discover -s tests -v
       - name: Test the shared learner rules engine

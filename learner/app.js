@@ -17,7 +17,7 @@
   // that shows an error tag resolves it through here.
   const errorLabelMap=()=>{const m={};for(const t of D.skills.error_tags||[])m[t.id]=t.label;return m;};
   const errorLabels=tags=>(tags||[]).map(t=>errorLabelMap()[t]||t);
-  const taskButton=(id,label='Try task')=>'<button class="secondary" data-task="'+esc(id)+'">'+esc(label)+'</button>';
+  const taskButton=(id,label='Try task')=>'<button type="button" class="secondary" data-task="'+esc(id)+'">'+esc(label)+'</button>';
   const localityLabel=()=>state.locality==='wales'?'Wales':'UK · nation unspecified';
   function downloadText(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   function download(name,value){downloadText(name,JSON.stringify(value,null,2)+'\n');}
@@ -52,14 +52,14 @@
   }
   function renderToday(rec,p){
     const path=D.index.pathways.find(p=>p.id===state.pathway),upcoming=p.skills.filter(s=>s.next_review&&s.last_demonstrated&&s.next_review>today()).sort((a,b)=>a.next_review.localeCompare(b.next_review));
-    $('today-content').innerHTML=onboardingPrompt()+'<div class="card feature"><span class="pill">'+esc(path.title)+'</span><span class="pill">'+esc(localityLabel())+'</span><h2>'+esc(rec.item?.title||(rec.kind==='complete'?'Choose your next focus':rec.kind==='locality-needed'?'Choose the relevant locality':'A fresh task is needed'))+'</h2>'+(rec.item?'<p class="time">About '+rec.estimated_time_minutes+' minutes</p>':'')+'<h3>Why this step?</h3>'+list(rec.reason.slice(0,2))+(rec.reason.length>2?'<details><summary>More about this recommendation</summary>'+list(rec.reason.slice(2))+'</details>':'')+(rec.item?'<div class="actions">'+taskButton(rec.item.id,rec.kind==='retention'?'Try a fresh review':'Start this task')+'<button class="secondary" data-learn="'+esc(rec.learn_path)+'">Learn the skill</button></div><p class="muted">Afterwards: compare your original response with the rubric, record help, and get a next step. Self-review is not independent verification.</p>':'<p>Choose another goal, a supported locality, or ask an assessor for different materials.</p>')+'</div><div class="grid"><div class="card"><h3>Make it useful to you</h3><p>Try → learn → practise → apply → review → return later.</p><a href="#pathways">Choose a pathway</a></div><div class="card"><h3>Return at the right time</h3><p>'+p.totals.due+' delayed checks due.</p><p>'+esc(upcoming.length?'Next: '+skillName(upcoming[0].competency_id)+' on '+upcoming[0].next_review:'A later fresh check is scheduled after you show a skill.')+'</p><a href="#progress">See your evidence</a></div></div>';
+    $('today-content').innerHTML=onboardingPrompt()+'<div class="card feature"><span class="pill">'+esc(path.title)+'</span><span class="pill">'+esc(localityLabel())+'</span><h2>'+esc(rec.item?.title||(rec.kind==='complete'?'Choose your next focus':rec.kind==='locality-needed'?'Choose the relevant locality':'A fresh task is needed'))+'</h2>'+(rec.item?'<p class="time">About '+rec.estimated_time_minutes+' minutes</p>':'')+'<h3>Why this step?</h3>'+list(rec.reason.slice(0,2))+(rec.reason.length>2?'<details><summary>More about this recommendation</summary>'+list(rec.reason.slice(2))+'</details>':'')+(rec.item?'<div class="actions">'+taskButton(rec.item.id,rec.kind==='retention'?'Try a fresh review':'Start this task')+'<button type="button" class="secondary" data-learn="'+esc(rec.learn_path)+'">Learn the skill</button></div><p class="muted">Afterwards: compare your original response with the rubric, record help, and get a next step. Self-review is not independent verification.</p>':'<p>Choose another goal, a supported locality, or ask an assessor for different materials.</p>')+'</div><div class="grid"><div class="card"><h3>Make it useful to you</h3><p>Try → learn → practise → apply → review → return later.</p><a href="#pathways">Choose a pathway</a></div><div class="card"><h3>Return at the right time</h3><p>'+p.totals.due+' delayed checks due.</p><p>'+esc(upcoming.length?'Next: '+skillName(upcoming[0].competency_id)+' on '+upcoming[0].next_review:'A later fresh check is scheduled after you show a skill.')+'</p><a href="#progress">See your evidence</a></div></div>';
   }
   function renderProgress(p){
     const labels={self_reviewed:'Independent, self-reviewed',assessor_reviewed:'Independent, assessor-reviewed',assisted:'Completed with help',needs_work:'Needing practice',retention_passed:'Delayed checks passed',due:'Delayed checks due'};
     $('progress-content').innerHTML='<div class="metric-grid">'+Object.entries(labels).map(([k,l])=>'<div class="metric"><strong>'+p.totals[k]+'</strong><span>'+esc(l)+'</span></div>').join('')+'</div><p>'+p.totals.knowledge+' knowledge checks met. Written planning and judgement do not prove physical performance.</p><div class="card"><h2>Practical checks</h2>'+D.practical.rubrics.map(r=>{const last=state.observations.filter(o=>o.kind===r.id).at(-1),gate=E.rollup(state,r.gate,D);return '<div class="row"><div><h3>'+esc(r.title)+'</h3><p>'+esc(last?U.statuses[last.outcome]+' · observed '+last.date:'Needs an observed practical check')+'</p><p class="muted">Written answers alone are insufficient. '+gate.practical_missing.length+' practical checks still needed for this domain gate.</p></div><a href="#assessor">Arrange an observed check</a></div>';}).join('')+'</div>'+p.domains.map(d=>'<div class="card"><h2>'+esc(d.title)+'</h2><p>'+d.demonstrated+' independent · '+d.assisted+' with help · '+d.due+' checks due</p><details><summary>Skills and next steps</summary>'+p.skills.filter(s=>s.domain===d.id).map(s=>{
       const c=D.skills.competencies.find(c=>c.id===s.competency_id),item=D.bank.items.find(i=>i.competencies.includes(c.id)&&E.eligible(i,state.locality)&&!E.seen(state,i,D));
       const next=s.status==='unassessed'?'Start with the guide and a skill check.':s.status==='not-yet'?'Practise the missing step, then try fresh materials.':s.status==='assisted'?'Try fresh materials without solving prompts.':s.next_review?'Try a different situation on '+s.next_review+'.':'Your current full performance covers this knowledge check.';
-      return '<div class="skill-card"><h3>'+esc(skillName(c.id))+'</h3><p>'+esc(U.statuses[s.status])+(s.evidence_level?' · '+esc(U.levels[s.evidence_level]):'')+'</p><p class="muted">'+esc(s.retention_status==='retained'?'A delayed fresh check was passed.':s.retention_status==='needs-review'?'A delayed check needs more practice.':'Retention has not been checked.')+(s.recent_improvement?' Your latest attempt improved.':'')+'</p>'+(s.error_tags.length?'<p>Work on: '+esc(errorLabels(s.error_tags).join('; '))+'</p>':'')+'<p>'+esc(next)+'</p><div class="actions"><button class="secondary" data-learn="'+esc(c.learn_path)+'">Learn this skill</button>'+(item?taskButton(item.id,'Try fresh materials'):'<span class="muted">Ask an assessor for fresh materials.</span>')+'</div></div>';
+      return '<div class="skill-card"><h3>'+esc(skillName(c.id))+'</h3><p>'+esc(U.statuses[s.status])+(s.evidence_level?' · '+esc(U.levels[s.evidence_level]):'')+'</p><p class="muted">'+esc(s.retention_status==='retained'?'A delayed fresh check was passed.':s.retention_status==='needs-review'?'A delayed check needs more practice.':'Retention has not been checked.')+(s.recent_improvement?' Your latest attempt improved.':'')+'</p>'+(s.error_tags.length?'<p>Work on: '+esc(errorLabels(s.error_tags).join('; '))+'</p>':'')+'<p>'+esc(next)+'</p><div class="actions"><button type="button" class="secondary" data-learn="'+esc(c.learn_path)+'">Learn this skill</button>'+(item?taskButton(item.id,'Try fresh materials'):'<span class="muted">Ask an assessor for fresh materials.</span>')+'</div></div>';
     }).join('')+'</details></div>').join('');
   }
   function renderPractice(){
@@ -75,12 +75,16 @@
     // Lazy reveal: capability lists are only built when a domain is opened, so
     // first paint costs 12 collapsed rows instead of ~92 capability cards.
     const byId=new Map(rm.domains.map(d=>[d.id,d]));
+    const loadBody=det=>{
+      const body=det.querySelector('.domain__body'),d=byId.get(det.dataset.domain);
+      if(d&&body&&!body.dataset.loaded){body.innerHTML=RV.domainBody(d);body.dataset.loaded='1';}
+    };
     $('roadmap-content').querySelectorAll('details.domain').forEach(det=>{
-      det.addEventListener('toggle',()=>{
-        if(!det.open)return;
-        const body=det.querySelector('.domain__body'),d=byId.get(det.dataset.domain);
-        if(d&&body&&!body.dataset.loaded){body.innerHTML=RV.domainBody(d);body.dataset.loaded='1';}
-      });
+      det.addEventListener('toggle',()=>{if(det.open)loadBody(det);});
+      // A browser restores <details> open state on reload and back-navigation,
+      // and may fire 'toggle' before this listener is attached. Load anything
+      // that is already open so the placeholder text cannot get stuck.
+      if(det.open)loadBody(det);
     });
   }
   function renderSimulations(){
@@ -93,14 +97,14 @@
         '<h2>'+esc(s.title)+'</h2><p class="sim__promise">'+esc(s.promise)+'</p>'+
         '<p class="muted">'+esc(s.setting)+'</p>'+
         '<p class="muted">Tests '+esc((item?item.competencies.length:0))+' skills · '+(item?'About '+item.estimated_time_minutes+' minutes':'—')+'</p>'+
-        (eligible?'<div class="actions"><button data-sim="'+esc(s.id)+'">'+(known?'Go through it again':'Begin this situation')+'</button></div>':'<p class="muted">This situation depends on nation-specific guidance. Change locality in My setup if that applies to you.</p>')+
+        (eligible?'<div class="actions"><button type="button" data-sim="'+esc(s.id)+'">'+(known?'Go through it again':'Begin this situation')+'</button></div>':'<p class="muted">This situation depends on nation-specific guidance. Change locality in My setup if that applies to you.</p>')+
         '</div>';
     }).join('');
     $('simulations-content').innerHTML=cards||'<p class="empty">No simulations available.</p>';
   }
   function renderProfile(){
     const p=Roadmap.profile(state,D,today());
-    $('profile-content').innerHTML=PV.render(p,localityLabel())+'<div class="actions"><button class="secondary" id="print-profile">Print or save as PDF</button></div>';
+    $('profile-content').innerHTML=PV.render(p,localityLabel())+'<div class="actions"><button type="button" class="secondary" id="print-profile">Print or save as PDF</button></div>';
     $('print-profile').onclick=()=>window.print();
   }
   function onboardingPrompt(){
@@ -115,11 +119,11 @@
   function render(){
     const rec=E.recommend(state,D,today()),p=E.progress(state,D,today());$('locality').value=state.locality;$('goal').value=state.goal_competencies[0]||'';
     renderToday(rec,p);renderRoadmap();renderProgress(p);renderPractice();renderSimulations();renderProfile();assessor.render();
-    $('pathways-content').innerHTML='<div class="grid">'+D.index.pathways.map(p=>'<div class="card"><h2>'+esc(p.title)+'</h2><p>'+esc(p.domains.map(d=>D.index.domains.find(x=>x.id===d).title).join(', '))+'</p><p>30 suggested sessions, adjusted to your evidence. Finish with '+esc(D.index.capstones.find(c=>c.id===p.capstone).title)+'.</p><button data-pathway="'+p.id+'" '+(p.id===state.pathway?'disabled':'')+'>'+(p.id===state.pathway?'Your current pathway':'Choose this pathway')+'</button></div>').join('')+'</div>';
+    $('pathways-content').innerHTML='<div class="grid">'+D.index.pathways.map(p=>'<div class="card"><h2>'+esc(p.title)+'</h2><p>'+esc(p.domains.map(d=>D.index.domains.find(x=>x.id===d).title).join(', '))+'</p><p>30 suggested sessions, adjusted to your evidence. Finish with '+esc(D.index.capstones.find(c=>c.id===p.capstone).title)+'.</p><button type="button" data-pathway="'+p.id+'" '+(p.id===state.pathway?'disabled':'')+'>'+(p.id===state.pathway?'Your current pathway':'Choose this pathway')+'</button></div>').join('')+'</div>';
   }
   async function showLesson(path){
     const n=++token;current=null;
-    try{const chunk=await load.lesson(path);if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><h2 id="task-title">'+esc(D.index.domains.find(d=>d.path===path).title)+'</h2><p>Use the guide freely for practice. Close it before a fresh independent attempt.</p><div class="lesson">'+teachingMarkdown(chunk.lesson,path)+'</div><button class="secondary" id="close-task">Close the guide</button></div>';$('close-task').onclick=closeTask;U.focus('task-title');}catch(e){notice(e.message);}
+    try{const chunk=await load.lesson(path);if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><h2 id="task-title">'+esc(D.index.domains.find(d=>d.path===path).title)+'</h2><p>Use the guide freely for practice. Close it before a fresh independent attempt.</p><div class="lesson">'+teachingMarkdown(chunk.lesson,path)+'</div><button type="button" class="secondary" id="close-task">Close the guide</button></div>';$('close-task').onclick=closeTask;U.focus('task-title');}catch(e){notice(e.message);}
   }
   function closeTask(){token++;current=null;$('workspace').replaceChildren();$('workspace').hidden=true;U.focus(view+'-title');}
   function renderMaterials(item){return item.family==='capstone'?item.materials.map(text=>teachingMarkdown(text,D.index.capstones.find(c=>c.id===item.id).path)).join(''):list(item.materials);}
@@ -128,7 +132,7 @@
     try{const item=await load.item(id);if(n!==token||!E.eligible(item,state.locality))return;
       const known=E.seen(state,item,D),missing=item.prerequisites.filter(c=>E.summary(state,c,D).status!=='demonstrated');
       current={item,known,finished:false,attemptId:'a-'+Date.now()+'-'+state.exposures.length,phase:known?'practice':(!state.records.length||missing.length)?'diagnostic':undefined};
-      $('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><p class="eyebrow">'+(known?'PRACTISE A FAMILIAR TASK':'TRY A NEW SITUATION')+'</p><h2 id="task-title">'+esc(item.title)+'</h2><p class="time">About '+item.estimated_time_minutes+' minutes</p>'+(missing.length?'<p class="notice">Supporting skills still to check: '+esc(missing.map(skillName).join(', '))+'. This diagnostic will not award those supporting skills.</p>':'')+renderMaterials(item)+'<p class="task-text">'+esc(item.task)+'</p><details><summary>Safety and access</summary>'+list(item.safety_constraints)+'<p>Written performance cannot prove physical competence. Access adjustments do not reduce the outcome.</p></details><details><summary>Relevant guidance</summary>'+item.source_uses.filter(u=>u.role==='general-principle'||(u.jurisdictions||[]).some(j=>E.covers(j,state.locality))).map(u=>{const s=D.sources.find(s=>s.id===u.source_id);return '<p><a href="'+esc(s.url)+'" rel="noopener noreferrer" target="_blank">'+esc(s.title)+'</a></p><p class="muted">'+esc(u.justification||'Check the current source and its locality before using guidance.')+'</p>';}).join('')+'</details><label for="response">Your fictional response</label><textarea id="response" placeholder="Write your reasoning here, or use paper or speech. This answer is never saved."></textarea><label><input type="checkbox" id="paper-attempt"> I completed a response on paper or by speaking.</label><div class="actions"><button id="finish-attempt">Finish attempt & check feedback</button><button class="secondary" id="close-task">Close task</button></div><div id="feedback-area" hidden></div></div>';
+      $('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><p class="eyebrow">'+(known?'PRACTISE A FAMILIAR TASK':'TRY A NEW SITUATION')+'</p><h2 id="task-title">'+esc(item.title)+'</h2><p class="time">About '+item.estimated_time_minutes+' minutes</p>'+(missing.length?'<p class="notice">Supporting skills still to check: '+esc(missing.map(skillName).join(', '))+'. This diagnostic will not award those supporting skills.</p>':'')+renderMaterials(item)+'<p class="task-text">'+esc(item.task)+'</p><details><summary>Safety and access</summary>'+list(item.safety_constraints)+'<p>Written performance cannot prove physical competence. Access adjustments do not reduce the outcome.</p></details><details><summary>Relevant guidance</summary>'+item.source_uses.filter(u=>u.role==='general-principle'||(u.jurisdictions||[]).some(j=>E.covers(j,state.locality))).map(u=>{const s=D.sources.find(s=>s.id===u.source_id);return '<p><a href="'+esc(s.url)+'" rel="noopener noreferrer" target="_blank">'+esc(s.title)+'</a></p><p class="muted">'+esc(u.justification||'Check the current source and its locality before using guidance.')+'</p>';}).join('')+'</details><label for="response">Your fictional response</label><textarea id="response" placeholder="Write your reasoning here, or use paper or speech. This answer is never saved."></textarea><label><input type="checkbox" id="paper-attempt"> I completed a response on paper or by speaking.</label><div class="actions"><button type="button" id="finish-attempt">Finish attempt & check feedback</button><button type="button" class="secondary" id="close-task">Close task</button></div><div id="feedback-area" hidden></div></div>';
       $('finish-attempt').onclick=finishAttempt;$('close-task').onclick=closeTask;U.focus('task-title');
     }catch(e){notice(e.message);}
   }
@@ -148,7 +152,7 @@
         U.rubric(item.scoring)+
         '<fieldset><legend>Solving help</legend><p class="muted">Practice with help is allowed and useful. Only answering on your own, on fresh material, counts as a demonstration.</p><label><input type="checkbox" id="help-used"> I used prompts, a checklist, a person or AI to solve the task.</label><label><input type="checkbox" id="solution-before" '+(attempt.known?'checked disabled':'')+'> I knew these materials or answers before this attempt.</label></fieldset>'+
         U.supports('attempt-access')+errorControls+
-        '<p id="derived-result" role="status" aria-live="polite">Choose a judgement for every criterion to see the result.</p><button id="save-attempt">Save evidence & find next task</button>';
+        '<p id="derived-result" role="status" aria-live="polite">Choose a judgement for every criterion to see the result.</p><button type="button" id="save-attempt">Save evidence & find next task</button>';
       $('feedback-area').addEventListener('change',previewOutcome);$('save-attempt').onclick=saveAttempt;U.focus('feedback-title');
     }catch(e){if(n===token){$('finish-attempt').disabled=false;notice(e.message+' Serve the repository over HTTP.');}}
   }
@@ -208,9 +212,21 @@
   }
   function startOnboarding(goalId){
     const goal=D.goals.goals.find(g=>g.id===goalId);if(!goal)return;
-    $('today-content').insertAdjacentHTML('afterbegin','<div class="card onboard" id="onboard-step">'+OV.situation(goal)+OV.questions(goal,null)+'<div id="onboard-error"></div></div>');
+    // Replace any previous step. Inserting again would duplicate every id in
+    // the block (#onboard-form, each option, #onboard-error), leaving an
+    // unreachable second form in the document.
+    const host=$('today-content');
+    host.querySelector('#onboard-step')?.remove();
+    const step=document.createElement('div');
+    step.className='card onboard';step.id='onboard-step';
+    step.innerHTML=OV.situation(goal)+OV.questions(goal,null)+'<div id="onboard-error"></div>';
+    host.insertAdjacentElement('afterbegin',step);
     const form=$('onboard-form');if(form)form.onsubmit=e=>{e.preventDefault();applyOnboarding(goalId,form);};
-    $('onboard-step').scrollIntoView({block:'start'});
+    // Move focus into the new step so a keyboard or screen-reader user is taken
+    // to it instead of being left on the button they just pressed.
+    const first=step.querySelector('input,button,select,textarea');
+    if(first)first.focus();else U.focus('onboard-step');
+    step.scrollIntoView({block:'start'});
   }
   function applyOnboarding(goalId,form){
     const answers={};new FormData(form).forEach((v,k)=>answers[k]=v);
