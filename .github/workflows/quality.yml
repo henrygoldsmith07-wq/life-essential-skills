@@ -57,6 +57,8 @@ jobs:
         run: node scripts/verify_resilience.js
       - name: Verify focus, ids and button types in the interaction layer
         run: node scripts/verify_interaction.js
+      - name: Verify the copy the browser suite looks up still exists
+        run: node scripts/verify_copy_contract.js
       - name: Test validator and link-check failure cases
         run: python3 -m unittest discover -s tests -v
       - name: Test the shared learner rules engine

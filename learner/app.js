@@ -146,7 +146,7 @@
       $('feedback-area').hidden=false;
       const modeLabel=item.mode==='knowledge'?'a knowledge check':item.mode==='adaptation'?'a situation that changes as you work':'a fresh situation';
       const errorControls=item.competencies.map((cid,n)=>'<h3>'+esc(skillName(cid))+'</h3>'+U.errors(D.skills.competencies.find(c=>c.id===cid).error_tags,D,'error-'+n,cid)).join('');
-      $('feedback-area').innerHTML='<div class="materials feedback"><h3 id="feedback-title">What a strong answer looks like</h3><p>'+esc(answer.solution)+'</p><p>'+esc(answer.explanation)+'</p></div>'+
+      $('feedback-area').innerHTML='<div class="materials feedback"><h3 id="feedback-title">Compare with your original answer</h3><p>'+esc(answer.solution)+'</p><p>'+esc(answer.explanation)+'</p></div>'+
         '<p>Judge <strong>your own original answer</strong>, not this reference. Reading it now is useful practice; it does not change this attempt. Self-reviewed evidence is not independently verified.</p>'+
         '<details><summary>What am I being judged on, and what counts as help?</summary>'+U.rubric(item.scoring).replace(/<fieldset>|<\/fieldset>/g,'').replace(/<legend>/g,'<p class="eyebrow">').replace(/<\/legend>/g,'</p>')+'<p class="muted">This was '+esc(modeLabel)+'. Answering without prompts, on material you had not seen, is what records independent evidence. Help you used is recorded honestly and never lowers a rating you earned — it simply describes the kind of practice it was.</p></details>'+
         U.rubric(item.scoring)+

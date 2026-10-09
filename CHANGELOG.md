@@ -20,7 +20,7 @@
 
 ### Verification added
 
-- `scripts/verify_roadmap.js`, `verify_views.js`, `verify_styles.js`, `verify_content.js`, `verify_accessibility.js`, `verify_performance.js` and `verify_resilience.js` run in CI. Between them they assert that the roadmap never contradicts the engine, that the product views render from real data, that the AI boundary cannot be bypassed, that every class a view emits is styled, that no raw error-tag id reaches the learner, that no milestone can be earned without real evidence, that every simulation genuinely develops and changes the situation, that no content is rendered unescaped, that every control is labelled, that the roadmap stays fast and linear, and that damaged stored evidence degrades safely instead of being shown as achievement. `scripts/verify_interaction.js` checks focus handling, duplicate ids in repeatedly inserted blocks, explicit button types and lazy-loaded roadmap bodies.
+- `scripts/verify_roadmap.js`, `verify_views.js`, `verify_styles.js`, `verify_content.js`, `verify_accessibility.js`, `verify_performance.js` and `verify_resilience.js` run in CI. Between them they assert that the roadmap never contradicts the engine, that the product views render from real data, that the AI boundary cannot be bypassed, that every class a view emits is styled, that no raw error-tag id reaches the learner, that no milestone can be earned without real evidence, that every simulation genuinely develops and changes the situation, that no content is rendered unescaped, that every control is labelled, that the roadmap stays fast and linear, and that damaged stored evidence degrades safely instead of being shown as achievement. `scripts/verify_interaction.js` checks focus handling, duplicate ids in repeatedly inserted blocks, explicit button types and lazy-loaded roadmap bodies. `scripts/verify_copy_contract.js` asserts that every string the browser suite looks up by accessible name still exists, so a copy change cannot silently break the browser job.
 
 ### Boundaries and integrity
 
@@ -40,6 +40,7 @@
 - **Keyboard and screen-reader users were left on the button they had pressed** when onboarding or a lesson opened. Focus now moves to the new content.
 - **Buttons without an explicit `type`** (in the views and `app.js`) default to submit inside any form. All now declare `type="button"`, except the onboarding submit.
 - **A domain expanded before the page finished loading stayed on placeholder text.** Browsers restore `<details>` open state on reload, and the lazy loader now loads anything already open.
+- **A reworded feedback heading broke five browser journeys.** The heading above the reference answer was changed for style, but the end-to-end suite drives the real page by accessible name, so the rename failed five tests that passed on `main`. The original wording is restored, and `scripts/verify_copy_contract.js` now fails fast in the quality job if any string the browser suite looks up is renamed or removed.
 - Dead code removed: a repeated `capState` evaluation (four per capability, 92 times per render), an unused map and an unused variable, an identity `map`, and a view dependency on a window global rather than the date already passed in.
 
 ### Performance
