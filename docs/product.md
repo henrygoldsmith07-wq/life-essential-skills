@@ -120,3 +120,4 @@ The product's promises are checked automatically, so they cannot quietly stop be
 - Every control has a label; radio groups are in a fieldset with a legend.
 - Damaged or outdated stored evidence renders safely instead of being shown as achievement.
 - The roadmap stays within a time budget and derives each capability's summary once per render.
+- Focus moves into newly opened content, inserted blocks never duplicate ids, every button declares its type, and lazily loaded roadmap bodies cannot get stuck on placeholder text.
