@@ -148,7 +148,12 @@
       const errorControls=item.competencies.map((cid,n)=>'<h3>'+esc(skillName(cid))+'</h3>'+U.errors(D.skills.competencies.find(c=>c.id===cid).error_tags,D,'error-'+n,cid)).join('');
       $('feedback-area').innerHTML='<div class="materials feedback"><h3 id="feedback-title">Compare with your original answer</h3><p>'+esc(answer.solution)+'</p><p>'+esc(answer.explanation)+'</p></div>'+
         '<p>Judge <strong>your own original answer</strong>, not this reference. Reading it now is useful practice; it does not change this attempt. Self-reviewed evidence is not independently verified.</p>'+
-        '<details><summary>What am I being judged on, and what counts as help?</summary>'+U.rubric(item.scoring).replace(/<fieldset>|<\/fieldset>/g,'').replace(/<legend>/g,'<p class="eyebrow">').replace(/<\/legend>/g,'</p>')+'<p class="muted">This was '+esc(modeLabel)+'. Answering without prompts, on material you had not seen, is what records independent evidence. Help you used is recorded honestly and never lowers a rating you earned — it simply describes the kind of practice it was.</p></details>'+
+        // An explainer only: it must not render a second copy of the rubric,
+        // which would duplicate every judge-N id and put hidden controls ahead
+        // of the real ones.
+        '<details><summary>What am I being judged on, and what counts as help?</summary>'+
+        '<ul class="critlist">'+item.scoring.map(s=>'<li>'+esc(s.criterion)+(s.essential?' <span class="pill">Essential</span>':'')+'</li>').join('')+'</ul>'+
+        '<p class="muted">This was '+esc(modeLabel)+'. Answering without prompts, on material you had not seen, is what records independent evidence. Help you used is recorded honestly and never lowers a rating you earned — it simply describes the kind of practice it was.</p></details>'+
         U.rubric(item.scoring)+
         '<fieldset><legend>Solving help</legend><p class="muted">Practice with help is allowed and useful. Only answering on your own, on fresh material, counts as a demonstration.</p><label><input type="checkbox" id="help-used"> I used prompts, a checklist, a person or AI to solve the task.</label><label><input type="checkbox" id="solution-before" '+(attempt.known?'checked disabled':'')+'> I knew these materials or answers before this attempt.</label></fieldset>'+
         U.supports('attempt-access')+errorControls+

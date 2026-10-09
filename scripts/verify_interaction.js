@@ -82,7 +82,34 @@ const nov = R.roadmap(E.migrateState(read('examples/learners/review-due.json'), 
 ok('roadmap dates render as plain ISO strings', nov.retention_due.every(c => /^\d{4}-\d{2}-\d{2}$/.test(c.next_review)),
   nov.retention_due.map(c => c.next_review).join(','));
 
-// ---- 7. Lazy-loaded roadmap bodies must not get stuck on placeholder text ----
+// ---- 7. No surface may emit the same id twice ----
+// The rubric generates judge-0, judge-help-0, ... from a fixed prefix, so
+// rendering it twice in one panel duplicates every control id and puts hidden
+// copies ahead of the visible ones. This broke the browser suite once.
+function duplicateIds(html) {
+  const seen = new Map();
+  for (const m of html.matchAll(/\sid="([^"]+)"/g)) seen.set(m[1], (seen.get(m[1]) || 0) + 1);
+  return [...seen.entries()].filter(([, n]) => n > 1).map(([id]) => id);
+}
+const surfacesForIds = {
+  'roadmap': msHtml,
+  'onboarding': block,
+  'simulation stage': st,
+  'feedback next-practice': fb
+};
+for (const [name, html] of Object.entries(surfacesForIds)) {
+  const dupes = duplicateIds(html);
+  ok('no duplicate ids in ' + name, dupes.length === 0, dupes.join(','));
+}
+
+// The feedback panel is assembled inline in app.js, so count the renders there.
+const finishSrc = (appSrc.match(/async function finishAttempt\(\)\{[\s\S]*?\n  \}/) || [''])[0];
+const rubricRenders = (finishSrc.match(/U\.rubric\(/g) || []).length;
+ok('the feedback panel renders the rubric exactly once', rubricRenders === 1, rubricRenders + ' render(s)');
+ok('the feedback explainer does not re-render live controls',
+  !/U\.rubric\([^)]*\)\.replace/.test(finishSrc));
+
+// ---- 8. Lazy-loaded roadmap bodies must not get stuck on placeholder text ----
 // A browser restores <details> open state on reload and back-navigation, and may
 // fire 'toggle' before the listener is attached, which would leave the
 // "Open to see every skill in this area" placeholder visible forever.
@@ -91,6 +118,9 @@ ok('renderRoadmap loads any domain already open when the listener attaches',
   /if\(det\.open\)/.test(renderRoadmapSrc));
 ok('renderRoadmap guards the lazy body against double loading',
   /dataset\.loaded/.test(renderRoadmapSrc) && /loadBody/.test(renderRoadmapSrc));
+
+console.log(fail === 0 ? '\nALL INTERACTION CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
+process.exit(fail === 0 ? 0 : 1);
 
 console.log(fail === 0 ? '\nALL INTERACTION CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
