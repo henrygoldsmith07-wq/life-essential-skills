@@ -119,6 +119,12 @@ ok('every simulation authors a debrief',
 ok('the feedback flow renders a simulation debrief when present',
   /SV\.debrief\(current\.sim\)/.test(finishSrc));
 
+// ---- 10. Simulation stage transitions must keep "Not now" wired ----
+// Each stage re-renders the workspace, replacing the close button. Without
+// re-binding it on every stage, "Close task" is dead on stages 0–2.
+const bindSimSrc = (appSrc.match(/function bindSim\(sim,item\)\{[\s\S]*?\n  \}/) || [''])[0];
+ok('bindSim re-binds the close button on every stage render',
+  bindSimSrc.includes("if($('close-task'))$('close-task').onclick=closeTask;"));
 // ---- 8. Lazy-loaded roadmap bodies must not get stuck on placeholder text ----
 // A browser restores <details> open state on reload and back-navigation, and may
 // fire 'toggle' before the listener is attached, which would leave the

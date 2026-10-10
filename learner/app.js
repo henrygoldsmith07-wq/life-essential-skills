@@ -208,6 +208,10 @@
     }catch(e){notice(e.message);}
   }
   function bindSim(sim,item){
+    // Each stage re-renders the workspace, which discards handlers attached to
+    // the previous close button. Re-bind close here (and on every re-render) so
+    // "Not now" works on every stage, not just the intro and write-up.
+    if($('close-task'))$('close-task').onclick=closeTask;
     const next=$('sim-next'),back=$('sim-back');
     if(back)back.onclick=()=>{current.stage--;$('workspace').innerHTML=SV.stage(sim,current.stage);bindSim(sim,item);};
     if(next)next.onclick=()=>{
