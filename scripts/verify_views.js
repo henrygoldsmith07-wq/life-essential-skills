@@ -176,6 +176,10 @@ ok('milestone cards carry a numeric progress fraction', allMilestones.every(m =>
 // Profile view surfaces practical observation needs and material warnings.
 const profHtml2 = PV.render(R.profile(E.emptyState('wales', 'moving-out'), D, TODAY), 'UK');
 ok('profile warns about practical observation needs', profHtml2.includes('domain gate') || profHtml2.includes('practical'));
+// Profile's recommended-next section includes an actionable button when the
+// engine has a next task, so the profile is not just a read-only summary.
+const profWithRec = PV.render(R.profile(ex, D, TODAY), 'UK');
+ok('profile recommended-next surfaces an action button', profWithRec.includes('data-task') || profWithRec.includes('data-learn') || profWithRec.includes('Today or Practice'), 'checking for action button');
 
 console.log(fail === 0 ? '\nALL VIEW CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);

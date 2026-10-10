@@ -83,6 +83,9 @@
 
       line('Recommended next') +
       '<p><strong>' + esc(p.next.heading) + '</strong> — ' + esc(p.next.why) + '</p>' +
+      (p.next.item_id
+        ? '<div class="actions"><button type="button" data-task="' + esc(p.next.item_id) + '">' + esc(p.next.kind === 'retention' ? 'Start the later check' : 'Start this task') + '</button>' + (p.next.learn_path ? '<button type="button" class="secondary" data-learn="' + esc(p.next.learn_path) + '">Learn the skill first</button>' : '') + '</div>'
+        : '<p class="muted">Open the Today or Practice tab to find the right task, or choose another goal or locality.</p>') +
 
       '<p class="muted profile__foot">This report contains no personal identifiers, no written responses and no account details. It lives in this browser only unless you download it.</p>' +
       '</div>';
