@@ -54,7 +54,56 @@ test('capstone saves granular mixed results with competency-specific errors and 
   await page.goto('/learner/#practice');await page.getByLabel('Find tasks').selectOption('capstones');await page.locator('#practice-content [data-task="C03"]').click();await finish(page);await judge(page);await page.locator('#feedback-area [data-criterion]').first().selectOption('not-met');await page.locator('[data-error-cid="money.credit.independent"][data-error="missed-payment-timing"]').check();
   await page.getByRole('button',{name:'Save evidence & find next task'}).click();const s=await evidence(page);expect(s.records).toHaveLength(4);expect(s.records[0].outcome).toBe('not-yet');expect(s.records.slice(1).every(r=>r.outcome==='demonstrated'&&r.error_tags.length===0)).toBe(true);expect(new Set(s.records.map(r=>r.attempt_id)).size).toBe(1);await expect(page.locator('#today-content [data-task]')).toHaveCount(1);expect(JSON.stringify(s)).not.toContain('FICTIONAL ORIGINAL');
 });
-for(const view of ['today','progress','practice','pathways','settings','assessor']){
+test('life-transition simulation develops across three parts and saves per-skill evidence',async({page})=>{
+  // S01 maps to capstone C01, which is Wales-scoped: with the default UK
+  // locality the card must refuse the journey rather than launch it.
+  await page.goto('/learner/#simulations');await expect(page.locator('#simulations-content')).toContainText('CHOOSE THE RIGHT LOCALITY');
+  await page.goto('/learner/#settings');await page.getByLabel('Guidance locality').selectOption('wales');
+  await page.goto('/learner/#simulations');const s1=page.locator('.simcard').filter({hasText:'Moving out in six weeks'});
+  await expect(s1).toContainText('FRESH SITUATION');await s1.getByRole('button',{name:'Begin this situation'}).click();
+  // The intro renders in the workspace while the sim list stays in the
+  // document behind it, so scope heading lookups to the workspace.
+  await expect(page.locator('#workspace').getByRole('heading',{name:'Moving out in six weeks'})).toBeVisible();
+  // The intro must offer a real way out before any commitment.
+  await page.getByRole('button',{name:'Not now'}).click();await expect(page.locator('#simulations')).toBeVisible();await expect(page.locator('#workspace')).toBeHidden();
+  // Re-enter and develop the situation part by part. Scope to the card:
+  // under the Wales locality other sims also offer a start button.
+  await s1.getByRole('button',{name:'Begin this situation'}).click();
+  await page.getByRole('button',{name:'Begin the simulation'}).click();
+  await expect(page.getByRole('heading',{name:'The two options'})).toBeVisible();
+  await page.getByRole('button',{name:'Continue'}).click();
+  await expect(page.getByRole('heading',{name:'What is actually in the paperwork'})).toBeVisible();
+  // Going Back returns to part one instead of stranding the learner.
+  await page.getByRole('button',{name:'Back'}).click();
+  await expect(page.getByRole('heading',{name:'The two options'})).toBeVisible();
+  await page.getByRole('button',{name:'Continue'}).click();
+  await page.getByRole('button',{name:'Continue'}).click();
+  // Part three is the changed situation — the core promise of a simulation.
+  await expect(page.getByRole('heading',{name:'A change of plan'})).toBeVisible();
+  await page.getByRole('button',{name:'Finish and write your answer'}).click();
+  await expect(page.getByLabel('Write the whole thing as one response')).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Also part of this situation'})).toBeVisible();
+  // Ordinary attempt gating applies inside a simulation too.
+  await page.getByRole('button',{name:'Finish attempt & check feedback'}).click();await expect(page.locator('#notice')).toContainText('Complete a response');
+  // The structured feedback must be the standard one, plus the sim debrief.
+  await page.getByLabel('Write the whole thing as one response').fill('FICTIONAL ORIGINAL RESPONSE — three-part plan with costs, paperwork questions and the revised transport.');
+  await page.getByRole('button',{name:'Finish attempt & check feedback'}).click();
+  await expect(page.getByRole('heading',{name:'Compare with your original answer'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'What this was about'})).toBeVisible();
+  // The simulation must not be an accessibility dead end.
+  expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
+  await judge(page);await page.getByRole('button',{name:'Save evidence & find next task'}).click();
+  const s=await evidence(page);
+  // Evidence is the capstone's own: one record per mapped subskill, one
+  // attempt token, and never the written response.
+  expect(s.records).toHaveLength(4);expect(new Set(s.records.map(r=>r.attempt_id)).size).toBe(1);
+  expect(s.records.every(r=>r.outcome==='demonstrated')).toBe(true);expect(JSON.stringify(s)).not.toContain('FICTIONAL ORIGINAL');
+  // The attempt consumed the capstone's exposure, so the simulation is now
+  // a familiar situation and cannot silently claim fresh transfer.
+  await page.getByRole('link',{name:'Simulations',exact:true}).click();
+  await expect(page.locator('.simcard').filter({hasText:'Moving out in six weeks'})).toContainText('FAMILIAR SITUATION');
+});
+for(const view of ['today','progress','practice','pathways','settings','assessor','roadmap','simulations','profile']){
   test('mobile accessibility and reflow: '+view,async({page})=>{
     await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/learner/#'+view);await expect(page.locator('#'+view)).toBeVisible();
     const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(result.violations,view).toEqual([]);

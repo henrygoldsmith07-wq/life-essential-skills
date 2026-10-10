@@ -14,7 +14,10 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 
 const spec = fs.readFileSync(path.join(root, 'tests/e2e/learner.spec.js'), 'utf8');
-const sources = ['learner/app.js', 'learner/index.html', 'learner/ui.js', 'learner/assessor.js', 'learner/evidence.js', 'learner/engine.js', 'learner/catalog.js']
+const sources = ['learner/app.js', 'learner/index.html', 'learner/ui.js', 'learner/assessor.js', 'learner/evidence.js', 'learner/engine.js', 'learner/catalog.js',
+  // The simulation journey looks up copy that lives in the simulation view
+  // and in the generated learner data (stage headings, titles).
+  'learner/simulation-view.js', 'learner/data.js']
   .map(f => fs.readFileSync(path.join(root, f), 'utf8')).join('\n');
 
 // Values that are data, not copy: select-option values, view hashes, judgement
