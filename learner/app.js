@@ -30,6 +30,25 @@
   const errorLabels=tags=>(tags||[]).map(t=>errorLabelMap()[t]||t);
   const taskButton=(id,label='Try task')=>'<button type="button" class="secondary" data-task="'+esc(id)+'">'+esc(label)+'</button>';
   const localityLabel=()=>state.locality==='wales'?'Wales':'UK · nation unspecified';
+  // Evidence lives only in this browser (localStorage), so a browser clear,
+  // quota change or profile switch can silently wipe it. The product review
+  // names this as a real risk; the honest response is to remind the learner to
+  // keep a backup once they actually have something worth losing, and to stop
+  // nagging once they have taken one. The stamp lives outside the evidence
+  // state so it can never affect validation or derivation.
+  const backupKey='life-essential-skills-backup';
+  const BACKUP_DAYS=30;
+  const hasEvidence=()=>state.records.length||state.exposures.length||state.observations.length||state.reviews.length;
+  function backupStamp(){const v=Number(localStorage.getItem(backupKey));return Number.isFinite(v)&&v>0?v:0;}
+  function backupOverdue(){const last=backupStamp();return !last||Math.floor((Date.now()-last)/86400000)>=BACKUP_DAYS;}
+  function markBackedUp(){try{localStorage.setItem(backupKey,String(Date.now()));}catch{}}
+  function backupReminder(){
+    if(blocked||!hasEvidence()||!backupOverdue())return '';
+    const last=backupStamp();
+    return '<div class="notice notice--info" id="backup-reminder"><p><strong>Keep a copy of your evidence.</strong> '+
+      (last?'You last downloaded a copy more than '+BACKUP_DAYS+' days ago.':'It lives only in this browser, so a browser clear would lose it.')+
+      ' </p><p><a href="#settings">Download a backup in My setup</a>.</p></div>';
+  }
   function downloadText(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   function download(name,value){downloadText(name,JSON.stringify(value,null,2)+'\n');}
   const assessor=AssessorMode({E,D,U,load,renderMaterials,state:()=>state,save:persist,today,notice,download});
@@ -63,7 +82,7 @@
   }
   function renderToday(rec,p){
     const path=D.index.pathways.find(p=>p.id===state.pathway),upcoming=p.skills.filter(s=>s.next_review&&s.last_demonstrated&&s.next_review>today()).sort((a,b)=>a.next_review.localeCompare(b.next_review));
-    $('today-content').innerHTML=onboardingPrompt()+'<div class="card feature"><span class="pill">'+esc(path.title)+'</span><span class="pill">'+esc(localityLabel())+'</span><h2>'+esc(rec.item?.title||(rec.kind==='complete'?'Choose your next focus':rec.kind==='locality-needed'?'Choose the relevant locality':'A fresh task is needed'))+'</h2>'+(rec.item?'<p class="time">About '+rec.estimated_time_minutes+' minutes</p>':'')+'<h3>Why this step?</h3>'+list(rec.reason.slice(0,2))+(rec.reason.length>2?'<details><summary>More about this recommendation</summary>'+list(rec.reason.slice(2))+'</details>':'')+(rec.item?'<div class="actions">'+taskButton(rec.item.id,rec.kind==='retention'?'Try a fresh review':'Start this task')+'<button type="button" class="secondary" data-learn="'+esc(rec.learn_path)+'">Learn the skill</button></div><p class="muted">Afterwards: compare your original response with the rubric, record help, and get a next step. Self-review is not independent verification.</p>':'<p>Choose another goal, a supported locality, or ask an assessor for different materials.</p>')+'</div><div class="grid"><div class="card"><h3>Make it useful to you</h3><p>Try → learn → practise → apply → review → return later.</p><a href="#pathways">Choose a pathway</a></div><div class="card"><h3>Return at the right time</h3><p>'+p.totals.due+' delayed checks due.</p><p>'+esc(upcoming.length?'Next: '+skillName(upcoming[0].competency_id)+' on '+upcoming[0].next_review:'A later fresh check is scheduled after you show a skill.')+'</p><a href="#progress">See your evidence</a></div></div>';
+    $('today-content').innerHTML=onboardingPrompt()+backupReminder()+'<div class="card feature"><span class="pill">'+esc(path.title)+'</span><span class="pill">'+esc(localityLabel())+'</span><h2>'+esc(rec.item?.title||(rec.kind==='complete'?'Choose your next focus':rec.kind==='locality-needed'?'Choose the relevant locality':rec.kind==='fresh-materials-needed'?'You need fresh materials':'A fresh task is needed'))+'</h2>'+(rec.item?'<p class="time">About '+rec.estimated_time_minutes+' minutes</p>':'')+'<h3>Why this step?</h3>'+list(rec.reason.slice(0,2))+(rec.reason.length>2?'<details><summary>More about this recommendation</summary>'+list(rec.reason.slice(2))+'</details>':'')+(rec.item?'<div class="actions">'+taskButton(rec.item.id,rec.kind==='retention'?'Try a fresh review':'Start this task')+'<button type="button" class="secondary" data-learn="'+esc(rec.learn_path)+'">Learn the skill</button></div><p class="muted">Afterwards: compare your original response with the rubric, record help, and get a next step. Self-review is not independent verification.</p>':'<p>Choose another goal, a supported locality, or ask an assessor for different materials.</p>')+'</div><div class="grid"><div class="card"><h3>Make it useful to you</h3><p>Try → learn → practise → apply → review → return later.</p><a href="#pathways">Choose a pathway</a></div><div class="card"><h3>Return at the right time</h3><p>'+p.totals.due+' delayed checks due.</p><p>'+esc(upcoming.length?'Next: '+skillName(upcoming[0].competency_id)+' on '+upcoming[0].next_review:'A later fresh check is scheduled after you show a skill.')+'</p><a href="#progress">See your evidence</a></div></div>';
   }
   function renderProgress(p){
     const labels={self_reviewed:'Independent, self-reviewed',assessor_reviewed:'Independent, assessor-reviewed',assisted:'Completed with help',needs_work:'Needing practice',retention_passed:'Delayed checks passed',due:'Delayed checks due'};
@@ -293,7 +312,7 @@
   $('goal').onchange=()=>persist({...state,goal_competencies:$('goal').value?[$('goal').value]:[]});
   $('locality').onchange=()=>{const next={...state,locality:$('locality').value},errors=E.validateState(next,D,today());if(errors.length){$('locality').value=state.locality;notice('Historical evidence uses nation-specific guidance. Download a copy and begin a separate profile to change locality.');}else{closeTask();persist(next);}};
   $('import-state').onchange=()=>importEvidence($('import-state'));$('assessor-import').onchange=()=>importEvidence($('assessor-import'));
-  $('export-state').onclick=()=>{if(blocked){try{const original=localStorage.getItem(key);if(original){downloadText('life-skills-original-needs-repair.json',original);return;}}catch{notice('The original storage could not be downloaded.');return;}}download('life-skills-evidence.json',state);};
+  $('export-state').onclick=()=>{try{markBackedUp();render();}catch{}if(blocked){try{const original=localStorage.getItem(key);if(original){downloadText('life-skills-original-needs-repair.json',original);notice('Backup downloaded.');return;}}catch{notice('The original storage could not be downloaded.');return;}}download('life-skills-evidence.json',state);notice('Backup downloaded.');};
   $('export-evaluation').onclick=()=>download('life-skills-evaluation.json',{schema_version:2,locality:state.locality,pathway:state.pathway,results:E.evaluate(state,D),note:'Descriptive educational evidence, not a causal effectiveness study.'});
   $('reset-state').onclick=()=>{if(confirm('Clear this browser’s evidence? Download a backup first.')){blocked=false;persist(E.emptyState(state.locality,state.pathway));navigate('today');notice('Evidence cleared from this browser.');}};
   document.addEventListener('click',event=>{const b=event.target.closest('button');if(!b)return;if(b.dataset.task)startTask(b.dataset.task);if(b.dataset.sim)launchSimulation(b.dataset.sim);if(b.dataset.goal)startOnboarding(b.dataset.goal);if(b.dataset.learn)showLesson(b.dataset.learn);if(b.dataset.pathway){persist({...state,pathway:b.dataset.pathway});notice('Pathway changed. Today now uses your chosen direction.');}});

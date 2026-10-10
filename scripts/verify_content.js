@@ -116,5 +116,27 @@ ok('every simulation has a complete, safely-framed stage structure', badStage.le
 const msIds = ms.map(m => m.id);
 ok('milestone ids unique', new Set(msIds).size === msIds.length);
 
+// ---- Backup reminder: evidence is browser-local and must be prompted ----
+// The product's own review names data-loss risk (browser clear, quota change,
+// profile switch) as a real weakness. The app must (a) remind a learner who
+// has evidence and has never backed up, (b) stop reminding once they have,
+// (c) not remind a learner with nothing to lose, and (d) never let the backup
+// stamp touch the evidence state or its validation.
+const appSrc = fs.readFileSync(path.join(root, 'learner/app.js'), 'utf8');
+ok('backup reminder is offered on Today for learners with evidence',
+  /backupReminder/.test(appSrc) && /hasEvidence/.test(appSrc));
+ok('backup stamp lives outside the evidence state',
+  appSrc.includes("localStorage.setItem(backupKey") && !/schema_version[^}]*backup/i.test(appSrc));
+ok('export marks the learner as backed up', /markBackedUp\(\)/.test(appSrc));
+ok('blocked storage never shows a false backup reminder', /blocked\|\|!hasEvidence/.test(appSrc));
+
+// ---- Copy the browser suite may look up stays present ----
+// The simulation journey and Today surface new user-facing strings; the copy
+// contract script guards the full list, but the ones asserted here are the
+// ones this change introduced and must not silently drift.
+for (const s of ['You need fresh materials', 'Keep a copy of your evidence.', 'Backup downloaded.']) {
+  ok('copy present: ' + JSON.stringify(s), appSrc.includes(s));
+}
+
 console.log(fail === 0 ? '\nALL MILESTONE/CONTENT CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
