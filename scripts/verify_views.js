@@ -111,5 +111,25 @@ ok('AI: helpIfAIUsed forces help', AI.helpIfAIUsed({ help_used: false }, true).h
 ok('AI draft renders and is labelled', FV.draft('<b>hi</b>', []).includes('AI-ASSISTED DRAFT'));
 ok('AI draft escapes content (no raw script tag)', !/<script/.test(FV.draft('<script>x</script>', ['w'])));
 
+// 9. Pending observed checks surface on the roadmap card, not just in data.
+//    A domain whose written evidence is complete but whose observation is
+//    missing must name the check in both the collapsed card and the expanded
+//    body, with the learner-facing rubric title — never a raw kind id.
+const pendState = E.emptyState('uk', 'general');
+for (const c of D.skills.competencies.filter(c => c.domain === 'home' && c.mode === 'independent')) {
+  const item = D.bank.items.find(i => i.competencies.includes(c.id));
+  if (!item) continue;
+  pendState.records.push({ id: 'r-' + c.id, attempt_id: 'a1', competency_id: c.id, item_id: item.id, phase: 'transfer', date: TODAY, assessment_version: item.version, help_used: false, access_supports: [], solution_seen: false, error_tags: [], evidence_level: 'self-reviewed', reviewer_type: 'learner', criteria_judgements: (item.scoring || []).map(s => ({ criterion_id: s.id, judgement: 'met' })) });
+}
+const pendHome = R.roadmap(pendState, D, TODAY).domains.find(d => d.id === 'home');
+const pendCard = RV.domainCard(pendHome);
+const pendBody = RV.domainBody(pendHome);
+ok('pending observation renders on the collapsed domain card', pendCard.includes('domain__pending') && pendCard.includes('Prepare a simple meal safely'), pendCard.slice(0, 120));
+ok('pending observation renders inside the expanded domain body', pendBody.includes('domain__pending') && pendBody.includes('Prepare a simple meal safely'));
+ok('pending observation never shows a raw kind id', !pendCard.includes('observed-meal-preparation') && !pendBody.includes('observed-meal-preparation'));
+ok('a domain with no pending gate renders no pending line', !RV.domainCard(R.roadmap(E.emptyState('uk', 'general'), D, TODAY).domains.find(d => d.id === 'relationships')).includes('domain__pending'));
+// The pending line must use the shared styled class so it cannot render unstyled.
+ok('the pending line uses a styled class', /domain__pending/.test(fs.readFileSync(path.join(root, 'learner/product.css'), 'utf8')));
+
 console.log(fail === 0 ? '\nALL VIEW CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);

@@ -45,12 +45,18 @@
   function domainCard(d) {
     const bar = '<div class="bar" role="img" aria-label="' + d.counts.demonstrated + ' of ' + d.counts.total + ' independent capabilities demonstrated">' +
       '<span class="bar__fill" style="width:' + d.pct + '%"></span></div>';
+    // Written evidence can be complete while an observed check is still
+    // pending. Name it on the card so the learner knows the one remaining
+    // step — and why the domain is not yet marked complete.
+    const pending = (d.practical_pending || []).map(p =>
+      '<p class="domain__pending">Needs an observed check: ' + esc(p.title) + '</p>').join('');
     return '<details class="domain"' + (d.complete ? ' data-complete="1"' : '') + ' data-domain="' + esc(d.id) + '">' +
       '<summary>' +
       '<span class="domain__title">' + esc(d.title) + '</span>' +
       '<span class="domain__count">' + d.counts.demonstrated + '/' + d.counts.total + '</span>' +
       bar +
       '</summary>' +
+      pending +
       '<div class="domain__body" data-body="' + esc(d.id) + '">' +
       '<p class="muted">' + d.counts.demonstrated + ' shown independently · ' + d.counts.assisted + ' with help · ' + d.counts.needs_work + ' need practice' +
       (d.blocked_count ? ' · ' + d.blocked_count + ' waiting on another skill' : '') + '</p>' +
@@ -61,8 +67,14 @@
 
   /* Rendered on demand when a domain is opened. */
   function domainBody(d) {
+    // Repeat the pending-observation line inside the expanded body: the
+    // collapsed card may have been overlooked, and the expanded view is
+    // where the learner decides what to do next.
+    const pending = (d.practical_pending || []).map(p =>
+      '<p class="domain__pending">Needs an observed check: ' + esc(p.title) + ' — arrange it with an assessor. Written answers alone cannot meet this gate.</p>').join('');
     return '<p class="muted">' + d.counts.demonstrated + ' shown independently · ' + d.counts.assisted + ' with help · ' + d.counts.needs_work + ' need practice' +
       (d.blocked_count ? ' · ' + d.blocked_count + ' waiting on another skill' : '') + '</p>' +
+      pending +
       '<ul class="caplist">' + d.capabilities.map(capabilityRow).join('') + '</ul>' +
       '<p><a href="' + esc(d.path) + '">Read the ' + esc(d.title.toLowerCase()) + ' guide</a></p>';
   }
