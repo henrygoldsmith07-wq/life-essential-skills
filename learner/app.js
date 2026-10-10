@@ -242,8 +242,19 @@
     if(back)back.onclick=()=>{current.stage--;$('workspace').innerHTML=SV.stage(sim,current.stage);bindSim(sim,item);U.focus('task-title');};
     if(next)next.onclick=()=>{
       if(current.stage<sim.stages.length-1){current.stage++;$('workspace').innerHTML=SV.stage(sim,current.stage);bindSim(sim,item);U.focus('task-title');}
-      else{$('workspace').innerHTML=SV.writeUp(sim,item,renderMaterials(item));$('finish-attempt').onclick=finishAttempt;$('close-task').onclick=closeTask;U.focus('task-title');}
+      else{$('workspace').innerHTML=SV.writeUp(sim,item,renderMaterials(item));$('finish-attempt').onclick=finishAttempt;$('close-task').onclick=closeTask;offerAIHint();U.focus('task-title');}
     };
+  }
+  function offerAIHint(){
+    // Inserts the coaching-hint button only when a conforming adapter exposes
+    // coach_practice. No adapter -> no button -> the shipped product is changed
+    // nowhere. The view never knows about the adapter; it always renders the
+    // placeholder, and the draft is drawn through FeedbackView.draft (escaped).
+    if(!AI_ADAPTER||!AI_ADAPTER.coach_practice)return;
+    const actions=$('workspace').querySelector('.actions');if(!actions)return;
+    const btn=document.createElement('button');btn.type='button';btn.className='secondary';btn.id='ai-hint';btn.textContent='Get a practice coaching hint';
+    actions.insertBefore(btn,actions.firstChild);
+    btn.onclick=aiHint;
   }
   function startOnboarding(goalId){
     const goal=D.goals.goals.find(g=>g.id===goalId);if(!goal)return;

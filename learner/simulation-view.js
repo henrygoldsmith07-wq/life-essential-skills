@@ -66,7 +66,7 @@
       '<label><input type="checkbox" id="paper-attempt"> I completed a response on paper or by speaking.</label>' +
       '<div class="actions"><button type="button" id="finish-attempt">Finish attempt &amp; check feedback</button>' +
       '<button type="button" class="secondary" id="close-task">Close</button></div>' +
-      '<div id="feedback-area" hidden></div>' +
+      '<div id="ai-hint-body"></div><div id="feedback-area" hidden></div>' +
       '</div>';
   }
 

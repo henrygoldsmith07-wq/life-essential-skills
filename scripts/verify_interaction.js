@@ -158,6 +158,8 @@ ok('AI draft output is rendered through the escaped feedback view',
   /FV\.draft\(/.test(appSrc));
 ok('AI coaching sets the per-attempt aiUsed flag',
   /aiUsed=true/.test(appSrc));
+ok('the simulation write-up offers the same AI coaching affordance as a task',
+  /SV\.writeUp\(sim,item,renderMaterials\(item\)\);.*offerAIHint\(\)/.test(appSrc));
 // ---- 8. Lazy-loaded roadmap bodies must not get stuck on placeholder text ----
 // A browser restores <details> open state on reload and back-navigation, and may
 // fire 'toggle' before the listener is attached, which would leave the
