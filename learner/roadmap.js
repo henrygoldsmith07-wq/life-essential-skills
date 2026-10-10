@@ -149,7 +149,15 @@
     const latestObs = {};
     for (const o of state.observations || []) { if (o.outcome && (!latestObs[o.kind] || o.date >= latestObs[o.kind].date)) latestObs[o.kind] = o; }
     const requiredObs = d => { const kinds = new Set(); for (const ru of data.skills.rollups || []) { if (ru.id.startsWith(d + '.')) for (const k of ru.additional_evidence || []) kinds.add(k); } return kinds; };
-    const completePractical = d => [...requiredObs(d)].every(k => latestObs[k] && latestObs[k].outcome === 'demonstrated');
+    // Observation kinds a domain still needs: required by its rollups and not
+    // currently demonstrated. Single source for both the `complete` flag and
+    // the pending-observation line the views render, so the two can never
+    // disagree about whether the practical gate is open.
+    const pendingObs = d => [...requiredObs(d)].filter(k => !(latestObs[k] && latestObs[k].outcome === 'demonstrated'));
+    const pendingTitles = d => pendingObs(d).map(kind => {
+      const r = (data.practical && data.practical.rubrics || []).find(r => r.id === kind);
+      return { kind, title: r ? r.title : kind.replace(/-/g, ' ') };
+    });
     // Learner-facing wording for error tags, resolved once per render.
     const errLabels = errorLabelMap(data);
     // Which competencies are currently blocked, and by what.
@@ -171,10 +179,16 @@
         total: independent.length
       };
       const pct = counts.total ? Math.round((counts.demonstrated / counts.total) * 100) : 0;
+      const writtenDone = counts.total > 0 && counts.demonstrated === counts.total;
+      // The pending line explains one thing only: why a written-complete
+      // domain is not yet green. A learner with unfinished written work
+      // already has their next step; naming the observation early would be
+      // noise on every card, so it is listed only once written work is done.
       return {
         id: d.id, title: d.title, path: d.path,
         capabilities: caps, counts, pct,
-        complete: counts.total > 0 && counts.demonstrated === counts.total && completePractical(d.id),
+        complete: writtenDone && pendingObs(d.id).length === 0,
+        practical_pending: writtenDone ? pendingTitles(d.id) : [],
         blocked_count: caps.filter(c => c.blocked).length
       };
     });

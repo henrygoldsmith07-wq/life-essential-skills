@@ -168,6 +168,31 @@ for (const c of relIndeps) { const item = D.bank.items.find(i => i.competencies.
 ok('a domain with no practical gate is complete once demonstrated',
   relRollupGates.length === 0 && R.roadmap(relState, D, TODAY).domains.find(d => d.id === 'relationships').complete);
 
+// 11. A domain with unfinished written work lists no pending observation:
+//     practical_pending is about the observation gate, not the competency gate.
+const freshRM = R.roadmap(E.emptyState('uk', 'general'), D, TODAY);
+ok('a fresh learner has no pending observations listed anywhere',
+  freshRM.domains.every(d => Array.isArray(d.practical_pending) && d.practical_pending.length === 0));
+
+// 12. The pending line and the complete flag are derived from one source.
+//     When every independent competency is demonstrated but the observation is
+//     missing, the domain must expose the pending kind AND stay incomplete;
+//     resolving the observation must clear both at once.
+ok('a written-complete domain names its pending observation',
+  R.roadmap(shown, D, TODAY).domains.find(d => d.id === 'home').practical_pending.some(p => p.kind === rubricId),
+  (R.roadmap(shown, D, TODAY).domains.find(d => d.id === 'home').practical_pending || []).map(p => p.kind).join(','));
+ok('written-complete without observation stays incomplete (pending and flag agree)',
+  !R.roadmap(shown, D, TODAY).domains.find(d => d.id === 'home').complete);
+const cleared = R.roadmap(observed, D, TODAY).domains.find(d => d.id === 'home');
+ok('a demonstrated observation clears the pending list and the complete flag together',
+  cleared.practical_pending.length === 0 && cleared.complete === true);
+const failedPending = R.roadmap(failedGate, D, TODAY).domains.find(d => d.id === 'home');
+ok('a failed observation re-lists the pending kind and withholds complete',
+  failedPending.practical_pending.some(p => p.kind === rubricId) && failedPending.complete === false);
+// No-gate domains never list pending observations.
+ok('a domain with no rollup gate never lists a pending observation',
+  R.roadmap(relState, D, TODAY).domains.find(d => d.id === 'relationships').practical_pending.length === 0);
+
 console.log(fail === 0 ? '\nALL ROADMAP CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
 
