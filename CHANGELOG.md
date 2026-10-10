@@ -10,6 +10,7 @@
 - Upgrade the five capstones into **life-transition simulations** (`curriculum/simulations.json`): three-part situations that progressively reveal information and then change the constraints under the learner's decision. Evidence is still stored per subskill exactly as before; the simulation is a presentation layer and cannot change how an outcome is derived.
 - Add a human-readable **My Independence Profile** — printable progress report covering demonstrated capabilities, developing areas, milestones, retention status, observed practical evidence and next steps. Explicitly a learning record, not a qualification, and free of private data.
 - Make learner feedback substantially more actionable: per-competency breakdown of what was right and what was missing, why the skill matters, a direct "your next practice" action, and when to expect reassessment.
+- Add a periodic **backup reminder** on Today: evidence lives only in browser storage, so once a learner has something worth keeping the product prompts them to download a copy, and stops nagging once they have. The reminder is suppressed when the learner has no evidence and when storage is already blocked (a corrupt state already has a prominent notice). The backup stamp uses a separate localStorage key so it can never affect state validation or evidence derivation.
 
 ### Assessment quality and scalability
 

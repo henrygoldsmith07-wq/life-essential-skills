@@ -107,7 +107,7 @@ It is explicitly **a learning record, not a qualification**. Most of it is self-
 
 Local-first and unchanged. No mandatory login, no analytics, no backend. Your written response is temporary and never stored. Only bounded educational evidence is kept, in this browser. Download a backup if you want one.
 
-The state and interfaces are structured so encrypted sync or accounts could be added later without rewriting the competency engine.
+Because the evidence lives only in this browser, a browser clear, quota change, or profile switch can silently wipe it. Once a learner has something worth keeping, Today shows a gentle backup reminder pointing to the download action in My setup, and stops reminding once a copy has been taken. The reminder is suppressed when there is no evidence to lose and when storage is already blocked. The backup stamp uses a separate key from the evidence state, so it can never affect validation or derivation.
 
 ## What CI enforces
 
@@ -124,3 +124,4 @@ The product's promises are checked automatically, so they cannot quietly stop be
 - An attached AI adapter is sanitised to drafting capabilities only, AI drafts are rendered through an escaper, and AI-assisted work is always recorded as solving help — never as independent evidence.
 - Overdue retention checks are surfaced on Today (one, via the engine) and on the Practice page's recommended view (all others, grouped), so a due check is not lost among fresh material.
 - A full life-transition simulation journey runs in the browser suite: locality gating, progressive disclosure with a working way out, the changed-situation final stage, attempt gating, the standard structured feedback and debrief, per-subskill evidence with one attempt token, and the familiar-situation relabelling that proves the exposure was consumed. The mobile accessibility scan covers every learner view, including the Roadmap, Simulations and Profile.
+- Once a learner has evidence worth keeping, Today offers a backup reminder that stops once a copy is taken, never appears when there is no evidence, and never fires when storage is already blocked.
