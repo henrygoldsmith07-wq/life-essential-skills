@@ -131,5 +131,45 @@ ok('a domain with no pending gate renders no pending line', !RV.domainCard(R.roa
 // The pending line must use the shared styled class so it cannot render unstyled.
 ok('the pending line uses a styled class', /domain__pending/.test(fs.readFileSync(path.join(root, 'learner/product.css'), 'utf8')));
 
+// Material exhaustion warnings surface proactively, naming the family and showing
+// how many unseen cases remain — not just the engine's abrupt 'fresh-materials-needed'.
+// Build a custom bank with exactly 2 items (2 exposure groups) in a family, so
+// using one exhausts it and the near-exhaustion threshold fires.
+const clone = v => JSON.parse(JSON.stringify(v));
+const custom = clone(D);
+custom.bank.items = custom.bank.items.filter(i => i.competencies[0] === 'money.cash-flow.foundation');
+custom.skills.competencies = custom.skills.competencies.filter(c => c.id === 'money.cash-flow.foundation');
+custom.skills.rollups = [];
+let matState = E.emptyState('uk', 'money-admin');
+matState.goal_competencies = ['money.cash-flow.foundation'];
+matState = E.recordAttempt(matState, custom, custom.bank.items[0].id, {
+  criteria_judgements: custom.bank.items[0].scoring.map(s => ({ criterion_id: s.id, judgement: 'met' })),
+  help_used: false, solution_seen: false, access_supports: [], error_tags: []
+}, TODAY);
+const matRem = E.materialsRemaining(matState, custom, 'uk');
+const cfKey = Object.keys(matRem).find(k => k.includes('cash-flow'));
+ok('materialsRemaining tracks seen vs remaining', matRem[cfKey].seen === 1 && matRem[cfKey].remaining === 1);
+const matRm = R.roadmap(matState, custom, TODAY);
+ok('near-exhausted families warn on the roadmap', matRm.material_warnings.length > 0, matRm.material_warnings.length + ' warnings');
+ok('roadmap view renders the warning panel', RV.render(matRm).includes('Watch your fresh cases'));
+ok('exhausted families show zero remaining after full use', (() => {
+  let s = matState;
+  for (const item of custom.bank.items.slice(1)) s = E.recordAttempt(s, custom, item.id, {
+    criteria_judgements: item.scoring.map(sc => ({ criterion_id: sc.id, judgement: 'met' })),
+    help_used: false, solution_seen: false, access_supports: [], error_tags: []
+  }, TODAY);
+  const rm3 = R.roadmap(s, custom, TODAY);
+  return rm3.material_warnings.every(w => w.remaining === 0);
+})());
+
+// Milestone progress fractions appear on roadmap milestone cards for in-progress work.
+const profForMilestones = R.profile(E.emptyState('uk', 'general'), D, TODAY);
+const allMilestones = profForMilestones.milestones_earned.concat(profForMilestones.milestones_in_progress, profForMilestones.milestones_not_started);
+ok('milestone cards carry a numeric progress fraction', allMilestones.every(m => typeof m.progress_fraction === 'number'));
+
+// Profile view surfaces practical observation needs and material warnings.
+const profHtml2 = PV.render(R.profile(E.emptyState('wales', 'moving-out'), D, TODAY), 'UK');
+ok('profile warns about practical observation needs', profHtml2.includes('domain gate') || profHtml2.includes('practical'));
+
 console.log(fail === 0 ? '\nALL VIEW CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
