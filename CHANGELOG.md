@@ -47,6 +47,7 @@
 - **The AI boundary was documented but never wired in.** `ai-boundary.js` was loaded but never called: no adapter was detected, no assistance was offered, and `helpIfAIUsed` was dead code. The app now detects an optional `window.AI_ASSISTANT` adapter, sanitises it (stripping any non-drafting method such as `grade`), offers a coaching hint only when one is present, renders any AI draft through an escaper, and routes every attempt through `helpIfAIUsed` so AI assistance is always recorded as solving help and can never become independent evidence. The shipped static site has no adapter, so with none attached behaviour is unchanged.
 - Dead code removed: a repeated `capState` evaluation (four per capability, 92 times per render), an unused map and an unused variable, an identity `map`, and a view dependency on a window global rather than the date already passed in.
 - `verify_interaction.js` and `verify_views.js` gain a simulation-close-button, simulation-debrief, and AI-boundary seam contract, each regression-proven to fail fast if the corresponding wiring is removed.
+- The Practice page's recommended view now surfaces overdue retention checks: the engine already prioritises one on Today, but every other due check is now grouped under a lead **Due for review** card instead of being buried in fresh material. A learner with nothing due sees no spurious empty group; checks assert both cases.
 
 ### Performance
 

@@ -122,3 +122,4 @@ The product's promises are checked automatically, so they cannot quietly stop be
 - The roadmap stays within a time budget and derives each capability's summary once per render.
 - Focus moves into newly opened content, inserted blocks never duplicate ids, every button declares its type, and lazily loaded roadmap bodies cannot get stuck on placeholder text.
 - An attached AI adapter is sanitised to drafting capabilities only, AI drafts are rendered through an escaper, and AI-assisted work is always recorded as solving help — never as independent evidence.
+- Overdue retention checks are surfaced on Today (one, via the engine) and on the Practice page's recommended view (all others, grouped), so a due check is not lost among fresh material.
