@@ -140,6 +140,16 @@
   function roadmap(state, data, today) {
     // One memo per render, shared by every summary lookup below.
     const cache = new Map();
+    // Practical gates per domain. A domain is only complete when its
+    // independent competencies are demonstrated AND every practical
+    // observation its rollups require has been demonstrated — written work
+    // alone never meets a practical gate. Each domain's required observation
+    // kinds are derived from the rollups whose id starts with the domain id;
+    // the latest observation of each kind decides the gate.
+    const latestObs = {};
+    for (const o of state.observations || []) { if (o.outcome && (!latestObs[o.kind] || o.date >= latestObs[o.kind].date)) latestObs[o.kind] = o; }
+    const requiredObs = d => { const kinds = new Set(); for (const ru of data.skills.rollups || []) { if (ru.id.startsWith(d + '.')) for (const k of ru.additional_evidence || []) kinds.add(k); } return kinds; };
+    const completePractical = d => [...requiredObs(d)].every(k => latestObs[k] && latestObs[k].outcome === 'demonstrated');
     // Learner-facing wording for error tags, resolved once per render.
     const errLabels = errorLabelMap(data);
     // Which competencies are currently blocked, and by what.
@@ -164,7 +174,7 @@
       return {
         id: d.id, title: d.title, path: d.path,
         capabilities: caps, counts, pct,
-        complete: counts.total > 0 && counts.demonstrated === counts.total,
+        complete: counts.total > 0 && counts.demonstrated === counts.total && completePractical(d.id),
         blocked_count: caps.filter(c => c.blocked).length
       };
     });
