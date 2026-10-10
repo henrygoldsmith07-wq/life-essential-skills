@@ -10,6 +10,7 @@ const OV = load('onboarding-view.js', 'OnboardingView');
 const RV = load('roadmap-view.js', 'RoadmapView');
 const SV = load('simulation-view.js', 'SimulationView');
 const FV = load('feedback-view.js', 'FeedbackView');
+const Catalog = load('catalog.js', 'Catalog');
 const E = require(path.join(root, 'learner/engine.js'));
 const R = require(path.join(root, 'learner/roadmap.js'));
 const read = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
@@ -81,6 +82,19 @@ ok('simulation final stage offers the write-up', /Finish and write/.test(SV.stag
 const nov = R.roadmap(E.migrateState(read('examples/learners/review-due.json'), D, TODAY), D, TODAY);
 ok('roadmap dates render as plain ISO strings', nov.retention_due.every(c => /^\d{4}-\d{2}-\d{2}$/.test(c.next_review)),
   nov.retention_due.map(c => c.next_review).join(','));
+
+// ---- 6b. The Practice page must surface overdue retention checks ----
+// Today recommends one; the Practice page must not hide the others. On the
+// 'recommended' view a learner with due checks must get a 'Due for review'
+// group containing unseen fresh variants for the due competencies.
+const dueState = E.migrateState(read('examples/learners/review-due.json'), D, TODAY);
+const dueGroups = Catalog.discover(dueState, D, E, TODAY, { mode: 'recommended' });
+ok('the review-due learner has one or more overdue checks', nov.retention_due.length > 0);
+ok('Practice recommended view groups overdue checks under', dueGroups.some(g => g.title === 'Due for review' && g.items.length > 0),
+  dueGroups.map(g => g.title + ':' + g.items.length).join(' | '));
+// A learner with nothing due must not see a spurious empty 'Due for review' group.
+const fresh = Catalog.discover(E.emptyState('wales', 'general'), D, E, TODAY, { mode: 'recommended' });
+ok('no empty due-review group when nothing is due', !fresh.some(g => g.title === 'Due for review' && g.items.length === 0));
 
 // ---- 7. No surface may emit the same id twice ----
 // The rubric generates judge-0, judge-help-0, ... from a fixed prefix, so

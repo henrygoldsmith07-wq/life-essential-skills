@@ -11,6 +11,17 @@
   }
   function discover(state,data,engine,today,options){
     const rec=engine.recommend(state,data,today),{mode='recommended',domain='all',search=''}=options;
+    // Retention: competencies with a demonstrated skill whose scheduled
+    // review has passed. On the recommended view these are surfaced first so an
+    // overdue check is not lost among fresh material — the engine already
+    // prioritizes one on Today, but the Practice page shows the others too.
+    const due = new Set();
+    if (mode === 'recommended') {
+      for (const c of data.skills.competencies) {
+        const s = engine.summary(state, c.id, data);
+        if (s.last_demonstrated && s.next_review && s.next_review <= today) due.add(c.id);
+      }
+    }
     const rows=data.bank.items.filter(i=>{
       if(!engine.eligible(i,state.locality)||(domain!=='all'&&!i.competencies.some(c=>c.split('.')[0]===domain)))return false;
       const title=i.title+' '+i.competencies.map(c=>data.skills.competencies.find(s=>s.id===c).title).join(' ');
@@ -21,12 +32,14 @@
       if(mode==='needs-work')return !known&&summaries.some(s=>['not-yet','assisted'].includes(s.status));
       if(mode==='review-due')return !known&&summaries.some(s=>s.last_demonstrated&&s.next_review&&s.next_review<=today);
       if(mode==='capstones')return i.family==='capstone';
-      if(mode==='recommended')return i.id===rec.item?.id||(!known&&i.family!=='capstone'&&summaries.some(s=>['not-yet','assisted'].includes(s.status)));
+      if(mode==='recommended')return i.id===rec.item?.id||(!known&&i.family!=='capstone'&&summaries.some(s=>['not-yet','assisted'].includes(s.status)))||(!known&&due.has(i.competencies[0]));
       return true;
     });
     rows.sort((a,b)=>Number(b.id===rec.item?.id)-Number(a.id===rec.item?.id));
     const groups=new Map();
-    for(const i of rows){const label=i.family==='capstone'?'Apply several skills together':data.skills.competencies.find(c=>c.id===i.competencies[0]).title.replace(/ · .*/, '');if(!groups.has(label))groups.set(label,[]);groups.get(label).push(i);}
+    const pushTo=(label,i)=>{if(!groups.has(label))groups.set(label,[]);groups.get(label).push(i);};
+    const lead='Due for review';
+    for(const i of rows){const label=i.family==='capstone'?'Apply several skills together':(mode==='recommended'&&due.has(i.competencies[0]))?lead:data.skills.competencies.find(c=>c.id===i.competencies[0]).title.replace(/ · .*/, '');pushTo(label,i);}
     return [...groups].map(([title,items])=>({title,items:mode==='recommended'?items.slice(0,2):items}));
   }
   return {create,discover};
