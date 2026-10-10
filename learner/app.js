@@ -157,7 +157,7 @@
         U.rubric(item.scoring)+
         '<fieldset><legend>Solving help</legend><p class="muted">Practice with help is allowed and useful. Only answering on your own, on fresh material, counts as a demonstration.</p><label><input type="checkbox" id="help-used"> I used prompts, a checklist, a person or AI to solve the task.</label><label><input type="checkbox" id="solution-before" '+(attempt.known?'checked disabled':'')+'> I knew these materials or answers before this attempt.</label></fieldset>'+
         U.supports('attempt-access')+errorControls+
-        '<p id="derived-result" role="status" aria-live="polite">Choose a judgement for every criterion to see the result.</p><button type="button" id="save-attempt">Save evidence & find next task</button>';
+        '<p id="derived-result" role="status" aria-live="polite">Choose a judgement for every criterion to see the result.</p>'+(current.sim?SV.debrief(current.sim):'')+'<button type="button" id="save-attempt">Save evidence & find next task</button>';
       $('feedback-area').addEventListener('change',previewOutcome);$('save-attempt').onclick=saveAttempt;U.focus('feedback-title');
     }catch(e){if(n===token){$('finish-attempt').disabled=false;notice(e.message+' Serve the repository over HTTP.');}}
   }

@@ -109,6 +109,16 @@ ok('the feedback panel renders the rubric exactly once', rubricRenders === 1, ru
 ok('the feedback explainer does not re-render live controls',
   !/U\.rubric\([^)]*\)\.replace/.test(finishSrc));
 
+// ---- 9. Simulations surface their authored debrief to the learner ----
+// The "What this was about" reflection is authored for every simulation and was
+// styled, but never wired into the flow — so a completed simulation ended
+// without its closing reflection. finishAttempt must render SV.debrief() for a
+// simulation attempt.
+ok('every simulation authors a debrief',
+  D.simulations.simulations.every(s => !!s.debrief));
+ok('the feedback flow renders a simulation debrief when present',
+  /SV\.debrief\(current\.sim\)/.test(finishSrc));
+
 // ---- 8. Lazy-loaded roadmap bodies must not get stuck on placeholder text ----
 // A browser restores <details> open state on reload and back-navigation, and may
 // fire 'toggle' before the listener is attached, which would leave the
