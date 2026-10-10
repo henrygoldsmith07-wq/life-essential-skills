@@ -7,6 +7,17 @@
   const today=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');};
   let state=E.emptyState(),blocked=false,current=null,token=0,view='today';
   window.ROADMAP_TODAY=today();
+  // Optional AI adapter seam. A deployment may attach a conforming adapter to
+  // window.AI_ASSISTANT; the boundary module strips anything that is not a
+  // drafting capability (e.g. a 'grade' method) before it is offered. With no
+  // adapter present — the shipped static site — AI_ADAPTER is null and nothing
+  // about the learner flow changes: no button appears, no flag is set, and the
+  // evidence rules are untouched.
+  const AI_ADAPTER=window.AI_ASSISTANT?AIBoundary.sanitiseAdapter(window.AI_ASSISTANT):null;
+  // Tracks whether an AI draft was used during the current attempt. Any use is
+  // recorded as solving help by helpIfAIUsed() in attemptInput(), so an
+  // AI-assisted attempt can never become independent evidence.
+  let aiUsed=false;
   function notice(text){$('notice').textContent=text;$('notice').hidden=!text;}
   try{const saved=localStorage.getItem(key);if(saved)state=E.migrateState(JSON.parse(saved),D,today());}
   catch(e){blocked=true;notice('Stored evidence needs repair and will not be overwritten. Download the original from My setup. '+e.message);}
@@ -128,7 +139,7 @@
   function closeTask(){token++;current=null;$('workspace').replaceChildren();$('workspace').hidden=true;U.focus(view+'-title');}
   function renderMaterials(item){return item.family==='capstone'?item.materials.map(text=>teachingMarkdown(text,D.index.capstones.find(c=>c.id===item.id).path)).join(''):list(item.materials);}
   async function startTask(id){
-    const n=++token;current=null;
+    const n=++token;current=null;aiUsed=false;
     try{const item=await load.item(id);if(n!==token||!E.eligible(item,state.locality))return;
       const known=E.seen(state,item,D),missing=item.prerequisites.filter(c=>E.summary(state,c,D).status!=='demonstrated');
       current={item,known,finished:false,attemptId:'a-'+Date.now()+'-'+state.exposures.length,phase:known?'practice':(!state.records.length||missing.length)?'diagnostic':undefined};
@@ -163,7 +174,11 @@
   }
   function attemptInput(){
     const box=$('feedback-area'),errorsBy={};current.item.competencies.forEach(cid=>errorsBy[cid]=[...box.querySelectorAll('[data-error]:checked')].filter(c=>c.dataset.errorCid===cid).map(c=>c.dataset.error));
-    return {attempt_id:current.attemptId,phase:current.phase,criteria_judgements:U.judgements(box),help_used:$('help-used').checked,solution_seen:current.known||$('solution-before').checked,access_supports:U.chosenSupports(box),errors_by_competency:errorsBy};
+    // AI assistance is always solving help: it can never become independent
+    // evidence. helpIfAIUsed() sets help_used and tags the record as ai_assisted
+    // when an AI draft was used during this attempt; with no adapter the call is
+    // a pass-through and behaviour is unchanged.
+    return AIBoundary.helpIfAIUsed({attempt_id:current.attemptId,phase:current.phase,criteria_judgements:U.judgements(box),help_used:$('help-used').checked,solution_seen:current.known||$('solution-before').checked,access_supports:U.chosenSupports(box),errors_by_competency:errorsBy},aiUsed);
   }
   function previewOutcome(){
     if([...$('feedback-area').querySelectorAll('[data-criterion]')].some(c=>!c.value))return;
@@ -200,7 +215,7 @@
     try{
       const item=await load.item(sim.capstone);if(n!==token||!E.eligible(item,state.locality))return;
       const known=E.seen(state,item,D),missing=item.prerequisites.filter(c=>E.summary(state,c,D).status!=='demonstrated');
-      current={item,known,sim,stage:0,finished:false,attemptId:'a-'+Date.now()+'-'+state.exposures.length,phase:known?'practice':(!state.records.length||missing.length)?'diagnostic':undefined};
+      current={item,known,sim,stage:0,finished:false,attemptId:'a-'+Date.now()+'-'+state.exposures.length,phase:known?'practice':(!state.records.length||missing.length)?'diagnostic':undefined};aiUsed=false;
       $('workspace').hidden=false;
       $('workspace').innerHTML=SV.intro(sim,item);
       $('sim-begin').onclick=()=>{current.stage=0;$('workspace').innerHTML=SV.stage(sim,0);bindSim(sim,item);U.focus('task-title');};

@@ -95,7 +95,7 @@ AI may help generate candidate situations, alternative examples, personalised ex
 2. turn an assisted performance into independent evidence;
 3. persist an AI artefact into the learner's evidence state.
 
-Every AI-produced artefact is marked as an AI-assisted draft, counts as solving help, and is never persisted. The whole product works with no AI adapter installed; `learner/ai-boundary.js` ships the interface and the guards, and no provider.
+Every AI-produced artefact is marked as an AI-assisted draft, counts as solving help, and is never persisted. The whole product works with no AI adapter installed; `learner/ai-boundary.js` ships the interface and the guards, and no provider. A deployment that attaches a conforming adapter to `window.AI_ASSISTANT` gets one back with every non-drafting method stripped, and the app routes every attempt through `helpIfAIUsed` so AI assistance is always recorded as solving help — enforced in the recording path, not merely documented.
 
 ## Your Independence Profile
 

@@ -125,6 +125,26 @@ ok('the feedback flow renders a simulation debrief when present',
 const bindSimSrc = (appSrc.match(/function bindSim\(sim,item\)\{[\s\S]*?\n  \}/) || [''])[0];
 ok('bindSim re-binds the close button on every stage render',
   bindSimSrc.includes("if($('close-task'))$('close-task').onclick=closeTask;"));
+
+// ---- 11. The AI boundary is enforced, not merely documented ----
+// An adapter is optional; with none attached, the app is byte-for-byte unchanged.
+// But if one is attached, two invariants must hold: (1) it is sanitised so a
+// misbehaving adapter that exposes 'grade' can never grade through the app; and
+// (2) any AI-assisted attempt is recorded as solving help, so it can never become
+// independent evidence. Both are checked at the recording path.
+const AI = load('ai-boundary.js', 'AIBoundary');
+ok('AI boundary exposes no grade capability', !AI.ALLOWED.includes('grade'));
+ok('AI boundary records adapter use as solving help',
+  AI.helpIfAIUsed({ help_used: false }, true).help_used === true);
+ok('AI boundary strips a grade method from an attached adapter',
+  AI.sanitiseAdapter({ draft_explanation: () => ({ content: 'x' }), grade: () => 'A+' }).grade === undefined);
+const attemptSrc = (appSrc.match(/function attemptInput\(\)\{[\s\S]*?\n  \}/) || [''])[0];
+ok('attemptInput routes through the AI help-if-used guard',
+  /AIBoundary\.helpIfAIUsed\(/.test(attemptSrc));
+ok('attemptInput does not call a provider directly (no network in the boundary)',
+  !/fetch\(|XMLHttpRequest|axios/.test(attemptSrc));
+ok('the app detects an injected adapter via the boundary (default-safe)',
+  /AIBoundary\.sanitiseAdapter\(window\.AI_ASSISTANT\)/.test(appSrc));
 // ---- 8. Lazy-loaded roadmap bodies must not get stuck on placeholder text ----
 // A browser restores <details> open state on reload and back-navigation, and may
 // fire 'toggle' before the listener is attached, which would leave the
