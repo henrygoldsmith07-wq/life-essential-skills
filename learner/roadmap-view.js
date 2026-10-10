@@ -96,10 +96,14 @@
   }
 
   function milestoneRow(m) {
+    const progressHtml = !m.earned && m.progress_fraction > 0
+      ? '<div class="ms__progress"><div class="ms__bar" style="width:' + Math.round(m.progress_fraction * 100) + '%"></div></div>'
+      : '';
     return '<li class="ms ms--' + (m.earned ? 'earned' : m.near ? 'near' : 'todo') + '">' +
       '<span class="ms__mark" aria-hidden="true">' + (m.earned ? '★' : '☆') + '</span>' +
       '<div><h4>' + esc(m.title) + '</h4>' +
       '<p>' + esc(m.description) + '</p>' +
+      progressHtml +
       '<p class="muted">' + (m.earned ? 'Shown by your own evidence' : esc(m.progress)) + '</p></div>' +
       '</li>';
   }
@@ -136,12 +140,29 @@
       '</div>';
   }
 
+  function materialWarningsPanel(rm) {
+    if (!rm.material_warnings || !rm.material_warnings.length) return '';
+    return '<section class="card ms ms--warn" aria-labelledby="mat-heading">' +
+      '<p class="eyebrow">MATERIAL LIMIT</p>' +
+      '<h2 id="mat-heading">Watch your fresh cases</h2>' +
+      '<p>Some skill areas have only a few unseen cases left before you will need new material prepared by an assessor.</p>' +
+      rm.material_warnings.map(w =>
+        '<div class="ms__warn"><strong>' + esc(w.family.replace('.', ' ')) + '</strong> — ' +
+        (w.warning === 'exhausted'
+          ? '<span class="stop">No unseen cases left (' + w.seen + ' of ' + w.total + ' used). This area is blocked for fresh work.</span>'
+          : '<span class="warn">Only ' + w.remaining + ' unseen case' + (w.remaining > 1 ? 's' : '') + ' left (' + w.seen + ' of ' + w.total + ' used). Use it wisely before scheduling a reassessment.</span>') +
+        '</div>'
+      ).join('') +
+      '</section>';
+  }
+
   /* Top-level roadmap render. Returns HTML; the app sets innerHTML. */
   function render(rm) {
     const shown = rm.domains.filter(d => d.counts.demonstrated > 0 || d.counts.assisted > 0 || d.counts.needs_work > 0 || d.counts.not_started > 0);
     return '<div class="roadmap-intro">' +
       '<p>Everything below comes from evidence you recorded. Nothing here is a score, and there is no overall grade.</p>' + legend() +
       '</div>' +
+      materialWarningsPanel(rm) +
       nextPanel(rm.next) +
       '<section aria-labelledby="map-heading"><p class="eyebrow">YOUR CAPABILITY MAP</p><h2 id="map-heading">What you can already do</h2>' +
       '<p class="intro">Each area shows what you have shown independently, what you have done with help, and what still needs practice. Open an area to see every skill.</p>' +
@@ -151,5 +172,5 @@
       blockedPanel(rm);
   }
 
-  return { render, nextPanel, milestoneRow, chip, capabilityRow, domainCard, domainBody, legend };
+  return { render, nextPanel, milestoneRow, chip, capabilityRow, domainCard, domainBody, legend, materialWarningsPanel };
 });

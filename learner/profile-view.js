@@ -65,6 +65,14 @@
         ? '<ul class="profilelist">' + p.practical.filter(x => x.outcome === 'demonstrated').map(x => '<li>' + esc(x.title) + ' (observed ' + esc(x.date) + ')</li>').join('') + '</ul>'
         : '<p class="empty">No observed practical checks yet. Written answers cannot prove a physical skill.</p>') +
 
+      (p.practical_needed && p.practical_needed.length
+        ? '<p class="notice notice--warn"><strong>' + p.practical_needed.length + ' domain gate' + (p.practical_needed.length > 1 ? 's remain' : ' remains') + ' to complete with an observed check.</strong> ' + p.practical_needed.map(d => '<strong>' + esc(d.domain) + '</strong>: ' + esc(d.pending.join(', '))).join('. ') + '.</p>'
+        : '') +
+
+      (p.material_warnings && p.material_warnings.length
+        ? '<p class="notice notice--info"><strong>Watch your fresh cases.</strong> ' + p.material_warnings.map(w => esc(w.family.replace('.', ' ')) + ' has ' + (w.remaining === 0 ? 'no unseen cases left' : w.remaining + ' unseen case' + (w.remaining > 1 ? 's' : '') + ' left')).join('. ') + '.</p>'
+        : '') +
+
       line('Later checks') +
       (p.retention_due.length
         ? '<p><strong>Due now:</strong> ' + esc(p.retention_due.map(c => c.title).slice(0, 4).join(', ')) + '</p>'

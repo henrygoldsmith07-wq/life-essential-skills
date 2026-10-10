@@ -118,6 +118,33 @@
     const status = evidence.every(s => s.status === 'demonstrated') ? (practicalMissing.length ? 'practical-evidence-required' : 'demonstrated') : evidence.some(s => s.status === 'not-yet') ? 'not-yet' : evidence.some(s => s.status === 'assisted') ? 'assisted' : 'unassessed';
     return {id: legacyId, status, scope: rule.scope, evidence, missing: evidence.filter(s => s.status !== 'demonstrated').map(s => s.competency_id), practical_missing:practicalMissing};
   }
+  /* How many unseen exposure groups remain per competency family, for the
+   * learner's current locality. This powers a proactive warning: the engine
+   * already returns 'fresh-materials-needed' when a family is exhausted, but
+   * that message is abrupt. By computing remaining fresh material here, the
+   * product can warn the learner before they hit the wall — showing how many
+   * unseen cases they have left in each family they are building toward.
+   *
+   * Returns a map from family id to {total, seen, remaining}. Only families
+   * with at least one eligible item for this locality are included. Families
+   * with 0 remaining are the ones that will produce 'fresh-materials-needed'. */
+  function materialsRemaining(state, data, locality) {
+    const seen = new Set([...state.records, ...state.exposures].map(r => data.bank.items.find(i => i.id === r.item_id)?.exposure_group));
+    const byFamily = new Map();
+    for (const i of data.bank.items) {
+      if (!eligible(i, locality)) continue;
+      if (!byFamily.has(i.family)) byFamily.set(i.family, new Set());
+      byFamily.get(i.family).add(i.exposure_group);
+    }
+    const result = {};
+    for (const [family, groups] of byFamily) {
+      const total = groups.size;
+      const seenCount = [...groups].filter(g => seen.has(g)).length;
+      result[family] = { total, seen: seenCount, remaining: total - seenCount };
+    }
+    return result;
+  }
+
   function progress(state, data, today) {
     const all = data.skills.competencies.map(c => ({...summary(state,c.id,data), domain:c.domain, mode:c.mode}));
     const counts = rows => ({demonstrated: rows.filter(s => s.status === 'demonstrated' && s.mode !== 'knowledge').length,
@@ -238,5 +265,5 @@
         review_history:state.reviews.filter(r=>records.some(a=>a.id===r.record_id)),note:'Descriptive evidence; self-review is unverified. No causal effectiveness claim.'};
     }).filter(r=>r.attempts||r.practical_evidence.length);
   }
-  return {iso,addDays,covers,eligible,emptyState,validateState,summary,rollup,progress,recommend,recordAttempt,recordExposure,reviewAttempt,recordObservation,migrateState,seen:(s,i,d,a)=>V.seen(s,i,d,a),effectiveRecord:(s,r,d)=>V.effective(s,r,d),deriveOutcome:V.derive,rubric:V.rubric,evaluate};
+  return {iso,addDays,covers,eligible,emptyState,validateState,summary,rollup,progress,recommend,recordAttempt,recordExposure,reviewAttempt,recordObservation,migrateState,seen:(s,i,d,a)=>V.seen(s,i,d,a),effectiveRecord:(s,r,d)=>V.effective(s,r,d),deriveOutcome:V.derive,rubric:V.rubric,evaluate,materialsRemaining};
 });

@@ -196,6 +196,7 @@
     const all = domains.flatMap(d => d.capabilities);
     const milestones = (data.goals?.milestones || []).map(m => milestone(state, data, m, cache));
     const rec = safeRecommend(state, data, today);
+    const remaining = E.materialsRemaining(state, data, state.locality);
 
     return {
       domains,
@@ -203,7 +204,8 @@
       milestones,
       earned: milestones.filter(m => m.earned).length,
       total_milestones: milestones.length,
-      next: nextStep(rec, state, data, today, blockedMap),
+      next: nextStep(rec, state, data, today, blockedMap, remaining),
+      material_warnings: materialWarnings(all, remaining, data),
       blocked: all.filter(c => c.blocked),
       retention_due: all.filter(c => c.next_review && c.next_review <= today),
       retention_upcoming: all.filter(c => c.next_review && c.next_review > today)
@@ -231,11 +233,17 @@
     if (need.length) progressParts.push(statuses.filter(x => x.s.status === 'demonstrated').length + '/' + need.length);
     if (any.length) progressParts.push((anyDone.some(x => x.s.status === 'demonstrated') ? 1 : 0) + '/1+ adapt');
     if (practical.length) progressParts.push(practicalDone.filter(x => x.s?.outcome === 'demonstrated').length + '/' + practical.length + ' observed');
+    // A numeric fraction (0–1) for inline progress bars on roadmap cards.
+    const totalReq = need.length + (any.length ? 1 : 0) + (practical.length ? practical.length : 0);
+    const metReq = (need.length ? statuses.filter(x => x.s.status === 'demonstrated').length : 0)
+      + (any.length ? (anyDone.some(x => x.s.status === 'demonstrated') ? 1 : 0) : 0)
+      + (practical.length ? practicalDone.filter(x => x.s?.outcome === 'demonstrated').length : 0);
     return {
       ...m,
       earned,
       requires_detail: need.map((cid, i) => ({ cid, title: title(data, cid), status: statuses[i].s.status })),
       progress: progressParts.join(' · '),
+      progress_fraction: totalReq > 0 ? metReq / totalReq : 0,
       near: !earned && needMet && anyMet && practical.length === 0
     };
   }
@@ -245,17 +253,49 @@
     catch (e) { return { kind: 'error', reason: [e.message], blocked: [] }; }
   }
 
+  /* Warn proactively about families approaching material exhaustion. When
+    * a family has only 1 remaining fresh case, the learner is one attempt
+    * from hitting a 'fresh-materials-needed' dead end. When it has 0, the
+    * dead end is active. Only families with in-scope competencies are flagged. */
+  function materialWarnings(capabilities, remaining, data) {
+    const warned = new Set();
+    const result = [];
+    for (const c of capabilities) {
+      if (c.blocked) continue;
+      const fam = data.bank.items.find(i => i.competencies.includes(c.id))?.family;
+      if (!fam || warned.has(fam)) continue;
+      const r = remaining[fam];
+      if (!r) continue;
+      if (r.remaining === 0) {
+        result.push({ family: fam, title: c.title, remaining: 0, total: r.total, warning: 'exhausted' });
+        warned.add(fam);
+      } else if (r.remaining === 1) {
+        result.push({ family: fam, title: c.title, remaining: 1, total: r.total, warning: 'near-exhausted' });
+        warned.add(fam);
+      }
+    }
+    return result;
+  }
+
   // Turn the engine's single recommendation into the "highest-value next" panel.
-  function nextStep(rec, state, data, today, blockedMap) {
+  function nextStep(rec, state, data, today, blockedMap, remaining) {
     const kindText = {
       retention: { heading: 'A later check is due', why: 'You have shown this before. This checks it stuck, using material you have not seen.' },
       transfer:   { heading: 'Show it in a fresh situation', why: 'This is new material. Doing it without prompts is what counts as evidence.' },
       diagnostic: { heading: 'Get your first look', why: 'A short check so we know what to focus on. This does not award performance evidence.' },
       'complete': { heading: 'Everything in scope has evidence', why: 'Review the dates below, or pick something new to work on.' },
-      'fresh-materials-needed': { heading: 'Fresh materials needed', why: 'Every unseen variant in this skill area has been used. An assessor must prepare new material — repeating a known answer cannot prove transfer.' },
+      'fresh-materials-needed': { heading: 'You need fresh materials', why: 'Every unseen variant in this skill area has been used. An assessor must prepare new material — repeating a known answer cannot prove transfer.' },
       'locality-needed': { heading: 'Choose the right locality', why: 'This task depends on nation-specific rules or services. Do not substitute another nation’s guidance.' },
       error: { heading: 'Roadmap unavailable', why: 'Stored evidence needs repair.' }
     }[rec.kind] || { heading: 'Your next step', why: '' };
+    // When the engine returns fresh-materials-needed, enrich with the family name.
+    if (rec.kind === 'fresh-materials-needed' && rec.competency && remaining) {
+      const fam = data.bank.items.find(i => i.competencies.includes(rec.competency.id))?.family;
+      if (fam && remaining[fam]) {
+        kindText.why = 'The ' + fam.replace('.', ' ') + ' skill area has no unseen cases left (' + remaining[fam].seen + ' of ' + remaining[fam].total + ' used). An assessor must prepare new material — repeating a known answer cannot prove transfer.';
+        kindText.heading = 'Fresh materials needed: ' + fam.replace('.', ' ');
+      }
+    }
     return {
       kind: rec.kind,
       heading: kindText.heading,
@@ -313,8 +353,13 @@
     const pathway = data.index.pathways.find(p => p.id === state.pathway);
     const practical = (data.practical?.rubrics || []).map(r => {
       const last = state.observations.filter(o => o.kind === r.id).at(-1);
-      return { title: r.title, kind: r.id, outcome: last ? last.outcome : 'unobserved', date: last ? last.date : null };
+      return { title: r.title, kind: r.id, outcome: last ? last.outcome : 'unobserved', date: last ? last.date : null, gate: r.gate };
     });
+    // Which practical observations still block a domain gate from completing.
+    const practical_needed = rm.domains.filter(d => d.practical_pending && d.practical_pending.length).map(d => ({
+      domain: d.title,
+      pending: d.practical_pending.map(p => p.title)
+    }));
 
     // A milestone counts as "in progress" only once the learner has actually
     // engaged with something it depends on. Being merely blocked on a
@@ -337,7 +382,7 @@
       milestones_not_started: rm.milestones.filter(m => !m.earned && !engaged(m)),
       retention_due: rm.retention_due, retention_upcoming: rm.retention_upcoming,
       recent_improvements: rm.recently_improved,
-      next: rm.next, practical,
+      next: rm.next, practical, practical_needed, material_warnings: rm.material_warnings,
       totals: {
         demonstrated: demonstrated.length,
         developing: developing.length,

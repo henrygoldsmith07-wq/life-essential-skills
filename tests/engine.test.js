@@ -109,6 +109,21 @@ test('fresh-bank exhaustion is explicit and never substitutes an old answer',()=
   for(const i of custom.bank.items)s=E.recordAttempt(s,custom,i.id,{criteria_judgements:i.scoring.map(s=>({criterion_id:s.id,judgement:'not-met'})),phase:'practice'},TODAY);
   assert.equal(E.recommend(s,custom,TODAY).kind,'fresh-materials-needed');
 });
+test('materialsRemaining reports unseen exposure groups per family',()=>{
+  let s=E.emptyState('uk','money-admin');s.goal_competencies=['money.cash-flow.independent'];s=add(s,'CRITICAL-THINKING-VERIFICATION-F01','2026-09-19');s=add(s,'DIGITAL-SAFETY-ACCOUNTS-F01','2026-09-19');s=add(s,'MONEY-BUDGET-F01','2026-09-20');s=add(s,'MONEY-CASH-FLOW-F01','2026-09-21');
+  const rem=E.materialsRemaining(s,D,'uk');
+  // The money.cash-flow family should have been partially exhausted by the attempt above.
+  const cf=rem['money.cash-flow'];
+  assert.ok(cf,'money.cash-flow family reported');
+  assert.equal(cf.seen,1,'one exposure group seen after first attempt');
+  assert.equal(cf.remaining,cf.total-cf.seen,'remaining = total - seen');
+  // After exhausting all cash-flow items, remaining must hit 0.
+  const custom=clone(D);custom.bank.items=custom.bank.items.filter(i=>i.competencies[0]==='money.cash-flow.foundation');custom.skills.competencies=custom.skills.competencies.filter(c=>c.id==='money.cash-flow.foundation');custom.skills.rollups=[];
+  let ex=E.emptyState('uk','money-admin');ex.goal_competencies=['money.cash-flow.foundation'];
+  for(const i of custom.bank.items)ex=E.recordAttempt(ex,custom,i.id,{criteria_judgements:i.scoring.map(s=>({criterion_id:s.id,judgement:'not-met'})),phase:'practice'},TODAY);
+  const rem2=E.materialsRemaining(ex,custom,'uk');
+  assert.equal(rem2['money.cash-flow'].remaining,0,'family exhausted after all items used');
+});
 test('determinism: same state/date yields byte-identical recommendation',()=>{
   const s=read('examples/learners/cash-flow-gap.json');assert.equal(JSON.stringify(E.recommend(s,D,TODAY)),JSON.stringify(E.recommend(clone(s),D,TODAY)));
 });
