@@ -8,11 +8,19 @@
   <title>Life Essential Skills · Your next useful step</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product.css">
   <script src="evidence.js" defer></script>
   <script src="engine.js" defer></script>
+  <script src="roadmap.js" defer></script>
+  <script src="ai-boundary.js" defer></script>
   <script src="data.js" defer></script>
   <script src="catalog.js" defer></script>
   <script src="ui.js" defer></script>
+  <script src="roadmap-view.js" defer></script>
+  <script src="onboarding-view.js" defer></script>
+  <script src="simulation-view.js" defer></script>
+  <script src="feedback-view.js" defer></script>
+  <script src="profile-view.js" defer></script>
   <script src="assessor.js" defer></script>
   <script src="app.js" defer></script>
 </head>
@@ -20,15 +28,18 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="header"><a class="brand" href="#today"><span class="brand-mark" aria-hidden="true">ls</span> Life Essential Skills</a><span class="tag">Useful skills. Real evidence.</span></header>
   <nav aria-label="Main navigation" class="nav">
-    <a href="#today">Today</a><a href="#progress">Progress</a><a href="#practice">Practice</a><a href="#pathways">Pathways</a><a href="#settings">My setup</a><a href="#assessor">Assessor</a>
+    <a href="#today">Today</a><a href="#roadmap">Roadmap</a><a href="#progress">Progress</a><a href="#practice">Practice</a><a href="#simulations">Simulations</a><a href="#pathways">Pathways</a><a href="#profile">Profile</a><a href="#settings">My setup</a><a href="#assessor">Assessor</a>
   </nav>
   <main id="main" tabindex="-1">
     <p id="notice" class="notice" role="status" aria-live="polite" hidden></p>
     <section id="today" aria-labelledby="today-title"><p class="eyebrow">ONE USEFUL NEXT STEP</p><h1 id="today-title">A little more capable.</h1><p class="intro">Build skills you can use when life changes. Start where you are, practise with fictional situations, and see what your evidence shows.</p><div id="today-content"></div></section>
+    <section id="roadmap" aria-labelledby="roadmap-title" hidden><p class="eyebrow">YOUR CAPABILITY MAP</p><h1 id="roadmap-title">What you can do</h1><p class="intro">Every capability below comes from evidence you recorded. This is a map, not a score.</p><div id="roadmap-content"></div></section>
     <section id="progress" aria-labelledby="progress-title" hidden><p class="eyebrow">WHAT YOUR EVIDENCE SHOWS</p><h1 id="progress-title">Your progress</h1><p class="intro">See what you have shown, how it was reviewed, and what to practise next. Knowledge, performance and retention are different.</p><div id="progress-content"></div></section>
     <section id="practice" aria-labelledby="practice-title" hidden><p class="eyebrow">TRY A NEW SITUATION</p><h1 id="practice-title">Practice</h1><p class="intro">Solve a fictional problem before opening feedback. Use learning support freely during practice; record it when it helps solve the task.</p><div class="filters"><div><label for="practice-filter">Find tasks</label><select id="practice-filter"><option value="recommended">Recommended next steps</option><option value="needs-work">Needs work</option><option value="review-due">Review due</option><option value="unseen">Fresh tasks</option><option value="guided">Guided practice</option><option value="capstones">Capstone challenges</option><option value="all">Browse all tasks</option></select></div><div><label for="domain-filter">Skill area</label><select id="domain-filter"></select></div><div><label for="practice-search">Search tasks and skills</label><input id="practice-search" type="search"></div></div><div id="practice-content" aria-live="polite"></div></section>
+    <section id="simulations" aria-labelledby="simulations-title" hidden><p class="eyebrow">PRACTISE A REAL SITUATION</p><h1 id="simulations-title">Life-transition simulations</h1><p class="intro">Each one is a situation that develops: you start with part of the picture, make a call, and then something changes. Evidence is recorded against each skill it tests.</p><div id="simulations-content"></div></section>
     <section id="pathways" aria-labelledby="pathways-title" hidden><p class="eyebrow">MAKE IT RELEVANT</p><h1 id="pathways-title">Choose your direction</h1><p class="intro">A pathway helps prioritise skills. Demonstrated evidence can move you forward; a missed skill or due review can bring you back.</p><div id="pathways-content"></div></section>
     <section id="settings" aria-labelledby="settings-title" hidden><p class="eyebrow">PRIVATE BY DEFAULT</p><h1 id="settings-title">Your setup</h1><div class="card"><label for="locality">Guidance locality</label><select id="locality"><option value="uk">UK · nation unspecified</option><option value="wales">Wales</option></select><p>UK does not mean England. Nation-specific assessments appear only when their guidance fits. Choose Wales for Welsh housing and local services.</p><label for="goal">A skill to focus on</label><select id="goal"><option value="">Follow my pathway</option></select></div><div class="card"><h2>Your evidence stays here</h2><p>This browser stores task IDs, dates, criteria, help and error categories. Your written answer is temporary and is never saved. No login, analytics or uploads.</p><p>Use fictional data. Keep passwords, bank details, identity documents, medical records and private contacts outside this tool. Self-reviewed evidence is a learning record; ask an assessor to verify important claims.</p><div class="actions"><button id="export-state">Download evidence</button><label class="button secondary" for="import-state">Import evidence</label><input id="import-state" type="file" accept="application/json,.json" class="visually-hidden"><button class="secondary" id="export-evaluation">Download learning evaluation</button></div><p>Only supported educational evidence can be imported. Back up locally before changing browsers or clearing browser storage. Practical observations can be imported only as assessor-reviewed records.</p><button id="reset-state" class="danger">Clear this browser’s evidence</button></div></section>
+    <section id="profile" aria-labelledby="profile-title" hidden><p class="eyebrow">A LEARNING RECORD</p><h1 id="profile-heading">My Independence Profile</h1><p class="intro">A readable summary of what you have shown. It is not a qualification or a certificate.</p><div id="profile-content"></div></section>
     <section id="workspace" aria-labelledby="task-title" hidden></section>
     <section id="assessor" aria-labelledby="assessor-title" hidden>
       <p class="eyebrow">REVIEW THE EVIDENCE</p><h1 id="assessor-title">Assessor mode</h1>

@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "note": "Life-transition simulations. Each simulation is a staged narrative layered on top of an existing capstone assessment item. The simulation NEVER changes how evidence is recorded: the learner still answers the capstone task, the engine still judges it against the same per-subskill scoring rows, and evidence is still stored per subskill exactly as before. What the simulation adds is a realistic frame: progressive disclosure of information, a mid-situation change of constraint, and explicit trade-offs. It lives beside capstones.json rather than inside it so the assessment bank and the evidence model stay untouched.",
+  "simulations": [
+    {
+      "id": "S01",
+      "capstone": "C01",
+      "title": "Moving out in six weeks",
+      "promise": "Plan a move you can actually afford, then keep it working when the plan breaks.",
+      "framing": "Six weeks from now you want to be living somewhere of your own. Everything below is fictional.",
+      "setting": "You have a job and a move date that is not moving. You have found two places and neither is quite what you hoped.",
+      "stages": [
+        { "n": 1, "heading": "The two options", "beat": "Compare what they cost, not what they advertise.", "reveal": [
+          "Option A: rent 600 a month, utilities about 140, transport 120. Upfront: 600 rent, 600 deposit, 150 moving costs. Last bus 20:15; your shifts sometimes run to 21:00.",
+          "Option B: rent 700 a month, utilities about 100, transport 40. Upfront: 700 rent, 700 deposit, 100 moving costs. The walking route has not been checked for step-free access.",
+          "Take-home income: 1,500 a month. Other essentials: food 220, phone 25, debt payment 80. You have 1,550 saved for moving costs, separate from your monthly budget."],
+          "ask": "Work out the full monthly cost of each, including the things that are easy to forget. Then compare them against your actual income — and say which details you do not yet know that could change the answer.",
+          "trap": "The cheaper rent is not automatically the cheaper option. Check what each one quietly costs you in time and money." },
+        { "n": 2, "heading": "What is actually in the paperwork", "beat": "Read for what is missing, not just what is present.", "reveal": [
+          "Option A's tenancy agreement has a repairs clause you have not read. Option B's has no clear cancellation or notice wording.",
+          "Neither landlord has confirmed who handles the boiler if it fails."],
+          "ask": "What would you ask each landlord before you paid anything? Write the questions, not the answers you assume.",
+          "trap": "An unanswered question is not a 'no problem'. It is an unknown you are choosing to take on." },
+        { "n": 3, "heading": "A change of plan", "beat": "The situation moves. Decide again.", "reveal": [
+          "Your hours have been cut: your take-home income is now 1,250 a month.",
+          "Option B's step-free route has been closed for a week of essential repairs."],
+          "ask": "Revise your monthly budget and your transport plan. Does your decision change? If it does, is there a reversible way to make it?",
+          "trap": "The person who made the earlier decision without new information will often make the same one again. Decide deliberately, as if from scratch." }
+      ],
+      "records": [
+        "Where will you keep your deposit, your tenancy agreement, and your ID — and can you get to them quickly?",
+        "What is your first-week food, cleaning and laundry plan?",
+        "If the boiler or the heating failed in week one, what would you do first?"
+      ],
+      "debrief": "A move is not one decision. It is a comparison, a set of commitments, a set of records, and a plan for the week something goes wrong. You have now made each of those under pressure."
+    },
+    {
+      "id": "S02",
+      "capstone": "C02",
+      "title": "Your first job",
+      "promise": "Handle a job, a payslip and the paperwork — starting from the offer.",
+      "framing": "Everything is fictional. No real employer, no real contract.",
+      "setting": "You have been offered a job. It is your first, and you do not want to agree to something you do not understand.",
+      "stages": [
+        { "n": 1, "heading": "The offer", "beat": "Read it as a set of facts.", "reveal": [
+          "Hourly rate 12.10. Shifts of 4 hours, 5 days a week. 'Standard' holiday mentioned but not defined.",
+          "You are asked to confirm within 3 days, and the person messaging you will not answer questions until you agree."],
+          "ask": "What is actually promised, what is undefined, and what would you ask before confirming? Is the pressure itself a warning sign?",
+          "trap": "Urgency and 'we can't discuss until you commit' are information, not just obstacles." },
+        { "n": 2, "heading": "Your first payslip", "beat": "Make the numbers add up.", "reveal": [
+          "Basic pay 484.00. A 'service charge deduction' of 61.76 appears with no line explaining it. Tax 40.02. Net pay 374.98."],
+          "ask": "Do these numbers add up correctly? Which figure would you query, and to whom, in writing?",
+          "trap": "An unexplained deduction is a normal-looking item on a real payslip. Checking is expected, not rude." },
+        { "n": 3, "heading": "It changes again", "beat": "The deduction is not the problem you have to solve today.", "reveal": [
+          "Three of your shifts were not paid, and the unexplained service charge is still on the payslip.",
+          "You have now been in the job for two weeks, and a colleague tells you the same charge appears for everyone — but nobody has seen it in writing."],
+          "ask": "Which of these do you raise first, and why? What would you put in writing, and what would you wait to be asked about before you say it?",
+          "trap": "Raising every possible problem at once can get a real one ignored. Naming the unpaid shifts and the missing hours first is what gets those paid." }
+      ],
+      "records": [
+        "Where will you record shifts worked and pay received?",
+        "What proof do you have of your agreement (offer, hours, rate)?"
+      ],
+      "debrief": "A job is an offer you can check, pay you can reconcile, evidence you can keep, and a problem you can raise. You have now done all four."
+    },
+    {
+      "id": "S03",
+      "capstone": "C03",
+      "title": "An unexpected £300",
+      "promise": "Absorb a real shock to your budget before it becomes a crisis.",
+      "framing": "All figures are fictional.",
+      "setting": "You have been managing, roughly. Then something arrives that you did not plan for.",
+      "stages": [
+        { "n": 1, "heading": "The shock", "beat": "Size it honestly before you react.", "reveal": [
+          "Your boiler has failed. A quote of 300 to repair, due in 14 days. You have about 90 in savings.",
+          "Your monthly budget has been tight since you started tracking it."],
+          "ask": "What are your real options, including the option of not borrowing? What would each one actually cost you?",
+          "trap": "The first number that feels like 'the answer' is often a credit offer dressed as a solution." },
+        { "n": 2, "heading": "The offers", "beat": "Compare the true cost.", "reveal": [
+          "Option 1: pay £300 from savings — you cannot, you have 90. Option 2: a 'flexible' loan, 300 over 12 months at a high rate. Option 3: an instalment plan with the supplier."],
+          "ask": "Compare what each actually costs in total, not monthly. Which is the least reversible? What would you need to check before any of them?",
+          "trap": "A monthly figure that looks affordable can hide a large total cost. Compare totals." },
+        { "n": 3, "heading": "It changes again", "beat": "The plan you chose is now under new pressure.", "reveal": [
+          "You took the instalment plan. Two weeks later your hours are cut, and the first payment is due on a Friday you do not get paid until Monday.",
+          "You now have 41 in savings instead of 90, and the supplier will charge a missed-payment fee."],
+          "ask": "What do you do before the payment is missed rather than after? Who do you contact first, what exactly do you say, and what evidence do you need to keep?",
+          "trap": "Missing a payment and then calling is the expensive version. Contacting the provider before it is missed, with your agreement to hand, is the cheap version." }
+      ],
+      "records": [
+        "Where will you keep proof of the quotes, the loan or plan terms, and what you paid?"
+      ],
+      "debrief": "An unexpected cost is survivable if you can size it, compare the real options, keep the evidence, and change something so it happens less expensively next time."
+    },
+    {
+      "id": "S04",
+      "capstone": "C04",
+      "title": "A suspicious payment request",
+      "promise": "Tell a real request from a fake one, and act before it costs you.",
+      "framing": "Fictional scenario. Never act on real financial requests without verifying through a route the requester did not give you.",
+      "setting": "A message arrives that looks routine and is not.",
+      "stages": [
+        { "n": 1, "heading": "The request", "beat": "Notice the pressure.", "reveal": [
+          "A 'supplier' messages you to say your payment did not go through and asks you to pay by bank transfer within the hour. They include your company name and last order."],
+          "ask": "What tells you this might not be genuine? What is the single most important thing you will do first — and what will you deliberately not do?",
+          "trap": "Having your real details and being in a hurry are designed to stop you checking. Urgency plus a private channel is itself a red flag." },
+        { "n": 2, "heading": "The check", "beat": "Verify independently, not through them.", "reveal": [
+          "You find a phone number on an invoice you already had and call it. The real supplier says they never asked you to change payment details."],
+          "ask": "How did you verify without using anything the requester gave you? What would you do now — to the account, the message, and the record?",
+          "trap": "Calling a number in the message is not verification — the scammer controls it. Verify through a route you already trusted." },
+        { "n": 3, "heading": "Protecting next time", "beat": "Close the door behind you.", "reveal": [
+          "You avoided the loss. Now consider what made you a target and what would make you less so."],
+          "ask": "What is one change that would make the next attempt harder — to your account, your backup access, or how requests are confirmed?",
+          "trap": "The strongest protection is a safe backup you already have before you need it, not one you set up in a panic." }      ],
+      "records": [
+        "How will you keep a record of a suspicious contact, and what have you already set up to protect the account that protects everything else?"
+      ],
+      "debrief": "Scams rely on urgency, secrecy and real-looking details. You can break all three by pausing, verifying through a route the requester did not choose, and keeping evidence."
+    },
+    {
+      "id": "S05",
+      "capstone": "C05",
+      "title": "The week that overloaded",
+      "promise": "Plan a realistic week — and decide what to drop when it stops being possible.",
+      "framing": "Fictional. This is about prioritisation, not about working harder.",
+      "setting": "Everything is due, at once, and you cannot do all of it well.",
+      "stages": [
+        { "n": 1, "heading": "Everything at once", "beat": "See the real shape of the week.", "reveal": [
+          "An assignment due in 5 days. A shift pattern change for next week. A bill you forgot about. A call you have been avoiding. You have about 20 free hours across the week."],
+          "ask": "What genuinely has to happen, by when, for the worst outcome? What are you assuming has to happen that actually does not?",
+          "trap": "The task that feels most urgent is often not the one with the real deadline." },
+        { "n": 2, "heading": "Revising that does not stick", "beat": "Test yourself instead of re-reading.", "reveal": [
+          "You have read the material three times. You still could not answer a question about it."],
+          "ask": "What is different about testing yourself than reading again? What is one thing you could do in 20 minutes that would tell you whether you actually know it?",
+          "trap": "Familiarity from re-reading feels like knowledge. It is not the same as being able to recall and apply." },
+        { "n": 3, "heading": "The week changed", "beat": "New information, and less time than you counted on.", "reveal": [
+          "Your shift pattern has changed: you now work two extra hours on Thursday, and Friday is no longer free at all.",
+          "That leaves 13 free hours, not 20 — and the assignment is due in 2 days rather than 5, because the deadline moved.",
+          "The bill you forgot about is also due in 2 days."],
+          "ask": "With 13 hours and a 2-day deadline, what do you drop, and what do you tell each person? What would you negotiate rather than simply abandon?",
+          "trap": "Working out what is still possible from the plan you made on Monday is the failure mode. The plan is now wrong; recompute, do not catch up." }
+      ],
+      "records": [
+        "How will you track what is due and when you last actually practised each skill?"
+      ],
+      "debrief": "Staying on top of a busy week is not about trying harder. It is about knowing what matters, revising by testing yourself, and deciding openly what to drop."
+    }
+  ]
+}

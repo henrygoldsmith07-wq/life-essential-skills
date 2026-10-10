@@ -2,6 +2,55 @@
 
 ## Unreleased
 
+### Product surfaces
+
+- Add the **Independence Roadmap**: a capability map across all twelve domains showing what is demonstrated, developing, needing work, blocked (with the blocking prerequisite named), and due for a retention check, plus one recommended next step. Each of the 92 capabilities carries its own explainable state. There is deliberately **no overall "life score"** — a single number would imply the domains are commensurable and would hide the evidence behind it.
+- Add **capability milestones** ("Can manage a monthly budget", "Can verify a suspicious request") that appear as earned only when the engine already reports every required competency as demonstrated. They cannot be awarded by reading, by choosing a goal, or by time served.
+- Add **goal-based onboarding**: six real situations (moving out, first job, starting university or college, becoming financially independent, general independence, becoming safer online), each with a short diagnostic. Onboarding only sets a pathway and focus competencies — an evidence-free state change validated by the existing rules. Locality selection stays prominent.
+- Upgrade the five capstones into **life-transition simulations** (`curriculum/simulations.json`): three-part situations that progressively reveal information and then change the constraints under the learner's decision. Evidence is still stored per subskill exactly as before; the simulation is a presentation layer and cannot change how an outcome is derived.
+- Add a human-readable **My Independence Profile** — printable progress report covering demonstrated capabilities, developing areas, milestones, retention status, observed practical evidence and next steps. Explicitly a learning record, not a qualification, and free of private data.
+- Make learner feedback substantially more actionable: per-competency breakdown of what was right and what was missing, why the skill matters, a direct "your next practice" action, and when to expect reassessment.
+
+### Assessment quality and scalability
+
+- Add a **fresh-scenario generation architecture** (`curriculum/variation.json`) defining the variation dimensions a generator must change — context, constraints, trade-offs, missing information, ambiguity, irrelevant information, timing, error trap, decision type, difficulty — plus the metadata contract that makes generated material validatable and calibratable later. **Changing numbers alone is explicitly insufficient**: a case differing only by arithmetic can be passed without re-applying the decision.
+- Add `scripts/validate_variation.py` to enforce the meaningful-change rule and report families relying on weak variation. All 40 families currently declare at least one meaningful axis.
+- Add `scripts/build_adaptive_coverage.py` to report how many families lack an Advanced route. It is **report-only by default and CI-safe**; `--apply` is opt-in and deliberately has a human gate, because every new adaptive item needs an authored answer and calibration before it may award evidence. The gap is tracked, not papered over with uncalibrated content.
+- Express the four evidence stages in plain language in the interface (practise with help / do it yourself / adapt / a later check) so learners meet the assessment terminology only when they need it.
+
+### Verification added
+
+- `scripts/verify_roadmap.js`, `verify_views.js`, `verify_styles.js`, `verify_content.js`, `verify_accessibility.js`, `verify_performance.js` and `verify_resilience.js` run in CI. Between them they assert that the roadmap never contradicts the engine, that the product views render from real data, that the AI boundary cannot be bypassed, that every class a view emits is styled, that no raw error-tag id reaches the learner, that no milestone can be earned without real evidence, that every simulation genuinely develops and changes the situation, that no content is rendered unescaped, that every control is labelled, that the roadmap stays fast and linear, and that damaged stored evidence degrades safely instead of being shown as achievement. `scripts/verify_interaction.js` checks focus handling, duplicate ids in repeatedly inserted blocks and in composed surfaces, explicit button types and lazy-loaded roadmap bodies. `scripts/verify_copy_contract.js` asserts that every string the browser suite looks up by accessible name still exists, so a copy change cannot silently break the browser job.
+
+### Boundaries and integrity
+
+- Add `learner/ai-boundary.js`: the interface and guards for optional AI assistance (scenario generation, alternative examples, personalised explanations, practice coaching). AI may never grade, derive an outcome, or turn an assisted performance into independent evidence; every AI artefact is labelled a draft, counts as solving help and is never persisted into learner evidence. The product ships with no provider and works fully without one.
+- The deterministic evidence model is unchanged. `evidence.js` remains the only thing that can derive an outcome; onboarding cannot create evidence; a simulation cannot alter how evidence is recorded. The engine and evidence test suites pass unmodified.
+
+### Fixed (found by reviewing the above)
+
+- **The Profile claimed every milestone was "in progress".** It listed all unearned milestones as work already under way, so a brand-new learner saw all 23 as in progress. It now requires real engagement with something the milestone depends on, and reports the rest as not started.
+- **"Can still do this" could outlive its evidence.** A capability kept the retained label even after the learner had done newer fresh transfer, so the latest attempt was no longer a retention check. The label now requires the most recent attempt to actually be a retention check, and can only under-claim, never over-claim.
+- **Raw error-tag ids reached the learner** in all three surfaces that show them: the roadmap, the feedback panel and the Profile. Each now resolves the curriculum's learner-facing wording, with a readable fallback so a machine id can never be shown.
+- **Onboarding discarded the goal's declared order.** Diagnostic answers were inserted ahead of the goal's own backbone, reordering a "first job" plan around unrelated competencies. The backbone now keeps its declared order and the diagnostic refines it.
+- **Three of the five simulations did not actually change the constraint** in their final stage — an outcome, not a new fact. They now end with concrete changed circumstances that force a fresh decision, which is what the product promises.
+- **Onboarding radio options had no ids**, so their label association was not programmatic and each option was not individually addressable. They now have stable ids.
+- **Missing styles for two emitted classes** (`.ms--todo`, affecting most milestones, and `.domain__loading`), found by a new automated check rather than by reading the stylesheet.
+- **Onboarding inserted a duplicate form each time a goal was chosen.** Every press added another block with the same ids, so the second form was unreachable. The previous step is now replaced, and focus moves into the new one.
+- **Keyboard and screen-reader users were left on the button they had pressed** when onboarding or a lesson opened. Focus now moves to the new content.
+- **Buttons without an explicit `type`** (in the views and `app.js`) default to submit inside any form. All now declare `type="button"`, except the onboarding submit.
+- **A domain expanded before the page finished loading stayed on placeholder text.** Browsers restore `<details>` open state on reload, and the lazy loader now loads anything already open.
+- **A reworded feedback heading broke five browser journeys.** The heading above the reference answer was changed for style, but the end-to-end suite drives the real page by accessible name, so the rename failed five tests that passed on `main`. The original wording is restored, and `scripts/verify_copy_contract.js` now fails fast in the quality job if any string the browser suite looks up is renamed or removed.
+- **The feedback explainer re-rendered the rubric, duplicating every control id.** The "What am I being judged on" panel rendered a second copy of the rubric to reuse its wording; because the rubric derives `judge-N` and `judge-help-N` from a fixed prefix, this duplicated every id and placed hidden copies ahead of the visible controls, so judging an attempt resolved to an invisible select. The explainer now lists the criterion text only, and a duplicate-id check runs over every composed surface.
+- Dead code removed: a repeated `capState` evaluation (four per capability, 92 times per render), an unused map and an unused variable, an identity `map`, and a view dependency on a window global rather than the date already passed in.
+
+### Performance
+
+- Render the roadmap's capability lists lazily on domain expansion, cutting first-paint markup from ~81 KB to ~22 KB (a 73% reduction) so the capability map stays usable on ordinary phones.
+- Stop recomputing the same evidence summary up to three times per capability. A per-render memo reduced engine summary calls from 260 to exactly 92 (one per competency) and cut derivation from 26.3 ms to 12.1 ms for a learner with 200 records — on a path that runs after every navigation and every saved attempt.
+
+## Unreleased (earlier)
+
 - Add Vercel static deployment support: `vercel.json` (no build, `outputDirectory: "."`), a root `index.html` landing page, and `.vercelignore` that keeps maintainer-only paths out of the upload and excludes the aggregate answer/benchmark files so a deployed site never serves every reference solution at once.
 - Add `scripts/static_smoke.js`: verifies every runtime asset resolves over HTTP with the right content type, that `learner/data.js` embeds no solutions, and that `.vercelignore` neither drops a required asset nor leaks the aggregate answer files. Runs in CI.
 - Review the curriculum as a competency system rather than a content library; findings and priorities in `docs/curriculum-review.md`.

@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Product surfaces: Independence Roadmap, onboarding, simulations,
+   feedback, profile. Extends the existing restrained, accessible language
+   rather than replacing it: same palette, same type scale, same radius.
+   No gamification — emphasis is used for hierarchy, never for points.
+   ========================================================================== */
+
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.muted{color:var(--muted)}
+h4{font-size:.95rem;margin:0 0 6px;line-height:1.3}
+
+/* --- Capability chips -------------------------------------------------- */
+.cap{display:inline-flex;align-items:center;gap:6px;padding:3px 9px 3px 6px;border-radius:999px;font-size:.74rem;font-weight:700;letter-spacing:.01em;white-space:nowrap;border:1px solid}
+.cap__dot{display:grid;place-items:center;width:16px;height:16px;border-radius:50%;font-size:.7rem;line-height:1;color:#fff;background:var(--muted);flex:none}
+.cap--done{border-color:#8fbfab;background:#e4f1e9;color:#1c4b3a}
+.cap--done .cap__dot{background:var(--green)}
+.cap--pending{border-color:#c9b98a;background:#f6efd9;color:#6b4d15}
+.cap--pending .cap__dot{background:#a6802c}
+.cap--warn{border-color:#d9b28a;background:#f8ead9;color:#7c4a12}
+.cap--warn .cap__dot{background:#a2671f}
+.cap--stop{border-color:#dda79e;background:#f9e6e2;color:#7d2b21}
+.cap--stop .cap__dot{background:var(--red)}
+.cap--know{border-color:#a8b8c4;background:#e9eff3;color:#2b4453}
+.cap--know .cap__dot{background:#41637a}
+.cap--idle{border-color:var(--line);background:#f4f3ee;color:var(--muted)}
+.cap--locked{opacity:.62;border-style:dashed}
+
+/* --- Roadmap ----------------------------------------------------------- */
+.roadmap-intro{margin-bottom:26px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;padding:14px 16px;background:var(--pale);border-radius:11px;margin-top:16px}
+.legend__item{font-size:.8rem;color:var(--muted);display:inline-flex;gap:7px;align-items:center}
+.next{background:linear-gradient(180deg,#fffefa 0%,#f2f7f3 100%);border-color:#9cc0ae}
+.next h2{font-size:1.7rem}
+.next .reasons{margin:14px 0 6px;padding-left:20px;color:var(--muted)}
+.next .reasons li{margin:.3rem 0}
+.next .actions{margin-top:18px}
+
+.domains{display:grid;gap:12px}
+.domain{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.domain[data-complete]{border-color:#8fbfab;background:#fbfdfb}
+.domain>summary{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;padding:16px 20px;cursor:pointer;list-style:none}
+.domain>summary::-webkit-details-marker{display:none}
+.domain>summary::after{content:"▾";position:absolute;right:20px;color:var(--muted);font-size:.8rem;transition:transform .15s}
+.domain>summary{position:relative;padding-right:44px}
+.domain[open]>summary::after{transform:rotate(180deg)}
+.domain__title{font-weight:700;font-size:1.05rem}
+.domain__count{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{grid-column:1/-1;height:6px;background:var(--pale);border-radius:999px;overflow:hidden}
+.bar__fill{display:block;height:100%;background:var(--green);border-radius:999px}
+.domain__body{padding:0 20px 20px;border-top:1px solid var(--line)}
+/* Placeholder shown between opening a domain and its capability list being built. */
+.domain__loading{font-style:italic;color:var(--muted)}
+
+.caplist{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.capcard{border:1px solid var(--line);border-left:3px solid var(--line);border-radius:9px;padding:13px 15px;background:var(--white)}
+.capcard__head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.capcard__head h4{margin:0;font-size:.97rem}
+.capcard__detail{margin:0 0 4px;color:var(--muted);font-size:.86rem}
+.capcard__work{margin:0;font-size:.85rem;color:#7c4a12}
+.capcard__blocked{margin:0;font-size:.85rem;color:var(--muted);font-style:italic}
+.capcard__due{margin:0;font-size:.82rem;color:var(--muted)}
+.capcard__up{margin:4px 0 0;font-size:.82rem;color:var(--green);font-weight:700}
+
+/* --- Milestones -------------------------------------------------------- */
+.mslist{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:10px}
+.ms{display:flex;gap:12px;padding:13px 15px;border-radius:10px;border:1px solid var(--line);background:var(--white)}
+.ms--earned{border-color:#8fbfab;background:#f3faf6}
+.ms--near{border-color:#c9b98a;background:#fdf9ee}
+.ms--todo{opacity:.82;border-style:dashed}
+.ms__mark{font-size:1.1rem;line-height:1.4;flex:none;color:var(--muted)}
+.ms--earned .ms__mark{color:var(--green)}
+.ms--near .ms__mark{color:#8a6d1f}
+.ms p{margin:0 0 3px;font-size:.88rem}
+.ms .muted{font-size:.82rem}
+
+/* --- Onboarding -------------------------------------------------------- */
+.goaltiles{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:14px}
+.goaltile{display:flex;flex-direction:column;gap:5px;text-align:left;background:var(--white);color:var(--ink);border:1px solid var(--line);border-radius:11px;padding:15px 16px;min-height:0;font-weight:400}
+.goaltile:hover{border-color:var(--green);background:#f8fbf9;filter:none}
+.goaltile--on,.goaltile[aria-pressed=true]{border-color:var(--green);border-width:2px;background:#f2f8f5}
+.goaltile__title{font-weight:700;font-size:1.02rem;color:var(--green)}
+.goaltile__promise{font-size:.85rem;color:var(--muted);line-height:1.4}
+.situation{border-left:4px solid var(--green);margin-bottom:18px}
+.situation .quote{font-size:1.08rem;line-height:1.5;margin:0 0 10px}
+.q{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 14px}
+.q legend{font-weight:700;padding:0 6px}
+.qopt{display:flex;gap:10px;align-items:flex-start;padding:9px 4px;min-height:44px;cursor:pointer}
+.qopt input{margin-top:5px;flex:none;width:20px;height:20px}
+.sequence{counter-reset:s;list-style:none;padding:0;margin:10px 0 0}
+.sequence li{counter-increment:s;position:relative;padding:8px 0 8px 38px;border-bottom:1px solid var(--line);font-size:.92rem}
+.sequence li:last-child{border-bottom:0}
+.sequence li::before{content:counter(s);position:absolute;left:0;top:9px;width:24px;height:24px;border-radius:50%;background:var(--pale);color:var(--green);display:grid;place-items:center;font-size:.8rem;font-weight:700}
+
+/* --- Simulations ------------------------------------------------------- */
+.simcard{border-left:4px solid var(--green)}
+.sim{position:relative}
+.sim__promise{font-size:1.06rem;color:var(--green);font-weight:600;margin:0 0 10px}
+.sim__framing{font-size:.9rem;color:var(--muted);margin:0 0 6px}
+.sim__setting{font-size:.95rem;margin:0 0 10px}
+.sim__beat{font-size:1.05rem;margin:0 0 14px}
+.sim__reveal{background:var(--pale);border-radius:10px;padding:14px 18px 14px 34px;margin:0 0 18px}
+.sim__reveal li{margin:.55rem 0}
+.sim__ask{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:14px;background:#fbfaf6}
+.sim__ask p{margin:0}
+.sim__trap{font-size:.87rem;color:var(--muted);border-left:3px solid #c9b98a;padding-left:12px;margin:0 0 18px}
+.sim__progress{display:flex;gap:6px;margin:4px 0 16px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dot--on{background:var(--green)}
+.sim__records{background:#fdf9ee;border:1px solid #e6d9b4;border-radius:10px;padding:14px 16px;margin:0 0 16px}
+.sim__records ul{padding-left:20px;margin:0}
+.sim__debrief{margin-top:14px;padding:14px 16px;border-radius:10px;background:var(--pale)}
+.notice--info{background:#eef3f8;border:1px solid #c2d2de;border-left:4px solid #41637a;border-radius:9px;padding:14px 16px;margin:14px 0}
+.notice--info p{margin:.4rem 0}
+
+/* --- Feedback ---------------------------------------------------------- */
+.critlist{margin:8px 0 10px;padding-left:20px;font-size:.9rem}
+.critlist li{margin:4px 0}
+.fb__result{border-radius:9px;padding:12px 15px;margin:0 0 14px}
+.fb__result p{margin:0}
+.fb__result--done{background:#e4f1e9;border:1px solid #8fbfab}
+.fb__result--warn{background:#f8ead9;border:1px solid #d9b28a}
+.fb__result--stop{background:#f9e6e2;border:1px solid #dda79e}
+.fb__per{display:grid;gap:12px;margin:16px 0}
+.fb__c{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:var(--white)}
+.fb__ok{color:#1c4b3a;font-size:.88rem;margin:0 0 4px}
+.fb__miss{color:#7d2b21;font-size:.88rem;margin:0 0 4px}
+.fb__err{color:#7c4a12;font-size:.85rem;margin:0 0 4px}
+.fb__why{color:var(--muted);font-size:.85rem;margin:6px 0 0}
+.fb__next{background:var(--pale);border-radius:11px;padding:16px 18px;margin:18px 0}
+.fb__next h4{margin:0 0 6px;font-size:1rem}
+.fb__next p{margin:0 0 10px;font-size:.9rem}
+.fb__reassess{font-size:.88rem;color:var(--muted)}
+
+/* --- Profile ----------------------------------------------------------- */
+.profile{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:28px}
+.profile h3{margin:22px 0 8px;font-size:1.1rem;border-bottom:1px solid var(--line);padding-bottom:6px}
+.profilelist{list-style:none;padding:0;margin:0}
+.profilelist li{padding:8px 0;border-bottom:1px solid #eceee9;font-size:.9rem}
+.profilelist li:last-child{border-bottom:0}
+.profile__foot{margin-top:22px;font-size:.82rem;border-top:1px solid var(--line);padding-top:12px}
+
+/* --- Mobile ------------------------------------------------------------ */
+@media(max-width:760px){
+  .nav a{padding:10px 12px}
+  .domain>summary{grid-template-columns:1fr}
+  .caplist,.mslist{grid-template-columns:1fr}
+  .profile{padding:20px}
+  .goaltiles{grid-template-columns:1fr}
+}
+@media print{
+  .nav,.actions,#profile-content .actions,footer{display:none!important}
+  .profile{border:0;padding:0}
+  h1{font-size:1.8rem}
+}
