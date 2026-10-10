@@ -107,6 +107,9 @@ ok('AI: draft is never evidence', draft.counts_as_evidence === false && draft.co
 const evil = AI.sanitiseAdapter({ draft_explanation: async () => ({ content: 'e' }), grade: async () => 'A+' });
 ok('AI: grade is stripped from adapter', evil.grade === undefined && typeof evil.draft_explanation === 'function');
 ok('AI: helpIfAIUsed forces help', AI.helpIfAIUsed({ help_used: false }, true).help_used === true);
+// 8. AI drafts are rendered through the feedback view (escaped, labelled, help).
+ok('AI draft renders and is labelled', FV.draft('<b>hi</b>', []).includes('AI-ASSISTED DRAFT'));
+ok('AI draft escapes content (no raw script tag)', !/<script/.test(FV.draft('<script>x</script>', ['w'])));
 
 console.log(fail === 0 ? '\nALL VIEW CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);

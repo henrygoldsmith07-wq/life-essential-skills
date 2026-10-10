@@ -145,6 +145,15 @@ ok('attemptInput does not call a provider directly (no network in the boundary)'
   !/fetch\(|XMLHttpRequest|axios/.test(attemptSrc));
 ok('the app detects an injected adapter via the boundary (default-safe)',
   /AIBoundary\.sanitiseAdapter\(window\.AI_ASSISTANT\)/.test(appSrc));
+// The AI coaching affordance: when an adapter offers coach_practice, the button
+// is offered only then (default-safe) and any draft rendered through the
+// FeedbackView escaper, never via raw innerHTML of caller content.
+ok('AI coaching button is offered only when an adapter exposes it',
+  /AI_ADAPTER&&AI_ADAPTER\.coach_practice/.test(appSrc));
+ok('AI draft output is rendered through the escaped feedback view',
+  /FV\.draft\(/.test(appSrc));
+ok('AI coaching sets the per-attempt aiUsed flag',
+  /aiUsed=true/.test(appSrc));
 // ---- 8. Lazy-loaded roadmap bodies must not get stuck on placeholder text ----
 // A browser restores <details> open state on reload and back-navigation, and may
 // fire 'toggle' before the listener is attached, which would leave the

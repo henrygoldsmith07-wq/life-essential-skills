@@ -74,5 +74,17 @@
     return '<p class="fb__reassess">A fresh check is expected around <strong>' + esc(when) + '</strong>. That is a new situation, days later, to confirm it stuck.</p>';
   }
 
-  return { resultBanner, perCompetency, nextPractice, reassessment, whyItMatters, esc };
+  // An AI-assisted draft (example, coaching hint, or personalised explanation).
+  // It is always framed as practice help, never as the learner's own answer, and
+  // is escaped on render so adapter output cannot reach the page as markup.
+  function draft(content, warnings) {
+    return '<div class="ai-draft card" aria-label="AI-assisted draft">' +
+      '<p class="eyebrow">AI-ASSISTED DRAFT</p>' +
+      '<p class="muted">A practice aid generated on request. Useful for reasoning, but answering on your own on fresh material is what records evidence; using this counts as solving help.</p>' +
+      '<div class="ai-draft__body">' + esc(content) + '</div>' +
+      (warnings && warnings.length ? '<p class="muted">Note: ' + esc(warnings.join(' ')) + '</p>' : '') +
+      '</div>';
+  }
+
+  return { resultBanner, perCompetency, nextPractice, reassessment, whyItMatters, draft, esc };
 });

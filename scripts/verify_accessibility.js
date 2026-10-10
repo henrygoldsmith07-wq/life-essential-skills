@@ -49,6 +49,7 @@ const surfaces = {
   'onboarding questions': OV.questions(goal, {}),
   'simulation stage': SV.stage(sim, 0),
   'simulation writeup': SV.writeUp(sim, { ...capItem, task: '<script>alert(2)</script>' }, '<p>m</p>'),
+  'AI draft': FV.draft('<script>alert(3)</script><img src=x onerror=alert(3)>', ['<b>x</b>']),
   'feedback': FV.perCompetency([{ title: '<b>x</b>', scoring: [{ id: 'c', criterion: '<i>y</i>' }], judgements: { c: 'not-met' }, error_tags: ['<b>t</b>'], comp: { mode: 'independent' } }], { '<b>t</b>': '<u>l</u>' }),
   'profile': PV.render(R.profile(ex, hostile, TODAY), 'UK')
 };
