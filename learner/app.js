@@ -239,7 +239,7 @@
     // "Not now" works on every stage, not just the intro and write-up.
     if($('close-task'))$('close-task').onclick=closeTask;
     const next=$('sim-next'),back=$('sim-back');
-    if(back)back.onclick=()=>{current.stage--;$('workspace').innerHTML=SV.stage(sim,current.stage);bindSim(sim,item);};
+    if(back)back.onclick=()=>{current.stage--;$('workspace').innerHTML=SV.stage(sim,current.stage);bindSim(sim,item);U.focus('task-title');};
     if(next)next.onclick=()=>{
       if(current.stage<sim.stages.length-1){current.stage++;$('workspace').innerHTML=SV.stage(sim,current.stage);bindSim(sim,item);U.focus('task-title');}
       else{$('workspace').innerHTML=SV.writeUp(sim,item,renderMaterials(item));$('finish-attempt').onclick=finishAttempt;$('close-task').onclick=closeTask;U.focus('task-title');}

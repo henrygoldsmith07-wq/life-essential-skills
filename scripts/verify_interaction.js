@@ -125,6 +125,10 @@ ok('the feedback flow renders a simulation debrief when present',
 const bindSimSrc = (appSrc.match(/function bindSim\(sim,item\)\{[\s\S]*?\n  \}/) || [''])[0];
 ok('bindSim re-binds the close button on every stage render',
   bindSimSrc.includes("if($('close-task'))$('close-task').onclick=closeTask;"));
+// Going Back must refocus the stage heading just like stepping Forward does,
+// so a keyboard/screen-reader user isn't stranded on the button they pressed.
+ok('bindSim re-focuses the stage heading when going Back',
+  bindSimSrc.includes("current.stage--;$('workspace').innerHTML=SV.stage(sim,current.stage);bindSim(sim,item);U.focus('task-title');"));
 
 // ---- 11. The AI boundary is enforced, not merely documented ----
 // An adapter is optional; with none attached, the app is byte-for-byte unchanged.
