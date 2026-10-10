@@ -5,7 +5,8 @@ window.AssessorMode=ctx=>{
   let token=0;
   function render(){
     const s=state();
-    $('assessor-record').innerHTML='<option value="">Choose an attempt</option>'+s.records.map(r=>'<option value="'+U.esc(r.id)+'">'+U.esc(D.bank.items.find(i=>i.id===r.item_id).title+' · '+D.skills.competencies.find(c=>c.id===r.competency_id).title+' · '+r.date)+'</option>').join('');
+    const eff=s.records.map(r=>E.effectiveRecord(state(),r,D));
+    $('assessor-record').innerHTML='<option value="">Choose an attempt</option>'+s.records.map((r,i)=>{const e=eff[i];const label=e.outcome==='demonstrated'?'Independent · shown':e.outcome==='assisted'?'With help':'Not yet met';return '<option value="'+U.esc(r.id)+'">'+U.esc(D.bank.items.find(i=>i.id===r.item_id).title+' · '+D.skills.competencies.find(c=>c.id===r.competency_id).title+' · '+r.date)+' — '+label+'</option>';}).join('');
     $('observation-kind').innerHTML=D.practical.rubrics.map(r=>'<option value="'+r.id+'">'+U.esc(r.title)+'</option>').join('');
     $('assessor-history').textContent=s.reviews.length+' assessor reviews and '+s.observations.length+' structured practical observations retained.'+(s.legacy_observations.length?' Older observation flags are preserved but need a structured observed check before meeting a practical gate.':'');
   }
