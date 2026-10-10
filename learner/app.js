@@ -235,7 +235,7 @@
       const rm=Roadmap.roadmap(next,D,today());
       const nextReview=rm.capabilities.filter(c=>c.next_review&&rows.some(r=>r.title.startsWith(c.title.split(' · ')[0]))).map(c=>c.next_review).sort()[0];
       $('today-content').insertAdjacentHTML('afterbegin','<div class="card feedback-summary"><p class="eyebrow">HOW THAT WENT</p>'+
-        FV.perCompetency(rows,errorLabelMap())+FV.nextPractice(rm.next)+FV.reassessment(nextReview)+
+        FV.perCompetency(rows,errorLabelMap())+FV.errorGuidance(rows,errorLabelMap(),answer)+FV.nextPractice(rm.next)+FV.reassessment(nextReview)+
         '<p class="muted">Saved as self-reviewed evidence. Your roadmap and milestones have updated.</p></div>');
       notice('Evidence saved. Your roadmap and milestones have updated.');
     }catch(e){notice(e.message);}
