@@ -143,6 +143,7 @@ for (const s of ['You need fresh materials', 'Keep a copy of your evidence.', 'B
 for (const s of ['Watch your fresh cases', 'No unseen cases left', 'unseen case', 'domain gate']) {
   ok('copy present: ' + JSON.stringify(s), appSrc.includes(s) || roadmapSrc.includes(s) || roadmapViewSrc.includes(s) || profileSrc.includes(s));
 }
+ok('copy present: "Start with the suggested task"', appSrc.includes('Start with the suggested task'));
 
 console.log(fail === 0 ? '\nALL MILESTONE/CONTENT CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
