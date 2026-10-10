@@ -133,5 +133,41 @@ const capErr = rmErr.capabilities.find(c => c.id === tkComp.id);
 ok('roadmap: error tags survive into the capability', capErr.error_tags.includes('assumes-missing-information'));
 ok('roadmap: error tag has a learner-facing label', !!capErr.error_labels['assumes-missing-information'] && capErr.error_labels['assumes-missing-information'] !== 'assumes-missing-information', capErr.error_labels['assumes-missing-information']);
 
+// 7. A domain is not "complete" until its practical gate is met. Written evidence
+//    alone cannot mark a domain done — the green border must require the
+//    observation(s) the rollups ask for, and clear once they are demonstrated.
+const homeDomain = D.index.domains.find(d => d.id === 'home');
+const homeIndeps = D.skills.competencies.filter(c => c.domain === homeDomain.id && c.mode === 'independent');
+const homeRequired = (D.skills.rollups || []).filter(r => r.id.startsWith('home.')).flatMap(r => r.additional_evidence || []);
+const rubricId = D.practical.rubrics.find(r => r.gate === 'home.applied').id;
+function stamp(st) {
+  for (const c of homeIndeps) {
+    const item = D.bank.items.find(i => i.competencies.includes(c.id));
+    if (!item) continue;
+    st.records.push({ id: 'r-' + c.id + '-' + st.records.length, attempt_id: 'a1', competency_id: c.id, item_id: item.id, phase: 'transfer', date: TODAY, assessment_version: 1, help_used: false, access_supports: [], solution_seen: false, error_tags: [], evidence_level: 'self-reviewed', reviewer_type: 'learner', criteria_judgements: (item.scoring || []).map(s => ({ criterion_id: s.id, judgement: 'met' })) });
+  }
+}
+const shown = E.emptyState('uk', 'general'); stamp(shown);
+ok('a domain with a practical gate is not complete without the observation',
+  !R.roadmap(shown, D, TODAY).domains.find(d => d.id === 'home').complete && homeRequired.length > 0,
+  'homeRequires=' + homeRequired.join(','));
+const observed = E.emptyState('uk', 'general'); stamp(observed);
+observed.observations.push({ id: 'o1', kind: rubricId, date: TODAY, assessment_version: 1, criteria_judgements: [], outcome: 'demonstrated', evidence_level: 'practical-observed', reviewer_type: 'assessor', access_supports: [] });
+ok('a domain with a met practical gate is complete',
+  R.roadmap(observed, D, TODAY).domains.find(d => d.id === 'home').complete);
+const failedGate = E.emptyState('uk', 'general'); stamp(failedGate);
+failedGate.observations.push({ id: 'o1', kind: rubricId, date: TODAY, assessment_version: 1, criteria_judgements: [], outcome: 'not-yet', evidence_level: 'practical-observed', reviewer_type: 'assessor', access_supports: [] });
+ok('a domain whose observation failed is not complete',
+  !R.roadmap(failedGate, D, TODAY).domains.find(d => d.id === 'home').complete);
+// A domain with no practical gate (relationships) is complete once its independent competencies are demonstrated.
+const relDomain = D.index.domains.find(d => d.id === 'relationships');
+const relIndeps = D.skills.competencies.filter(c => c.domain === relDomain.id && c.mode === 'independent');
+const relRollupGates = (D.skills.rollups || []).filter(r => r.id.startsWith('relationships.')).flatMap(r => r.additional_evidence || []);
+const relState = E.emptyState('uk', 'general');
+for (const c of relIndeps) { const item = D.bank.items.find(i => i.competencies.includes(c.id)); if (!item) continue; relState.records.push({ id: 'r-' + c.id, attempt_id: 'a1', competency_id: c.id, item_id: item.id, phase: 'transfer', date: TODAY, assessment_version: 1, help_used: false, access_supports: [], solution_seen: false, error_tags: [], evidence_level: 'self-reviewed', reviewer_type: 'learner', criteria_judgements: (item.scoring || []).map(s => ({ criterion_id: s.id, judgement: 'met' })) }); }
+ok('a domain with no practical gate is complete once demonstrated',
+  relRollupGates.length === 0 && R.roadmap(relState, D, TODAY).domains.find(d => d.id === 'relationships').complete);
+
 console.log(fail === 0 ? '\nALL ROADMAP CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
+
