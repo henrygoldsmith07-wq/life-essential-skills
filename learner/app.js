@@ -102,7 +102,7 @@
     $('practice-content').innerHTML=groups.length?groups.map(g=>'<div class="card"><h2>'+esc(g.title)+'</h2>'+g.items.map(i=>{
       const known=E.seen(state,i,D),missing=i.prerequisites.filter(c=>E.summary(state,c,D).status!=='demonstrated');
       return '<div class="row"><div><h3>'+esc(i.title)+'</h3><p class="meta">'+i.estimated_time_minutes+' minutes · '+(known?'Familiar material · practice with help':i.mode==='knowledge'?'Knowledge check':'Fresh situation')+'</p>'+(missing.length?'<p class="muted">Build supporting skills first, or use this as a diagnostic.</p>':'')+'</div>'+taskButton(i.id,known?'Practise again':'Try task')+'</div>';
-    }).join('')+'</div>').join(''):('<p class="empty">'+($('practice-filter').value==='recommended'&&!state.records.length?'Start with the suggested task on Today, or switch to Fresh tasks or Browse all to find material to try.':'Choose fresh tasks, another skill area, or browse all.')+'</p>');
+    }).join('')+'</div>').join(''):('<p class="empty">'+($('practice-filter').value==='recommended'&&!state.records.length?'Start with the suggested task on Today, or switch to Fresh tasks or Browse all to find material to try.':$('practice-filter').value==='needs-work'?'Nothing needs work right now — every skill in this area has been demonstrated. Try a capstone, a retention check, or browse all tasks for more practice.':$('practice-filter').value==='review-due'?'No retention checks are overdue. Open a skill on the progress page to see upcoming review dates, or try fresh tasks.':'Choose fresh tasks, another skill area, or browse all.')+'</p>');
   }
   function renderRoadmap(){
     const rm=Roadmap.roadmap(state,D,today());
