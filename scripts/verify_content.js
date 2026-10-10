@@ -147,6 +147,7 @@ for (const s of ['Watch your fresh cases', 'No unseen cases left', 'unseen case'
 ok('copy present: "Start with the suggested task"', appSrc.includes('Start with the suggested task'));
 ok('copy present: "Targeted guidance for your errors"', feedbackSrc.includes('Targeted guidance for your errors'));
 ok('copy present: "Start the later check"', appSrc.includes('Start the later check') || roadmapViewSrc.includes('Start the later check') || feedbackSrc.includes('Start the later check'));
+ok('copy present: "No unseen cases remain"', appSrc.includes('No unseen cases remain'));
 
 console.log(fail === 0 ? '\nALL MILESTONE/CONTENT CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
