@@ -135,8 +135,13 @@ ok('blocked storage never shows a false backup reminder', /blocked\|\|!hasEviden
 // contract script guards the full list, but the ones asserted here are the
 // ones this change introduced and must not silently drift.
 const roadmapSrc = fs.readFileSync(path.join(root, 'learner/roadmap.js'), 'utf8');
+const roadmapViewSrc = fs.readFileSync(path.join(root, 'learner/roadmap-view.js'), 'utf8');
+const profileSrc = fs.readFileSync(path.join(root, 'learner/profile-view.js'), 'utf8');
 for (const s of ['You need fresh materials', 'Keep a copy of your evidence.', 'Backup downloaded.']) {
   ok('copy present: ' + JSON.stringify(s), appSrc.includes(s) || roadmapSrc.includes(s));
+}
+for (const s of ['Watch your fresh cases', 'No unseen cases left', 'unseen case', 'domain gate']) {
+  ok('copy present: ' + JSON.stringify(s), appSrc.includes(s) || roadmapSrc.includes(s) || roadmapViewSrc.includes(s) || profileSrc.includes(s));
 }
 
 console.log(fail === 0 ? '\nALL MILESTONE/CONTENT CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
