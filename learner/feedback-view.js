@@ -74,6 +74,30 @@
     return '<p class="fb__reassess">A fresh check is expected around <strong>' + esc(when) + '</strong>. That is a new situation, days later, to confirm it stuck.</p>';
   }
 
+  // Targeted guidance for specific errors the learner flagged. The feedback
+  // JSON carries common_mistakes (what went wrong) and next_steps (what to do).
+  // Showing these turns a generic error label into actionable next practice,
+  // without inventing advice — the wording comes from the item's own feedback.
+  function errorGuidance(rows, labels, feedback) {
+    if (!feedback || !feedback.common_mistakes || !feedback.next_steps) return '';
+    const lines = [];
+    for (const r of rows) {
+      for (const tag of r.error_tags) {
+        const mistake = feedback.common_mistakes[tag];
+        const step = feedback.next_steps[tag];
+        if (mistake || step) {
+          const label = (labels && labels[tag]) || readableTag(tag);
+          lines.push('<div class="fb__guidance"><strong>' + esc(label) + '</strong>' +
+            (mistake ? '<p>' + esc(mistake) + '</p>' : '') +
+            (step ? '<p class="muted">' + esc(step) + '</p>' : '') + '</div>');
+        }
+      }
+    }
+    if (!lines.length) return '';
+    return '<section class="fb__section" aria-labelledby="guidance-heading">' +
+      '<p class="eyebrow">WORK ON THESE POINTS</p><h3 id="guidance-heading">Targeted guidance for your errors</h3>' + lines.join('') + '</section>';
+  }
+
   // An AI-assisted draft (example, coaching hint, or personalised explanation).
   // It is always framed as practice help, never as the learner's own answer, and
   // is escaped on render so adapter output cannot reach the page as markup.
@@ -86,5 +110,5 @@
       '</div>';
   }
 
-  return { resultBanner, perCompetency, nextPractice, reassessment, whyItMatters, draft, esc };
+  return { resultBanner, perCompetency, nextPractice, reassessment, whyItMatters, errorGuidance, draft, esc };
 });

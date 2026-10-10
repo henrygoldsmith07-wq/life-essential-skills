@@ -85,6 +85,12 @@ ok('per-competency renders', FV.perCompetency([fbRow]).includes('Missing'));
 ok('feedback hides raw error ids', !FV.perCompetency([fbRow]).includes('assumes-missing-information'), 'falls back to readable text');
 ok('feedback shows error wording when given labels', FV.perCompetency([fbRow], { 'assumes-missing-information': 'Name missing facts before deciding' }).includes('Name missing facts before deciding'));
 ok('next practice renders', FV.nextPractice({ why: 'because', item_id: 'M-CF-01', kind: 'transfer', learn_path: 'g.md', reason: ['r'] }).toLowerCase().includes('your next practice'));
+// Targeted error guidance surfaces the item-specific common_mistakes and
+// next_steps wording, never a raw error-tag id.
+const fb = { common_mistakes: { 'assumes-missing-information': 'Name facts you cannot check before deciding.' }, next_steps: { 'assumes-missing-information': 'Attempt an unseen variant with different numbers.' } };
+ok('error guidance renders item-specific advice', FV.errorGuidance([fbRow], { 'assumes-missing-information': 'Name missing facts before deciding' }, fb).includes('Name facts you cannot check'));
+ok('error guidance never shows raw ids', !FV.errorGuidance([fbRow], null, fb).includes('assumes-missing-information'));
+ok('error guidance handles missing feedback JSON', FV.errorGuidance([fbRow], null, null) === '');
 
 // 6. Profile view
 const prof = R.profile(ex, D, TODAY);
