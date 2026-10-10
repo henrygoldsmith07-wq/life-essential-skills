@@ -95,7 +95,7 @@ AI may help generate candidate situations, alternative examples, personalised ex
 2. turn an assisted performance into independent evidence;
 3. persist an AI artefact into the learner's evidence state.
 
-Every AI-produced artefact is marked as an AI-assisted draft, counts as solving help, and is never persisted. The whole product works with no AI adapter installed; `learner/ai-boundary.js` ships the interface and the guards, and no provider. A deployment that attaches a conforming adapter to `window.AI_ASSISTANT` gets one back with every non-drafting method stripped, and the app routes every attempt through `helpIfAIUsed` so AI assistance is always recorded as solving help — enforced in the recording path, not merely documented.
+The app detects an optional adapter on `window.AI_ASSISTANT`, sanitises it through the boundary (stripping any non-drafting method such as `grade`), and offers AI assistance only when one is present. The shipped static site has no adapter, so no AI surface appears and nothing changes for the learner. Any AI-produced draft — a coaching hint, worked example, or personalised explanation — is rendered as a clearly labelled, escaped practice aid, never as the learner's own answer, and is always recorded as solving help via `helpIfAIUsed` so it can never become independent evidence. `verify_accessibility.js` feeds hostile markup through the draft renderer to prove it cannot escape. A deployment that attaches a conforming adapter to `window.AI_ASSISTANT` gets one back with every non-drafting method stripped, and the app routes every attempt through `helpIfAIUsed` so AI assistance is always recorded as solving help — enforced in the recording path, not merely documented.
 
 ## Your Independence Profile
 
@@ -121,3 +121,4 @@ The product's promises are checked automatically, so they cannot quietly stop be
 - Damaged or outdated stored evidence renders safely instead of being shown as achievement.
 - The roadmap stays within a time budget and derives each capability's summary once per render.
 - Focus moves into newly opened content, inserted blocks never duplicate ids, every button declares its type, and lazily loaded roadmap bodies cannot get stuck on placeholder text.
+- An attached AI adapter is sanitised to drafting capabilities only, AI drafts are rendered through an escaper, and AI-assisted work is always recorded as solving help — never as independent evidence.
