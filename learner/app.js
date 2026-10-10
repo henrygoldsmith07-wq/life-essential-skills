@@ -305,7 +305,17 @@
     const next={...state,pathway:plan.pathway,goal_competencies:plan.goal_competencies};
     const errors=E.validateState(next,D,today());
     if(errors.length){$('onboard-error').textContent='That selection could not be applied: '+errors[0];return;}
-    persist(next);navigate('roadmap');location.hash='roadmap';notice('Your roadmap is ready. Start with the highlighted next step.');
+    persist(next);
+    // Show the learning sequence from the goal, then navigate to the roadmap
+    // where the first step is highlighted. The sequence gives newcomers a
+    // concrete sense of what they are working toward before they see the map.
+    const onboardStep=$('today-content').querySelector('#onboard-step');
+    if(onboardStep){
+      onboardStep.innerHTML=OV.situation(plan.goal)+'<p>Your next steps, in order:</p>'+OV.sequence(plan)+'<div class="actions"><button type="button" id="start-journey">Go to your roadmap</button></div>';
+      const goBtn=$('start-journey');if(goBtn)goBtn.onclick=()=>{navigate('roadmap');location.hash='roadmap';};
+      U.focus('start-journey');
+    }else{navigate('roadmap');location.hash='roadmap';}
+    notice('Your pathway and focus skills are set. Start with the highlighted next step.');
   }
   async function importEvidence(input){try{const file=input.files[0];if(!file)return;if(file.size>8000000)throw new Error('Evidence file is too large');const next=E.migrateState(JSON.parse(await file.text()),D,today());closeTask();assessor.cancel();blocked=false;persist(next);notice('Valid educational evidence imported. Review labels are local claims, not authenticated certificates.');}catch(e){notice('Import refused: '+e.message);}finally{input.value='';}}
   $('domain-filter').innerHTML='<option value="all">All skill areas</option>'+D.index.domains.map(d=>'<option value="'+d.id+'">'+esc(d.title)+'</option>').join('');

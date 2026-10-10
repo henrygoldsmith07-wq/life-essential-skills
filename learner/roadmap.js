@@ -335,6 +335,7 @@
     });
     return {
       goal_id: goal.id,
+      goal: goal,
       title: goal.title,
       pathway: goal.pathway,
       capstone: goal.capstone,
