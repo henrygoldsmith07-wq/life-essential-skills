@@ -352,6 +352,9 @@
     const developing = rm.capabilities.filter(c => c.mode !== 'knowledge' && ['assisted', 'not-yet'].includes(c.status));
     const notStarted = rm.capabilities.filter(c => c.mode !== 'knowledge' && c.status === 'unassessed');
     const pathway = data.index.pathways.find(p => p.id === state.pathway);
+    const domainTitle = id => data.index.domains.find(d => d.id === id)?.title || id;
+    const retentionDue = rm.retention_due.map(c => ({ ...c, domain_title: domainTitle(c.domain) }));
+    const retentionUpcoming = rm.retention_upcoming.map(c => ({ ...c, domain_title: domainTitle(c.domain) }));
     const practical = (data.practical?.rubrics || []).map(r => {
       const last = state.observations.filter(o => o.kind === r.id).at(-1);
       return { title: r.title, kind: r.id, outcome: last ? last.outcome : 'unobserved', date: last ? last.date : null, gate: r.gate };
@@ -381,7 +384,7 @@
       milestones_earned: rm.milestones.filter(m => m.earned),
       milestones_in_progress: rm.milestones.filter(m => !m.earned && engaged(m)),
       milestones_not_started: rm.milestones.filter(m => !m.earned && !engaged(m)),
-      retention_due: rm.retention_due, retention_upcoming: rm.retention_upcoming,
+      retention_due: retentionDue, retention_upcoming: retentionUpcoming,
       recent_improvements: rm.recently_improved,
       next: rm.next, practical, practical_needed, material_warnings: rm.material_warnings,
       totals: {
