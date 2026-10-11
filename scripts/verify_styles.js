@@ -35,6 +35,7 @@ const html = [
   FV.perCompetency([{ title: 'X', scoring: [{ id: 'c', criterion: 'do it' }], judgements: { c: 'not-met' }, error_tags: [], comp: { mode: 'independent' } }]),
   FV.nextPractice({ why: 'b', item_id: 'X', kind: 'transfer', learn_path: 'g.md', reason: ['r'] }),
   FV.reassessment('2026-11-01'), FV.whyItMatters('Because it matters.'),
+  FV.preemptiveGuidance(['check your arithmetic']),
   PV.render(R.profile(ex, D, TODAY), 'UK')
 ].join('\n');
 

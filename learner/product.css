@@ -148,6 +148,9 @@ h4{font-size:.95rem;margin:0 0 6px;line-height:1.3}
 .fb__reassess{font-size:.88rem;color:var(--muted)}
 .fb__guidance{background:var(--pale);border-radius:10px;padding:12px 15px;margin:8px 0}
 .fb__guidance strong{display:block;font-size:.88rem;margin-bottom:4px}
+.fb__section{margin:16px 0;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--white)}
+.fb__section .eyebrow{margin-bottom:6px}
+.fb__section h3{margin:0 0 8px}
 
 /* --- Profile ----------------------------------------------------------- */
 .profile{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:28px}
@@ -164,6 +167,7 @@ h4{font-size:.95rem;margin:0 0 6px;line-height:1.3}
   .caplist,.mslist{grid-template-columns:1fr}
   .profile{padding:20px}
   .goaltiles{grid-template-columns:1fr}
+  .meta{white-space:normal;max-width:none}
 }
 @media print{
   .nav,.actions,#profile-content .actions,footer{display:none!important}
