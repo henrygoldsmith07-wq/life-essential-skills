@@ -75,10 +75,10 @@
 
       line('Later checks') +
       (p.retention_due.length
-        ? '<p><strong>Due now:</strong> ' + esc(p.retention_due.map(c => c.title).slice(0, 4).join(', ')) + '</p>'
+        ? '<p><strong>Due now:</strong> ' + esc(p.retention_due.map(c => c.title + (c.domain_title ? ' (' + c.domain_title + ')' : '')).slice(0, 4).join(', ')) + '</p>'
         : '<p>Nothing due.</p>') +
       (p.retention_upcoming.length
-        ? '<p><strong>Scheduled:</strong></p><ul class="profilelist">' + p.retention_upcoming.slice(0, 6).map(c => '<li>' + esc(c.title) + ' — ' + esc(c.next_review) + '</li>').join('') + '</ul>'
+        ? '<p><strong>Scheduled:</strong></p><ul class="profilelist">' + p.retention_upcoming.slice(0, 6).map(c => '<li>' + esc(c.title) + (c.domain_title ? ' · <span class="muted">' + esc(c.domain_title) + '</span>' : '') + ' — ' + esc(c.next_review) + '</li>').join('') + '</ul>'
         : '') +
 
       line('Recommended next') +
