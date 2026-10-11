@@ -22,6 +22,9 @@
 - The Profile's metric grid now shows retention checks passed and checks currently due as first-class metrics, giving a quick at-a-glance view of spaced-repetition progress.
 - The Profile's "Not started yet" milestone section now lists each milestone's title and description instead of just a count, so learners can see what is ahead.
 - Post-attempt feedback now shows a context banner explaining whether the attempt was a retention check (a later check to confirm the skill stuck) or a first-look diagnostic (narrowing focus, not awarding evidence), so learners understand what phase of the evidence journey they are in.
+- The post-attempt reassessment message now distinguishes between passed retention checks ("Confirmed"), failed checks ("This did not stick"), and non-retention attempts, giving learners clearer expectations about when the next review is.
+- Post-attempt feedback's "next practice" section now shows the estimated time for the recommended task.
+- Fixed: Today's overdue-retention "Start fresh review" buttons now link to unseen variants (fresh situations) instead of already-seen items, matching the retention principle that a check must use new material.
 
 ### Assessment quality and scalability
 

@@ -61,6 +61,7 @@
     if (!n) return '';
     return '<div class="fb__next"><h4>Your next practice</h4>' +
       '<p>' + esc(n.why) + '</p>' +
+      (n.estimated_time_minutes ? '<p class="time">About ' + n.estimated_time_minutes + ' minutes</p>' : '') +
       '<div class="actions">' +
       (n.item_id ? '<button type="button" data-task="' + esc(n.item_id) + '">' + esc(n.kind === 'retention' ? 'Start the later check' : 'Try a fresh situation') + '</button>' : '') +
       (n.learn_path ? '<button type="button" class="secondary" data-learn="' + esc(n.learn_path) + '">Revisit the skill</button>' : '') +
