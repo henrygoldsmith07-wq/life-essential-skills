@@ -311,14 +311,15 @@
     const errors=E.validateState(next,D,today());
     if(errors.length){$('onboard-error').textContent='That selection could not be applied: '+errors[0];return;}
     persist(next);
-    // Show the learning sequence from the goal, then navigate to the roadmap
-    // where the first step is highlighted. The sequence gives newcomers a
-    // concrete sense of what they are working toward before they see the map.
+    // Show the learning sequence from the goal, then provide a direct path
+    // to start the first task immediately, or go to the roadmap to explore.
     const onboardStep=$('today-content').querySelector('#onboard-step');
     if(onboardStep){
-      onboardStep.innerHTML=OV.situation(plan.goal)+'<p>Your next steps, in order:</p>'+OV.sequence(plan)+'<div class="actions"><button type="button" id="start-journey">Go to your roadmap</button></div>';
-      const goBtn=$('start-journey');if(goBtn)goBtn.onclick=()=>{navigate('roadmap');location.hash='roadmap';};
-      U.focus('start-journey');
+      const rec=E.recommend(next,D,today());
+      onboardStep.innerHTML=OV.situation(plan.goal)+'<p>Your next steps, in order:</p>'+OV.sequence(plan)+(rec.item?'<div class="actions"><button type="button" data-task="'+esc(rec.item.id)+'" id="start-journey">'+(rec.kind==='retention'?'Start the later check':'Start your first task')+'</button><button type="button" class="secondary" id="view-roadmap">See your full roadmap</button></div>':'<div class="actions"><button type="button" id="view-roadmap">Go to your roadmap</button></div>');
+      const goBtn=$('view-roadmap');if(goBtn)goBtn.onclick=()=>{navigate('roadmap');location.hash='roadmap';};
+      const startBtn=$('start-journey');if(startBtn){if(rec.item){startBtn.onclick=()=>{closeTask();startTask(rec.item.id);};}else{startBtn.style.display='none';}}
+      U.focus(rec.item?'start-journey':'view-roadmap');
     }else{navigate('roadmap');location.hash='roadmap';}
     notice('Your pathway and focus skills are set. Start with the highlighted next step.');
   }
