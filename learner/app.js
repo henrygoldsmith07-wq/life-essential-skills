@@ -262,6 +262,7 @@
       const next=E.recordAttempt(state,D,current.item.id,input,today());
       // Build the post-attempt feedback from the judgements the learner just made,
       // so it names the case, the criterion and the skill they actually affected.
+      const wasRetention=current.item.competencies.some(cid=>{const s=E.summary(before,cid,D);return s.last_demonstrated&&s.next_review&&s.next_review<=today();});
       const rows=current.item.competencies.map(cid=>{
         const comp=D.skills.competencies.find(c=>c.id===cid);
         const scoring=E.rubric(current.item,cid);
@@ -274,8 +275,13 @@
       navigate('today');location.hash='today';
       const rm=Roadmap.roadmap(next,D,today());
       const nextReview=rm.capabilities.filter(c=>c.next_review&&rows.some(r=>r.title.startsWith(c.title.split(' · ')[0]))).map(c=>c.next_review).sort()[0];
+      const retentionContext=wasRetention
+        ? '<p class="fb__context">This was a later check — a new situation to confirm the skill stuck since your last demonstration.</p>'
+        : current.phase === 'diagnostic'
+        ? '<p class="fb__context">This was a first-look diagnostic. It narrows what to focus on but does not award evidence by itself.</p>'
+        : '';
       $('today-content').insertAdjacentHTML('afterbegin','<div class="card feedback-summary"><p class="eyebrow">HOW THAT WENT</p>'+
-        FV.perCompetency(rows,errorLabelMap())+FV.errorGuidance(rows,errorLabelMap(),answer)+FV.commonPitfalls(rows,errorLabelMap(),answer)+FV.nextPractice(rm.next)+FV.reassessment(nextReview)+
+        retentionContext+FV.perCompetency(rows,errorLabelMap())+FV.errorGuidance(rows,errorLabelMap(),answer)+FV.commonPitfalls(rows,errorLabelMap(),answer)+FV.nextPractice(rm.next)+FV.reassessment(nextReview)+
         '<p class="muted">Saved as self-reviewed evidence. Your roadmap and milestones have updated.</p></div>');
       notice('Evidence saved. Your roadmap and milestones have updated.');
     }catch(e){notice(e.message);}

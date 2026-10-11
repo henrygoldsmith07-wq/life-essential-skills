@@ -21,6 +21,7 @@
 - The assessor dropdown now marks attempts that already have an assessor review with a "Reviewed" prefix, and the review screen explains that adding a new review preserves the earlier one in history.
 - The Profile's metric grid now shows retention checks passed and checks currently due as first-class metrics, giving a quick at-a-glance view of spaced-repetition progress.
 - The Profile's "Not started yet" milestone section now lists each milestone's title and description instead of just a count, so learners can see what is ahead.
+- Post-attempt feedback now shows a context banner explaining whether the attempt was a retention check (a later check to confirm the skill stuck) or a first-look diagnostic (narrowing focus, not awarding evidence), so learners understand what phase of the evidence journey they are in.
 
 ### Assessment quality and scalability
 
