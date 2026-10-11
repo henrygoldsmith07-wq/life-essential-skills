@@ -69,8 +69,10 @@
       '</div>';
   }
 
-  function reassessment(when) {
+  function reassessment(when, passed) {
     if (!when) return '';
+    if (passed === true) return '<p class="fb__reassess">Confirmed — a fresh check is expected around <strong>' + esc(when) + '</strong>. That is a new situation, days later, to confirm it stuck.</p>';
+    if (passed === false) return '<p class="fb__reassess">This did not stick. A new situation is expected around <strong>' + esc(when) + '</strong> so you can confirm it again and reset the schedule.</p>';
     return '<p class="fb__reassess">A fresh check is expected around <strong>' + esc(when) + '</strong>. That is a new situation, days later, to confirm it stuck.</p>';
   }
 

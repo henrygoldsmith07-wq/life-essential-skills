@@ -281,7 +281,7 @@
         ? '<p class="fb__context">This was a first-look diagnostic. It narrows what to focus on but does not award evidence by itself.</p>'
         : '';
       $('today-content').insertAdjacentHTML('afterbegin','<div class="card feedback-summary"><p class="eyebrow">HOW THAT WENT</p>'+
-        retentionContext+FV.perCompetency(rows,errorLabelMap())+FV.errorGuidance(rows,errorLabelMap(),answer)+FV.commonPitfalls(rows,errorLabelMap(),answer)+FV.nextPractice(rm.next)+FV.reassessment(nextReview)+
+        retentionContext+FV.perCompetency(rows,errorLabelMap())+FV.errorGuidance(rows,errorLabelMap(),answer)+FV.commonPitfalls(rows,errorLabelMap(),answer)+FV.nextPractice(rm.next)+FV.reassessment(nextReview,wasRetention&&rows.every(r=>r.outcome==='demonstrated'))+
         '<p class="muted">Saved as self-reviewed evidence. Your roadmap and milestones have updated.</p></div>');
       notice('Evidence saved. Your roadmap and milestones have updated.');
     }catch(e){notice(e.message);}
