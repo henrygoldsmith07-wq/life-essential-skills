@@ -63,6 +63,8 @@
 - The Profile's "Recommended next" section now gives a specific message for the `complete` state, pointing to retention checks and alternative pathways.
 - The onboarding flow now offers a "Start your first task" button alongside "See your full roadmap", reducing friction for newcomers who want to dive in immediately.
 - Capstone task cards on the Practice page now show which specific skills they test, helping learners choose the right challenge.
+- The progress page's skill cards now correctly find a seen (familiar) item for retention checks instead of a fresh unseen one, so the "Start the later check" button leads to an appropriate delayed check.
+- The feedback summary now proactively shows "Common pitfalls to check" when a learner flags zero error tags, surfacing all item-specific `common_mistakes` and `next_steps` so learners can self-identify errors they may have missed. Targeted guidance is shown when any errors are flagged (no duplication).
 
 ### Performance
 
