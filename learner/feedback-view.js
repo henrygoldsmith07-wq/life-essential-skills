@@ -124,6 +124,20 @@
       lines.join('') + '</section>';
   }
 
+  // Preemptive guidance: shows error-tag labels *before* the learner attempts,
+  // so they know what to watch for while writing. Only labels from the
+  // competency data are used — the feedback JSON (which contains solution
+  // answers) is never loaded until after the attempt is finished. This is
+  // practice help, not answer-giving.
+  function preemptiveGuidance(errorLabels) {
+    if (!errorLabels || !errorLabels.length) return '';
+    return '<section class="fb__section" aria-labelledby="prep-guidance-heading">' +
+      '<p class="eyebrow">BEFORE YOU WRITE</p><h3 id="prep-guidance-heading">Watch out for these pitfalls</h3>' +
+      '<p class="muted">These are the mistakes other learners tend to make on this task. Keep them in mind as you work.</p>' +
+      '<ul class="profilelist">' + errorLabels.map(l => '<li>' + esc(l) + '</li>').join('') + '</ul>' +
+      '</section>';
+  }
+
   // An AI-assisted draft (example, coaching hint, or personalised explanation).
   // It is always framed as practice help, never as the learner's own answer, and
   // is escaped on render so adapter output cannot reach the page as markup.
@@ -136,5 +150,5 @@
       '</div>';
   }
 
-  return { resultBanner, perCompetency, nextPractice, reassessment, whyItMatters, errorGuidance, commonPitfalls, draft, esc };
+  return { resultBanner, perCompetency, nextPractice, reassessment, whyItMatters, errorGuidance, commonPitfalls, preemptiveGuidance, draft, esc };
 });
