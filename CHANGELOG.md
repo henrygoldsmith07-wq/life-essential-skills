@@ -66,6 +66,8 @@
 - The progress page's skill cards now correctly find a seen (familiar) item for retention checks instead of a fresh unseen one, so the "Start the later check" button leads to an appropriate delayed check.
 - The feedback summary now proactively shows "Common pitfalls to check" when a learner flags zero error tags, surfacing all item-specific `common_mistakes` and `next_steps` so learners can self-identify errors they may have missed. Targeted guidance is shown when any errors are flagged (no duplication).
 - Today's page now shows a "Skills you need first" card listing pathway competencies that are blocked by missing prerequisites, making the dependency structure transparent instead of hiding why certain skills aren't being recommended.
+- Preemptive guidance now shows error-tag labels ("Watch out for these pitfalls") before the learner attempts a task, without loading the feedback JSON (which contains answer keys). Labels are sourced from competency data already available at task start.
+- CSS: added `.fb__section` styling and responsive `.meta` truncation on mobile for capstone task cards and blocked skills list items.
 
 ### Performance
 

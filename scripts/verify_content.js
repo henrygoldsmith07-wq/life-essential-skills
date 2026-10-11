@@ -156,6 +156,7 @@ ok('copy present: "See your full roadmap"', appSrc.includes('See your full roadm
 ok('copy present: "Common pitfalls to check"', feedbackSrc.includes('Common pitfalls to check'));
 ok('copy present: "Skills you need first"', appSrc.includes('Skills you need first'));
 ok('copy present: "Watch out for these pitfalls"', feedbackSrc.includes('Watch out for these pitfalls'));
+ok('copy present: "BEFORE YOU WRITE"', feedbackSrc.includes('BEFORE YOU WRITE'));
 
 console.log(fail === 0 ? '\nALL MILESTONE/CONTENT CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
