@@ -98,6 +98,32 @@
       '<p class="eyebrow">WORK ON THESE POINTS</p><h3 id="guidance-heading">Targeted guidance for your errors</h3>' + lines.join('') + '</section>';
   }
 
+  // Proactive "common pitfalls to check" from the item's feedback JSON.
+  // Shows all common_mistakes and next_steps, not just the ones the learner
+  // flagged — so a learner who missed an error still sees what to watch for.
+  // Only rendered when the learner flagged zero error tags, so it never
+  // duplicates the targeted guidance above.
+  function commonPitfalls(rows, labels, feedback) {
+    if (!feedback || !feedback.common_mistakes) return '';
+    const flagged = new Set();
+    for (const r of rows) for (const tag of r.error_tags) flagged.add(tag);
+    if (flagged.size > 0) return ''; // targeted guidance already shown
+    const lines = [];
+    for (const tag in feedback.common_mistakes) {
+      const mistake = feedback.common_mistakes[tag];
+      const step = feedback.next_steps ? feedback.next_steps[tag] : null;
+      const label = (labels && labels[tag]) || readableTag(tag);
+      lines.push('<div class="fb__guidance"><strong>' + esc(label) + '</strong>' +
+        (mistake ? '<p>' + esc(mistake) + '</p>' : '') +
+        (step ? '<p class="muted">' + esc(step) + '</p>' : '') + '</div>');
+    }
+    if (!lines.length) return '';
+    return '<section class="fb__section" aria-labelledby="pitfalls-heading">' +
+      '<p class="eyebrow">CHECK THESE POINTS</p><h3 id="pitfalls-heading">Common pitfalls to check</h3>' +
+      '<p class="muted">You did not flag any of these errors. Review them against your original answer.</p>' +
+      lines.join('') + '</section>';
+  }
+
   // An AI-assisted draft (example, coaching hint, or personalised explanation).
   // It is always framed as practice help, never as the learner's own answer, and
   // is escaped on render so adapter output cannot reach the page as markup.
@@ -110,5 +136,5 @@
       '</div>';
   }
 
-  return { resultBanner, perCompetency, nextPractice, reassessment, whyItMatters, errorGuidance, draft, esc };
+  return { resultBanner, perCompetency, nextPractice, reassessment, whyItMatters, errorGuidance, commonPitfalls, draft, esc };
 });

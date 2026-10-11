@@ -153,6 +153,7 @@ ok('copy present: "No retention checks are overdue"', appSrc.includes('No retent
 ok('copy present: "Every skill in your current focus is demonstrated"', appSrc.includes('Every skill in your current focus is demonstrated') || profileSrc.includes('Every skill in your current focus is demonstrated'));
 ok('copy present: "Start your first task"', appSrc.includes('Start your first task'));
 ok('copy present: "See your full roadmap"', appSrc.includes('See your full roadmap'));
+ok('copy present: "Common pitfalls to check"', feedbackSrc.includes('Common pitfalls to check'));
 
 console.log(fail === 0 ? '\nALL MILESTONE/CONTENT CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);

@@ -91,6 +91,12 @@ const fb = { common_mistakes: { 'assumes-missing-information': 'Name facts you c
 ok('error guidance renders item-specific advice', FV.errorGuidance([fbRow], { 'assumes-missing-information': 'Name missing facts before deciding' }, fb).includes('Name facts you cannot check'));
 ok('error guidance never shows raw ids', !FV.errorGuidance([fbRow], null, fb).includes('assumes-missing-information'));
 ok('error guidance handles missing feedback JSON', FV.errorGuidance([fbRow], null, null) === '');
+// commonPitfalls shows all guidance when the learner flagged zero error tags,
+// but stays empty when any error was already flagged (no duplication).
+const noErrRow = { title: 'X', scoring: [{ id: 'c', criterion: 'do it' }], judgements: { c: 'met' }, error_tags: [], comp: { mode: 'independent' } };
+ok('common pitfalls renders when no errors flagged', FV.commonPitfalls([noErrRow], { 'assumes-missing-information': 'Name missing facts' }, fb).includes('Name facts you cannot check'));
+ok('common pitfalls is empty when errors were flagged', FV.commonPitfalls([fbRow], { 'assumes-missing-information': 'Name missing facts' }, fb) === '');
+ok('common pitfalls handles missing feedback JSON', FV.commonPitfalls([noErrRow], null, null) === '');
 
 // 6. Profile view
 const prof = R.profile(ex, D, TODAY);
