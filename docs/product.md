@@ -139,3 +139,6 @@ The product's promises are checked automatically, so they cannot quietly stop be
 - The assessor attempt dropdown marks attempts that already have an assessor review with a "Reviewed" prefix, and the review screen explains that a new review preserves the earlier one in history.
 - Post-attempt feedback now shows a context banner explaining whether the attempt was a retention check (a later check to confirm the skill stuck) or a first-look diagnostic (narrowing focus, not awarding evidence), so learners understand what phase of the evidence journey they are in.
 - The Practice page's "Review due" filter now distinguishes between "no checks are overdue" and "checks are overdue but every unseen variant has been used," pointing the learner to the Profile or an assessor in the latter case.
+- The post-attempt reassessment message now distinguishes between passed retention checks ("Confirmed"), failed checks ("This did not stick"), and non-retention attempts, giving learners clearer expectations about when the next review is.
+- Post-attempt feedback's "next practice" section now shows the estimated time for the recommended task.
+- Fixed: Today's overdue-retention "Start fresh review" buttons now link to unseen variants (fresh situations) instead of already-seen items, matching the retention principle that a check must use new material.
