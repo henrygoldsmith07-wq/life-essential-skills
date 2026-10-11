@@ -51,6 +51,24 @@
   }
   function downloadText(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   function download(name,value){downloadText(name,JSON.stringify(value,null,2)+'\n');}
+  // Generate an iCalendar (.ics) string from retention-due and upcoming items.
+  // Only includes dates that fall within a reasonable window (today + 1 year).
+  function icsExport(p) {
+    const items = [...p.retention_due, ...p.retention_upcoming];
+    if (!items.length) return '';
+    const today = new Date();
+    const maxDate = new Date(today); maxDate.setFullYear(today.getFullYear() + 1);
+    const fmt = d => d.toISOString().replace(/[-:]/g, '').slice(0, 16);
+    const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//life-essential-skills//EN'];
+    for (const c of items) {
+      const d = new Date(c.next_review + 'T12:00:00');
+      if (d > maxDate) continue;
+      const summary = c.domain_title ? c.title + ' (' + c.domain_title + ')' : c.title;
+      lines.push('BEGIN:VEVENT', 'SUMMARY:' + summary, 'DTSTART;VALUE=DATE:' + fmt(d), 'END:VEVENT');
+    }
+    lines.push('END:VCALENDAR');
+    return lines.join('\n') + '\n';
+  }
   const assessor=AssessorMode({E,D,U,load,renderMaterials,state:()=>state,save:persist,today,notice,download});
   function teachingMarkdown(text,path){
     const base=new URL('../'+path,location.href);
@@ -148,8 +166,9 @@
   }
   function renderProfile(){
     const p=Roadmap.profile(state,D,today());
-    $('profile-content').innerHTML=PV.render(p,localityLabel())+'<div class="actions"><button type="button" class="secondary" id="print-profile">Print or save as PDF</button></div>';
+    $('profile-content').innerHTML=PV.render(p,localityLabel())+'<div class="actions"><button type="button" class="secondary" id="print-profile">Print or save as PDF</button><button type="button" class="secondary" id="export-calendar">Download retention calendar</button></div>';
     $('print-profile').onclick=()=>window.print();
+     $('export-calendar').onclick=()=>{const ics=icsExport(p);if(ics){downloadText('life-skills-retention.ics',ics);notice('Retention calendar downloaded.');}else{notice('No upcoming retention checks to export.');}};
   }
   function onboardingPrompt(){
     const started=state.records.length||state.exposures.length;
