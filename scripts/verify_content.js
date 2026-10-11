@@ -150,6 +150,7 @@ ok('copy present: "Start the later check"', appSrc.includes('Start the later che
 ok('copy present: "No unseen cases remain"', appSrc.includes('No unseen cases remain'));
 ok('copy present: "Nothing needs work right now"', appSrc.includes('Nothing needs work right now'));
 ok('copy present: "No retention checks are overdue"', appSrc.includes('No retention checks are overdue'));
+ok('copy present: "Every skill in your current focus is demonstrated"', appSrc.includes('Every skill in your current focus is demonstrated'));
 
 console.log(fail === 0 ? '\nALL MILESTONE/CONTENT CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
