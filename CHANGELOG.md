@@ -57,6 +57,12 @@
 - `verify_interaction.js` and `verify_views.js` gain a simulation-close-button, simulation-debrief, and AI-boundary seam contract, each regression-proven to fail fast if the corresponding wiring is removed. `verify_views.js` and `verify_content.js` gain contracts for the material-exhaustion warning panel, the milestone progress bar, and the practical observation needs notice.
 - The Practice page's recommended view now surfaces overdue retention checks: the engine already prioritises one on Today, but every other due check is now grouped under a lead **Due for review** card instead of being buried in fresh material. A learner with nothing due sees no spurious empty group; checks assert both cases.
 - The browser suite now drives a full **life-transition simulation journey**: locality gating (a Wales-scoped capstone refuses to launch under the UK default), the intro's way out, part-by-part development including Back, the changed-situation final stage, the write-up's attempt gating, the standard structured feedback plus the simulation debrief, an accessibility scan of that composed surface, per-subskill evidence (one attempt token, four records for C01, no response text persisted), and the resulting familiar-situation relabelling. The mobile accessibility/reflow loop also covers the Roadmap, Simulations and Profile views, which were the only unscanned learner surfaces. `verify_copy_contract.js` now also guards copy that lives in `simulation-view.js` and the generated `learner/data.js`.
+- Today's `complete` state now explains that every skill in the current focus is demonstrated and links to the Profile for retention dates and Pathways for a new direction, instead of showing a generic fallback message.
+- Today's `fresh-materials-needed` state now names the specific family lacking fresh material rather than showing a generic message.
+- The Profile's "Later checks" section now shows the domain title alongside each retention check, so learners can see which skill area needs attention.
+- The Profile's "Recommended next" section now gives a specific message for the `complete` state, pointing to retention checks and alternative pathways.
+- The onboarding flow now offers a "Start your first task" button alongside "See your full roadmap", reducing friction for newcomers who want to dive in immediately.
+- Capstone task cards on the Practice page now show which specific skills they test, helping learners choose the right challenge.
 
 ### Performance
 
