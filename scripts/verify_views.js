@@ -58,8 +58,13 @@ const rm2 = R.roadmap(ex, D, TODAY);
 const html2 = RV.render(rm2);
 ok('roadmap renders with evidence', html2.length > 500);
 ok('roadmap shows a demonstrated capability', html2.includes('Can do this') || html2.includes('done'));
-
-// 3. Onboarding view
+// Roadmap capability cards with an overdue retention check surface a direct
+// 'Start the later check' button, so the learner can begin a due check from
+// the roadmap without first navigating to Today or Practice.
+ok('roadmap overdue check cards surface a start button',
+  !rm2.capabilities.filter(c => c.next_review && c.next_review <= TODAY && c.item_id).length
+  || html2.includes('data-task') && html2.includes('Start the later check'),
+  'checking for overdue-check start buttons in roadmap HTML');
 const goalList = OV.goalList(D.goals.goals, null);
 ok('goal list renders', goalList.includes('Moving out') && goalList.includes('goaltile'));
 ok('goal list shows all goals', (goalList.match(/goaltile"/g) || []).length === D.goals.goals.length);

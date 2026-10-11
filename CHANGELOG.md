@@ -71,6 +71,7 @@
 - The Profile's retention section now offers a "Download retention calendar" button that exports upcoming checks as an iCalendar (.ics) file, so learners can import dates into their preferred calendar app. Dates beyond one year are excluded.
 - The Profile's 'Later checks' section now lists each overdue retention check individually with a 'Start the later check' button, so a learner can begin a due check directly from the report without navigating to Today or Practice first.
 - Today's 'Return at the right time' card now lists all overdue retention checks (not just the count) with individual 'Start fresh review' buttons, so a learner with multiple due checks can act on any of them without first navigating to Practice.
+- The roadmap now surfaces a 'Start the later check' button directly on capability cards whose retention check is overdue, so a learner can begin a due review from the roadmap without navigating to Today or Practice.
 
 ### Performance
 

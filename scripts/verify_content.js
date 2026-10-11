@@ -160,6 +160,7 @@ ok('copy present: "BEFORE YOU WRITE"', feedbackSrc.includes('BEFORE YOU WRITE'))
 ok('copy present: "Download retention calendar"', appSrc.includes('Download retention calendar'));
 ok('copy present: "delayed checks are due"', appSrc.includes('delayed checks are due'));
 ok('copy present: "Start fresh review"', appSrc.includes('Start fresh review'));
+ok('copy present: "Start the later check"', appSrc.includes('Start the later check'));
 
 console.log(fail === 0 ? '\nALL MILESTONE/CONTENT CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);

@@ -97,7 +97,12 @@
       blocked: !!blocked,
       blocked_by: blocked ? blocked.missing : [],
       blocked_titles: blocked ? blocked.missing.map(m => title(data, m)) : [],
-      learn_path: comp.learn_path
+      learn_path: comp.learn_path,
+      // When a retention check is overdue, attach an unseen variant so the
+      // roadmap card can offer a direct action instead of only a date label.
+      item_id: (s.next_review && s.next_review <= today && s.last_demonstrated)
+        ? (data.bank.items.find(i => i.competencies.includes(comp.id) && E.eligible(i, state.locality) && !E.seen(state, i, data))?.id || null)
+        : null
     };
   }
 
