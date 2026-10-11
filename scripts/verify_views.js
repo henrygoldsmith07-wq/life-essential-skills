@@ -97,6 +97,9 @@ const noErrRow = { title: 'X', scoring: [{ id: 'c', criterion: 'do it' }], judge
 ok('common pitfalls renders when no errors flagged', FV.commonPitfalls([noErrRow], { 'assumes-missing-information': 'Name missing facts' }, fb).includes('Name facts you cannot check'));
 ok('common pitfalls is empty when errors were flagged', FV.commonPitfalls([fbRow], { 'assumes-missing-information': 'Name missing facts' }, fb) === '');
 ok('common pitfalls handles missing feedback JSON', FV.commonPitfalls([noErrRow], null, null) === '');
+ok('preemptive guidance renders error labels', FV.preemptiveGuidance(['Name missing facts', 'Check the arithmetic']).includes('Name missing facts'));
+ok('preemptive guidance renders nothing for empty', FV.preemptiveGuidance([]) === '');
+ok('preemptive guidance handles null input', FV.preemptiveGuidance(null) === '');
 
 // 6. Profile view
 const prof = R.profile(ex, D, TODAY);
