@@ -402,7 +402,9 @@
         demonstrated: demonstrated.length,
         developing: developing.length,
         total_independent: rm.capabilities.filter(c => c.mode === 'independent').length,
-        knowledge: rm.capabilities.filter(c => c.mode === 'knowledge' && c.status === 'demonstrated').length
+        knowledge: rm.capabilities.filter(c => c.mode === 'knowledge' && c.status === 'demonstrated').length,
+        retention_passed: rm.capabilities.reduce((n,c) => n + (c.retention_passed || 0), 0),
+        retention_due: retentionDue.length
       }
     };
   }

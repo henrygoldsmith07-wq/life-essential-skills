@@ -30,6 +30,8 @@
 
       '<div class="metric-grid">' +
       '<div class="metric"><strong>' + t.demonstrated + '</strong><span>Shown independently</span></div>' +
+      '<div class="metric"><strong>' + t.retention_passed + '</strong><span>Retention checks passed</span></div>' +
+      '<div class="metric"><strong>' + t.retention_due + '</strong><span>Checks now due</span></div>' +
       '<div class="metric"><strong>' + t.developing + '</strong><span>Still developing</span></div>' +
       '<div class="metric"><strong>' + t.knowledge + '</strong><span>Knowledge checks met</span></div>' +
       '<div class="metric"><strong>' + t.total_independent + '</strong><span>Independent skills in the system</span></div>' +
@@ -57,7 +59,8 @@
 
       (p.milestones_not_started && p.milestones_not_started.length
         ? line('Not started yet') +
-          '<p class="muted">' + p.milestones_not_started.length + ' further milestone' + (p.milestones_not_started.length === 1 ? '' : 's') + ' you have not begun. They are listed on your roadmap in the order they unlock.</p>'
+          '<ul class="profilelist">' + p.milestones_not_started.map(m => '<li><strong>' + esc(m.title) + '</strong> — ' + esc(m.description) + '</li>').join('') + '</ul>' +
+          '<p class="muted">These ' + p.milestones_not_started.length + ' milestone' + (p.milestones_not_started.length === 1 ? '' : 's') + ' will appear on your roadmap as you build the supporting skills.</p>'
         : '') +
 
       line('Practical, observed skills') +

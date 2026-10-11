@@ -18,6 +18,9 @@
 - Today's `fresh-materials-needed` state now names the specific skill area and explains that an assessor must prepare new materials, instead of showing a generic fallback message.
 - The Practice page's empty states for the `needs-work` and `review-due` filters now give context-aware guidance instead of a generic "choose other tasks" message.
 - The assessor attempt dropdown now shows the learner's self-review outcome (Independent · shown, With help, or Not yet met) for each attempt, so assessors can prioritise.
+- The assessor dropdown now marks attempts that already have an assessor review with a "Reviewed" prefix, and the review screen explains that adding a new review preserves the earlier one in history.
+- The Profile's metric grid now shows retention checks passed and checks currently due as first-class metrics, giving a quick at-a-glance view of spaced-repetition progress.
+- The Profile's "Not started yet" milestone section now lists each milestone's title and description instead of just a count, so learners can see what is ahead.
 
 ### Assessment quality and scalability
 
