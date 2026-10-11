@@ -353,7 +353,13 @@
     const notStarted = rm.capabilities.filter(c => c.mode !== 'knowledge' && c.status === 'unassessed');
     const pathway = data.index.pathways.find(p => p.id === state.pathway);
     const domainTitle = id => data.index.domains.find(d => d.id === id)?.title || id;
-    const retentionDue = rm.retention_due.map(c => ({ ...c, domain_title: domainTitle(c.domain) }));
+    // For each overdue retention check, find an unseen variant the learner can
+    // use to prove the skill stuck. Attach its item id so the Profile can render
+    // a 'Start the later check' button directly from the report.
+    const retentionDue = rm.retention_due.map(c => {
+      const item = data.bank.items.find(i => i.competencies.includes(c.id) && E.eligible(i, state.locality) && !E.seen(state, i, data));
+      return { ...c, domain_title: domainTitle(c.domain), item_id: item ? item.id : null };
+    });
     const retentionUpcoming = rm.retention_upcoming.map(c => ({ ...c, domain_title: domainTitle(c.domain) }));
     const practical = (data.practical?.rubrics || []).map(r => {
       const last = state.observations.filter(o => o.kind === r.id).at(-1);
