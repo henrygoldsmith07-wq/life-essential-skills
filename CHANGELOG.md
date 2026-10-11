@@ -68,6 +68,7 @@
 - Today's page now shows a "Skills you need first" card listing pathway competencies that are blocked by missing prerequisites, making the dependency structure transparent instead of hiding why certain skills aren't being recommended.
 - Preemptive guidance now shows error-tag labels ("Watch out for these pitfalls") before the learner attempts a task, without loading the feedback JSON (which contains answer keys). Labels are sourced from competency data already available at task start.
 - CSS: added `.fb__section` styling and responsive `.meta` truncation on mobile for capstone task cards and blocked skills list items.
+- The Profile's retention section now offers a "Download retention calendar" button that exports upcoming checks as an iCalendar (.ics) file, so learners can import dates into their preferred calendar app. Dates beyond one year are excluded.
 
 ### Performance
 

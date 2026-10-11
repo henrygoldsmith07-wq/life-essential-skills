@@ -157,6 +157,7 @@ ok('copy present: "Common pitfalls to check"', feedbackSrc.includes('Common pitf
 ok('copy present: "Skills you need first"', appSrc.includes('Skills you need first'));
 ok('copy present: "Watch out for these pitfalls"', feedbackSrc.includes('Watch out for these pitfalls'));
 ok('copy present: "BEFORE YOU WRITE"', feedbackSrc.includes('BEFORE YOU WRITE'));
+ok('copy present: "Download retention calendar"', appSrc.includes('Download retention calendar'));
 
 console.log(fail === 0 ? '\nALL MILESTONE/CONTENT CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
