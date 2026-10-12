@@ -84,6 +84,22 @@
         ? '<p><strong>Scheduled:</strong></p><ul class="profilelist">' + p.retention_upcoming.slice(0, 6).map(c => '<li>' + esc(c.title) + (c.domain_title ? ' · <span class="muted">' + esc(c.domain_title) + '</span>' : '') + ' — ' + esc(c.next_review) + '</li>').join('') + '</ul>'
         : '') +
 
+      (p.retention_history && p.retention_history.length
+        ? '<details class="profdets"><summary>Retention checks you have taken (' + p.retention_history_total + (p.retention_history_total > p.retention_history.length ? ' shown, newest first' : ' newest first') + ')</summary>' +
+          '<ul class="profilelist">' + p.retention_history.map(r =>
+            '<li><strong>' + esc(r.title.replace(/ · (foundation|independent|adaptation)/, '')) + '</strong>' +
+            (r.domain_title ? ' <span class="muted">(' + esc(r.domain_title) + ')</span>' : '') +
+            ' — ' + esc(r.date) + ' · ' +
+            (r.outcome === 'demonstrated'
+              ? '<span class="tone-done">Passed</span>'
+              : r.outcome === 'assisted'
+              ? '<span class="tone-warn">Passed with help</span>'
+              : '<span class="tone-stop">Not passed</span>') +
+            (r.evidence_level === 'assessor-reviewed' ? ' <span class="muted">· assessor-reviewed</span>' : '') +
+            '</li>').join('') + '</ul>' +
+          '</details>'
+        : '') +
+
       line('Recommended next') +
        '<p><strong>' + esc(p.next.heading) + '</strong> — ' + esc(p.next.why) + '</p>' +
        (p.next.item_id

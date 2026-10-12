@@ -387,6 +387,28 @@
       || (m.requires_any || []).some(cid => touched.has(cid))
       || (m.requires_practical || []).some(k => touched.has('obs:' + k));
 
+    // Retention history: the dated trail of later checks, newest first. The
+    // Profile already reports how many checks passed; this shows what actually
+    // happened and when, so a learner can see their retention story rather than
+    // an opaque number. Every row keeps its review status, because a self-check
+    // is a local claim and not the same as an assessor-verified one. Bounded so
+    // the printable report stays short; the remainder is reported as a count.
+    const RETENTION_HISTORY_MAX = 12;
+    const retentionRecords = state.records
+      .filter(r => r.phase === 'retention')
+      .map(r => {
+        const comp = data.skills.competencies.find(c => c.id === r.competency_id);
+        return {
+          title: comp ? comp.title : r.competency_id,
+          domain_title: comp ? domainTitle(comp.domain) : null,
+          date: r.date,
+          outcome: r.outcome,
+          evidence_level: r.evidence_level || null
+        };
+      })
+      .sort((a, b) => b.date.localeCompare(a.date));
+    const retentionHistory = retentionRecords.slice(0, RETENTION_HISTORY_MAX);
+
     return {
       generated: today,
       locality: state.locality,
@@ -396,6 +418,8 @@
       milestones_in_progress: rm.milestones.filter(m => !m.earned && engaged(m)),
       milestones_not_started: rm.milestones.filter(m => !m.earned && !engaged(m)),
       retention_due: retentionDue, retention_upcoming: retentionUpcoming,
+      retention_history: retentionHistory,
+      retention_history_total: retentionRecords.length,
       recent_improvements: rm.recently_improved,
       next: rm.next, practical, practical_needed, material_warnings: rm.material_warnings,
       totals: {
