@@ -117,9 +117,12 @@
     $('progress-content').innerHTML='<div class="metric-grid">'+Object.entries(labels).map(([k,l])=>'<div class="metric"><strong>'+p.totals[k]+'</strong><span>'+esc(l)+'</span></div>').join('')+'</div><p>'+p.totals.knowledge+' knowledge checks met. Written planning and judgement do not prove physical performance.</p><div class="card"><h2>Practical checks</h2>'+D.practical.rubrics.map(r=>{const last=state.observations.filter(o=>o.kind===r.id).at(-1),gate=E.rollup(state,r.gate,D);return '<div class="row"><div><h3>'+esc(r.title)+'</h3><p>'+esc(last?U.statuses[last.outcome]+' · observed '+last.date:'Needs an observed practical check')+'</p><p class="muted">Written answers alone are insufficient. '+gate.practical_missing.length+' practical checks still needed for this domain gate.</p></div><a href="#assessor">Arrange an observed check</a></div>';}).join('')+'</div>'+p.domains.map(d=>'<div class="card"><h2>'+esc(d.title)+'</h2><p>'+d.demonstrated+' independent · '+d.assisted+' with help · '+d.due+' checks due</p><details><summary>Skills and next steps</summary>'+p.skills.filter(s=>s.domain===d.id).map(s=>{
       const c=D.skills.competencies.find(c=>c.id===s.competency_id);
       const isRetentionDue = s.last_demonstrated && s.next_review && s.next_review <= today();
-      const item = isRetentionDue
-        ? D.bank.items.find(i=>i.competencies.includes(c.id)&&E.eligible(i,state.locality)&&E.seen(state,i,D))
-        : D.bank.items.find(i=>i.competencies.includes(c.id)&&E.eligible(i,state.locality)&&!E.seen(state,i,D));
+      // A retention check must use material the learner has NOT seen: the
+      // evidence model refuses an unseen-transfer claim on known material, and
+      // picking a seen item silently recorded practice while the learner was
+      // told they had taken a later check. Match every other surface (Today,
+      // Profile, roadmap, engine.recommend) and offer an unseen variant only.
+      const item = D.bank.items.find(i=>i.competencies.includes(c.id)&&E.eligible(i,state.locality)&&!E.seen(state,i,D));
       const next=s.status==='unassessed'?'Start with the guide and a skill check.':s.status==='not-yet'?'Practise the missing step, then try fresh materials.':s.status==='assisted'?'Try fresh materials without solving prompts.':s.next_review?'Try a different situation on '+s.next_review+'.':'Your current full performance covers this knowledge check.';
       return '<div class="skill-card"><h3>'+esc(skillName(c.id))+'</h3><p>'+esc(U.statuses[s.status])+(s.evidence_level?' · '+esc(U.levels[s.evidence_level]):'')+'</p><p class="muted">'+esc(s.retention_status==='retained'?'A delayed fresh check was passed.':s.retention_status==='needs-review'?'A delayed check needs more practice.':'Retention has not been checked.')+(s.recent_improvement?' Your latest attempt improved.':'')+'</p>'+(s.error_tags.length?'<p>Work on: '+esc(errorLabels(s.error_tags).join('; '))+'</p>':'')+'<p>'+esc(next)+'</p><div class="actions"><button type="button" class="secondary" data-learn="'+esc(c.learn_path)+'">Learn this skill</button>'+(item?taskButton(item.id,isRetentionDue?'Start the later check':'Try fresh materials'):'<span class="muted">'+esc(isRetentionDue?'A retention check is due — find a delayed check on Practice or ask an assessor for fresh material.':'Ask an assessor for fresh materials.')+'</span>')+'</div></div>';
     }).join('')+'</details></div>').join('');
@@ -264,7 +267,11 @@
       const next=E.recordAttempt(state,D,current.item.id,input,today());
       // Build the post-attempt feedback from the judgements the learner just made,
       // so it names the case, the criterion and the skill they actually affected.
-      const wasRetention=current.item.competencies.some(cid=>{const s=E.summary(before,cid,D);return s.last_demonstrated&&s.next_review&&s.next_review<=today();});
+      // Read the phase off the records that were just written, not off the
+      // schedule. Inferring it from next_review once told a learner "this was a
+      // later check" for an attempt the engine actually recorded as practice,
+      // because the offered item had already been seen.
+      const wasRetention=next.records.slice(before.records.length).some(r=>r.phase==='retention');
       const rows=current.item.competencies.map(cid=>{
         const comp=D.skills.competencies.find(c=>c.id===cid);
         const scoring=E.rubric(current.item,cid);
