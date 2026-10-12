@@ -96,6 +96,89 @@ ok('Practice recommended view groups overdue checks under', dueGroups.some(g => 
 const fresh = Catalog.discover(E.emptyState('wales', 'general'), D, E, TODAY, { mode: 'recommended' });
 ok('no empty due-review group when nothing is due', !fresh.some(g => g.title === 'Due for review' && g.items.length === 0));
 
+// ---- 6c. Every surface must offer UNSEEN material for a due retention check ----
+// A retention check claims the learner can do the skill again on a situation
+// they had not seen. The evidence model refuses that claim on known material.
+// The Progress page once offered an already-seen item, so answering it recorded
+// silent practice while the learner was told they had taken a later check, and
+// the real fallback was unreachable. Guard the invariant, not the wording: with
+// a due check, no surface may offer an item whose exposure group is already used.
+const retentionProbe = E.migrateState(read('examples/learners/evaluation-cycle.json'), D, TODAY);
+const dueProbe = E.progress(retentionProbe, D, TODAY).skills.filter(s =>
+  s.last_demonstrated && s.next_review && s.next_review <= TODAY && s.status === 'demonstrated' && s.mode !== 'knowledge');
+ok('a due retention check exists for this guard', dueProbe.length > 0, dueProbe.length + ' due');
+for (const s of dueProbe) {
+  const c = D.skills.competencies.find(x => x.id === s.competency_id);
+  // The exact predicate used by Today, the Profile, the roadmap and Progress.
+  const offered = D.bank.items.find(i => i.competencies.includes(c.id) && E.eligible(i, retentionProbe.locality) && !E.seen(retentionProbe, i, D));
+  ok('no seen item is offered for a due retention check: ' + c.id, !offered || !E.seen(retentionProbe, offered, D));
+}
+// A due retention check that IS answered on unseen material must register a real
+// retention record and move the schedule, and the state must still validate.
+// The shipped example has exhausted its variants, so build a legitimate state
+// through the engine: demonstrate on one exposure group, then let it fall due
+// while a second group stays unseen.
+{
+  // Any competency with two exposure groups works: demonstrating on one leaves
+  // the other genuinely unseen. Prefer one with no prerequisites so the
+  // demonstration can be recorded from an empty state without extra setup.
+  const subject = D.skills.competencies.find(c => {
+    const opts = D.bank.items.filter(i => i.competencies.includes(c.id) && E.eligible(i, 'uk'));
+    return new Set(opts.map(i => i.exposure_group)).size >= 2;
+  });
+  const noPrereqSubject = D.skills.competencies.find(c => {
+    const opts = D.bank.items.filter(i => i.competencies.includes(c.id) && E.eligible(i, 'uk'));
+    return c.prerequisites.length === 0 && new Set(opts.map(i => i.exposure_group)).size >= 2;
+  });
+  ok('a competency with two unseen exposure groups exists for the positive path', !!subject);
+  if (noPrereqSubject) {
+    const subject = noPrereqSubject;
+    const opts = D.bank.items.filter(i => i.competencies.includes(subject.id) && E.eligible(i, 'uk'));
+    const first = opts[0];
+    const demoScoring = E.rubric(first, subject.id);
+    let demo = E.emptyState('uk', 'general');
+    demo = { ...demo, goal_competencies: [subject.id] };
+    demo = E.recordAttempt(demo, D, first.id, {
+      attempt_id: 'guard-demo-1', criteria_judgements: demoScoring.map(x => ({ criterion_id: x.id, judgement: 'met' })),
+      help_used: false, solution_seen: false, access_supports: [], error_tags: []
+    }, '2026-01-05');
+    const beforeSum = E.summary(demo, subject.id, D);
+    const isDue = beforeSum.last_demonstrated && beforeSum.next_review && beforeSum.next_review <= TODAY;
+    ok('the demonstrated competency is due for a later check', !!isDue, subject.id + ' next=' + beforeSum.next_review);
+    const freshItem = D.bank.items.find(i => i.competencies.includes(subject.id) && E.eligible(i, 'uk') && !E.seen(demo, i, D));
+    ok('an unseen variant is offered for the due check', !!freshItem && !E.seen(demo, freshItem, D), freshItem ? freshItem.id : 'none');
+    if (freshItem) {
+      const sc = E.rubric(freshItem, subject.id);
+      const after = E.recordAttempt(demo, D, freshItem.id, {
+        attempt_id: 'guard-retention-1', criteria_judgements: sc.map(x => ({ criterion_id: x.id, judgement: 'met' })),
+        help_used: false, solution_seen: false, access_supports: [], error_tags: []
+      }, TODAY);
+      const added = after.records.slice(demo.records.length).filter(r => r.competency_id === subject.id);
+      const afterSum = E.summary(after, subject.id, D);
+      ok('answering a due check on unseen material records a retention phase', added.length > 0 && added.every(r => r.phase === 'retention'));
+      ok('the retention check advances the schedule', afterSum.retention_checks === beforeSum.retention_checks + 1, beforeSum.retention_checks + ' -> ' + afterSum.retention_checks);
+      ok('the fixed retention attempt still validates', E.validateState(after, D, TODAY).length === 0, E.validateState(after, D, TODAY).join('; '));
+      // And the same attempt on a SEEN item must be refused by the evidence model,
+      // which is exactly why offering a seen item was a data-integrity bug.
+      let refused = false;
+      try {
+        E.recordAttempt(demo, D, first.id, {
+          attempt_id: 'guard-seen-1', phase: 'retention', criteria_judgements: demoScoring.map(x => ({ criterion_id: x.id, judgement: 'met' })),
+          help_used: false, solution_seen: false, access_supports: [], error_tags: []
+        }, TODAY);
+      } catch { refused = true; }
+      ok('a retention check on seen material is refused by the engine', refused);
+    }
+  }
+}
+// The feedback banner must describe what was recorded, not what was scheduled.
+// Reading the phase off the new records is the only honest source for this.
+const appSource = fs.readFileSync(path.join(root, 'learner/app.js'), 'utf8');
+ok('feedback retention wording is read from the recorded phase',
+  /wasRetention\s*=\s*next\.records\.slice\(before\.records\.length\)\.some\(r=>r\.phase==='retention'\)/.test(appSource));
+ok('progress page never searches for an already-seen retention item',
+  !/isRetentionDue\s*\n?\s*\?\s*D\.bank\.items\.find\([^)]*&&E\.seen\(/.test(appSource));
+
 // ---- 7. No surface may emit the same id twice ----
 // The rubric generates judge-0, judge-help-0, ... from a fixed prefix, so
 // rendering it twice in one panel duplicates every control id and puts hidden
