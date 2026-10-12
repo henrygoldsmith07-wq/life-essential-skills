@@ -130,6 +130,15 @@ ok('backup stamp lives outside the evidence state',
 ok('export marks the learner as backed up', /markBackedUp\(\)/.test(appSrc));
 ok('blocked storage never shows a false backup reminder', /blocked\|\|!hasEvidence/.test(appSrc));
 
+// The printable observation sheet is taken into a practical session, so it must
+// be built only from the rubric definition. Reading learner judgements or the
+// feedback answer key into it would leak learner data or the solution.
+const assessorSrc = fs.readFileSync(path.join(root, 'learner/assessor.js'), 'utf8');
+const sheetFn = (assessorSrc.match(/function printObservationSheet\(rubric\)\{[\s\S]*?\n  \}/) || [''])[0];
+ok('observation sheet function exists', sheetFn.length > 0);
+ok('observation sheet is built from the rubric definition only', /rubric\.scoring/.test(sheetFn) && !/judgement|criteria_judgements|feedback|solution|explanation/.test(sheetFn));
+ok('observation sheet is offered on the observation form', /print-observation-sheet/.test(assessorSrc));
+
 // ---- Copy the browser suite may look up stays present ----
 // The simulation journey and Today surface new user-facing strings; the copy
 // contract script guards the full list, but the ones asserted here are the
