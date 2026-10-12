@@ -272,10 +272,10 @@
       const r = remaining[fam];
       if (!r) continue;
       if (r.remaining === 0) {
-        result.push({ family: fam, title: c.title, remaining: 0, total: r.total, warning: 'exhausted' });
+        result.push({ family: fam, title: c.title, remaining: 0, total: r.total, seen: r.seen, warning: 'exhausted' });
         warned.add(fam);
       } else if (r.remaining === 1) {
-        result.push({ family: fam, title: c.title, remaining: 1, total: r.total, warning: 'near-exhausted' });
+        result.push({ family: fam, title: c.title, remaining: 1, total: r.total, seen: r.seen, warning: 'near-exhausted' });
         warned.add(fam);
       }
     }
