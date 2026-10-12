@@ -193,6 +193,26 @@ ok('a failed observation re-lists the pending kind and withholds complete',
 ok('a domain with no rollup gate never lists a pending observation',
   R.roadmap(relState, D, TODAY).domains.find(d => d.id === 'relationships').practical_pending.length === 0);
 
+// 13. Retention urgency is reported in plain words, not as a bare date.
+// A check due today and one three months stale both read as "due 2026-xx-xx";
+// the learner needs a prompt they can act on. Derived from the engine's own
+// dates, so it can never invent urgency.
+ok('urgency is null when nothing is overdue', R.urgency(null) === null);
+ok('a check due today reads as due now', R.urgency(0) === 'due now' && R.urgency(7) === 'due now');
+ok('a check under a month late reads as overdue', R.urgency(8) === 'overdue' && R.urgency(30) === 'overdue');
+ok('a long-stale check is named as such', R.urgency(31) === 'well overdue' && R.urgency(400) === 'well overdue');
+ok('negative day counts clamp to zero', R.urgency(-5) === 'due now');
+const urgencyRM = R.roadmap(ex, D, TODAY);
+const overdueCaps = urgencyRM.retention_due;
+ok('every overdue capability carries days_overdue and urgency',
+  overdueCaps.every(c => typeof c.days_overdue === 'number' && c.days_overdue >= 0 && ['due now', 'overdue', 'well overdue'].includes(c.urgency)));
+ok('days_overdue matches the gap between the engine date and today',
+  overdueCaps.every(c => c.days_overdue >= 0 && c.next_review <= TODAY));
+ok('upcoming (not overdue) capabilities carry no urgency',
+  urgencyRM.retention_upcoming.every(c => c.urgency === null && c.days_overdue === null));
+ok('a fresh learner has no urgency anywhere',
+  R.roadmap(E.emptyState('uk', 'general'), D, TODAY).capabilities.every(c => c.urgency === null));
+
 console.log(fail === 0 ? '\nALL ROADMAP CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
 

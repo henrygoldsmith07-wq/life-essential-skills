@@ -27,6 +27,24 @@
     'retention':    { label: 'Later check',       plain: 'A fresh check, days later, to see if it stuck.' }
   };
 
+  /* How overdue a retention check is, in the learner's words. A bare date is
+   * not a prompt: a check due today and one three months stale both read as
+   * "due 2026-xx-xx". Returns null when the check is not overdue, so callers
+   * keep the neutral "next check" wording. Never a metric — plain language. */
+  const URGENCY_STALE_DAYS = 30;
+  function urgency(daysOverdue) {
+    if (daysOverdue === null || daysOverdue === undefined) return null;
+    if (daysOverdue <= 7) return 'due now';
+    if (daysOverdue <= URGENCY_STALE_DAYS) return 'overdue';
+    return 'well overdue';
+  }
+
+  // Whole days from an ISO date up to `today`, floored at zero. Same arithmetic
+  // the engine uses, kept local so this module adds no new public surface.
+  function daysSince(isoDate, today) {
+    return Math.max(0, Math.round((+new Date(today + 'T00:00:00Z') - +new Date(isoDate + 'T00:00:00Z')) / 86400000));
+  }
+
   /* Classify a capability from the engine summary.
    *
    * "retained" is only claimed when the MOST RECENT successful evidence was a
@@ -73,6 +91,10 @@
     const s = summaryOf(state, data, comp.id, cache);    const blocked = blockedMap.get(comp.id);
     const cap = capState(s, comp, state, today);
     const label = CAP_LABEL[cap] || CAP_LABEL['not-started'];
+    // How far past a check is, in days. The raw date tells a learner nothing
+    // about urgency: "due 2026-09-01" and "due yesterday" are very different
+    // prompts. Presented in plain words, since this is a prompt not a metric.
+    const daysOverdue = (s.next_review && s.next_review <= today) ? daysSince(s.next_review, today) : null;
     return {
       id: comp.id,
       title: comp.title,
@@ -98,6 +120,8 @@
       blocked_by: blocked ? blocked.missing : [],
       blocked_titles: blocked ? blocked.missing.map(m => title(data, m)) : [],
       learn_path: comp.learn_path,
+      days_overdue: daysOverdue,
+      urgency: urgency(daysOverdue),
       // When a retention check is overdue, attach an unseen variant so the
       // roadmap card can offer a direct action instead of only a date label.
       item_id: (s.next_review && s.next_review <= today && s.last_demonstrated)
@@ -433,5 +457,5 @@
     };
   }
 
-  return { roadmap, onboarding, profile, milestone, STAGE, CAP_LABEL };
+  return { roadmap, onboarding, profile, milestone, STAGE, CAP_LABEL, urgency };
 });
