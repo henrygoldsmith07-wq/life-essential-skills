@@ -100,7 +100,8 @@ ok('error guidance handles missing feedback JSON', FV.errorGuidance([fbRow], nul
 // but stays empty when any error was already flagged (no duplication).
 const noErrRow = { title: 'X', scoring: [{ id: 'c', criterion: 'do it' }], judgements: { c: 'met' }, error_tags: [], comp: { mode: 'independent' } };
 ok('common pitfalls renders when no errors flagged', FV.commonPitfalls([noErrRow], { 'assumes-missing-information': 'Name missing facts' }, fb).includes('Name facts you cannot check'));
-ok('common pitfalls is empty when errors were flagged', FV.commonPitfalls([fbRow], { 'assumes-missing-information': 'Name missing facts' }, fb) === '');
+ok('common pitfalls is empty when all flagged errors exhaust feedback', FV.commonPitfalls([fbRow], { 'assumes-missing-information': 'Name missing facts' }, fb) === '');
+ok('common pitfalls shows unflagged mistakes when some errors were flagged', FV.commonPitfalls([{ ...fbRow, error_tags: ['other-error'] }], { 'assumes-missing-information': 'Name missing facts' }, fb).includes('Name facts you cannot check'));
 ok('common pitfalls handles missing feedback JSON', FV.commonPitfalls([noErrRow], null, null) === '');
 ok('preemptive guidance renders error labels', FV.preemptiveGuidance(['Name missing facts', 'Check the arithmetic']).includes('Name missing facts'));
 ok('preemptive guidance renders nothing for empty', FV.preemptiveGuidance([]) === '');

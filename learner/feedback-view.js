@@ -110,9 +110,9 @@
     if (!feedback || !feedback.common_mistakes) return '';
     const flagged = new Set();
     for (const r of rows) for (const tag of r.error_tags) flagged.add(tag);
-    if (flagged.size > 0) return ''; // targeted guidance already shown
     const lines = [];
     for (const tag in feedback.common_mistakes) {
+      if (flagged.has(tag)) continue; // targeted guidance already shown by errorGuidance
       const mistake = feedback.common_mistakes[tag];
       const step = feedback.next_steps ? feedback.next_steps[tag] : null;
       const label = (labels && labels[tag]) || readableTag(tag);
@@ -123,7 +123,7 @@
     if (!lines.length) return '';
     return '<section class="fb__section" aria-labelledby="pitfalls-heading">' +
       '<p class="eyebrow">CHECK THESE POINTS</p><h3 id="pitfalls-heading">Common pitfalls to check</h3>' +
-      '<p class="muted">You did not flag any of these errors. Review them against your original answer.</p>' +
+      '<p class="muted">' + (flagged.size > 0 ? 'Beyond the errors you flagged, review these too.' : 'You did not flag any of these errors. Review them against your original answer.') + '</p>' +
       lines.join('') + '</section>';
   }
 
