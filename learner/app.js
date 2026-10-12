@@ -28,7 +28,7 @@
   // that shows an error tag resolves it through here.
   const errorLabelMap=()=>{const m={};for(const t of D.skills.error_tags||[])m[t.id]=t.label;return m;};
   const errorLabels=tags=>(tags||[]).map(t=>errorLabelMap()[t]||t);
-  const taskButton=(id,label='Try task')=>'<button type="button" class="secondary" data-task="'+esc(id)+'">'+esc(label)+'</button>';
+  const taskButton=(id,label='Try task')=>'<button type="button" data-task="'+esc(id)+'">'+esc(label)+'</button>';
   const localityLabel=()=>state.locality==='wales'?'Wales':'UK · nation unspecified';
   // Evidence lives only in this browser (localStorage), so a browser clear,
   // quota change or profile switch can silently wipe it. The product review
