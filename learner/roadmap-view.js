@@ -34,7 +34,7 @@
       '<p class="capcard__detail">' + esc(c.detail) + '</p>' +
       (errs.length ? '<p class="capcard__work">Work on: ' + esc(errs.join(', ')) + '</p>' : '') +
       (c.blocked ? '<p class="capcard__blocked">Needs first: ' + esc(c.blocked_titles.join(', ')) + '</p>' : '') +
-      (c.next_review ? '<p class="capcard__due">' + (c.next_review <= (c.today || '9999-12-31') ? 'Check due ' + esc(c.next_review) : 'Next check ' + esc(c.next_review)) + (c.next_review <= (c.today || '9999-12-31') && c.item_id ? '<button type="button" class="secondary" data-task="' + esc(c.item_id) + '" style="font-size:.75rem;padding:4px 8px;margin-left:8px">Start the later check</button>' : '') + '</p>' : '') +
+      (c.next_review ? '<p class="capcard__due">' + (c.next_review <= (c.today || '9999-12-31') ? 'Check due ' + esc(c.next_review) : 'Next check ' + esc(c.next_review)) + (c.urgency ? ' · <span class="capcard__urgency capcard__urgency--' + (c.days_overdue > 30 ? 'stale' : 'soon') + '">' + esc(c.urgency) + '</span>' : '') + (c.next_review <= (c.today || '9999-12-31') && c.item_id ? '<button type="button" class="secondary" data-task="' + esc(c.item_id) + '" style="font-size:.75rem;padding:4px 8px;margin-left:8px">Start the later check</button>' : '') + '</p>' : '') +
       (c.recent_improvement ? '<p class="capcard__up">Improved on your last attempt</p>' : '') +
       '</li>';
   }
