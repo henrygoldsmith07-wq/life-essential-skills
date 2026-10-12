@@ -240,7 +240,7 @@
         '<fieldset><legend>Solving help</legend><p class="muted">Practice with help is allowed and useful. Only answering on your own, on fresh material, counts as a demonstration.</p><label><input type="checkbox" id="help-used"> I used prompts, a checklist, a person or AI to solve the task.</label><label><input type="checkbox" id="solution-before" '+(attempt.known?'checked disabled':'')+'> I knew these materials or answers before this attempt.</label></fieldset>'+
         U.supports('attempt-access')+errorControls+
         '<p id="derived-result" role="status" aria-live="polite">Choose a judgement for every criterion to see the result.</p>'+(current.sim?SV.debrief(current.sim):'')+'<button type="button" id="save-attempt">Save evidence & find next task</button>';
-      $('feedback-area').addEventListener('change',previewOutcome);$('save-attempt').onclick=saveAttempt;U.focus('feedback-title');
+      $('save-attempt').disabled=true;$('feedback-area').addEventListener('change',previewOutcome);$('save-attempt').onclick=saveAttempt;U.focus('feedback-title');
     }catch(e){if(n===token){$('finish-attempt').disabled=false;notice(e.message+' Serve the repository over HTTP.');}}
   }
   function attemptInput(){
@@ -252,7 +252,9 @@
     return AIBoundary.helpIfAIUsed({attempt_id:current.attemptId,phase:current.phase,criteria_judgements:U.judgements(box),help_used:$('help-used').checked,solution_seen:current.known||$('solution-before').checked,access_supports:U.chosenSupports(box),errors_by_competency:errorsBy},aiUsed);
   }
   function previewOutcome(){
-    if([...$('feedback-area').querySelectorAll('[data-criterion]')].some(c=>!c.value))return;
+    const allJudged = ![...$('feedback-area').querySelectorAll('[data-criterion]')].some(c=>!c.value);
+    $('save-attempt').disabled = !allJudged;
+    if(!allJudged) return;
     try{const input=attemptInput(),rows=current.item.competencies.map(cid=>{const scoring=E.rubric(current.item,cid),judgements=input.criteria_judgements.filter(j=>scoring.some(s=>s.id===j.criterion_id)),outcome=E.deriveOutcome(scoring,judgements,input.help_used,input.solution_seen,input.errors_by_competency[cid]);return skillName(cid)+': '+U.statuses[outcome]+' · self-reviewed';});$('derived-result').textContent=rows.join('. ');}catch(e){notice(e.message);}
   }
   function saveAttempt(){
