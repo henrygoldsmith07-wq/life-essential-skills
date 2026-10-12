@@ -24,7 +24,7 @@
 - Post-attempt feedback now shows a context banner explaining whether the attempt was a retention check (a later check to confirm the skill stuck) or a first-look diagnostic (narrowing focus, not awarding evidence), so learners understand what phase of the evidence journey they are in.
 - The post-attempt reassessment message now distinguishes between passed retention checks ("Confirmed"), failed checks ("This did not stick"), and non-retention attempts, giving learners clearer expectations about when the next review is.
 - Post-attempt feedback's "next practice" section now shows the estimated time for the recommended task.
-- Fixed: Today's overdue-retention "Start fresh review" buttons now link to unseen variants (fresh situations) instead of already-seen items, matching the retention principle that a check must use new material.
+- Fixed: Today's overdue-retention "Start the later check" buttons now link to unseen variants (fresh situations) instead of already-seen items, matching the retention principle that a check must use new material.
 
 ### Assessment quality and scalability
 
@@ -77,7 +77,7 @@
 - CSS: added `.fb__section` styling and responsive `.meta` truncation on mobile for capstone task cards and blocked skills list items.
 - The Profile's retention section now offers a "Download retention calendar" button that exports upcoming checks as an iCalendar (.ics) file, so learners can import dates into their preferred calendar app. Dates beyond one year are excluded.
 - The Profile's 'Later checks' section now lists each overdue retention check individually with a 'Start the later check' button, so a learner can begin a due check directly from the report without navigating to Today or Practice first.
-- Today's 'Return at the right time' card now lists all overdue retention checks (not just the count) with individual 'Start fresh review' buttons, so a learner with multiple due checks can act on any of them without first navigating to Practice.
+- Today's 'Return at the right time' card now lists all overdue retention checks (not just the count) with individual 'Start the later check' buttons, so a learner with multiple due checks can act on any of them without first navigating to Practice.
 - The roadmap now surfaces a 'Start the later check' button directly on capability cards whose retention check is overdue, so a learner can begin a due review from the roadmap without navigating to Today or Practice.
 
 ### Performance
