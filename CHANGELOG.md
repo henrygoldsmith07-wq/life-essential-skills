@@ -80,6 +80,9 @@
 - Today's 'Return at the right time' card now lists all overdue retention checks (not just the count) with individual 'Start the later check' buttons, so a learner with multiple due checks can act on any of them without first navigating to Practice.
 - The roadmap now surfaces a 'Start the later check' button directly on capability cards whose retention check is overdue, so a learner can begin a due review from the roadmap without navigating to Today or Practice.
 - Post-attempt feedback's "Common pitfalls to check" section now shows unflagged common mistakes even when the learner flagged some errors, ensuring comprehensive guidance is never fully suppressed by targeted error guidance.
+- The Practice page now shows the earliest retention due date alongside the "Return check" pill (e.g., "Return check · due 2026-10-05 · 10 minutes"), so learners can see urgency at a glance.
+- The Profile's retention check buttons now render as primary (filled) buttons for consistency with all other surfaces.
+- The assessor observation flow now has save-button gating (disabled until all criteria judged), a live outcome preview, and an outcome-stating save notice — matching the learner attempt flow.
 
 ### Performance
 
