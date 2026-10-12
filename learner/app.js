@@ -241,7 +241,7 @@
         U.supports('attempt-access')+errorControls+
         '<p id="derived-result" role="status" aria-live="polite">Choose a judgement for every criterion to see the result.</p>'+(current.sim?SV.debrief(current.sim):'')+'<button type="button" id="save-attempt">Save evidence & find next task</button>';
       $('save-attempt').disabled=true;$('feedback-area').addEventListener('change',previewOutcome);$('save-attempt').onclick=saveAttempt;U.focus('feedback-title');
-    }catch(e){if(n===token){$('finish-attempt').disabled=false;notice(e.message+' Serve the repository over HTTP.');}}
+    }catch(e){if(n===token){$('finish-attempt').disabled=false;const msg=e.message.includes('Feedback could not load')?e.message:'Feedback could not load. Please retry. If the problem persists, ask an assessor to check the materials.';notice(msg);}}
   }
   function attemptInput(){
     const box=$('feedback-area'),errorsBy={};current.item.competencies.forEach(cid=>errorsBy[cid]=[...box.querySelectorAll('[data-error]:checked')].filter(c=>c.dataset.errorCid===cid).map(c=>c.dataset.error));
