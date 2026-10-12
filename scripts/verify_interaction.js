@@ -186,6 +186,3 @@ ok('renderRoadmap guards the lazy body against double loading',
 
 console.log(fail === 0 ? '\nALL INTERACTION CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
-
-console.log(fail === 0 ? '\nALL INTERACTION CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
-process.exit(fail === 0 ? 0 : 1);
