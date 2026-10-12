@@ -83,6 +83,7 @@
 - The Practice page now shows the earliest retention due date alongside the "Return check" pill (e.g., "Return check · due 2026-10-05 · 10 minutes"), so learners can see urgency at a glance.
 - The Profile's retention check buttons now render as primary (filled) buttons for consistency with all other surfaces.
 - The assessor observation flow now has save-button gating (disabled until all criteria judged), a live outcome preview, and an outcome-stating save notice — matching the learner attempt flow.
+- The Profile now includes a **retention history**: the dated trail of later checks the learner has actually taken, newest first, showing the skill, the date, and whether it passed, passed with help, or did not pass (with assessor-reviewed checks marked). A learner's retention counts were previously an opaque pair of numbers; the history makes the retention story readable. Bounded to the most recent 12 checks so the printable report stays short, with the true total still shown in the summary, and expanded in the printed copy without needing to be opened.
 
 ### Performance
 

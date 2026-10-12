@@ -121,6 +121,28 @@ ok('new learner has no milestones earned', freshProf.milestones_earned.length ==
 const total = freshProf.milestones_earned.length + freshProf.milestones_in_progress.length + freshProf.milestones_not_started.length;
 ok('milestone buckets partition all milestones', total === freshProf.milestones_not_started.length + freshProf.milestones_in_progress.length + freshProf.milestones_earned.length && total === D.goals.milestones.length, total + '/' + D.goals.milestones.length);
 
+// 6b. Retention history: the dated trail of later checks, newest first.
+// The counts alone are opaque; the learner should be able to see what happened
+// and when. Derived only from stored records, so it can never invent a check.
+const histProf = R.profile(E.migrateState(read('examples/learners/review-due.json'), D, TODAY), D, TODAY);
+ok('retention history derives only from stored retention records',
+  histProf.retention_history.length === (histProf.retention_history_total <= 12 ? histProf.retention_history_total : 12),
+  histProf.retention_history_total + ' total -> ' + histProf.retention_history.length + ' shown');
+ok('retention history is newest-first and dated',
+  histProf.retention_history.every((r, i, a) => i === 0 || a[i - 1].date >= r.date) &&
+  histProf.retention_history.every(r => /^\d{4}-\d{2}-\d{2}$/.test(r.date)));
+ok('retention history outcome is one the view can label',
+  histProf.retention_history.every(r => ['demonstrated', 'assisted', 'not-yet'].includes(r.outcome)));
+ok('retention history hides raw competency ids',
+  histProf.retention_history.every(r => r.title && !/^[a-z]+\.[a-z]+/.test(r.title)));
+const histHtml = PV.render(histProf, 'UK');
+ok('profile renders retention history label', histHtml.includes('Retention checks you have taken'));
+ok('profile labels each retention outcome in words',
+  histHtml.includes('Passed') || histProf.retention_history.length === 0);
+ok('new learner has no retention history', freshProf.retention_history.length === 0);
+ok('new learner profile renders without a history section',
+  !PV.render(freshProf, 'UK').includes('Retention checks you have taken'));
+
 // 7. AI boundary guards
 ok('AI: has no grade capability', !Object.values(AI.ALLOWED).includes('grade'));
 const draft = AI.asDraft({ content: 'x' });

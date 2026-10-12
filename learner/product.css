@@ -161,6 +161,15 @@ h4{font-size:.95rem;margin:0 0 6px;line-height:1.3}
 .profilelist li{padding:8px 0;border-bottom:1px solid #eceee9;font-size:.9rem}
 .profilelist li:last-child{border-bottom:0}
 .profile__foot{margin-top:22px;font-size:.82rem;border-top:1px solid var(--line);padding-top:12px}
+.profdets{margin-top:10px}
+.profdets>summary{cursor:pointer;font-size:.85rem;font-weight:600;color:var(--green);list-style:none}
+.profdets>summary::-webkit-details-marker{display:none}
+.profdets>summary::before{content:'▸ ';font-size:.8rem}
+.profdets[open]>summary::before{content:'▾ '}
+.profdets .profilelist{margin-top:8px}
+.tone-done{font-weight:600;color:var(--green)}
+.tone-warn{font-weight:600;color:var(--amber)}
+.tone-stop{font-weight:600;color:var(--red)}
 
 /* --- Mobile ------------------------------------------------------------ */
 @media(max-width:760px){
@@ -175,4 +184,8 @@ h4{font-size:.95rem;margin:0 0 6px;line-height:1.3}
   .nav,.actions,#profile-content .actions,footer{display:none!important}
   .profile{border:0;padding:0}
   h1{font-size:1.8rem}
+  /* A collapsed <details> prints nothing; the profile is a printable report,
+     so history must be visible in the printed copy without opening it. */
+  .profdets>*:not(summary){display:block!important}
+  .profdets>summary::before{content:''}
 }
