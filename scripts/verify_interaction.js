@@ -227,6 +227,29 @@ ok('progress page never searches for an already-seen retention item',
   }
 }
 
+// ---- 6e. Today's due-check list must match the count it announces ----
+// The card announces p.totals.due checks and then lists them. A stricter list
+// filter (demonstrated status, knowledge mode excluded) once hid a due
+// knowledge check: the card said "1 delayed check is due" and listed nothing.
+{
+  const cidK = D.skills.competencies.find(c => c.mode === 'knowledge').id;
+  const kit = D.bank.items.find(i => i.competencies.includes(cidK) && E.eligible(i, 'uk'));
+  const ksc = E.rubric(kit, cidK);
+  let ks = E.emptyState('uk', 'general');
+  ks = { ...ks, goal_competencies: [cidK] };
+  ks = E.recordAttempt(ks, D, kit.id, {
+    attempt_id: 'due-k-1', criteria_judgements: ksc.map(x => ({ criterion_id: x.id, judgement: 'met' })),
+    help_used: false, solution_seen: false, access_supports: [], error_tags: []
+  }, '2026-01-05');
+  const kp = E.progress(ks, D, TODAY);
+  ok('a knowledge competency can be due for a delayed check', kp.totals.due >= 1, 'totals.due=' + kp.totals.due);
+  // The app.js due-list filter must agree with the totals.due definition:
+  // last_demonstrated && next_review && next_review <= today — nothing more.
+  ok('today card due list uses the same rule as totals.due',
+    /p\.skills\.filter\(s=>s\.last_demonstrated&&s\.next_review&&s\.next_review<=today\(\)\)\.map\(/.test(appSource),
+    'list filter must not drop knowledge-mode or retried-but-due checks');
+}
+
 // ---- 7. No surface may emit the same id twice ----
 // The rubric generates judge-0, judge-help-0, ... from a fixed prefix, so
 // rendering it twice in one panel duplicates every control id and puts hidden
