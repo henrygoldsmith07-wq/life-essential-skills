@@ -5,8 +5,18 @@ window.AssessorMode=ctx=>{
   let token=0;
   function render(){
     const s=state();
-    const eff=s.records.map(r=>E.effectiveRecord(state(),r,D));
-    $('assessor-record').innerHTML='<option value="">Choose an attempt</option>'+s.records.map((r,i)=>{const e=eff[i];const reviewed=e.evidence_level==='assessor-reviewed';const label=(reviewed?'Reviewed · ':'')+(e.outcome==='demonstrated'?'Independent · shown':e.outcome==='assisted'?'With help':'Not yet met');return '<option value="'+U.esc(r.id)+'"'+(reviewed?' data-reviewed="1"':'')+'>'+U.esc(D.bank.items.find(i=>i.id===r.item_id).title+' · '+D.skills.competencies.find(c=>c.id===r.competency_id).title+' · '+r.date)+' — '+label+'</option>';}).join('');
+    // Tolerate records left over from removed content: an unknown task or
+    // competency must not crash the assessor screen (verify_resilience proves
+    // the roadmap survives the same damage). Such records stay visible in the
+    // list — never silently hidden — but are labelled and cannot be reviewed.
+    $('assessor-record').innerHTML='<option value="">Choose an attempt</option>'+s.records.map(r=>{
+      const item=D.bank.items.find(i=>i.id===r.item_id),comp=D.skills.competencies.find(c=>c.id===r.competency_id);
+      const when=r.date||'unknown date';
+      if(!item||!comp)return '<option value="'+U.esc(r.id)+'" disabled>'+U.esc((item?item.title:'A task removed by a content update')+' · '+(comp?comp.title:r.competency_id)+' · '+when)+' — kept in the record; it cannot be reviewed against the current curriculum</option>';
+      let e;try{e=E.effectiveRecord(s,r,D);}catch{return '<option value="'+U.esc(r.id)+'" disabled>'+U.esc(item.title+' · '+comp.title+' · '+when)+' — unreadable record; kept in the history</option>';}
+      const reviewed=e.evidence_level==='assessor-reviewed';const label=(reviewed?'Reviewed · ':'')+(e.outcome==='demonstrated'?'Independent · shown':e.outcome==='assisted'?'With help':'Not yet met');
+      return '<option value="'+U.esc(r.id)+'"'+(reviewed?' data-reviewed="1"':'')+'>'+U.esc(item.title+' · '+comp.title+' · '+when)+' — '+label+'</option>';
+    }).join('');
     $('observation-kind').innerHTML=D.practical.rubrics.map(r=>'<option value="'+r.id+'">'+U.esc(r.title)+'</option>').join('');
     $('assessor-history').textContent=s.reviews.length+' assessor reviews and '+s.observations.length+' structured practical observations retained.'+(s.legacy_observations.length?' Older observation flags are preserved but need a structured observed check before meeting a practical gate.':'');
   }
