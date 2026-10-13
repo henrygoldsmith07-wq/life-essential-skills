@@ -179,6 +179,54 @@ ok('feedback retention wording is read from the recorded phase',
 ok('progress page never searches for an already-seen retention item',
   !/isRetentionDue\s*\n?\s*\?\s*D\.bank\.items\.find\([^)]*&&E\.seen\(/.test(appSource));
 
+// ---- 6d. The expected next-check date must be matched by competency id ----
+// Matching on the display title is ambiguous: "Budget and essential costs" is a
+// prefix of "Budget and essential costs · knowledge check", so an attempt on the
+// independent sibling also matched the foundation capability and could show the
+// earlier of the two dates. Demonstrate both siblings and require each attempt
+// to surface its own date.
+{
+  const pickPair = D.skills.competencies.map(c => c.id).find(id => id.endsWith('.independent')
+    && D.skills.competencies.some(x => x.id === id.replace(/\.independent$/, '.foundation')));
+  ok('a sibling competency pair exists for the date guard', !!pickPair, pickPair || 'none');
+  if (pickPair) {
+    const sibId = pickPair.replace(/\.independent$/, '.foundation');
+    const nameOf = cid => D.skills.competencies.find(c => c.id === cid).title
+      .replace(' · independent', '').replace(' · foundation', ' · knowledge check').replace(' · adaptation', ' · adapting to change');
+    // Confirm the ambiguity this guard is about actually exists in the data.
+    const ambiguous = nameOf(pickPair).startsWith(nameOf(sibId)) || nameOf(sibId).startsWith(nameOf(pickPair));
+    ok('the sibling titles are genuinely prefix-ambiguous', ambiguous, nameOf(pickPair) + ' / ' + nameOf(sibId));
+    // Demonstrate both so each capability carries its own next_review.
+    let both = E.emptyState('uk', 'general');
+    both = { ...both, goal_competencies: [pickPair, sibId] };
+    for (const [cid, aid, date] of [[sibId, 'amb-f-1', '2026-01-05'], [pickPair, 'amb-i-1', '2026-02-20']]) {
+      const it = D.bank.items.find(i => i.competencies.includes(cid) && E.eligible(i, 'uk'));
+      if (!it) { both = null; break; }
+      const sc = E.rubric(it, cid);
+      both = E.recordAttempt(both, D, it.id, {
+        attempt_id: aid, criteria_judgements: sc.map(x => ({ criterion_id: x.id, judgement: 'met' })),
+        help_used: false, solution_seen: false, access_supports: [], error_tags: []
+      }, date);
+    }
+    if (both) {
+      const rmb = R.roadmap(both, D, TODAY);
+      for (const cid of [pickPair, sibId]) {
+        const own = rmb.capabilities.find(c => c.id === cid);
+        // The fixed app.js rule: match on competency id.
+        const rows = [{ cid, title: nameOf(cid) }];
+        const shown = rmb.capabilities.filter(c => c.next_review && rows.some(r => r.cid === c.id)).map(c => c.next_review).sort()[0];
+        ok('next-check date comes from the attempted competency: ' + cid, shown === own.next_review, 'shown=' + shown + ' own=' + own.next_review);
+        // And the old title rule demonstrably disagrees, so the guard is not vacuous.
+        const byTitle = rmb.capabilities.filter(c => c.next_review && nameOf(cid).startsWith(c.title.split(' · ')[0])).map(c => c.next_review).sort()[0];
+        if (byTitle !== own.next_review) ok('the title-based rule would have been wrong here: ' + cid, true, 'would show ' + byTitle);
+      }
+      // The source must not reintroduce the ambiguous comparison.
+      ok('app.js does not match capabilities by title prefix',
+        !/r\.title\.startsWith\(/.test(appSource));
+    }
+  }
+}
+
 // ---- 7. No surface may emit the same id twice ----
 // The rubric generates judge-0, judge-help-0, ... from a fixed prefix, so
 // rendering it twice in one panel duplicates every control id and puts hidden
