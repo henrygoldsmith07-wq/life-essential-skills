@@ -72,5 +72,33 @@ let threw7 = null;
 try { RV.render(R.roadmap(bare, D, TODAY)); PV.render(R.profile(bare, D, TODAY), 'UK'); } catch (e) { threw7 = e; }
 ok('a completely bare state renders', !threw7, threw7 ? threw7.message : '');
 
+// 8. The assessor screen must survive the same damaged records the roadmap
+//    survives: a dangling item reference and an unknown competency must be
+//    labelled, never crash the whole review workflow.
+{
+  const stub = () => ({ innerHTML: '', textContent: '', replaceChildren() {}, onclick: null, onchange: null, hidden: false, classList: { add() {}, remove() {} }, focus() {}, addEventListener() {}, removeEventListener() {}, querySelectorAll: () => [] });
+  const els = new Map();
+  global.window = global.window || {};
+  global.document = { getElementById: id => { if (!els.has(id)) els.set(id, stub()); return els.get(id); } };
+  const U = { esc: s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])), statuses: {} };
+  new Function('window', 'document', fs.readFileSync(path.join(root, 'learner', 'assessor.js'), 'utf8'))(global.window, global.document);
+  const damaged = E.emptyState('wales', 'general');
+  const goodItem = D.bank.items.find(i => i.competencies.includes('money.budget.foundation'));
+  const goodScoring = E.rubric(goodItem, 'money.budget.foundation');
+  damaged.records.push(
+    { id: 'r1', attempt_id: 'a1', competency_id: 'money.budget.independent', item_id: 'NO-SUCH-ITEM', phase: 'transfer', date: '2026-09-01', assessment_version: 1, help_used: false, access_supports: [], solution_seen: false, error_tags: [], evidence_level: 'self-reviewed', reviewer_type: 'learner', criteria_judgements: [] },
+    { id: 'r2', attempt_id: 'a2', competency_id: 'not.a.real.competency', item_id: D.bank.items[0].id, phase: 'transfer', date: '2026-09-01', assessment_version: 1, help_used: false, access_supports: [], solution_seen: false, error_tags: [], evidence_level: 'self-reviewed', reviewer_type: 'learner', criteria_judgements: [] },
+    { id: 'r3', attempt_id: 'a3', competency_id: 'money.budget.foundation', item_id: goodItem.id, phase: 'diagnostic', date: '2026-09-02', assessment_version: 1, help_used: false, access_supports: [], solution_seen: false, error_tags: [], evidence_level: 'self-reviewed', reviewer_type: 'learner', criteria_judgements: goodScoring.map(s => ({ criterion_id: s.id, judgement: 'met' })) }
+  );
+  let threw8 = null;
+  const am = global.window.AssessorMode({ E, D, U, load: { item: async () => { throw new Error('gone'); } }, renderMaterials: () => '', state: () => damaged, save: () => {}, today: () => TODAY, notice: () => {}, download: () => {} });
+  try { am.render(); } catch (e) { threw8 = e; }
+  const html = els.get('assessor-record').innerHTML;
+  ok('the assessor render does not crash on damaged records', !threw8, threw8 ? threw8.message : '');
+  ok('a removed-task record is labelled, not hidden or crashing', html.includes('removed by a content update'), html.slice(0, 200));
+  ok('an unknown-competency record is labelled with its raw id, not hidden', html.includes('not.a.real.competency'), html.slice(0, 200));
+  ok('undamaged records still render with their review status', html.includes('Independent · shown') || html.includes('Not yet met') || html.includes('With help'));
+}
+
 console.log(fail === 0 ? '\nALL RESILIENCE CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
