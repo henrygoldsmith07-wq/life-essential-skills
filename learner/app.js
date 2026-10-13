@@ -278,12 +278,17 @@
         const judgements=input.criteria_judgements.filter(j=>scoring.some(s=>s.id===j.criterion_id));
         const map={};judgements.forEach(j=>map[j.criterion_id]=j.judgement);
         const outcome=E.deriveOutcome(scoring,judgements,input.help_used,input.solution_seen,input.errors_by_competency[cid]);
-        return {title:skillName(cid),comp,scoring,judgements:map,error_tags:input.errors_by_competency[cid]||[],outcome};
+        return {cid:cid,title:skillName(cid),comp,scoring,judgements:map,error_tags:input.errors_by_competency[cid]||[],outcome};
       });
       persist(next);
       navigate('today');location.hash='today';
       const rm=Roadmap.roadmap(next,D,today());
-      const nextReview=rm.capabilities.filter(c=>c.next_review&&rows.some(r=>r.title.startsWith(c.title.split(' · ')[0]))).map(c=>c.next_review).sort()[0];
+      // Match the expected date by competency id. Matching on the display title
+      // was ambiguous: "Budget and essential costs" is a prefix of "Budget and
+      // essential costs · knowledge check", so an attempt on the independent
+      // sibling also matched the foundation capability and could show the
+      // earlier of the two dates as the learner's next fresh check.
+      const nextReview=rm.capabilities.filter(c=>c.next_review&&rows.some(r=>r.cid===c.id)).map(c=>c.next_review).sort()[0];
       const retentionContext=wasRetention
         ? '<p class="fb__context">This was a later check — a new situation to confirm the skill stuck since your last demonstration.</p>'
         : current.phase === 'diagnostic'
