@@ -49,7 +49,7 @@
       (last?'You last downloaded a copy more than '+BACKUP_DAYS+' days ago.':'It lives only in this browser, so a browser clear would lose it.')+
       ' </p><p><a href="#settings">Download a backup in My setup</a>.</p></div>';
   }
-  function downloadText(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+  function downloadText(name,text,type){const url=URL.createObjectURL(new Blob([text],{type:type||'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   function download(name,value){downloadText(name,JSON.stringify(value,null,2)+'\n');}
   // Generate an iCalendar (.ics) string from retention-due and upcoming items.
   // Only includes dates that fall within a reasonable window (today + 1 year).
@@ -189,7 +189,7 @@
     const p=Roadmap.profile(state,D,today());
     $('profile-content').innerHTML=PV.render(p,localityLabel())+'<div class="actions"><button type="button" class="secondary" id="print-profile">Print or save as PDF</button><button type="button" class="secondary" id="export-calendar">Download retention calendar</button></div>';
     $('print-profile').onclick=()=>window.print();
-     $('export-calendar').onclick=()=>{const ics=icsExport(p);if(ics){downloadText('life-skills-retention.ics',ics);notice('Retention calendar downloaded.');}else{notice('No upcoming retention checks to export.');}};
+     $('export-calendar').onclick=()=>{const ics=icsExport(p);if(ics){downloadText('life-skills-retention.ics',ics,'text/calendar');notice('Retention calendar downloaded.');}else{notice('No upcoming retention checks to export.');}};
   }
   function onboardingPrompt(){
     const started=state.records.length||state.exposures.length;
