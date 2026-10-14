@@ -338,5 +338,37 @@ ok('renderRoadmap loads any domain already open when the listener attaches',
 ok('renderRoadmap guards the lazy body against double loading',
   /dataset\.loaded/.test(renderRoadmapSrc) && /loadBody/.test(renderRoadmapSrc));
 
+// ---- 12. The retention calendar export must be valid iCalendar ----
+// The Profile's "Download retention calendar" button exports .ics. RFC 5545
+// requires CRLF line endings, a UID and DTSTAMP on every VEVENT, escaped text
+// (commas, semicolons, backslashes, newlines) in SUMMARY, and an all-day date
+// format (YYYYMMDD) — not a "T..." datetime — when DTSTART declares VALUE=DATE.
+{
+  // Execute the real icsExport from app.js in a stub scope; it is pure.
+  const fn = (appSrc.match(/  function icsExport\(p\) \{[\s\S]*?\n  \}/) || [''])[0];
+  ok('icsExport found in app.js for the calendar guard', !!fn);
+  if (fn) {
+    const icsExport = new Function('return (' + fn.trim().replace(/^function icsExport/, 'function anonymous') + ');')();
+    const sample = {
+      retention_due: [{ id: 'money.budget.independent', title: 'Budget, and essential costs', domain_title: 'Money', next_review: '2026-11-01' }],
+      retention_upcoming: [{ id: 'x,y;z', title: 'Line one\nLine two', domain_title: null, next_review: '2026-12-25' }]
+    };
+    const ics = icsExport(sample);
+    const lines = ics.split('\r\n');
+    ok('ics uses CRLF line endings', ics.includes('\r\n') && !ics.replace(/\r\n/g, '').includes('\n'), 'LF-only files are rejected by strict parsers');
+    ok('ics has VCALENDAR envelope', lines[0] === 'BEGIN:VCALENDAR' && lines[lines.length - 2] === 'END:VCALENDAR');
+    ok('every VEVENT carries UID and DTSTAMP',
+      (ics.match(/BEGIN:VEVENT/g) || []).length === 2 && (ics.match(/[\r\n]UID:/g) || []).length === 2 && (ics.match(/[\r\n]DTSTAMP:/g) || []).length === 2,
+      ics.slice(0, 300));
+    ok('DTSTART;VALUE=DATE carries an all-day YYYYMMDD value, not a datetime',
+      /DTSTART;VALUE=DATE:\d{8}\r/.test(ics) && !/DTSTART;VALUE=DATE:\d{8}T/.test(ics), 'an all-day VALUE=DATE must not include a T');
+    ok('SUMMARY text escapes commas/semicolons/newlines',
+      ics.includes('Budget\\, and essential costs') && ics.includes('Line one\\nLine two') && !/SUMMARY:[^\r\n]*[^\\][;,]/.test(ics), ics.split('\r\n').find(l => l.startsWith('SUMMARY:')) || '');
+    ok('an empty feed exports nothing rather than an invalid skeleton', icsExport({ retention_due: [], retention_upcoming: [] }) === '');
+    ok('also exports nothing when every date is beyond the one-year window',
+      icsExport({ retention_due: [], retention_upcoming: [{ id: 'far', title: 'x', next_review: '2199-01-01' }] }) === '');
+  }
+}
+
 console.log(fail === 0 ? '\nALL INTERACTION CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);

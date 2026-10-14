@@ -53,21 +53,38 @@
   function download(name,value){downloadText(name,JSON.stringify(value,null,2)+'\n');}
   // Generate an iCalendar (.ics) string from retention-due and upcoming items.
   // Only includes dates that fall within a reasonable window (today + 1 year).
+  // RFC 5545 compliance, so the file actually imports in calendar apps:
+  //  - UID + DTSTAMP on every VEVENT (both REQUIRED);
+  //  - DTSTART declared VALUE=DATE carries an all-day YYYYMMDD value, not a
+  //    date-time "T" string (the old value silently misparsed or was rejected);
+  //  - CRLF line endings, required by the standard;
+  //  - SUMMARY/UID text escaped for commas, semicolons and line breaks.
   function icsExport(p) {
     const items = [...p.retention_due, ...p.retention_upcoming];
     if (!items.length) return '';
     const today = new Date();
     const maxDate = new Date(today); maxDate.setFullYear(today.getFullYear() + 1);
-    const fmt = d => d.toISOString().replace(/[-:]/g, '').slice(0, 16);
-    const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//life-essential-skills//EN'];
+    const stamp = today.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+    const dateOnly = v => { const d = new Date(v + 'T12:00:00'); return [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join(''); };
+    const escText = t => String(t).replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\r?\n/g, '\\n');
+    const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//life-essential-skills//EN', 'CALSCALE:GREGORIAN'];
     for (const c of items) {
       const d = new Date(c.next_review + 'T12:00:00');
       if (d > maxDate) continue;
       const summary = c.domain_title ? c.title + ' (' + c.domain_title + ')' : c.title;
-      lines.push('BEGIN:VEVENT', 'SUMMARY:' + summary, 'DTSTART;VALUE=DATE:' + fmt(d), 'END:VEVENT');
+      // RFC 5545: all-day events span DTSTART (inclusive) to DTEND (exclusive).
+      const end = new Date(d); end.setDate(end.getDate() + 1);
+      lines.push('BEGIN:VEVENT',
+        'UID:' + escText(c.id) + '-' + dateOnly(c.next_review) + '@life-essential-skills',
+        'DTSTAMP:' + stamp,
+        'DTSTART;VALUE=DATE:' + dateOnly(c.next_review),
+        'DTEND;VALUE=DATE:' + dateOnly(end.toISOString().slice(0, 10)),
+        'SUMMARY:Later check: ' + escText(summary),
+        'END:VEVENT');
     }
+    if (lines.length === 4) return '';
     lines.push('END:VCALENDAR');
-    return lines.join('\n') + '\n';
+    return lines.join('\r\n') + '\r\n';
   }
   const assessor=AssessorMode({E,D,U,load,renderMaterials,state:()=>state,save:persist,today,notice,download});
   function teachingMarkdown(text,path){
