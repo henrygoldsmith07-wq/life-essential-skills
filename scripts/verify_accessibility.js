@@ -116,5 +116,25 @@ ok('roadmap renders for an empty learner', typeof RV.render(fresh) === 'string' 
 ok('profile renders for an empty learner', PV.render(R.profile(E.emptyState('wales', 'general'), D, TODAY), 'UK').length > 500);
 ok('every simulation stage renders', D.simulations.simulations.every(s => s.stages.every((st, n) => SV.stage(s, n).length > 100)));
 
+// ---------- 5. shell headings ----------
+// The shell: each <section> uses aria-labelledby to name its heading. Every
+// section has a static h1 in index.html it should point at, except #workspace,
+// which is labelled by the view-rendered 'task-title'. An earlier version
+// pointed the Profile section at a view-rendered h2 *inside* its content div
+// (the pathway name), so a screen reader announced e.g. 'Moving out' instead
+// of 'My Independence Profile'. The distinct check below (not a mere dangling
+// check) forces every other section to resolve to a static shell element.
+{
+  const sh = fs.readFileSync(path.join(root, 'learner', 'index.html'), 'utf8');
+  const shellIds = new Set([...sh.matchAll(/id="([^"]+)"/g)].map(m => m[1]));
+  const misses = [...sh.matchAll(/<section id="([^"]+)"[^>]*aria-labelledby="([^"]+)"/g)]
+    .filter(([, sec, ref]) => sec === 'workspace' ? ref !== 'task-title' : !shellIds.has(ref));
+  ok('shell sections label themselves with a static heading id', misses.length === 0,
+    misses.map(m => m[1] + ' -> ' + m[2]).slice(0, 3).join(', '));
+  ok('the view-rendered workspace label id exists',
+    ['roadmap-view.js', 'onboarding-view.js', 'simulation-view.js', 'feedback-view.js', 'profile-view.js', 'app.js', 'assessor.js']
+      .some(f => /id="task-title"/.test(fs.readFileSync(path.join(root, 'learner', f), 'utf8'))));
+}
+
 console.log(fail === 0 ? '\nALL ACCESSIBILITY/ESCAPING CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);
