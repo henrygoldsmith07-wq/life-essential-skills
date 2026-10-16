@@ -94,7 +94,9 @@ Use spoken, typed, or other accessible responses; adapt tasks to your abilities 
 
 The learner app is a **dependency-free static site** — plain HTML, CSS and ES modules with committed generated assets. It needs no build step, no server runtime and no environment variables, because all evidence stays in the learner's browser.
 
-Deploy by importing the repository in Vercel; [`vercel.json`](vercel.json) sets `framework: null`, `buildCommand: null` and `outputDirectory: "."`, so Vercel serves the repository as static files without running a build. The root `index.html` is a landing page linking to `/learner/`.
+The [Discover page](research/README.md) (`/research/`) adds a daily digest of new research from arXiv, PubMed, Cochrane, medRxiv, bioRxiv, Semantic Scholar, OpenAlex and 30+ other sources, summarised into life skills and facts by a free OpenRouter model. It is still static on Vercel: a scheduled GitHub Actions workflow writes `research/data/*.json` and commits it, which triggers the redeploy. Add an `OPENROUTER_API_KEY` repository secret to enable summaries.
+
+Deploy by importing the repository in Vercel; [`vercel.json`](vercel.json) sets `framework: null`, `buildCommand: null` and `outputDirectory: "."`, so Vercel serves the repository as static files without running a build. The root `index.html` is a landing page linking to `/learner/`. `trailingSlash: true` and `cleanUrls: false` keep `/learner/` and `/research/` on their directory URLs. A redirect to `/learner` would resolve the pages' relative assets against `/` and break them, and would also hand the service worker redirected responses.
 
 The app is installable and offline-first: [`manifest.webmanifest`](manifest.webmanifest) (icons, theme colour, standalone display) and [`sw.js`](sw.js) (versioned cache, precache shell, runtime cache of visited pages, navigation fallback to the dashboard). The worker never caches `assessor/answers.json` or `assessor/benchmarks.json` — excluded from the upload and deny-listed in code — and registration in `learner/app.js` is silent best-effort over HTTP(S) only.
 

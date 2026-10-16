@@ -12,11 +12,13 @@
  *   assessor/benchmarks.json) are NEVER cached or served by this worker:
  *   they are excluded from the deploy, and the deny-list below keeps them
  *   out of the cache even if a maintainer build serves them locally.
+ * - The daily research digest (/research/data/) changes every morning, so it
+ *   is network-first and falls back to the last cached copy offline.
  * - Bumping CACHE below retires the previous cache on activate.
  */
 'use strict';
 
-const CACHE = 'les-v1';
+const CACHE = 'les-v2';
 
 const PRECACHE = [
   '/',
@@ -43,7 +45,11 @@ const PRECACHE = [
   '/learner/favicon.svg',
   '/learner/icon-192.png',
   '/learner/icon-512.png',
-  '/START-HERE.md'
+  '/START-HERE.md',
+  '/research/',
+  '/research/index.html',
+  '/research/research.css',
+  '/research/research.js'
 ];
 
 // Aggregate solution files must never enter the cache. They are excluded
@@ -71,6 +77,18 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin || neverCache(url)) return;
+  if (url.pathname.startsWith('/research/data/')) {
+    event.respondWith(
+      fetch(request).then((response) => {
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE).then((cache) => cache.put(request, copy));
+        }
+        return response;
+      }).catch(() => caches.match(request).then((hit) => hit || Promise.reject(new Error('offline and not cached'))))
+    );
+    return;
+  }
   event.respondWith(
     caches.match(request, { ignoreSearch: false }).then((hit) => {
       const network = fetch(request).then((response) => {

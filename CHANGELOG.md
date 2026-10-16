@@ -4,6 +4,9 @@
 
 ### Product surfaces
 
+- Add **Discover** (`/research/`): a daily research digest. A scheduled GitHub Actions workflow pulls new work from 40+ free APIs and feeds — arXiv (with alphaXiv discussion links), Semantic Scholar, OpenAlex, PubMed, Cochrane reviews, medRxiv, bioRxiv, Europe PMC preprints, OSF preprints, PLOS, DOAJ, major journals and science news. It de-duplicates and ranks the results for everyday relevance and evidence strength, and summarises the best into life skills, facts and headlines with a free OpenRouter model. The output is committed as static JSON, so Vercel stays build-free. The summaries are labelled as AI-written, carry caveats, never rate a preprint as high confidence, and sit entirely outside the learner's evidence record.
+- Fix the Vercel URL configuration: `trailingSlash: false` redirected `/learner/` to `/learner`, which broke every relative asset and the service-worker precache. Directory URLs are now kept.
+
 - Make the learner app **installable and offline-first**: a web manifest with icons and theme colour plus a versioned service worker that precaches the app shell and serves visited guides, tasks and feedback without connectivity. The worker never caches the aggregate answer/benchmark files (excluded from hosting and deny-listed in the worker), and registration is silent best-effort over HTTP(S) only. Covered by `static_smoke.js` installability and precache-deny contracts.
 
 - Add the **Independence Roadmap**: a capability map across all twelve domains showing what is demonstrated, developing, needing work, blocked (with the blocking prerequisite named), and due for a retention check, plus one recommended next step. Each of the 92 capabilities carries its own explainable state. There is deliberately **no overall "life score"** — a single number would imply the domains are commensurable and would hide the evidence behind it.

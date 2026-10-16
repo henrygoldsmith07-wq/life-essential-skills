@@ -1,0 +1,367 @@
+{
+ "schema": 1,
+ "generated_at": null,
+ "sources": [
+  {
+   "id": "arxiv",
+   "name": "arXiv",
+   "kind": "preprint",
+   "group": "Preprint servers",
+   "home": "https://arxiv.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "hf-daily-papers",
+   "name": "Hugging Face Daily Papers",
+   "kind": "preprint",
+   "group": "Preprint servers",
+   "home": "https://huggingface.co/papers",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "semanticscholar",
+   "name": "Semantic Scholar",
+   "kind": "journal",
+   "group": "Scholarly indexes",
+   "home": "https://www.semanticscholar.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "openalex",
+   "name": "OpenAlex",
+   "kind": "journal",
+   "group": "Scholarly indexes",
+   "home": "https://openalex.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "pubmed",
+   "name": "PubMed",
+   "kind": "journal",
+   "group": "Medicine and health",
+   "home": "https://pubmed.ncbi.nlm.nih.gov",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "cochrane",
+   "name": "Cochrane Library",
+   "kind": "review",
+   "group": "Medicine and health",
+   "home": "https://www.cochranelibrary.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "medrxiv",
+   "name": "medRxiv",
+   "kind": "preprint",
+   "group": "Preprint servers",
+   "home": "https://www.medrxiv.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "biorxiv",
+   "name": "bioRxiv",
+   "kind": "preprint",
+   "group": "Preprint servers",
+   "home": "https://www.biorxiv.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "europepmc",
+   "name": "Europe PMC preprints",
+   "kind": "preprint",
+   "group": "Preprint servers",
+   "home": "https://europepmc.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "osf",
+   "name": "OSF Preprints (PsyArXiv, SocArXiv, EdArXiv, MetaArXiv)",
+   "kind": "preprint",
+   "group": "Preprint servers",
+   "home": "https://osf.io/preprints",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "plos",
+   "name": "PLOS journals",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://plos.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "doaj",
+   "name": "DOAJ (open-access journals)",
+   "kind": "journal",
+   "group": "Scholarly indexes",
+   "home": "https://doaj.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "chemrxiv",
+   "name": "ChemRxiv",
+   "kind": "preprint",
+   "group": "Preprint servers",
+   "home": "https://chemrxiv.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "nature",
+   "name": "Nature",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://www.nature.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "nature-human-behaviour",
+   "name": "Nature Human Behaviour",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://www.nature.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "nature-medicine",
+   "name": "Nature Medicine",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://www.nature.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "science",
+   "name": "Science (news)",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://www.science.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "pnas",
+   "name": "PNAS",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://www.pnas.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "lancet",
+   "name": "The Lancet",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://www.thelancet.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "nejm",
+   "name": "New England Journal of Medicine",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://www.nejm.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "bmj",
+   "name": "The BMJ",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://www.bmj.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "jama-network-open",
+   "name": "JAMA Network Open",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://jamanetwork.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "elife",
+   "name": "eLife",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://elifesciences.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "frontiers-psychology",
+   "name": "Frontiers in Psychology",
+   "kind": "journal",
+   "group": "Journals",
+   "home": "https://www.frontiersin.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "nber",
+   "name": "NBER working papers",
+   "kind": "preprint",
+   "group": "Journals",
+   "home": "https://www.nber.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "our-world-in-data",
+   "name": "Our World in Data",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://ourworldindata.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "who",
+   "name": "World Health Organization news",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://www.who.int",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "nih",
+   "name": "NIH news releases",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://www.nih.gov",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "sciencedaily",
+   "name": "ScienceDaily",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://www.sciencedaily.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "sciencedaily-health",
+   "name": "ScienceDaily · Health",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://www.sciencedaily.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "sciencedaily-mind",
+   "name": "ScienceDaily · Mind & Brain",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://www.sciencedaily.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "eurekalert-health",
+   "name": "EurekAlert! · Health",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://www.eurekalert.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "eurekalert-social",
+   "name": "EurekAlert! · Social & behaviour",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://www.eurekalert.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "medicalxpress",
+   "name": "Medical Xpress",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://medicalxpress.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "phys-org",
+   "name": "Phys.org",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://phys.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "quanta",
+   "name": "Quanta Magazine",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://www.quantamagazine.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "knowable",
+   "name": "Knowable Magazine",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://knowablemagazine.org",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "mit-news",
+   "name": "MIT News · Research",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://news.mit.edu",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "new-scientist",
+   "name": "New Scientist",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://www.newscientist.com",
+   "ok": null,
+   "count": 0
+  },
+  {
+   "id": "bbc-science",
+   "name": "BBC News · Science & Environment",
+   "kind": "news",
+   "group": "Science news",
+   "home": "https://feeds.bbci.co.uk",
+   "ok": null,
+   "count": 0
+  }
+ ],
+ "items": []
+}

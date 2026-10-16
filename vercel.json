@@ -4,8 +4,8 @@
   "buildCommand": null,
   "outputDirectory": ".",
   "installCommand": null,
-  "cleanUrls": true,
-  "trailingSlash": false,
+  "cleanUrls": false,
+  "trailingSlash": true,
   "headers": [
     {
       "source": "/learner/(.*).json",
@@ -36,6 +36,19 @@
     },
     {
       "source": "/learner/(.*).css",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/research/data/(.*).json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/research/(.*).(js|css)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]

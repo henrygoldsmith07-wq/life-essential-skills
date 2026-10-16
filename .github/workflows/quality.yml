@@ -65,6 +65,8 @@ jobs:
         run: python3 -m unittest discover -s tests -v
       - name: Test the shared learner rules engine
         run: node --test tests/engine.test.js tests/evidence.test.js
+      - name: Test the research digest pipeline (mocked network)
+        run: node --test tests/research.test.js
       - name: Check dashboard JavaScript syntax
         run: node --check learner/app.js
       - name: Lint Markdown

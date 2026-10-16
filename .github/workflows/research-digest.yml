@@ -1,0 +1,62 @@
+name: Daily research digest
+
+# Fetches new papers from every source in scripts/research/sources.js,
+# summarises the most useful with a free OpenRouter model, and commits the
+# static JSON under research/data/. Vercel redeploys on the push.
+#
+# Setup: Settings → Secrets and variables → Actions → New repository secret
+#   OPENROUTER_API_KEY   (required for summaries)
+# Optional secrets: NCBI_API_KEY, S2_API_KEY, OPENALEX_API_KEY
+# Optional variables: OPENROUTER_MODEL, CONTACT_EMAIL, SITE_URL
+
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Look-back window in days (use more for a first backfill)'
+        default: '2'
+      max:
+        description: 'Papers to summarise (free tier: ~50 model calls a day; 8 papers per call)'
+        default: '48'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Test the digest pipeline
+        run: node --test tests/research.test.js
+      - name: Fetch and summarise new research
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          DAYS: ${{ inputs.days || '2' }}
+          MAX: ${{ inputs.max || '48' }}
+        run: node scripts/research/run.js --days "$DAYS" --max "$MAX"
+      - name: Commit the digest
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/data
+          if git diff --cached --quiet; then echo 'No changes'; exit 0; fi
+          git commit -m "chore(research): daily digest $(date -u +%F)"
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

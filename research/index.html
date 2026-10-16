@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="New research every day from arXiv, PubMed, Cochrane, medRxiv, bioRxiv, Semantic Scholar and more, turned into plain-language life skills and facts about the world.">
+  <meta name="referrer" content="no-referrer">
+  <title>Discover · Life Essential Skills</title>
+  <link rel="icon" href="../learner/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#1f6f5c">
+  <link rel="apple-touch-icon" href="../learner/apple-touch-icon.png">
+  <link rel="stylesheet" href="research.css">
+  <script src="research.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header">
+    <div class="wrap header-row">
+      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">ls</span> Life Essential Skills</a>
+      <nav aria-label="Site"><a href="../learner/">Learner dashboard</a><a href="./" aria-current="page">Discover</a></nav>
+    </div>
+  </header>
+  <main id="main" tabindex="-1" class="wrap">
+    <p class="eyebrow">New research, every day</p>
+    <h1>Learn something true today.</h1>
+    <p class="intro">Each morning this page collects new papers from preprint servers, medical databases, journals and science news, then turns the most useful into plain-language life skills, facts about the world and headlines — each linked to the original.</p>
+    <p id="meta" class="meta" role="status" aria-live="polite">Loading today’s digest…</p>
+    <p class="notice"><strong>AI-written summaries.</strong> A language model drafts each summary from the paper’s title and abstract. It can be wrong. Preprints are not yet peer reviewed and one study rarely settles anything — open the source before relying on it. This is general education, not medical, financial or legal advice.</p>
+
+    <div class="tabs" role="toolbar" aria-label="What to show">
+      <button type="button" data-view="skills" aria-pressed="true">Life skills</button>
+      <button type="button" data-view="facts" aria-pressed="false">Facts</button>
+      <button type="button" data-view="headlines" aria-pressed="false">Headlines</button>
+      <button type="button" data-view="papers" aria-pressed="false">All new papers</button>
+    </div>
+
+    <div class="filters">
+      <div><label for="f-category">Topic</label><select id="f-category"><option value="">All topics</option></select></div>
+      <div><label for="f-day">Day</label><select id="f-day"><option value="">Last 30 days</option></select></div>
+      <div><label for="f-confidence">Evidence</label><select id="f-confidence"><option value="">Any confidence</option><option value="high">High only</option><option value="moderate">Moderate or high</option><option value="reviewed">Peer reviewed only</option></select></div>
+      <div><label for="f-source">Source</label><select id="f-source"><option value="">All sources</option></select></div>
+      <div class="grow"><label for="f-search">Search</label><input id="f-search" type="search" placeholder="sleep, money, memory…"></div>
+    </div>
+
+    <p id="count" class="count" aria-live="polite"></p>
+    <div id="results" class="results"></div>
+    <div class="more"><button type="button" id="more" class="secondary" hidden>Show more</button></div>
+
+    <details id="sources" class="sources">
+      <summary>Where this comes from</summary>
+      <p>Sources are queried through their free public APIs and feeds. alphaXiv and Elicit have no free public API: every arXiv paper links to its alphaXiv discussion, and Elicit’s corpus (Semantic Scholar and OpenAlex) is pulled directly. Cochrane reviews arrive through PubMed and link back to the Cochrane Library.</p>
+      <div id="source-list"></div>
+    </details>
+  </main>
+  <footer class="wrap"><p>Reading is a start. Demonstration is evidence. <a href="../learner/">Practise a skill</a> · <a href="data/feed.json">Raw feed (JSON)</a></p></footer>
+  <noscript><p class="wrap">JavaScript is needed to show the digest. The raw data is at <a href="data/feed.json">data/feed.json</a>.</p></noscript>
+</body>
+</html>
