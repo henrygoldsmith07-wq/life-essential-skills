@@ -114,12 +114,12 @@
         "emergencies.training.independent"
       ],
       "assessment_routes": [
-        "C01",
         "EMERGENCIES-PREPAREDNESS-I01",
         "EMERGENCIES-PREPAREDNESS-I02",
         "EMERGENCIES-PREPAREDNESS-I03",
         "EMERGENCIES-PREPAREDNESS-I04",
-        "EMERGENCIES-PREPAREDNESS-I05"
+        "EMERGENCIES-PREPAREDNESS-I05",
+        "C01"
       ],
       "learn_path": "guides/01-emergencies.md",
       "jurisdictions": [
@@ -417,14 +417,14 @@
         "money.investing.independent"
       ],
       "assessment_routes": [
-        "C03",
         "M-CR-01",
         "M-CR-02",
         "M-CR-03",
         "M-CR-04",
         "M-CR-05",
         "M-CR-06",
-        "M-CR-07"
+        "M-CR-07",
+        "C03"
       ],
       "learn_path": "guides/02-money.md",
       "jurisdictions": [
@@ -577,12 +577,12 @@
         "money.investing.independent"
       ],
       "assessment_routes": [
-        "C02",
         "MONEY-PAYSLIP-I01",
         "MONEY-PAYSLIP-I02",
         "MONEY-PAYSLIP-I03",
         "MONEY-PAYSLIP-I04",
-        "MONEY-PAYSLIP-I05"
+        "MONEY-PAYSLIP-I05",
+        "C02"
       ],
       "learn_path": "guides/02-money.md",
       "jurisdictions": [
@@ -839,13 +839,13 @@
         "wellbeing.support.independent"
       ],
       "assessment_routes": [
-        "C03",
-        "C05",
         "WELLBEING-CAPACITY-I01",
         "WELLBEING-CAPACITY-I02",
         "WELLBEING-CAPACITY-I03",
         "WELLBEING-CAPACITY-I04",
-        "WELLBEING-CAPACITY-I05"
+        "WELLBEING-CAPACITY-I05",
+        "C03",
+        "C05"
       ],
       "learn_path": "guides/04-wellbeing.md",
       "jurisdictions": [
@@ -1162,13 +1162,13 @@
         "critical-thinking.decisions.independent"
       ],
       "assessment_routes": [
-        "C03",
-        "C04",
         "CRITICAL-THINKING-VERIFICATION-I01",
         "CRITICAL-THINKING-VERIFICATION-I02",
         "CRITICAL-THINKING-VERIFICATION-I03",
         "CRITICAL-THINKING-VERIFICATION-I04",
-        "CRITICAL-THINKING-VERIFICATION-I05"
+        "CRITICAL-THINKING-VERIFICATION-I05",
+        "C03",
+        "C04"
       ],
       "learn_path": "guides/06-thinking.md",
       "jurisdictions": [
@@ -1293,12 +1293,12 @@
         "critical-thinking.statistics.independent"
       ],
       "assessment_routes": [
-        "C04",
         "CRITICAL-THINKING-DECISIONS-I01",
         "CRITICAL-THINKING-DECISIONS-I02",
         "CRITICAL-THINKING-DECISIONS-I03",
         "CRITICAL-THINKING-DECISIONS-I04",
-        "CRITICAL-THINKING-DECISIONS-I05"
+        "CRITICAL-THINKING-DECISIONS-I05",
+        "C04"
       ],
       "learn_path": "guides/06-thinking.md",
       "jurisdictions": [
@@ -1425,12 +1425,12 @@
         "digital-safety.backup.independent"
       ],
       "assessment_routes": [
-        "C04",
         "D-SC-01",
         "D-SC-02",
         "D-SC-03",
         "D-SC-04",
-        "D-SC-05"
+        "D-SC-05",
+        "C04"
       ],
       "learn_path": "guides/07-digital-safety.md",
       "jurisdictions": [
@@ -1761,12 +1761,12 @@
         "work.pay.independent"
       ],
       "assessment_routes": [
-        "C02",
         "WORK-EVIDENCE-I01",
         "WORK-EVIDENCE-I02",
         "WORK-EVIDENCE-I03",
         "WORK-EVIDENCE-I04",
-        "WORK-EVIDENCE-I05"
+        "WORK-EVIDENCE-I05",
+        "C02"
       ],
       "learn_path": "guides/09-work.md",
       "jurisdictions": [
@@ -1898,12 +1898,12 @@
         "work.offers.independent"
       ],
       "assessment_routes": [
-        "C02",
         "WORK-PAY-I01",
         "WORK-PAY-I02",
         "WORK-PAY-I03",
         "WORK-PAY-I04",
-        "WORK-PAY-I05"
+        "WORK-PAY-I05",
+        "C02"
       ],
       "learn_path": "guides/09-work.md",
       "jurisdictions": [
@@ -1965,13 +1965,13 @@
         "learning-time.revision.independent"
       ],
       "assessment_routes": [
-        "C02",
-        "C05",
         "L-TM-01",
         "L-TM-02",
         "L-TM-03",
         "L-TM-04",
-        "L-TM-05"
+        "L-TM-05",
+        "C02",
+        "C05"
       ],
       "learn_path": "guides/10-learning-and-time.md",
       "jurisdictions": [
@@ -2097,12 +2097,12 @@
         "learning-time.retrieval.independent"
       ],
       "assessment_routes": [
-        "C05",
         "LEARNING-TIME-REVISION-I01",
         "LEARNING-TIME-REVISION-I02",
         "LEARNING-TIME-REVISION-I03",
         "LEARNING-TIME-REVISION-I04",
-        "LEARNING-TIME-REVISION-I05"
+        "LEARNING-TIME-REVISION-I05",
+        "C05"
       ],
       "learn_path": "guides/10-learning-and-time.md",
       "jurisdictions": [
@@ -2234,16 +2234,16 @@
         "life-admin.complaints.independent"
       ],
       "assessment_routes": [
-        "C01",
-        "C02",
-        "C03",
-        "C04",
-        "C05",
         "LIFE-ADMIN-RECORDS-I01",
         "LIFE-ADMIN-RECORDS-I02",
         "LIFE-ADMIN-RECORDS-I03",
         "LIFE-ADMIN-RECORDS-I04",
-        "LIFE-ADMIN-RECORDS-I05"
+        "LIFE-ADMIN-RECORDS-I05",
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05"
       ],
       "learn_path": "guides/11-life-admin.md",
       "jurisdictions": [
@@ -2379,12 +2379,12 @@
         "major-decisions.access.independent"
       ],
       "assessment_routes": [
-        "C01",
         "MAJOR-DECISIONS-COMPARISON-I01",
         "MAJOR-DECISIONS-COMPARISON-I02",
         "MAJOR-DECISIONS-COMPARISON-I03",
         "MAJOR-DECISIONS-COMPARISON-I04",
-        "MAJOR-DECISIONS-COMPARISON-I05"
+        "MAJOR-DECISIONS-COMPARISON-I05",
+        "C01"
       ],
       "learn_path": "guides/12-major-decisions.md",
       "jurisdictions": [
@@ -2450,14 +2450,14 @@
         "major-decisions.access.independent"
       ],
       "assessment_routes": [
-        "C01",
         "W-HO-01",
         "W-HO-02",
         "W-HO-03",
         "W-HO-04",
         "W-HO-05",
         "W-HO-06",
-        "W-HO-07"
+        "W-HO-07",
+        "C01"
       ],
       "learn_path": "guides/12-major-decisions.md",
       "jurisdictions": [

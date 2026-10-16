@@ -37,6 +37,8 @@ jobs:
         run: python3 scripts/build_cross_domain_prerequisites.py --check
       - name: Verify the static site serves every runtime asset and excludes solutions
         run: node scripts/static_smoke.js
+      - name: Verify offline installability and service-worker behaviour
+        run: node scripts/verify_pwa.js
       - name: Verify the fresh-scenario variation architecture (meaningful change, not numbers alone)
         run: python3 scripts/validate_variation.py
       - name: Report adaptive (Advanced) coverage without requiring closure

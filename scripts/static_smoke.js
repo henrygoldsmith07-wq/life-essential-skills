@@ -17,6 +17,7 @@ const TYPES = {
   '.svg': 'image/svg+xml',
   '.md': 'text/plain',
   '.png': 'image/png',
+  '.webmanifest': 'application/manifest+json',
 };
 
 const server = http.createServer((req, res) => {
@@ -47,6 +48,11 @@ const urls = [
   '/learner/app.js',
   '/learner/assessor.js',
   '/learner/favicon.svg',
+  '/learner/icon-192.png',
+  '/learner/icon-512.png',
+  '/learner/apple-touch-icon.png',
+  '/manifest.webmanifest',
+  '/sw.js',
   '/learner/chunks/money.json',
   '/learner/chunks/health.json',
   '/learner/chunks/capstones.json',
@@ -81,6 +87,22 @@ server.listen(PORT, '127.0.0.1', async () => {
   if (leaks.length) { fail++; console.log('FAIL learner/data.js embeds', leaks.join(', ')); }
   else console.log('PASS learner/data.js contains no solutions/benchmarks');
 
+  // Verify the installability contract: the manifest parses and names the
+  // required install icons, and the service worker carries a versioned cache
+  // whose precache list never touches the assessor aggregate files.
+  try {
+    const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'manifest.webmanifest'), 'utf8'));
+    const sizes = new Set((manifest.icons || []).map((i) => i.sizes));
+    if (manifest.start_url !== '/learner/' || manifest.display !== 'standalone' || !sizes.has('192x192') || !sizes.has('512x512')) { fail++; console.log('FAIL manifest.webmanifest is missing install fields (start_url, display, 192/512 icons)'); }
+    else console.log('PASS manifest.webmanifest declares an installable app');
+  } catch (e) { fail++; console.log('FAIL manifest.webmanifest does not parse: ' + e.message); }
+  const sw = fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8');
+  const precache = sw.split('const PRECACHE')[1].split('];')[0];
+  if (!/const CACHE = 'les-\w+/.test(sw)) { fail++; console.log('FAIL sw.js carries no versioned cache name'); }
+  else if (/\/assessor\//.test(precache)) { fail++; console.log('FAIL sw.js precache list reaches into assessor aggregate files'); }
+  else if (!sw.includes('assessor/answers.json') || !sw.includes('assessor/benchmarks.json')) { fail++; console.log('FAIL sw.js is missing its aggregate-answer deny-list'); }
+  else console.log('PASS sw.js is versioned, precaches the shell only, and denies aggregate answers');
+
   // Verify the Vercel deploy contract: everything the app fetches at runtime is
   // covered by .vercelignore's exclusions (i.e. NOT ignored), and the aggregate
   // answer/benchmark files ARE excluded so a static host never serves them.
@@ -88,7 +110,7 @@ server.listen(PORT, '127.0.0.1', async () => {
   const ignored = new Set(
     ignoreText.split(/\r?\n/).map((l) => l.trim()).filter((l) => l && !l.startsWith('#'))
   );
-  const runtimeAssets = ['learner/data.js', 'learner/index.html', 'learner/chunks/money.json', 'assessor/feedback/MONEY-BUDGET-I01.json', 'assessor/calibration/C01.json', 'index.html', 'START-HERE.md'];
+  const runtimeAssets = ['learner/data.js', 'learner/index.html', 'learner/chunks/money.json', 'assessor/feedback/MONEY-BUDGET-I01.json', 'assessor/calibration/C01.json', 'index.html', 'START-HERE.md', 'manifest.webmanifest', 'sw.js', 'learner/icon-192.png', 'learner/icon-512.png'];
   const wronglyIgnored = runtimeAssets.filter((f) => ignored.has(f));
   if (wronglyIgnored.length) { fail++; console.log('FAIL .vercelignore would exclude required runtime asset(s):', wronglyIgnored.join(', ')); }
   else console.log('PASS .vercelignore keeps every runtime asset');

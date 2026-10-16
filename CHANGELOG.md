@@ -4,6 +4,8 @@
 
 ### Product surfaces
 
+- Make the learner app **installable and offline-first**: a web manifest with icons and theme colour plus a versioned service worker that precaches the app shell and serves visited guides, tasks and feedback without connectivity. The worker never caches the aggregate answer/benchmark files (excluded from hosting and deny-listed in the worker), and registration is silent best-effort over HTTP(S) only. Covered by `static_smoke.js` installability and precache-deny contracts.
+
 - Add the **Independence Roadmap**: a capability map across all twelve domains showing what is demonstrated, developing, needing work, blocked (with the blocking prerequisite named), and due for a retention check, plus one recommended next step. Each of the 92 capabilities carries its own explainable state. There is deliberately **no overall "life score"** — a single number would imply the domains are commensurable and would hide the evidence behind it.
 - Add **capability milestones** ("Can manage a monthly budget", "Can verify a suspicious request") that appear as earned only when the engine already reports every required competency as demonstrated. They cannot be awarded by reading, by choosing a goal, or by time served.
 - Add **goal-based onboarding**: six real situations (moving out, first job, starting university or college, becoming financially independent, general independence, becoming safer online), each with a short diagnostic. Onboarding only sets a pathway and focus competencies — an evidence-free state change validated by the existing rules. Locality selection stays prominent.

@@ -96,6 +96,8 @@ The learner app is a **dependency-free static site** — plain HTML, CSS and ES 
 
 Deploy by importing the repository in Vercel; [`vercel.json`](vercel.json) sets `framework: null`, `buildCommand: null` and `outputDirectory: "."`, so Vercel serves the repository as static files without running a build. The root `index.html` is a landing page linking to `/learner/`.
 
+The app is installable and offline-first: [`manifest.webmanifest`](manifest.webmanifest) (icons, theme colour, standalone display) and [`sw.js`](sw.js) (versioned cache, precache shell, runtime cache of visited pages, navigation fallback to the dashboard). The worker never caches `assessor/answers.json` or `assessor/benchmarks.json` — excluded from the upload and deny-listed in code — and registration in `learner/app.js` is silent best-effort over HTTP(S) only.
+
 Two deployment safeguards:
 
 - [`.vercelignore`](.vercelignore) keeps maintainer-only paths (`scripts/`, `tests/`, `.github/`) out of the upload and excludes the aggregate `assessor/answers.json` and `assessor/benchmarks.json`, so a deployed site never serves every reference solution in one request. The browser only ever loads the per-item `assessor/feedback/<id>.json` and `assessor/calibration/<id>.json`, and only after an attempt.

@@ -7,6 +7,13 @@
   const today=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');};
   let state=E.emptyState(),blocked=false,current=null,token=0,view='today';
   window.ROADMAP_TODAY=today();
+  // Offline-first: register the service worker when served over HTTP(S) so
+  // the dashboard, guides and already-visited tasks open without
+  // connectivity. Registration is silent and best-effort: file:// previews,
+  // browsers without support, and registration failures all fall back to the
+  // plain network path with no visible change. The worker never caches the
+  // aggregate answer files (see sw.js NEVER_CACHE).
+  try{if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){navigator.serviceWorker.register('../sw.js',{scope:'/'}).catch(()=>{});}}catch{}
   // Optional AI adapter seam. A deployment may attach a conforming adapter to
   // window.AI_ASSISTANT; the boundary module strips anything that is not a
   // drafting capability (e.g. a 'grade' method) before it is offered. With no

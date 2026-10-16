@@ -1,0 +1,33 @@
+{
+  "name": "Life Essential Skills",
+  "short_name": "Life Skills",
+  "description": "Practise useful life skills, demonstrate them in fresh situations, and return for a later check. Works offline; evidence stays in your browser.",
+  "id": "/learner/",
+  "scope": "/",
+  "start_url": "/learner/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fffefa",
+  "theme_color": "#1f6f5c",
+  "categories": ["education", "finance", "health"],
+  "icons": [
+    {
+      "src": "/learner/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/learner/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/learner/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
