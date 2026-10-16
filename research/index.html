@@ -14,46 +14,77 @@
   <script src="research.js" defer></script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+  <a class="skip" href="#results">Skip to results</a>
   <header class="header">
     <div class="wrap header-row">
       <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">ls</span> Life Essential Skills</a>
       <nav aria-label="Site"><a href="../learner/">Learner dashboard</a><a href="./" aria-current="page">Discover</a></nav>
     </div>
   </header>
-  <main id="main" tabindex="-1" class="wrap">
-    <p class="eyebrow">New research, every day</p>
-    <h1>Learn something true today.</h1>
-    <p class="intro">Each morning this page collects new papers from preprint servers, medical databases, journals and science news, then turns the most useful into plain-language life skills, facts about the world and headlines — each linked to the original.</p>
-    <p id="meta" class="meta" role="status" aria-live="polite">Loading today’s digest…</p>
-    <p class="notice"><strong>AI-written summaries.</strong> A language model drafts each summary from the paper’s title and abstract. It can be wrong. Preprints are not yet peer reviewed and one study rarely settles anything — open the source before relying on it. This is general education, not medical, financial or legal advice.</p>
 
-    <div class="tabs" role="toolbar" aria-label="What to show">
-      <button type="button" data-view="skills" aria-pressed="true">Life skills</button>
-      <button type="button" data-view="facts" aria-pressed="false">Facts</button>
-      <button type="button" data-view="headlines" aria-pressed="false">Headlines</button>
-      <button type="button" data-view="papers" aria-pressed="false">All new papers</button>
+  <main id="main" tabindex="-1">
+    <section class="hero wrap" aria-labelledby="page-title">
+      <div class="hero-text">
+        <p class="eyebrow">New research, every day</p>
+        <h1 id="page-title">Learn something true today.</h1>
+        <p class="intro">Fresh papers from preprint servers, medical databases, journals and science news — turned into small life skills and facts worth knowing, each linked to its source.</p>
+      </div>
+      <dl class="stats" id="stats" aria-live="polite">
+        <div><dt>Papers scanned</dt><dd class="skeleton-text">—</dd></div>
+        <div><dt>Sources reached</dt><dd class="skeleton-text">—</dd></div>
+        <div><dt>New summaries</dt><dd class="skeleton-text">—</dd></div>
+      </dl>
+      <p id="meta" class="meta" role="status">Loading today’s digest…</p>
+    </section>
+
+    <section id="picks" class="picks wrap" aria-labelledby="picks-title" hidden>
+      <h2 id="picks-title" class="section-title">Today’s picks</h2>
+      <div id="picks-list" class="picks-grid"></div>
+    </section>
+
+    <div class="toolbar" id="toolbar">
+      <div class="wrap">
+        <div class="toolbar-row">
+          <div class="tabs" role="toolbar" aria-label="What to show">
+            <button type="button" data-view="skills" aria-pressed="true">Life skills <span class="n" data-count="skills"></span></button>
+            <button type="button" data-view="facts" aria-pressed="false">Facts <span class="n" data-count="facts"></span></button>
+            <button type="button" data-view="headlines" aria-pressed="false">Headlines <span class="n" data-count="headlines"></span></button>
+            <button type="button" data-view="saved" aria-pressed="false">Saved <span class="n" data-count="saved"></span></button>
+            <button type="button" data-view="papers" aria-pressed="false">All papers</button>
+          </div>
+          <div class="search"><label for="f-search" class="visually-hidden">Search</label><input id="f-search" type="search" placeholder="Search — press / to focus" autocomplete="off"></div>
+        </div>
+        <div class="toolbar-row second">
+          <div id="topics" class="topics" role="toolbar" aria-label="Topic"></div>
+          <details class="more-filters" id="more-filters">
+            <summary>Filters</summary>
+            <div class="filters">
+              <div><label for="f-day">Day</label><select id="f-day"><option value="">Last 30 days</option></select></div>
+              <div><label for="f-confidence">Evidence</label><select id="f-confidence"><option value="">Any confidence</option><option value="high">High only</option><option value="moderate">Moderate or high</option><option value="reviewed">Peer reviewed only</option></select></div>
+              <div><label for="f-source">Source</label><select id="f-source"><option value="">All sources</option></select></div>
+              <div><button type="button" id="reset" class="link-button">Clear filters</button></div>
+            </div>
+          </details>
+        </div>
+      </div>
     </div>
 
-    <div class="filters">
-      <div><label for="f-category">Topic</label><select id="f-category"><option value="">All topics</option></select></div>
-      <div><label for="f-day">Day</label><select id="f-day"><option value="">Last 30 days</option></select></div>
-      <div><label for="f-confidence">Evidence</label><select id="f-confidence"><option value="">Any confidence</option><option value="high">High only</option><option value="moderate">Moderate or high</option><option value="reviewed">Peer reviewed only</option></select></div>
-      <div><label for="f-source">Source</label><select id="f-source"><option value="">All sources</option></select></div>
-      <div class="grow"><label for="f-search">Search</label><input id="f-search" type="search" placeholder="sleep, money, memory…"></div>
-    </div>
+    <section class="wrap" aria-label="Results">
+      <p id="count" class="count" aria-live="polite"></p>
+      <div id="results" class="results" tabindex="-1"></div>
+      <div class="more"><button type="button" id="more" class="secondary" hidden>Show more</button></div>
 
-    <p id="count" class="count" aria-live="polite"></p>
-    <div id="results" class="results"></div>
-    <div class="more"><button type="button" id="more" class="secondary" hidden>Show more</button></div>
+      <p class="notice"><strong>AI-written summaries.</strong> Each paper is read by its own AI agent, which writes the summary from the title and abstract. It can be wrong. Preprints are not yet peer reviewed, and one study rarely settles anything, so open the source before you rely on it. This is general education, not medical, financial or legal advice.</p>
 
-    <details id="sources" class="sources">
-      <summary>Where this comes from</summary>
-      <p>Sources are queried through their free public APIs and feeds. alphaXiv and Elicit have no free public API: every arXiv paper links to its alphaXiv discussion, and Elicit’s corpus (Semantic Scholar and OpenAlex) is pulled directly. Cochrane reviews arrive through PubMed and link back to the Cochrane Library.</p>
-      <div id="source-list"></div>
-    </details>
+      <details id="sources" class="sources">
+        <summary>Where this comes from</summary>
+        <p>Sources are queried through their free public APIs and feeds. alphaXiv and Elicit have no free public API: every arXiv paper links to its alphaXiv discussion, and Elicit’s corpus (Semantic Scholar and OpenAlex) is pulled directly. Cochrane reviews arrive through PubMed and link back to the Cochrane Library.</p>
+        <div id="source-list"></div>
+      </details>
+    </section>
   </main>
   <footer class="wrap"><p>Reading is a start. Demonstration is evidence. <a href="../learner/">Practise a skill</a> · <a href="data/feed.json">Raw feed (JSON)</a></p></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <noscript><p class="wrap">JavaScript is needed to show the digest. The raw data is at <a href="data/feed.json">data/feed.json</a>.</p></noscript>
 </body>
 </html>

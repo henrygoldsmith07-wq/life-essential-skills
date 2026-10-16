@@ -3,7 +3,11 @@
 // pick the most life-relevant papers, summarise them with OpenRouter, and
 // write static JSON the /research/ page reads.
 //
-//   node scripts/research/run.js [--days 2] [--max 48] [--batch 8] [--only arxiv,pubmed] [--no-ai]
+//   node scripts/research/run.js [--days 2] [--max 40] [--concurrency 10] [--only arxiv,pubmed] [--no-ai]
+//
+// One agent (model call) per paper, run in parallel under a shared rate
+// limit and daily budget: OPENROUTER_RPM (default 18 per minute) and
+// OPENROUTER_DAILY_REQUESTS (default 48, the no-credit free tier is 50).
 //
 // Env: OPENROUTER_API_KEY (required for summaries), OPENROUTER_MODEL,
 // CONTACT_EMAIL, NCBI_API_KEY, S2_API_KEY, OPENALEX_API_KEY (all optional).
@@ -23,21 +27,21 @@ const PAPERS_CAP = 2500;
 const SEEN_DAYS = 90;
 
 function args(argv) {
-  const opts = { days: 2, max: 48, batch: 8, only: null, ai: true };
+  const opts = { days: 2, max: 40, concurrency: 10, only: null, ai: true };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     const next = () => argv[++i];
     if (a === '--days') opts.days = Number(next());
     else if (a === '--max') opts.max = Number(next());
-    else if (a === '--batch') opts.batch = Number(next());
+    else if (a === '--concurrency') opts.concurrency = Number(next());
     else if (a === '--only') opts.only = new Set(String(next()).split(',').map((s) => s.trim()).filter(Boolean));
     else if (a === '--no-ai') opts.ai = false;
     else if (a === '--init') opts.init = true;
   }
   const bounded = (v, lo, hi, d) => (Number.isInteger(v) && v >= lo && v <= hi ? v : d);
   opts.days = bounded(opts.days, 1, 60, 2);
-  opts.max = bounded(opts.max, 1, 400, 48);
-  opts.batch = bounded(opts.batch, 1, 20, 8);
+  opts.max = bounded(opts.max, 1, 1000, 40);
+  opts.concurrency = bounded(opts.concurrency, 1, 64, 10);
   return opts;
 }
 
@@ -131,8 +135,12 @@ async function main(argv = process.argv.slice(2), log = (...m) => console.log(..
   log(`\n${all.length} unique items, ${fresh.length} not yet summarised, ${picked.length} selected for summaries`);
 
   const key = opts.ai ? process.env.OPENROUTER_API_KEY : '';
-  const ai = await summarise(picked, { key, model: process.env.OPENROUTER_MODEL || DEFAULT_MODEL, batchSize: opts.batch, log, gapMs: process.env.RESEARCH_GAP_MS ? Number(process.env.RESEARCH_GAP_MS) : 4000 });
-  log(`${ai.items.length} summaries from ${ai.calls} model calls${ai.errors.length ? `; ${ai.errors.length} error(s)` : ''}`);
+  const num = (name) => (process.env[name] ? Number(process.env[name]) : undefined);
+  const ai = await summarise(picked, {
+    key, log, model: process.env.OPENROUTER_MODEL || DEFAULT_MODEL, concurrency: opts.concurrency,
+    rpm: num('OPENROUTER_RPM'), dailyRequests: num('OPENROUTER_DAILY_REQUESTS'), windowMs: num('RESEARCH_WINDOW_MS'), backoffMs: num('RESEARCH_BACKOFF_MS'),
+  });
+  log(`${ai.items.length} summaries from ${ai.calls} model calls (peak ${ai.peak || 0} agents in parallel)${ai.errors.length ? `; errors: ${ai.errors.join(' | ')}` : ''}`);
 
   const byId = new Map(results.map((r) => [r.source.id, r]));
   const sourceStatus = registry((s) => {
@@ -144,7 +152,7 @@ async function main(argv = process.argv.slice(2), log = (...m) => console.log(..
     date: today,
     window: { from: ctx.from, to: ctx.to },
     model: ai.model,
-    stats: { sources: sources.length, sources_ok: results.filter((r) => r.ok).length, fetched: results.reduce((a, r) => a + r.items.length, 0), unique: all.length, selected: picked.length, summarised: ai.items.length },
+    stats: { sources: sources.length, sources_ok: results.filter((r) => r.ok).length, fetched: results.reduce((a, r) => a + r.items.length, 0), unique: all.length, selected: picked.length, summarised: ai.items.length, model_calls: ai.calls, parallel_agents: ai.peak || 0 },
     errors: ai.errors.slice(0, 5),
   };
 

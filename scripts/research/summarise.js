@@ -2,67 +2,68 @@
 // takeaways with a free OpenRouter model. The key comes only from the
 // OPENROUTER_API_KEY environment variable (a GitHub Actions secret) and is
 // never written to the repository or shipped to the browser.
+//
+// Each paper gets its own agent (one focused model call with the full
+// abstract). Agents run in parallel through a pool, but every request first
+// takes a slot from a shared rate limiter and a shared daily budget, because
+// free models allow ~20 requests a minute and ~50 a day on an account with no
+// credit. A daily-quota, bad-key or no-credit error stops every agent at once.
 'use strict';
 
 const { USER_AGENT, sleep, cleanText } = require('./lib');
 
 const API = 'https://openrouter.ai/api/v1';
 const DEFAULT_MODEL = 'nvidia/nemotron-3.5-super-vl:free';
+const DEFAULTS = { concurrency: 10, rpm: 18, dailyRequests: 48, windowMs: 60000 };
 
 const CATEGORIES = ['health', 'mind', 'learning', 'thinking', 'money', 'work', 'relationships', 'digital', 'safety', 'environment', 'world'];
 const EVIDENCE = ['systematic review', 'randomised trial', 'observational study', 'lab or animal study', 'modelling', 'qualitative study', 'theory or commentary', 'news report', 'other'];
 const CONFIDENCE = ['high', 'moderate', 'low'];
 
 const SYSTEM = `You are the research editor for "Life Essential Skills", a free curriculum that helps people become capable, independent adults.
-You read new research and explain, in plain British English for a curious 16-year-old, what it means for everyday life and for understanding the world.
+You read one new piece of research and explain, in plain British English for a curious 16-year-old, what it means for everyday life and for understanding the world.
 
 Rules:
 - Use ONLY what the title and abstract say. Never invent numbers, effects, sample sizes or conclusions.
 - Be proportionate to the evidence: a single observational study, a preprint (not yet peer reviewed), an animal/cell study or a model is NOT proof. Say so in the caveat and lower the confidence.
 - "life_skill" is a small, safe, general habit or way of thinking the reader could try, written as an imperative ("Try…", "Check…", "Notice…"). Leave it empty if the paper does not support one. Never give personal medical, legal or financial instructions, dosages, or advice to change treatment; point to a qualified professional where relevant.
 - "fact" is one durable, accurate thing worth knowing about the world that the paper supports (empty if none).
+- "quiz" is one short question that checks the reader understood the finding, with a one-sentence answer drawn from the abstract.
 - Correlation is not causation: use "is linked to" unless the design is a randomised trial or systematic review of trials.
-- Set "keep" to false for papers with no takeaway a non-specialist could understand or use.
-Reply with JSON only, no prose and no code fences.`;
+- Set "keep" to false if there is no takeaway a non-specialist could understand or use.
+Reply with one JSON object only, no prose and no code fences.`;
 
-function prompt(batch) {
-  const papers = batch.map((p, i) => [
-    `#${i + 1}`,
-    `Title: ${p.title}`,
-    `Source: ${p.source_name}${p.venue && p.venue !== p.source_name ? ` · ${p.venue}` : ''} (${p.kind}${p.kind === 'preprint' ? ', not yet peer reviewed' : ''})`,
-    `Published: ${p.published || 'unknown'}`,
-    `Abstract: ${(p.abstract || '(no abstract available — use the title only and set confidence to low)').slice(0, 1600)}`,
-  ].join('\n')).join('\n\n');
-  return `Summarise each paper below.
+function prompt(p) {
+  return `Summarise this paper.
 
-Return exactly: {"items":[{"n":1,"keep":true,"category":"one of ${CATEGORIES.join('|')}","headline":"the finding in one plain sentence (max 22 words)","summary":"2-3 plain sentences: what was studied, what was found","why_it_matters":"one sentence on why this matters to everyday life or understanding the world","life_skill":"one actionable sentence or empty string","fact":"one sentence or empty string","evidence":"one of ${EVIDENCE.join('|')}","confidence":"high|moderate|low","caveat":"one sentence on the main limitation"}]}
-Include one object per paper, using its # number as "n".
+Title: ${p.title}
+Source: ${p.source_name}${p.venue && p.venue !== p.source_name ? ` · ${p.venue}` : ''} (${p.kind}${p.kind === 'preprint' ? ', not yet peer reviewed' : ''})
+Published: ${p.published || 'unknown'}
+Abstract: ${(p.abstract || '(no abstract available — use the title only and set confidence to low)').slice(0, 3500)}
 
-${papers}`;
+Return exactly this object:
+{"keep":true,"category":"one of ${CATEGORIES.join('|')}","headline":"the finding in one plain sentence (max 22 words)","summary":"2-3 plain sentences: what was studied, what was found","why_it_matters":"one sentence on why this matters to everyday life or understanding the world","life_skill":"one actionable sentence or empty string","fact":"one sentence or empty string","key_terms":["up to 3 short terms a reader could look up"],"quiz":{"question":"one short question","answer":"one sentence"},"evidence":"one of ${EVIDENCE.join('|')}","confidence":"high|moderate|low","caveat":"one sentence on the main limitation"}`;
 }
 
 // Free models sometimes wrap JSON in fences or reasoning tags; recover the object.
-function parseJson(text) {
+function parseObject(text) {
   const cleaned = String(text || '').replace(/<think>[\s\S]*?<\/think>/gi, '').replace(/```(?:json)?/gi, '').trim();
   const tries = [cleaned];
-  const objStart = cleaned.indexOf('{');
-  const objEnd = cleaned.lastIndexOf('}');
-  if (objStart >= 0 && objEnd > objStart) tries.push(cleaned.slice(objStart, objEnd + 1));
-  const arrStart = cleaned.indexOf('[');
-  const arrEnd = cleaned.lastIndexOf(']');
-  if (arrStart >= 0 && arrEnd > arrStart) tries.push(cleaned.slice(arrStart, arrEnd + 1));
+  const start = cleaned.indexOf('{');
+  const end = cleaned.lastIndexOf('}');
+  if (start >= 0 && end > start) tries.push(cleaned.slice(start, end + 1));
   for (const t of tries) {
     try {
       const v = JSON.parse(t);
-      if (Array.isArray(v)) return v;
-      if (v && Array.isArray(v.items)) return v.items;
+      const obj = Array.isArray(v) ? v[0] : Array.isArray(v && v.items) ? v.items[0] : v;
+      if (obj && typeof obj === 'object' && !Array.isArray(obj)) return obj;
     } catch { /* try next */ }
   }
-  return [];
+  return null;
 }
 
 const clip = (s, n) => {
-  const t = cleanText(s);
+  const t = cleanText(typeof s === 'string' ? s : '');
   return t.length > n ? `${t.slice(0, n - 1).trimEnd()}…` : t;
 };
 const pick = (v, allowed, fallback) => {
@@ -70,34 +71,56 @@ const pick = (v, allowed, fallback) => {
   return allowed.find((a) => a === s) || allowed.find((a) => s && (a.startsWith(s) || s.startsWith(a.split(' ')[0]))) || fallback;
 };
 
-// Validate model output against the schema; anything malformed is dropped.
-function applySummaries(batch, rows, model) {
-  const out = [];
-  for (const row of rows) {
-    const idx = Number(row && row.n) - 1;
-    const paper = batch[idx];
-    if (!paper || row.keep === false) continue;
-    const headline = clip(row.headline, 220);
-    if (!headline) continue;
-    let confidence = pick(row.confidence, CONFIDENCE, 'low');
-    if (paper.kind === 'preprint' && confidence === 'high') confidence = 'moderate';
-    out.push({
-      ...paper,
-      category: pick(row.category, CATEGORIES, paper._category || 'world'),
-      ai: {
-        headline,
-        summary: clip(row.summary, 700),
-        why_it_matters: clip(row.why_it_matters, 300),
-        life_skill: clip(row.life_skill, 300),
-        fact: clip(row.fact, 300),
-        evidence: pick(row.evidence, EVIDENCE, 'other'),
-        confidence,
-        caveat: clip(row.caveat, 300),
-        model,
-      },
+// Validate one model reply against the schema. Returns null to drop the paper.
+function applySummary(paper, row, model) {
+  if (!row || row.keep === false) return null;
+  const headline = clip(row.headline, 220);
+  if (!headline) return null;
+  let confidence = pick(row.confidence, CONFIDENCE, 'low');
+  if (paper.kind === 'preprint' && confidence === 'high') confidence = 'moderate';
+  const quiz = row.quiz && typeof row.quiz === 'object' ? { question: clip(row.quiz.question, 200), answer: clip(row.quiz.answer, 300) } : null;
+  return {
+    ...paper,
+    category: pick(row.category, CATEGORIES, paper._category || 'world'),
+    ai: {
+      headline,
+      summary: clip(row.summary, 700),
+      why_it_matters: clip(row.why_it_matters, 300),
+      life_skill: clip(row.life_skill, 300),
+      fact: clip(row.fact, 300),
+      key_terms: (Array.isArray(row.key_terms) ? row.key_terms : []).map((t) => clip(t, 40)).filter(Boolean).slice(0, 3),
+      ...(quiz && quiz.question && quiz.answer ? { quiz } : {}),
+      evidence: pick(row.evidence, EVIDENCE, 'other'),
+      confidence,
+      caveat: clip(row.caveat, 300),
+      model,
+    },
+  };
+}
+
+// Sliding-window limiter shared by every agent: at most `rpm` requests start
+// in any `windowMs`, and at most `budget` requests start in the whole run.
+function limiter({ rpm, windowMs, budget }) {
+  const starts = [];
+  let used = 0;
+  let queue = Promise.resolve();
+  const take = () => {
+    const slot = queue.then(async () => {
+      if (used >= budget) return false;
+      for (;;) {
+        const now = Date.now();
+        while (starts.length && now - starts[0] >= windowMs) starts.shift();
+        if (starts.length < rpm) break;
+        await sleep(windowMs - (now - starts[0]) + 5);
+      }
+      starts.push(Date.now());
+      used++;
+      return true;
     });
-  }
-  return out;
+    queue = slot.catch(() => {});
+    return slot;
+  };
+  return { take, used: () => used };
 }
 
 async function api(path, key, body, { timeoutMs = 120000 } = {}) {
@@ -118,7 +141,7 @@ async function api(path, key, body, { timeoutMs = 120000 } = {}) {
   try { json = JSON.parse(text); } catch { json = { error: { message: text.slice(0, 200) } }; }
   if (!res.ok || json.error) {
     const err = new Error(`OpenRouter ${res.status}: ${json.error?.message || 'error'}`);
-    err.status = res.status || json.error?.code;
+    err.status = res.ok ? Number(json.error?.code) || 502 : res.status;
     err.retryAfter = Number(res.headers.get('retry-after')) || 0;
     throw err;
   }
@@ -146,58 +169,67 @@ async function resolveModels(key, wanted, log) {
   }
 }
 
-async function complete(key, models, content, log) {
-  let lastErr;
-  for (const model of models) {
-    for (let attempt = 0; attempt < 3; attempt++) {
+const fatal = (e) => e.status === 401 || e.status === 402 || (e.status === 429 && /per-day|per day|quota|credits/i.test(e.message));
+
+// One agent: summarise one paper, retrying transient failures and falling
+// back through the model list. Returns { item } or { error }.
+async function agent(paper, ctx) {
+  let lastErr = new Error('daily request budget used up');
+  for (const model of ctx.models) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      if (ctx.stopped) return { error: ctx.stopped };
+      if (!(await ctx.limit.take())) return { error: 'daily request budget used up' };
       try {
-        const json = await api('/chat/completions', key, {
+        const json = await api('/chat/completions', ctx.key, {
           model,
           temperature: 0.2,
-          max_tokens: 6000,
-          messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content }],
+          max_tokens: 3000,
+          messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: prompt(paper) }],
         });
-        const text = json.choices?.[0]?.message?.content || '';
-        if (!text.trim()) throw Object.assign(new Error('empty completion'), { status: 502 });
-        return { text, model: json.model || model };
+        const used = json.model || model;
+        const row = parseObject(json.choices?.[0]?.message?.content);
+        if (!row) throw Object.assign(new Error('unparseable reply'), { status: 502 });
+        return { item: applySummary(paper, row, used), model: used };
       } catch (e) {
         lastErr = e;
-        if (e.status === 401 || e.status === 402) throw e; // bad key / no credit: stop
-        if (e.status === 404 || e.status === 400) break; // try next model
-        const wait = e.retryAfter ? e.retryAfter * 1000 : 8000 * (attempt + 1);
-        log(`  ${model}: ${e.message}; retrying in ${Math.round(wait / 1000)}s`);
-        await sleep(wait);
+        if (fatal(e)) {
+          ctx.stopped = e.message;
+          return { error: e.message };
+        }
+        if (e.status === 404 || e.status === 400) break; // model gone or refused: next model
+        await sleep(e.retryAfter ? e.retryAfter * 1000 : ctx.backoffMs * (attempt + 1));
       }
     }
   }
-  throw lastErr;
+  return { error: lastErr.message };
 }
 
-async function summarise(papers, { key, model = DEFAULT_MODEL, batchSize = 8, log = console.log, gapMs = 4000 } = {}) {
+async function summarise(papers, opts = {}) {
+  const { key, model = DEFAULT_MODEL, log = console.log } = opts;
+  const o = { ...DEFAULTS, backoffMs: 8000, ...Object.fromEntries(Object.entries(opts).filter(([, v]) => v !== undefined && !Number.isNaN(v))) };
   if (!key) return { items: [], model: null, calls: 0, errors: ['OPENROUTER_API_KEY not set — papers listed without AI summaries'] };
-  const models = await resolveModels(key, model, log);
-  const items = [];
-  const errors = [];
-  let used = models[0];
-  let calls = 0;
-  for (let i = 0; i < papers.length; i += batchSize) {
-    const batch = papers.slice(i, i + batchSize);
-    try {
-      const res = await complete(key, models, prompt(batch), log);
-      calls++;
-      used = res.model;
-      const rows = parseJson(res.text);
-      const kept = applySummaries(batch, rows, res.model);
-      log(`  batch ${i / batchSize + 1}: ${kept.length}/${batch.length} kept`);
-      items.push(...kept);
-    } catch (e) {
-      errors.push(e.message);
-      log(`  batch ${i / batchSize + 1} failed: ${e.message}`);
-      if (e.status === 401 || e.status === 402 || (e.status === 429 && /per-day|quota/i.test(e.message))) break; // stop burning the daily allowance
+  const ctx = { key, models: await resolveModels(key, model, log), limit: limiter({ rpm: o.rpm, windowMs: o.windowMs, budget: o.dailyRequests }), backoffMs: o.backoffMs, stopped: null };
+  log(`  ${papers.length} agents, ${o.concurrency} in parallel, ≤${o.rpm} requests per ${o.windowMs / 1000}s, budget ${o.dailyRequests}`);
+
+  const results = new Array(papers.length);
+  let next = 0;
+  let inFlight = 0;
+  let peak = 0;
+  await Promise.all(Array.from({ length: Math.min(o.concurrency, papers.length) }, async () => {
+    while (next < papers.length) {
+      const i = next++;
+      inFlight++;
+      peak = Math.max(peak, inFlight);
+      results[i] = await agent(papers[i], ctx);
+      inFlight--;
+      if (results[i].error) log(`  ✗ ${papers[i].title.slice(0, 70)} — ${results[i].error}`);
     }
-    if (i + batchSize < papers.length) await sleep(gapMs);
-  }
-  return { items, model: used, calls, errors };
+  }));
+
+  const items = results.filter((r) => r && r.item).map((r) => r.item);
+  const errors = [...new Set(results.filter((r) => r && r.error).map((r) => r.error))];
+  const used = results.find((r) => r && r.model)?.model || ctx.models[0];
+  return { items, model: used, calls: ctx.limit.used(), peak, errors };
 }
 
-module.exports = { summarise, prompt, parseJson, applySummaries, rankModels, DEFAULT_MODEL, CATEGORIES, EVIDENCE };
+module.exports = { summarise, prompt, parseObject, applySummary, limiter, rankModels, DEFAULT_MODEL, DEFAULTS, CATEGORIES, EVIDENCE };

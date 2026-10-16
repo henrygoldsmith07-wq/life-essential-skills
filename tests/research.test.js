@@ -9,7 +9,7 @@ const path = require('path');
 
 const OUT = fs.mkdtempSync(path.join(os.tmpdir(), 'research-'));
 process.env.RESEARCH_OUT = OUT;
-process.env.RESEARCH_GAP_MS = '0';
+process.env.RESEARCH_BACKOFF_MS = '1';
 
 const lib = require('../scripts/research/lib');
 const src = require('../scripts/research/sources');
@@ -169,28 +169,101 @@ test('select favours life-relevant, stronger evidence and spreads across sources
 });
 
 test('model output: tolerant JSON parsing and strict schema validation', () => {
-  assert.deepStrictEqual(sum.parseJson('<think>hmm</think>```json\n{"items":[{"n":1}]}\n```'), [{ n: 1 }]);
-  assert.deepStrictEqual(sum.parseJson('Here you go: [{"n":2}] thanks'), [{ n: 2 }]);
-  assert.deepStrictEqual(sum.parseJson('nope'), []);
-  const batch = [
-    { id: 'p1', title: 'A', kind: 'preprint', _category: 'health' },
-    { id: 'p2', title: 'B', kind: 'journal' },
-    { id: 'p3', title: 'C', kind: 'journal' },
-  ];
-  const out = sum.applySummaries(batch, [
-    { n: 1, keep: true, category: 'nonsense', headline: '<b>Short</b> sleep is linked to worse mood', summary: 's', life_skill: 'Try a regular bedtime.', fact: '', evidence: 'observational', confidence: 'HIGH', caveat: 'Preprint.' },
-    { n: 2, keep: false, headline: 'skip me' },
-    { n: 3, headline: '' },
-    { n: 9, headline: 'no such paper' },
-  ], 'm');
-  assert.strictEqual(out.length, 1);
-  assert.strictEqual(out[0].ai.headline, 'Short sleep is linked to worse mood');
-  assert.strictEqual(out[0].category, 'health');
-  assert.strictEqual(out[0].ai.evidence, 'observational study');
-  assert.strictEqual(out[0].ai.confidence, 'moderate', 'a preprint is never high confidence');
-  const p = sum.prompt(batch);
-  assert.match(p, /#1\nTitle: A/);
+  assert.deepStrictEqual(sum.parseObject('<think>hmm</think>```json\n{"headline":"x"}\n```'), { headline: 'x' });
+  assert.deepStrictEqual(sum.parseObject('Here you go: {"headline":"y"} thanks'), { headline: 'y' });
+  assert.deepStrictEqual(sum.parseObject('{"items":[{"headline":"z"}]}'), { headline: 'z' });
+  assert.strictEqual(sum.parseObject('nope'), null);
+  const paper = { id: 'p1', title: 'A', kind: 'preprint', _category: 'health' };
+  const out = sum.applySummary(paper, { keep: true, category: 'nonsense', headline: '<b>Short</b> sleep is linked to worse mood', summary: 's', life_skill: 'Try a regular bedtime.', fact: '', key_terms: ['circadian rhythm', 7, '', 'a', 'b'], quiz: { question: 'What was linked to mood?', answer: 'Short sleep.' }, evidence: 'observational', confidence: 'HIGH', caveat: 'Preprint.' }, 'm');
+  assert.strictEqual(out.ai.headline, 'Short sleep is linked to worse mood');
+  assert.strictEqual(out.category, 'health');
+  assert.strictEqual(out.ai.evidence, 'observational study');
+  assert.strictEqual(out.ai.confidence, 'moderate', 'a preprint is never high confidence');
+  assert.deepStrictEqual(out.ai.key_terms, ['circadian rhythm', 'a', 'b']);
+  assert.deepStrictEqual(out.ai.quiz, { question: 'What was linked to mood?', answer: 'Short sleep.' });
+  assert.strictEqual(sum.applySummary(paper, { keep: false, headline: 'skip' }, 'm'), null);
+  assert.strictEqual(sum.applySummary(paper, { headline: '' }, 'm'), null);
+  assert.ok(!('quiz' in sum.applySummary(paper, { headline: 'h', quiz: { question: 'q' } }, 'm').ai), 'half a quiz is dropped');
+  const p = sum.prompt({ title: 'A', source_name: 'arXiv', kind: 'preprint', abstract: 'x'.repeat(5000) });
+  assert.match(p, /Title: A/);
   assert.match(p, /not yet peer reviewed/);
+  assert.ok(p.length < 5000, 'abstract is clipped');
+});
+
+test('limiter caps requests per window and in total', async () => {
+  const lim = sum.limiter({ rpm: 2, windowMs: 120, budget: 5 });
+  const t0 = Date.now();
+  const got = await Promise.all(Array.from({ length: 7 }, () => lim.take()));
+  assert.deepStrictEqual(got, [true, true, true, true, true, false, false]);
+  assert.ok(Date.now() - t0 >= 230, 'five requests at two per window span three windows');
+  assert.strictEqual(lim.used(), 5);
+});
+
+// Minimal OpenRouter mock: per-paper replies, with hooks to observe parallelism.
+function mockOpenRouter({ delayMs = 30, reply } = {}) {
+  const seen = { inFlight: 0, peak: 0, completions: 0 };
+  const fetch = async (url, init = {}) => {
+    const u = String(url);
+    if (u.endsWith('/models')) return new Response(JSON.stringify({ data: [{ id: 'nvidia/nemotron-3.5-super-vl:free' }] }), { status: 200 });
+    seen.completions++;
+    seen.inFlight++;
+    seen.peak = Math.max(seen.peak, seen.inFlight);
+    await new Promise((r) => setTimeout(r, delayMs));
+    seen.inFlight--;
+    const body = JSON.parse(init.body);
+    const title = (body.messages[1].content.match(/^Title: (.*)$/m) || [])[1];
+    return reply ? reply(title, seen) : new Response(JSON.stringify({ model: body.model, choices: [{ message: { content: JSON.stringify({ headline: `About ${title}`, summary: 'S', confidence: 'moderate' }) } }] }), { status: 200 });
+  };
+  return { fetch, seen };
+}
+
+const papersN = (n) => Array.from({ length: n }, (_, i) => ({ id: `p${i}`, title: `Paper ${i}`, kind: 'journal', abstract: 'a' }));
+
+test('one agent per paper, run in parallel up to the concurrency limit', async () => {
+  const { fetch, seen } = mockOpenRouter();
+  const real = global.fetch;
+  global.fetch = fetch;
+  try {
+    const res = await sum.summarise(papersN(12), { key: 'k', concurrency: 5, rpm: 100, dailyRequests: 100, log: () => {} });
+    assert.strictEqual(res.items.length, 12);
+    assert.strictEqual(seen.completions, 12, 'exactly one model call per paper');
+    assert.strictEqual(seen.peak, 5);
+    assert.strictEqual(res.peak, 5);
+    assert.deepStrictEqual(res.items.map((i) => i.ai.headline).sort(), papersN(12).map((p) => `About ${p.title}`).sort(), 'each reply lands on its own paper');
+  } finally { global.fetch = real; }
+});
+
+test('agents share the daily budget and retry transient failures', async () => {
+  let fails = 1;
+  const { fetch, seen } = mockOpenRouter({
+    reply: (title) => (title === 'Paper 0' && fails-- > 0
+      ? new Response(JSON.stringify({ error: { message: 'busy' } }), { status: 503 })
+      : new Response(JSON.stringify({ choices: [{ message: { content: `{"headline":"About ${title}"}` } }] }), { status: 200 })),
+  });
+  const real = global.fetch;
+  global.fetch = fetch;
+  try {
+    const res = await sum.summarise(papersN(6), { key: 'k', concurrency: 6, rpm: 100, dailyRequests: 5, backoffMs: 1, log: () => {} });
+    assert.strictEqual(seen.completions, 5, 'never exceeds the daily budget, retries included');
+    assert.strictEqual(res.calls, 5);
+    assert.strictEqual(res.items.length, 4);
+    assert.ok(res.errors.includes('daily request budget used up'));
+  } finally { global.fetch = real; }
+});
+
+test('a daily-quota error stops every agent at once', async () => {
+  const { fetch, seen } = mockOpenRouter({
+    delayMs: 5,
+    reply: () => new Response(JSON.stringify({ error: { message: 'Rate limit exceeded: free-models-per-day' } }), { status: 429 }),
+  });
+  const real = global.fetch;
+  global.fetch = fetch;
+  try {
+    const res = await sum.summarise(papersN(20), { key: 'k', concurrency: 2, rpm: 100, dailyRequests: 100, log: () => {} });
+    assert.ok(seen.completions <= 2, `stopped after the first failures (${seen.completions} calls)`);
+    assert.strictEqual(res.items.length, 0);
+    assert.match(res.errors[0], /per-day/);
+  } finally { global.fetch = real; }
 });
 
 test('model resolution prefers the requested slug, else the closest free Nemotron Super', () => {
@@ -218,9 +291,8 @@ test('end-to-end run with a mocked network writes feed, archive, index and paper
     if (u === 'https://openrouter.ai/api/v1/chat/completions') {
       const body = JSON.parse(init.body);
       assert.strictEqual(init.headers.Authorization, 'Bearer test-key');
-      const n = (body.messages[1].content.match(/^#\d+$/gm) || []).length;
-      const items = Array.from({ length: n }, (_, i) => ({ n: i + 1, keep: true, category: 'health', headline: `Finding ${i + 1}`, summary: 'S.', why_it_matters: 'W.', life_skill: 'Try X.', fact: 'F.', evidence: 'observational study', confidence: 'moderate', caveat: 'C.' }));
-      return ok({ model: body.model, choices: [{ message: { content: JSON.stringify({ items }) } }] });
+      const row = { keep: true, category: 'health', headline: 'Finding', summary: 'S.', why_it_matters: 'W.', life_skill: 'Try X.', fact: 'F.', evidence: 'observational study', confidence: 'moderate', caveat: 'C.' };
+      return ok({ model: body.model, choices: [{ message: { content: JSON.stringify(row) } }] });
     }
     return new Response('not found', { status: 404 });
   };
@@ -246,13 +318,14 @@ test('end-to-end run with a mocked network writes feed, archive, index and paper
 
   // A second run the same day does not re-summarise papers already in the feed.
   const before = calls.filter((c) => c.endsWith('/chat/completions')).length;
+  assert.strictEqual(feed.stats.model_calls, 3, 'one call per paper');
   global.fetch = async (url) => {
     if (String(url).endsWith('/chat/completions')) assert.fail('re-summarised a seen paper');
     return new Response(String(url).includes('arxiv') ? arxiv : '{}', { status: 200 });
   };
   process.env.OPENROUTER_API_KEY = 'test-key';
   try { await run.main(['--only', 'arxiv', '--days', '3'], () => {}); } finally { global.fetch = realFetch; delete process.env.OPENROUTER_API_KEY; }
-  assert.strictEqual(before, 1);
+  assert.strictEqual(before, 3);
   assert.strictEqual(JSON.parse(fs.readFileSync(path.join(OUT, 'feed.json'), 'utf8')).items.length, 3);
 });
 
