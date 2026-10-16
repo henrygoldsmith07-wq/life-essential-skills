@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Medicine 96 plus energy 60 are fixed essentials totalling 156; after all listed essentials the month is negative by 55 if the headphones are bought, so decline the non-essential purchase and protect the medicine and energy first.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Medicine 96 plus energy 60 are fixed essentials totalling 156; after all listed essentials the month is negative by 55 if the headphones are bought, so decline the non-essential purchase and protect the medicine and energy first. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; List every essential cost first and protect it in the plan; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "arithmetic-error": "Check the arithmetic and units",
+    "ignores-essential-cost": "Protect every essential cost",
+    "assumes-missing-information": "Name missing facts before deciding"
+  },
+  "next_steps": {
+    "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+    "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Equal rent is 600 each: the lower earner cannot meet 600 plus their share of shared costs, so the split must be based on income rather than halves; the relocation terms must be verified before any move is decided.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Equal rent is 600 each: the lower earner cannot meet 600 plus their share of shared costs, so the split must be based on income rather than halves; the relocation terms must be verified before any move is decided. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; List every essential cost first and protect it in the plan; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "arithmetic-error": "Check the arithmetic and units",
+    "ignores-essential-cost": "Protect every essential cost",
+    "assumes-missing-information": "Name missing facts before deciding"
+  },
+  "next_steps": {
+    "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+    "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+  }
+}

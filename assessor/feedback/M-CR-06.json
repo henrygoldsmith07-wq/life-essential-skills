@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "solution": "Today's available cash decides A, not the total: A needs 90 today, B needs 38 the day after payday but collides with the unconfirmed insurance debit; verify the insurance amount before choosing B because an unverified collision can make the month fail.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Today's available cash decides A, not the total: A needs 90 today, B needs 38 the day after payday but collides with the unconfirmed insurance debit; verify the insurance amount before choosing B because an unverified collision can make the month fail. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Put the statements in date order and identify the earliest day the balance goes negative; List every essential cost first and protect it in the plan; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "arithmetic-error": "Check the arithmetic and units",
+    "missed-payment-timing": "Place money in date order",
+    "ignores-essential-cost": "Protect every essential cost",
+    "assumes-missing-information": "Name missing facts before deciding",
+    "unverified-entitlement": "Verify legal scope without promising an entitlement"
+  },
+  "next_steps": {
+    "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different numbers.",
+    "missed-payment-timing": "Put the statements in date order and identify the earliest day the balance goes negative. Timing decides whether the month works, not the total. Then attempt an unseen variant with a different numbers.",
+    "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different numbers.",
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different numbers.",
+    "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different numbers."
+  }
+}

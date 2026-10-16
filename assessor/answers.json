@@ -3929,6 +3929,108 @@
         "unverified-entitlement": "Verify legal scope without promising an entitlement"
       },
       "next_steps": {}
+    },
+    "MONEY-BUDGET-I04": {
+      "version": 1,
+      "solution": "Medicine 96 plus energy 60 are fixed essentials totalling 156; after all listed essentials the month is negative by 55 if the headphones are bought, so decline the non-essential purchase and protect the medicine and energy first.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Medicine 96 plus energy 60 are fixed essentials totalling 156; after all listed essentials the month is negative by 55 if the headphones are bought, so decline the non-essential purchase and protect the medicine and energy first. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; List every essential cost first and protect it in the plan; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Check the arithmetic and units",
+        "ignores-essential-cost": "Protect every essential cost",
+        "assumes-missing-information": "Name missing facts before deciding"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-BUDGET-I05": {
+      "version": 1,
+      "solution": "Equal rent is 600 each: the lower earner cannot meet 600 plus their share of shared costs, so the split must be based on income rather than halves; the relocation terms must be verified before any move is decided.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Equal rent is 600 each: the lower earner cannot meet 600 plus their share of shared costs, so the split must be based on income rather than halves; the relocation terms must be verified before any move is decided. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; List every essential cost first and protect it in the plan; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Check the arithmetic and units",
+        "ignores-essential-cost": "Protect every essential cost",
+        "assumes-missing-information": "Name missing facts before deciding"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "M-CR-06": {
+      "version": 1,
+      "solution": "Today's available cash decides A, not the total: A needs 90 today, B needs 38 the day after payday but collides with the unconfirmed insurance debit; verify the insurance amount before choosing B because an unverified collision can make the month fail.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Today's available cash decides A, not the total: A needs 90 today, B needs 38 the day after payday but collides with the unconfirmed insurance debit; verify the insurance amount before choosing B because an unverified collision can make the month fail. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Put the statements in date order and identify the earliest day the balance goes negative; List every essential cost first and protect it in the plan; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Check the arithmetic and units",
+        "missed-payment-timing": "Place money in date order",
+        "ignores-essential-cost": "Protect every essential cost",
+        "assumes-missing-information": "Name missing facts before deciding",
+        "unverified-entitlement": "Verify legal scope without promising an entitlement"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different numbers.",
+        "missed-payment-timing": "Put the statements in date order and identify the earliest day the balance goes negative. Timing decides whether the month works, not the total. Then attempt an unseen variant with a different numbers.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different numbers.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different numbers.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different numbers."
+      }
+    },
+    "M-CR-07": {
+      "version": 1,
+      "solution": "Compare cash actually received and total repayable: A delivers 255 and must repay 300 (cost 45), B delivers 275 and must repay 300 (cost 25), so B is cheaper on stated terms but the missing cancellation terms must be checked before committing.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Compare cash actually received and total repayable: A delivers 255 and must repay 300 (cost 45), B delivers 275 and must repay 300 (cost 25), so B is cheaper on stated terms but the missing cancellation terms must be checked before committing. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Put the statements in date order and identify the earliest day the balance goes negative; List every essential cost first and protect it in the plan; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Check the arithmetic and units",
+        "missed-payment-timing": "Place money in date order",
+        "ignores-essential-cost": "Protect every essential cost",
+        "assumes-missing-information": "Name missing facts before deciding",
+        "unverified-entitlement": "Verify legal scope without promising an entitlement"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different numbers.",
+        "missed-payment-timing": "Put the statements in date order and identify the earliest day the balance goes negative. Timing decides whether the month works, not the total. Then attempt an unseen variant with a different numbers.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different numbers.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different numbers.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different numbers."
+      }
+    },
+    "W-HO-06": {
+      "version": 1,
+      "solution": "Verify the deposit-scheme claim against the official Wales source before paying anything; an unverified private link cannot prove protection, so the safe decision is to request the scheme details and not transfer a deposit.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Verify the deposit-scheme claim against the official Wales source before paying anything; an unverified private link cannot prove protection, so the safe decision is to request the scheme details and not transfer a deposit. This item is set up to catch: Check the nation and the scope of the guidance before relying on it; Check what you are actually entitled to against the current official source before relying on it; Verify through a route you reach independently, not one supplied in the message; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "wrong-jurisdiction": "Check the nation and the guidance scope",
+        "unverified-entitlement": "Verify legal scope without promising an entitlement",
+        "fails-independent-verification": "Verify through an independent official route",
+        "assumes-missing-information": "Name missing facts before deciding"
+      },
+      "next_steps": {
+        "wrong-jurisdiction": "Check the nation and the scope of the guidance before relying on it. Do not carry a rule from one nation into another. Then attempt an unseen variant with a different numbers.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different numbers.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different numbers.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different numbers."
+      }
+    },
+    "W-HO-07": {
+      "version": 1,
+      "solution": "Request the contract in an accessible format from the agent before signing; a verbal explanation by a relative is not the contract, and signing unread terms is a decision made without verifying obligations.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Request the contract in an accessible format from the agent before signing; a verbal explanation by a relative is not the contract, and signing unread terms is a decision made without verifying obligations. This item is set up to catch: Check the nation and the scope of the guidance before relying on it; Check what you are actually entitled to against the current official source before relying on it; Verify through a route you reach independently, not one supplied in the message; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "wrong-jurisdiction": "Check the nation and the guidance scope",
+        "unverified-entitlement": "Verify legal scope without promising an entitlement",
+        "fails-independent-verification": "Verify through an independent official route",
+        "assumes-missing-information": "Name missing facts before deciding"
+      },
+      "next_steps": {
+        "wrong-jurisdiction": "Check the nation and the scope of the guidance before relying on it. Do not carry a rule from one nation into another. Then attempt an unseen variant with a different numbers.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different numbers.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different numbers.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different numbers."
+      }
     }
   }
 }
