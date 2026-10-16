@@ -148,7 +148,12 @@ select, input { font: inherit; padding: .45rem .65rem; border-radius: .6rem; bor
 .quiz p { padding: .5rem .7rem; background: var(--accent-soft); border-radius: .5rem; }
 .caveat { font-size: .88rem; border-left: 3px solid var(--line); padding-left: .6rem; color: var(--muted); }
 .terms { display: flex; flex-wrap: wrap; gap: .3rem; }
-.terms span { font-size: .78rem; border: 1px solid var(--line); border-radius: 999px; padding: .05rem .5rem; }
+.terms span, .terms a { font-size: .78rem; border: 1px solid var(--line); border-radius: 999px; padding: .05rem .5rem; }
+.terms a { text-decoration: none; }
+.terms a:hover { text-decoration: underline; }
+.glossary { display: grid; gap: .3rem; }
+.free a { font-weight: 700; }
+.free a::before { content: "🔓 "; }
 .small { font-size: .85rem; color: var(--muted); }
 .card-foot { display: flex; flex-wrap: wrap; gap: .4rem .8rem; align-items: center; justify-content: space-between; margin-top: auto; padding-top: .35rem; }
 .links { display: flex; flex-wrap: wrap; gap: .3rem .8rem; font-size: .88rem; align-items: center; }

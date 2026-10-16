@@ -15,7 +15,7 @@
     thinking: ['06-thinking.md', 'Critical thinking'], money: ['02-money.md', 'Money'], work: ['09-work.md', 'Work and earning'],
     relationships: ['05-relationships.md', 'Relationships'], digital: ['07-digital-safety.md', 'Digital safety'], safety: ['01-emergencies.md', 'Emergencies'],
   };
-  const PROVIDER_LABELS = { nvidia: 'NVIDIA', groq: 'Groq', openrouter: 'OpenRouter' };
+  const PROVIDER_LABELS = { nvidia: 'NVIDIA', groq: 'Groq', openrouter: 'OpenRouter', cerebras: 'Cerebras', github: 'GitHub Models', gemini: 'Google Gemini', mistral: 'Mistral', sambanova: 'SambaNova' };
   const LEVEL = { high: 3, moderate: 2, low: 1 };
   const PAGE = { cards: 24, papers: 100 };
   const SAVED_KEY = 'les-research-saved';
@@ -135,6 +135,7 @@
 
   function sourceLinks(i) {
     const links = [link(i.url, `${i.source_name} ↗`)];
+    if (i.links && i.links.free) links.push(h('span', { class: 'free' }, link(i.links.free, 'Free to read')));
     if (i.links && i.links.alphaxiv) links.push(link(i.links.alphaxiv, 'alphaXiv'));
     if (i.links && i.links.pubmed && i.links.pubmed !== i.url) links.push(link(i.links.pubmed, 'PubMed'));
     for (const a of (i.also_in || []).slice(0, 2)) links.push(link(a.url, `also ${a.source_name}`));
@@ -156,9 +157,19 @@
         ai.summary ? h('p', null, ai.summary) : null,
         ai.why_it_matters ? h('p', null, h('strong', null, 'Why it matters: '), ai.why_it_matters) : null,
         ai.caveat ? h('p', { class: 'caveat' }, h('strong', null, 'Caveat: '), ai.caveat) : null,
-        (ai.key_terms || []).length ? h('div', { class: 'terms', 'aria-label': 'Terms to look up' }, ai.key_terms.map((t) => h('span', null, t))) : null,
+        terms(ai.key_terms),
         h('p', { class: 'small' }, `${cap(ai.evidence || '')} · `, i.title),
         ai.model ? h('p', { class: 'small' }, `Summarised by ${PROVIDER_LABELS[ai.provider] ? `${PROVIDER_LABELS[ai.provider]} · ` : ''}${ai.model}`) : null));
+  }
+
+  // Key terms with a one-line Wikipedia definition when the digest found one.
+  function terms(list) {
+    if (!(list || []).length) return null;
+    const glossary = (state.feed && state.feed.glossary) || {};
+    const defined = list.map((t) => [t, glossary[String(t).toLowerCase()]]);
+    return h('div', { class: 'glossary' },
+      h('div', { class: 'terms', 'aria-label': 'Terms to look up' }, defined.map(([t, g]) => (g ? link(g.url, t) : h('span', null, t)))),
+      defined.filter(([, g]) => g && g.text).map(([t, g]) => h('p', { class: 'small' }, h('strong', null, `${t}: `), g.text, ' (Wikipedia)')));
   }
 
   function guideLink(i) {
@@ -359,7 +370,7 @@
     $('source-list').replaceChildren(...Object.entries(groups).map(([g, list]) => h('div', { class: 'source-group' },
       h('h3', null, g),
       h('ul', null, list.map((s) => h('li', null, link(s.home, s.name) || s.name, ' — ',
-        s.ok ? `${s.count} new item${s.count === 1 ? '' : 's'}` : s.ok === null ? 'not checked yet' : h('span', { class: 'bad', title: s.error || '' }, 'unavailable today')))))));
+        s.ok ? `${s.count} new item${s.count === 1 ? '' : 's'}` : s.ok === null ? (s.requires ? `needs a free key (${s.requires})` : 'not checked yet') : h('span', { class: 'bad', title: s.error || '' }, 'unavailable today')))))));
   }
 
   function renderStats(feed) {

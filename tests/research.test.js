@@ -15,6 +15,7 @@ const lib = require('../scripts/research/lib');
 const src = require('../scripts/research/sources');
 const sum = require('../scripts/research/summarise');
 const run = require('../scripts/research/run');
+const enrich = require('../scripts/research/enrich');
 
 const S = (id, kind = 'journal') => ({ id, name: id, kind });
 
@@ -331,6 +332,86 @@ test('no key: papers are kept without summaries and no request is made', async (
   const res = await withFetch(() => assert.fail('no network expected'), () => sum.summarise(papersN(3), { ...quiet, env: {} }));
   assert.deepStrictEqual([res.items.length, res.calls], [0, 0]);
   assert.match(res.errors[0], /NVIDIA_API_KEY/);
+});
+
+test('new source parsers: ERIC, ClinicalTrials.gov, NASA ADS, CORE', () => {
+  const [eric] = src.parseEric({ response: { docs: [{ id: 'EJ1400001', title: 'Retrieval practice in Year 9', description: 'Quizzing beat re-reading.', author: ['A. Smith'], source: 'Journal of Ed', publicationdateyear: 2026, peerreviewed: 'T' }] } }, S('eric'));
+  assert.deepStrictEqual([eric.id, eric.url, eric.kind, eric.published], ['eric:EJ1400001', 'https://eric.ed.gov/?id=EJ1400001', 'journal', '']);
+  const [ct] = src.parseClinicalTrials({ studies: [{ protocolSection: { identificationModule: { nctId: 'NCT01234567', briefTitle: 'Walking for sleep' }, descriptionModule: { briefSummary: 'A walking programme.' }, conditionsModule: { conditions: ['Insomnia'] }, statusModule: { resultsFirstPostDateStruct: { date: '2026-10-14' } } } }, { protocolSection: {} }] }, S('clinicaltrials', 'trial'));
+  assert.deepStrictEqual([ct.id, ct.url, ct.kind, ct.published], ['nct:NCT01234567', 'https://clinicaltrials.gov/study/NCT01234567', 'trial', '2026-10-14']);
+  assert.match(ct.abstract, /Conditions: Insomnia\./);
+  const [ads] = src.parseAds({ response: { docs: [{ bibcode: '2026ApJ...999....1X', title: ['A new exoplanet'], abstract: 'Found a planet.', doi: ['10.3847/abc'], pubdate: '2026-10-00', pub: 'ApJ' }] } }, S('nasa-ads'));
+  assert.deepStrictEqual([ads.id, ads.published, ads.venue], ['doi:10.3847/abc', '2026-10-01', 'ApJ']);
+  const [core] = src.parseCore({ results: [{ id: 42, title: 'Sleep and grades', abstract: 'x', downloadUrl: 'https://core.ac.uk/download/42.pdf', publishedDate: '2026-10-15T00:00:00', authors: [{ name: 'B' }] }] }, S('core'));
+  assert.deepStrictEqual([core.id, core.links.free], ['core:42', 'https://core.ac.uk/download/42.pdf']);
+});
+
+test('sources that need a key are skipped, not failed, when it is missing', async () => {
+  const today = new Date().toISOString().slice(0, 10);
+  const real = global.fetch;
+  global.fetch = async (url) => { assert.ok(!String(url).includes('adsabs'), 'no ADS call without a key'); return new Response('{}', { status: 200 }); };
+  try { await run.main(['--only', 'nasa-ads', '--no-ai'], () => {}); } finally { global.fetch = real; }
+  assert.strictEqual(process.exitCode, 1, 'a run that reaches no source fails');
+  process.exitCode = 0;
+  const feed = JSON.parse(fs.readFileSync(path.join(OUT, 'feed.json'), 'utf8'));
+  const ads = feed.sources.find((x) => x.id === 'nasa-ads');
+  assert.deepStrictEqual([ads.ok, ads.error, ads.requires], [null, 'add ADS_API_KEY to enable', 'ADS_API_KEY']);
+  assert.strictEqual(feed.date, today);
+});
+
+test('new providers: GitHub Models catalog and Gemini model names resolve', async () => {
+  const lists = {
+    'models.github.ai': [{ id: 'openai/o3-mini' }, { id: 'openai/gpt-4o-mini' }, { id: 'openai/gpt-4.1-mini' }, { id: 'openai/text-embedding-3-small' }],
+    'generativelanguage.googleapis.com': { data: [{ id: 'models/gemini-2.5-pro' }, { id: 'models/gemini-2.5-flash' }, { id: 'models/text-embedding-004' }] },
+    'api.cerebras.ai': { data: [{ id: 'llama3.1-8b' }, { id: 'gpt-oss-120b' }] },
+    'api.mistral.ai': { data: [{ id: 'mistral-embed' }, { id: 'mistral-small-latest' }] },
+    'api.sambanova.ai': { data: [{ id: 'Meta-Llama-3.3-70B-Instruct' }, { id: 'DeepSeek-R1' }] },
+  };
+  const used = {};
+  const f = async (url, init = {}) => {
+    const u = new URL(String(url));
+    if (init.method === 'GET') {
+      assert.ok(u.pathname.endsWith('/catalog/models') || u.pathname.endsWith('/models'), u.href);
+      return new Response(JSON.stringify(lists[u.host]), { status: 200 });
+    }
+    const body = JSON.parse(init.body);
+    used[u.host] = { model: body.model, path: u.pathname, extra: body.reasoning_effort };
+    return new Response(JSON.stringify({ choices: [{ message: { content: '{"headline":"h"}' } }] }), { status: 200 });
+  };
+  const env = { GITHUB_MODELS_TOKEN: 'gh', GEMINI_API_KEY: 'ge', CEREBRAS_API_KEY: 'ce', MISTRAL_API_KEY: 'mi', SAMBANOVA_API_KEY: 'sa' };
+  const res = await withFetch(f, () => sum.summarise(papersN(20), { ...quiet, env, providers: Object.fromEntries(Object.keys(lists).map((_, k) => [['github', 'gemini', 'cerebras', 'mistral', 'sambanova'][k], { rpm: 999 }])) }));
+  assert.strictEqual(res.items.length, 20);
+  assert.deepStrictEqual(used['models.github.ai'], { model: 'openai/gpt-4.1-mini', path: '/inference/chat/completions', extra: undefined });
+  assert.deepStrictEqual(used['generativelanguage.googleapis.com'], { model: 'gemini-2.5-flash', path: '/v1beta/openai/chat/completions', extra: 'none' });
+  assert.strictEqual(used['api.cerebras.ai'].model, 'gpt-oss-120b');
+  assert.strictEqual(used['api.mistral.ai'].model, 'mistral-small-latest');
+  assert.strictEqual(used['api.sambanova.ai'].model, 'Meta-Llama-3.3-70B-Instruct');
+  assert.strictEqual(res.peak, 20, 'agents across all five providers (22 slots) took every paper at once');
+});
+
+test('Unpaywall and Wikipedia enrichment', async () => {
+  assert.strictEqual(enrich.parseUnpaywall({ is_oa: true, best_oa_location: { url_for_pdf: 'https://repo.org/p.pdf' } }), 'https://repo.org/p.pdf');
+  assert.strictEqual(enrich.parseUnpaywall({ is_oa: false }), '');
+  assert.deepStrictEqual(enrich.parseWikiSummary({ type: 'standard', extract: 'Circadian rhythm is a natural 24-hour cycle. It regulates sleep.', content_urls: { desktop: { page: 'https://en.wikipedia.org/wiki/Circadian_rhythm' } } }),
+    { text: 'Circadian rhythm is a natural 24-hour cycle.', url: 'https://en.wikipedia.org/wiki/Circadian_rhythm' });
+  assert.strictEqual(enrich.parseWikiSummary({ type: 'disambiguation', extract: 'x' }), null);
+
+  const items = [{ doi: '10.1234/a', url: 'https://doi.org/10.1234/a', links: {}, ai: { key_terms: ['Circadian rhythm', 'social jet lag'] } }, { doi: '', links: {}, ai: { key_terms: ['circadian rhythm'] } }];
+  assert.strictEqual(await withFetch(() => assert.fail('no email, no Unpaywall'), () => enrich.addFreeLinks(items, {})), 0);
+  const calls = [];
+  const f = async (url) => {
+    calls.push(String(url));
+    if (String(url).includes('unpaywall')) return new Response(JSON.stringify({ is_oa: true, best_oa_location: { url: 'https://repo.org/a' } }), { status: 200 });
+    if (String(url).includes('Circadian')) return new Response(JSON.stringify({ type: 'standard', extract: 'A 24-hour cycle in living things.', content_urls: { desktop: { page: 'https://en.wikipedia.org/wiki/Circadian_rhythm' } } }), { status: 200 });
+    return new Response('{}', { status: 404 });
+  };
+  await withFetch(f, () => enrich.addFreeLinks(items, { CONTACT_EMAIL: 'me@example.org' }));
+  assert.strictEqual(items[0].links.free, 'https://repo.org/a');
+  assert.ok(calls[0].includes('email=me%40example.org'));
+  const g = await withFetch(f, () => enrich.buildGlossary(items, { 'social jet lag': null }));
+  assert.deepStrictEqual(Object.keys(g).sort(), ['circadian rhythm', 'social jet lag'], 'terms are de-duplicated case-insensitively');
+  assert.strictEqual(g['circadian rhythm'].url, 'https://en.wikipedia.org/wiki/Circadian_rhythm');
+  assert.strictEqual(calls.filter((c) => c.includes('wikipedia')).length, 1, 'a term already looked up is not fetched again');
 });
 
 test('end-to-end run with a mocked network writes feed, archive, index and papers', async () => {

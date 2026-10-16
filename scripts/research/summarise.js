@@ -20,6 +20,8 @@ const CONFIDENCE = ['high', 'moderate', 'low'];
 
 // Model ids change often, so each provider names a family to prefer and the
 // best match is picked from its live /models list (or the env override).
+// Free-tier defaults are deliberately conservative; override them per
+// provider with <ID>_CONCURRENCY, <ID>_RPM and <ID>_DAILY_REQUESTS.
 const PROVIDERS = [
   {
     id: 'nvidia', label: 'NVIDIA', base: 'https://integrate.api.nvidia.com/v1', key: 'NVIDIA_API_KEY', model: 'NVIDIA_MODEL',
@@ -41,6 +43,43 @@ const PROVIDERS = [
     spec: { include: /nemotron/i, exclude: /embed|reward|guard|safety/i, freeOnly: true, prefer: [[/super/i, 10], [/3[.-]5/, 4], [/vl/i, 2], [/ultra/i, 1]] },
     headers: () => ({ 'HTTP-Referer': process.env.SITE_URL || 'https://github.com/henrygoldsmith07-wq/life-essential-skills', 'X-Title': 'Life Essential Skills research digest' }),
     defaults: { concurrency: 6, rpm: 18, daily: 48 },
+  },
+  {
+    id: 'cerebras', label: 'Cerebras', base: 'https://api.cerebras.ai/v1', key: 'CEREBRAS_API_KEY', model: 'CEREBRAS_MODEL',
+    fallback: 'llama-3.3-70b',
+    spec: { include: /llama|qwen|gpt-oss/i, exclude: /guard|coder|vision/i, prefer: [[/gpt-oss-120b/i, 8], [/235b/i, 7], [/70b/i, 6], [/32b/i, 3]] },
+    defaults: { concurrency: 8, rpm: 28, daily: 2000 },
+  },
+  {
+    // GitHub Models: free with any GitHub account. In Actions the built-in
+    // token works once the workflow grants `models: read`.
+    id: 'github', label: 'GitHub Models', base: 'https://models.github.ai/inference', key: 'GITHUB_MODELS_TOKEN', model: 'GITHUB_MODELS_MODEL',
+    modelsUrl: 'https://models.github.ai/catalog/models',
+    fallback: 'openai/gpt-4o-mini',
+    // Low-tier models get the largest free allowance; reasoning and frontier models get ~50/day.
+    spec: { include: /gpt-4o-mini|gpt-4\.1-mini|gpt-4\.1-nano|llama|mistral|phi-4|ministral/i, exclude: /embed|vision|reasoning|o1|o3|o4|r1|405b/i, prefer: [[/gpt-4\.1-mini/i, 9], [/gpt-4o-mini/i, 8], [/llama-3\.3-70b/i, 6]] },
+    headers: () => ({ 'X-GitHub-Api-Version': '2022-11-28' }),
+    defaults: { concurrency: 4, rpm: 12, daily: 140 },
+  },
+  {
+    id: 'gemini', label: 'Google Gemini', base: 'https://generativelanguage.googleapis.com/v1beta/openai', key: 'GEMINI_API_KEY', model: 'GEMINI_MODEL',
+    fallback: 'gemini-2.5-flash',
+    spec: { include: /gemini.*flash/i, exclude: /embed|image|tts|live|audio|thinking|exp|preview|8b/i, prefer: [[/flash(?!-lite)/i, 8], [/flash-lite/i, 4]] },
+    // Flash models think by default; summaries do not need it.
+    extra: () => ({ reasoning_effort: 'none' }),
+    defaults: { concurrency: 4, rpm: 9, daily: 240 },
+  },
+  {
+    id: 'mistral', label: 'Mistral', base: 'https://api.mistral.ai/v1', key: 'MISTRAL_API_KEY', model: 'MISTRAL_MODEL',
+    fallback: 'mistral-small-latest',
+    spec: { include: /mistral|ministral|nemo/i, exclude: /embed|moderation|ocr|codestral|pixtral|voxtral|devstral|magistral|saba/i, prefer: [[/mistral-small-latest/i, 9], [/mistral-medium-latest/i, 8], [/mistral-small/i, 6], [/nemo/i, 3]] },
+    defaults: { concurrency: 2, rpm: 50, daily: 2000 },
+  },
+  {
+    id: 'sambanova', label: 'SambaNova', base: 'https://api.sambanova.ai/v1', key: 'SAMBANOVA_API_KEY', model: 'SAMBANOVA_MODEL',
+    fallback: 'Meta-Llama-3.3-70B-Instruct',
+    spec: { include: /llama|qwen|deepseek-v/i, exclude: /guard|vision|embed|whisper|r1|distill|coder/i, prefer: [[/llama-3\.3-70b/i, 8], [/llama-4-maverick/i, 7], [/qwen3/i, 5]] },
+    defaults: { concurrency: 4, rpm: 15, daily: 500 },
   },
 ];
 
@@ -149,7 +188,7 @@ function limiter({ rpm, windowMs, budget }) {
 }
 
 async function api(prov, path, body, { timeoutMs = 120000 } = {}) {
-  const res = await fetch(`${prov.base}${path}`, {
+  const res = await fetch(/^https:/.test(path) ? path : `${prov.base}${path}`, {
     method: body ? 'POST' : 'GET',
     headers: {
       'User-Agent': USER_AGENT,
@@ -174,7 +213,7 @@ async function api(prov, path, body, { timeoutMs = 120000 } = {}) {
   return json;
 }
 
-const versionOf = (m) => Math.max(0, ...[...m.matchAll(/(?:qwen|nemotron|-v)-?(\d+(?:\.\d+)?)/gi)].map((x) => Number(x[1])));
+const versionOf = (m) => Math.max(0, ...[...m.matchAll(/(?:qwen|nemotron|gemini|llama|-v)-?(\d+(?:\.\d+)?)/gi)].map((x) => Number(x[1])));
 
 function rankModels(ids, spec, wanted) {
   const ok = ids.filter((m) => spec.include.test(m) && !(spec.exclude && spec.exclude.test(m)) && (!spec.freeOnly || m.endsWith(':free')));
@@ -187,8 +226,11 @@ function rankModels(ids, spec, wanted) {
 async function resolveModels(prov, log) {
   const wanted = prov.wanted;
   try {
-    const list = await api(prov, '/models', null, { timeoutMs: 30000 });
-    const ranked = rankModels((list.data || []).map((m) => m.id), prov.spec, wanted);
+    const list = await api(prov, prov.modelsUrl || '/models', null, { timeoutMs: 30000 });
+    const rows = Array.isArray(list) ? list : list.data || list.models || [];
+    // Gemini lists "models/gemini-…"; chat calls take the bare id.
+    const ids = rows.map((m) => String((m && (m.id || m.name)) || m).replace(/^models\//, '')).filter(Boolean);
+    const ranked = rankModels(ids, prov.spec, wanted);
     if (wanted && ranked[0] !== wanted) log(`  ${prov.label}: ${wanted} not listed; using ${ranked[0] || wanted}`);
     return ranked.length ? ranked.slice(0, 3) : [wanted || prov.fallback];
   } catch (e) {

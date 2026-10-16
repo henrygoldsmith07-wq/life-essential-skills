@@ -5,12 +5,14 @@
 //
 //   node scripts/research/run.js [--days 2] [--max 120] [--only arxiv,pubmed] [--no-ai]
 //
-// Agents run in parallel across every provider that has a key: NVIDIA
-// (NVIDIA_API_KEY), Groq (GROQ_API_KEY) and OpenRouter (OPENROUTER_API_KEY).
+// Agents run in parallel across every provider that has a key: NVIDIA,
+// Groq, OpenRouter, Cerebras, GitHub Models, Gemini, Mistral and SambaNova
+// (see PROVIDERS in summarise.js for the key names).
 // Per-provider limits: <ID>_CONCURRENCY, <ID>_RPM, <ID>_DAILY_REQUESTS and
 // <ID>_MODEL, e.g. GROQ_MODEL. See summarise.js for defaults.
 //
-// Other env (optional): CONTACT_EMAIL, NCBI_API_KEY, S2_API_KEY, OPENALEX_API_KEY.
+// Other env (optional): CONTACT_EMAIL (also enables Unpaywall free-to-read
+// links), NCBI_API_KEY, S2_API_KEY, OPENALEX_API_KEY, ADS_API_KEY, CORE_API_KEY.
 'use strict';
 
 const fs = require('fs');
@@ -18,6 +20,15 @@ const path = require('path');
 const { dedupe, select, daysAgo } = require('./lib');
 const { SOURCES } = require('./sources');
 const { summarise } = require('./summarise');
+const { addFreeLinks, buildGlossary } = require('./enrich');
+
+// The workflow passes every repository variable as one JSON blob; expose
+// them as env vars (never overriding a real env var or a secret).
+try {
+  for (const [k, v] of Object.entries(JSON.parse(process.env.RESEARCH_VARS || '{}'))) {
+    if (/^[A-Z][A-Z0-9_]*$/.test(k) && process.env[k] === undefined && typeof v === 'string') process.env[k] = v;
+  }
+} catch { /* ignore malformed */ }
 
 const ROOT = path.resolve(__dirname, '../..');
 const OUT = process.env.RESEARCH_OUT ? path.resolve(process.env.RESEARCH_OUT) : path.join(ROOT, 'research', 'data');
@@ -39,8 +50,9 @@ function args(argv, env = process.env) {
   }
   const bounded = (v, lo, hi, d) => (Number.isInteger(v) && v >= lo && v <= hi ? v : d);
   opts.days = bounded(opts.days, 1, 60, 2);
-  // NVIDIA and Groq free tiers allow far more requests a day than OpenRouter's 50.
-  opts.max = bounded(opts.max, 1, 2000, env.NVIDIA_API_KEY || env.GROQ_API_KEY ? 120 : 40);
+  // Every provider but OpenRouter (50 a day without credit) allows far more.
+  const big = ['NVIDIA_API_KEY', 'GROQ_API_KEY', 'CEREBRAS_API_KEY', 'GEMINI_API_KEY', 'MISTRAL_API_KEY', 'SAMBANOVA_API_KEY', 'GITHUB_MODELS_TOKEN'].some((k) => env[k]);
+  opts.max = bounded(opts.max, 1, 2000, big ? 120 : 40);
   return opts;
 }
 
@@ -66,6 +78,7 @@ async function pool(tasks, limit) {
 
 async function fetchAll(sources, ctx, log) {
   return pool(sources.map((s) => async () => {
+    if (s.requires && !ctx.env[s.requires]) return { source: s, items: [], ok: null, error: `add ${s.requires} to enable` };
     const started = Date.now();
     try {
       const items = await s.fetch(ctx);
@@ -94,7 +107,7 @@ const strip = (item) => {
   return { ...rest, category: item.category || _category || 'world', excerpt: abstract ? abstract.slice(0, 600) : '' };
 };
 
-const registry = (extra = () => ({})) => SOURCES.map((s) => ({ id: s.id, name: s.name, kind: s.kind, group: s.group, home: s.home, ...extra(s) }));
+const registry = (extra = () => ({})) => SOURCES.map((s) => ({ id: s.id, name: s.name, kind: s.kind, group: s.group, home: s.home, ...(s.requires ? { requires: s.requires } : {}), ...extra(s) }));
 
 // Seed empty data files (before the first scheduled run) so the page renders
 // its honest "not run yet" state and lists every source.
@@ -137,10 +150,12 @@ async function main(argv = process.argv.slice(2), log = (...m) => console.log(..
   log(`${ai.items.length} summaries from ${ai.calls} model calls (peak ${ai.peak || 0} agents in parallel)${ai.errors.length ? `; errors: ${ai.errors.join(' | ')}` : ''}`);
   for (const p of Object.values(ai.providers || {})) log(`  ${p.label.padEnd(11)} ${String(p.summaries).padStart(4)} summaries  ${String(p.calls).padStart(4)} calls  ${p.model}${p.stopped ? `  (stopped: ${p.stopped})` : ''}`);
 
+  await addFreeLinks(ai.items, process.env, log);
+
   const byId = new Map(results.map((r) => [r.source.id, r]));
   const sourceStatus = registry((s) => {
     const r = byId.get(s.id);
-    return r ? { ok: r.ok, count: r.items.length, ...(r.error ? { error: r.error } : {}) } : { ok: null, count: 0 };
+    return r ? { ok: r.ok, count: r.items.length, ...(r.error ? { error: r.error } : {}) } : { ok: null, count: 0, ...(s.requires && !process.env[s.requires] ? { error: `add ${s.requires} to enable` } : {}) };
   });
   const run = {
     generated_at: now.toISOString(),
@@ -167,7 +182,8 @@ async function main(argv = process.argv.slice(2), log = (...m) => console.log(..
   // The page never shows the abstract excerpt, so the feed drops it (the archive keeps it).
   const kept = [...todays, ...(feed.items || []).filter((i) => i.digest_date >= cutoff && !todays.some((t) => t.id === i.id))]
     .slice(0, FEED_CAP).map(({ excerpt, ...rest }) => rest);
-  writeJson(feedFile, { schema: 1, ...run, sources: sourceStatus, items: kept });
+  const glossary = await buildGlossary(kept, feed.glossary || {}, log);
+  writeJson(feedFile, { schema: 1, ...run, sources: sourceStatus, glossary, items: kept });
 
   // Every fetched item (titles and links only) so readers can browse beyond the digest.
   writeJson(path.join(OUT, 'papers.json'), {

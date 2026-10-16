@@ -5,14 +5,21 @@ name: Daily research digest
 # static JSON under research/data/. Vercel redeploys on the push.
 #
 # Setup: Settings → Secrets and variables → Actions → New repository secret.
-# Add any or all of these; every provider with a key runs agents in parallel:
-#   NVIDIA_API_KEY       build.nvidia.com (Nemotron)
-#   GROQ_API_KEY         console.groq.com (Qwen)
-#   OPENROUTER_API_KEY   openrouter.ai (free Nemotron)
-# Optional secrets: NCBI_API_KEY, S2_API_KEY, OPENALEX_API_KEY
-# Optional variables: NVIDIA_MODEL, GROQ_MODEL, OPENROUTER_MODEL, and per
-# provider <ID>_CONCURRENCY, <ID>_RPM, <ID>_DAILY_REQUESTS (e.g. GROQ_RPM),
-# plus CONTACT_EMAIL and SITE_URL.
+# Add any of these; every model provider with a key runs agents in parallel:
+#   NVIDIA_API_KEY      build.nvidia.com (Nemotron)
+#   GROQ_API_KEY        console.groq.com (Qwen)
+#   CEREBRAS_API_KEY    cloud.cerebras.ai
+#   GEMINI_API_KEY      aistudio.google.com
+#   MISTRAL_API_KEY     console.mistral.ai (free Experiment plan)
+#   SAMBANOVA_API_KEY   cloud.sambanova.ai
+#   OPENROUTER_API_KEY  openrouter.ai
+# GitHub Models needs no secret: it uses this workflow's own token.
+# Optional source keys: ADS_API_KEY (NASA ADS), CORE_API_KEY, NCBI_API_KEY,
+# S2_API_KEY, OPENALEX_API_KEY.
+# Repository variables are all passed through, so any of these can be set
+# under the Variables tab: <ID>_MODEL, <ID>_CONCURRENCY, <ID>_RPM,
+# <ID>_DAILY_REQUESTS (e.g. GROQ_RPM), CONTACT_EMAIL (also turns on
+# Unpaywall "free to read" links) and SITE_URL.
 
 on:
   schedule:
@@ -28,6 +35,7 @@ on:
 
 permissions:
   contents: write
+  models: read
 
 concurrency:
   group: research-digest
@@ -45,26 +53,20 @@ jobs:
         env:
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          NVIDIA_MODEL: ${{ vars.NVIDIA_MODEL }}
-          GROQ_MODEL: ${{ vars.GROQ_MODEL }}
-          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
-          NVIDIA_CONCURRENCY: ${{ vars.NVIDIA_CONCURRENCY }}
-          NVIDIA_RPM: ${{ vars.NVIDIA_RPM }}
-          NVIDIA_DAILY_REQUESTS: ${{ vars.NVIDIA_DAILY_REQUESTS }}
-          GROQ_CONCURRENCY: ${{ vars.GROQ_CONCURRENCY }}
-          GROQ_RPM: ${{ vars.GROQ_RPM }}
-          GROQ_DAILY_REQUESTS: ${{ vars.GROQ_DAILY_REQUESTS }}
-          OPENROUTER_CONCURRENCY: ${{ vars.OPENROUTER_CONCURRENCY }}
+          GITHUB_MODELS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ADS_API_KEY: ${{ secrets.ADS_API_KEY }}
+          CORE_API_KEY: ${{ secrets.CORE_API_KEY }}
           NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
           S2_API_KEY: ${{ secrets.S2_API_KEY }}
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
-          CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
-          SITE_URL: ${{ vars.SITE_URL }}
+          RESEARCH_VARS: ${{ toJSON(vars) }}
           DAYS: ${{ inputs.days || '2' }}
           MAX: ${{ inputs.max }}
-          OPENROUTER_RPM: ${{ vars.OPENROUTER_RPM }}
-          OPENROUTER_DAILY_REQUESTS: ${{ vars.OPENROUTER_DAILY_REQUESTS }}
         run: node scripts/research/run.js --days "$DAYS" ${MAX:+--max "$MAX"}
       - name: Commit the digest
         run: |

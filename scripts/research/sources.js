@@ -262,6 +262,75 @@ function parseChemrxiv(json, source) {
   })).filter(Boolean);
 }
 
+// ---- ERIC (education research, US Institute of Education Sciences) ----------------------
+
+function parseEric(json, source) {
+  return ((json.response && json.response.docs) || []).map((d) => makeItem(source, {
+    id: `eric:${d.id}`,
+    title: d.title,
+    abstract: d.description,
+    url: `https://eric.ed.gov/?id=${encodeURIComponent(d.id)}`,
+    doi: Array.isArray(d.doi) ? d.doi[0] : d.doi,
+    venue: d.source,
+    authors: d.author || [],
+    // ERIC gives a publication year only, so no day is invented here.
+    kind: String(d.peerreviewed).toUpperCase() === 'T' ? 'journal' : 'preprint',
+  })).filter(Boolean);
+}
+
+// ---- ClinicalTrials.gov (trials that just posted results) ------------------------------------
+
+function parseClinicalTrials(json, source) {
+  return (json.studies || []).map((st) => {
+    const p = st.protocolSection || {};
+    const id = p.identificationModule || {};
+    if (!id.nctId) return null;
+    const conds = (p.conditionsModule && p.conditionsModule.conditions) || [];
+    return makeItem(source, {
+      id: `nct:${id.nctId}`,
+      title: id.briefTitle || id.officialTitle,
+      abstract: [(p.descriptionModule && p.descriptionModule.briefSummary) || '', conds.length ? `Conditions: ${conds.join(', ')}.` : ''].join(' '),
+      url: `https://clinicaltrials.gov/study/${id.nctId}`,
+      venue: 'ClinicalTrials.gov · results posted',
+      published: p.statusModule && p.statusModule.resultsFirstPostDateStruct && p.statusModule.resultsFirstPostDateStruct.date,
+      kind: 'trial',
+    });
+  }).filter(Boolean);
+}
+
+// ---- NASA ADS (astronomy and space; needs a free key) -----------------------------------------
+
+function parseAds(json, source) {
+  return ((json.response && json.response.docs) || []).map((d) => makeItem(source, {
+    id: d.doi && d.doi[0] ? undefined : `ads:${d.bibcode}`,
+    title: Array.isArray(d.title) ? d.title[0] : d.title,
+    abstract: d.abstract,
+    url: `https://ui.adsabs.harvard.edu/abs/${encodeURIComponent(d.bibcode)}/abstract`,
+    doi: d.doi && d.doi[0],
+    venue: d.pub,
+    authors: d.author || [],
+    published: d.pubdate && d.pubdate.replace(/-00/g, '-01'),
+    kind: 'journal',
+  })).filter(Boolean);
+}
+
+// ---- CORE (UK open-access aggregator; needs a free key) ------------------------------------------
+
+function parseCore(json, source) {
+  return (json.results || []).map((w) => makeItem(source, {
+    id: w.doi ? undefined : `core:${w.id}`,
+    title: w.title,
+    abstract: w.abstract,
+    url: `https://core.ac.uk/works/${w.id}`,
+    links: { free: w.downloadUrl },
+    doi: w.doi,
+    venue: (w.journals && w.journals[0] && w.journals[0].title) || w.publisher,
+    authors: (w.authors || []).map((a) => a.name),
+    published: w.publishedDate,
+    kind: 'journal',
+  })).filter(Boolean);
+}
+
 // ---- RSS / Atom / RDF feeds (journals, science news) ------------------------------------
 
 function parseFeed(xml, source) {
@@ -406,6 +475,39 @@ const SOURCES = [
     id: 'chemrxiv', name: 'ChemRxiv', kind: 'preprint', group: 'Preprint servers', home: 'https://chemrxiv.org',
     fetch: async (ctx) => recent(parseChemrxiv(await fetchJson(`https://chemrxiv.org/engage/chemrxiv/public-api/v1/items?limit=50&sort=PUBLISHED_DATE_DESC&searchDateFrom=${ctx.from}T00:00:00.000Z`), { id: 'chemrxiv', name: 'ChemRxiv', kind: 'preprint' }), ctx.from),
   },
+  {
+    id: 'eric', name: 'ERIC (education research)', kind: 'journal', group: 'Scholarly indexes', home: 'https://eric.ed.gov',
+    fetch: async (ctx) => {
+      const year = ctx.to.slice(0, 4);
+      const topics = '"retrieval practice" OR "study skills" OR "self-regulated learning" OR motivation OR "financial literacy" OR "reading comprehension" OR "student wellbeing" OR procrastination OR feedback';
+      const q = `(${topics}) AND publicationdateyear:${year} AND peerreviewed:T`;
+      return parseEric(await fetchJson(`https://api.ies.ed.gov/eric/?search=${encodeURIComponent(q)}&format=json&rows=60&fields=id,title,description,author,source,publicationdateyear,peerreviewed,doi`), { id: 'eric', name: 'ERIC (education research)', kind: 'journal' });
+    },
+  },
+  {
+    id: 'clinicaltrials', name: 'ClinicalTrials.gov (new results)', kind: 'trial', group: 'Medicine and health', home: 'https://clinicaltrials.gov',
+    fetch: async (ctx) => {
+      // Behavioural trials (exercise, sleep, therapy, habits) are the ones with everyday takeaways.
+      const adv = `AREA[ResultsFirstPostDate]RANGE[${ctx.weekFrom},MAX] AND AREA[InterventionType]BEHAVIORAL`;
+      return parseClinicalTrials(await fetchJson(`https://clinicaltrials.gov/api/v2/studies?filter.advanced=${encodeURIComponent(adv)}&pageSize=60&format=json`), { id: 'clinicaltrials', name: 'ClinicalTrials.gov (new results)', kind: 'trial' });
+    },
+  },
+  {
+    id: 'nasa-ads', name: 'NASA ADS (astronomy)', kind: 'journal', group: 'Scholarly indexes', home: 'https://ui.adsabs.harvard.edu', requires: 'ADS_API_KEY',
+    fetch: async (ctx) => {
+      const q = `entdate:[${ctx.from} TO ${ctx.to}] property:refereed collection:astronomy`;
+      const json = await fetchJson(`https://api.adsabs.harvard.edu/v1/search/query?q=${encodeURIComponent(q)}&fl=bibcode,title,abstract,doi,pubdate,author,pub&rows=50&sort=${encodeURIComponent('date desc')}`, { headers: { Authorization: `Bearer ${ctx.env.ADS_API_KEY}` } });
+      return parseAds(json, { id: 'nasa-ads', name: 'NASA ADS (astronomy)', kind: 'journal' });
+    },
+  },
+  {
+    id: 'core', name: 'CORE (open-access papers)', kind: 'journal', group: 'Scholarly indexes', home: 'https://core.ac.uk', requires: 'CORE_API_KEY',
+    fetch: async (ctx) => {
+      const q = `(sleep OR wellbeing OR "mental health" OR "physical activity" OR nutrition OR "financial literacy" OR loneliness OR misinformation) AND yearPublished>=${ctx.to.slice(0, 4)}`;
+      const json = await fetchJson(`https://api.core.ac.uk/v3/search/works?q=${encodeURIComponent(q)}&limit=50`, { headers: { Authorization: `Bearer ${ctx.env.CORE_API_KEY}` }, timeoutMs: 40000 });
+      return recent(parseCore(json, { id: 'core', name: 'CORE (open-access papers)', kind: 'journal' }), ctx.weekFrom);
+    },
+  },
   // Journals (tables of contents)
   feed('nature', 'Nature', 'https://www.nature.com/nature.rss', 'journal', { general: true }),
   feed('nature-human-behaviour', 'Nature Human Behaviour', 'https://www.nature.com/nathumbehav.rss', 'journal'),
@@ -451,5 +553,5 @@ async function biorxivPages(ctx, server, name) {
 
 module.exports = {
   SOURCES, parseArxiv, parseHfDaily, parseSemanticScholar, parseOpenAlex, invertedToText, parsePubmed,
-  parseEuropePmc, parseBiorxiv, parsePlos, parseDoaj, parseOsf, parseChemrxiv, parseFeed, isoDate,
+  parseEuropePmc, parseBiorxiv, parsePlos, parseDoaj, parseOsf, parseChemrxiv, parseFeed, parseEric, parseClinicalTrials, parseAds, parseCore, isoDate,
 };
