@@ -252,7 +252,9 @@
       "assessment_routes": [
         "MONEY-BUDGET-I01",
         "MONEY-BUDGET-I02",
-        "MONEY-BUDGET-I03"
+        "MONEY-BUDGET-I03",
+        "MONEY-BUDGET-I04",
+        "MONEY-BUDGET-I05"
       ],
       "learn_path": "guides/02-money.md",
       "jurisdictions": [
@@ -411,6 +413,8 @@
         "M-CR-03",
         "M-CR-04",
         "M-CR-05",
+        "M-CR-06",
+        "M-CR-07",
         "C03"
       ],
       "learn_path": "guides/02-money.md",
@@ -2388,6 +2392,8 @@
         "W-HO-03",
         "W-HO-04",
         "W-HO-05",
+        "W-HO-06",
+        "W-HO-07",
         "C01"
       ],
       "learn_path": "guides/12-major-decisions.md",

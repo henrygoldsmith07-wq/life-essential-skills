@@ -23249,6 +23249,646 @@
         "ignores-essential-cost",
         "fails-independent-verification"
       ]
+    },
+    {
+      "id": "MONEY-BUDGET-I04",
+      "version": 1,
+      "title": "Budget and essential costs · case 4",
+      "family": "money.budget",
+      "competencies": [
+        "money.budget.independent"
+      ],
+      "mode": "independent",
+      "difficulty": "independent",
+      "estimated_time_minutes": 12,
+      "prerequisites": [
+        "money.budget.foundation",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "regulated_topics": [],
+      "materials": [
+        "Monthly income 1320 after deductions. Rent 545, council charge 120, food 195, energy standing charge already 60 this month, travel 78, phone 15, medicine 32. A loyalty-scheme advert offers a pair of headphones at 55 (non-essential). The medicine is due weekly and its cost for the rest of the month is 96."
+      ],
+      "task": "Produce a complete feasible response and explain your reasoning. Check calculations where relevant, identify missing information, verify any jurisdiction-dependent route and name a fallback or limitation.",
+      "scoring": [
+        {
+          "id": "criterion",
+          "criterion": "Balance a fictional monthly budget including essentials, irregular reserves and a stated unallocated amount.",
+          "essential": true,
+          "competency_id": "money.budget.independent",
+          "guidance": "Separate income, essentials, irregular reserves and the unallocated amount; balance the fictional month. Do not count a reserve twice or assume missing funds. Judge the complete original output, not a corrected response."
+        },
+        {
+          "id": "constraints",
+          "criterion": "Account for: arithmetic error, ignores essential cost, assumes missing information; use the actual supplied quantities and constraints.",
+          "essential": true,
+          "competency_id": "money.budget.independent",
+          "guidance": "Check the specific supplied constraints and missing information for this step: Separate income, essentials, irregular reserves and the unallocated amount; balance the fictional month. Do not count a reserve twice or assume missing funds. Partly met means an important constraint is unresolved without a responsible next action."
+        },
+        {
+          "id": "safety",
+          "criterion": "Protect privacy, respect access and consent, stay within professional limits and use guidance with the right scope.",
+          "essential": true,
+          "competency_id": "money.budget.independent",
+          "guidance": "Any unsafe action, private-data disclosure, invented professional advice or wrong-jurisdiction claim makes this essential step not met. General reasoning must not be used as a claim about an unspecified nation’s law or services."
+        },
+        {
+          "id": "reasoning",
+          "criterion": "Explain the choice and at least one limitation or feasible next step.",
+          "essential": true,
+          "competency_id": "money.budget.independent",
+          "guidance": "Explain why your decision follows from the original evidence, name the uncertainty and show what changes your plan. Separate income, essentials, irregular reserves and the unallocated amount; balance the fictional month. Do not count a reserve twice or assume missing funds. Several choices may be defensible; do not mark agreement with a preferred life choice as competence."
+        },
+        {
+          "id": "case-decision",
+          "criterion": "Reach this case's specific decision: Medicine 96 plus energy 60 are fixed essentials totalling 156.",
+          "essential": true,
+          "competency_id": "money.budget.independent",
+          "guidance": "A met response reaches this case's particular conclusion — the specific figure, clause, boundary or constraint at issue — not only generic sound reasoning. Name the concrete element you acted on. Partly met means the response reasons fluently but stops short of, or misidentifies, this case's actual decision. Fluency about the topic is not evidence that the specific decision was made."
+        }
+      ],
+      "safety_constraints": [
+        "Fictional data only; do not store personal records or credentials.",
+        "No real payment, treatment change, hazardous repair, confrontation, or emergency simulation.",
+        "Written evidence demonstrates planning and judgement, not physical technique. Urgent help takes priority."
+      ],
+      "source_uses": [
+        {
+          "source_id": "uk-money",
+          "role": "general-principle",
+          "justification": "Only planning, arithmetic, source-verification or safety limits are assessed; no service availability, legal rule, treatment or entitlement is transferred to another jurisdiction."
+        }
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "ignores-essential-cost",
+        "assumes-missing-information"
+      ],
+      "next_recommended_tasks": [
+        "MONEY-BUDGET-I01",
+        "MONEY-BUDGET-I02"
+      ],
+      "answer_ref": "assessor/answers.json#MONEY-BUDGET-I04",
+      "variant_axes": [
+        "context",
+        "constraints",
+        "numbers",
+        "missing-information",
+        "trade-offs"
+      ],
+      "exposure_group": "money.budget-case-4",
+      "focus_errors": [
+        "arithmetic-error",
+        "ignores-essential-cost",
+        "assumes-missing-information"
+      ]
+    },
+    {
+      "id": "MONEY-BUDGET-I05",
+      "version": 1,
+      "title": "Budget and essential costs · case 5",
+      "family": "money.budget",
+      "competencies": [
+        "money.budget.independent"
+      ],
+      "mode": "independent",
+      "difficulty": "independent",
+      "estimated_time_minutes": 12,
+      "prerequisites": [
+        "money.budget.foundation",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "regulated_topics": [],
+      "materials": [
+        "Two adults share costs. One earns 1450, the other 980, and they split the rent 1200 equally. Shared groceries and bills cost 520 in total; one adult's personal travel to work is 85. One is considering moving to a cheaper area, but the other's employer relocation terms are unknown."
+      ],
+      "task": "Produce a complete feasible response and explain your reasoning. Check calculations where relevant, identify missing information, verify any jurisdiction-dependent route and name a fallback or limitation.",
+      "scoring": [
+        {
+          "id": "criterion",
+          "criterion": "Balance a fictional monthly budget including essentials, irregular reserves and a stated unallocated amount.",
+          "essential": true,
+          "competency_id": "money.budget.independent",
+          "guidance": "Separate income, essentials, irregular reserves and the unallocated amount; balance the fictional month. Do not count a reserve twice or assume missing funds. Judge the complete original output, not a corrected response."
+        },
+        {
+          "id": "constraints",
+          "criterion": "Account for: arithmetic error, ignores essential cost, assumes missing information; use the actual supplied quantities and constraints.",
+          "essential": true,
+          "competency_id": "money.budget.independent",
+          "guidance": "Check the specific supplied constraints and missing information for this step: Separate income, essentials, irregular reserves and the unallocated amount; balance the fictional month. Do not count a reserve twice or assume missing funds. Partly met means an important constraint is unresolved without a responsible next action."
+        },
+        {
+          "id": "safety",
+          "criterion": "Protect privacy, respect access and consent, stay within professional limits and use guidance with the right scope.",
+          "essential": true,
+          "competency_id": "money.budget.independent",
+          "guidance": "Any unsafe action, private-data disclosure, invented professional advice or wrong-jurisdiction claim makes this essential step not met. General reasoning must not be used as a claim about an unspecified nation’s law or services."
+        },
+        {
+          "id": "reasoning",
+          "criterion": "Explain the choice and at least one limitation or feasible next step.",
+          "essential": true,
+          "competency_id": "money.budget.independent",
+          "guidance": "Explain why your decision follows from the original evidence, name the uncertainty and show what changes your plan. Separate income, essentials, irregular reserves and the unallocated amount; balance the fictional month. Do not count a reserve twice or assume missing funds. Several choices may be defensible; do not mark agreement with a preferred life choice as competence."
+        },
+        {
+          "id": "case-decision",
+          "criterion": "Reach this case's specific decision: Equal rent is 600 each: the lower earner cannot meet 600 plus their share of shared costs, so the split must be based on income rather than halves.",
+          "essential": true,
+          "competency_id": "money.budget.independent",
+          "guidance": "A met response reaches this case's particular conclusion — the specific figure, clause, boundary or constraint at issue — not only generic sound reasoning. Name the concrete element you acted on. Partly met means the response reasons fluently but stops short of, or misidentifies, this case's actual decision. Fluency about the topic is not evidence that the specific decision was made."
+        }
+      ],
+      "safety_constraints": [
+        "Fictional data only; do not store personal records or credentials.",
+        "No real payment, treatment change, hazardous repair, confrontation, or emergency simulation.",
+        "Written evidence demonstrates planning and judgement, not physical technique. Urgent help takes priority."
+      ],
+      "source_uses": [
+        {
+          "source_id": "uk-money",
+          "role": "general-principle",
+          "justification": "Only planning, arithmetic, source-verification or safety limits are assessed; no service availability, legal rule, treatment or entitlement is transferred to another jurisdiction."
+        }
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "ignores-essential-cost",
+        "assumes-missing-information"
+      ],
+      "next_recommended_tasks": [
+        "MONEY-BUDGET-I01",
+        "MONEY-BUDGET-I02"
+      ],
+      "answer_ref": "assessor/answers.json#MONEY-BUDGET-I05",
+      "variant_axes": [
+        "context",
+        "constraints",
+        "numbers",
+        "missing-information",
+        "trade-offs"
+      ],
+      "exposure_group": "money.budget-case-4",
+      "focus_errors": [
+        "arithmetic-error",
+        "ignores-essential-cost",
+        "assumes-missing-information"
+      ]
+    },
+    {
+      "id": "M-CR-06",
+      "version": 1,
+      "title": "Credit decision under changed payment dates",
+      "family": "money.credit",
+      "competencies": [
+        "money.credit.independent"
+      ],
+      "mode": "independent",
+      "difficulty": "independent",
+      "estimated_time_minutes": 12,
+      "prerequisites": [
+        "money.credit.foundation",
+        "money.cash-flow.independent",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "regulated_topics": [],
+      "materials": [
+        "Repair cost 165. Option A: 2×90, first taken today. Option B: 5×38, first the day after payday. A new direct debit for insurance was just scheduled for the same day as B's first payment, and its amount is unconfirmed."
+      ],
+      "task": "Produce a feasible independent response. Show working where relevant, identify missing information, explain trade-offs and verify appropriate local guidance. Do not open feedback until your attempt is complete.",
+      "scoring": [
+        {
+          "id": "criterion",
+          "criterion": "Compare total repayment, payment timing, essential costs and uncertain terms; identify when borrowing is not demonstrably affordable.",
+          "essential": true,
+          "competency_id": "money.credit.independent",
+          "guidance": "Separate cash received, fees, total repayment, dates, essential costs and unknown terms. Approval or a small instalment cannot establish affordability. Judge the complete original output, not a corrected response."
+        },
+        {
+          "id": "constraints",
+          "criterion": "Account for: arithmetic error, missed payment timing, ignores essential cost, assumes missing information, unverified entitlement; use the actual supplied quantities and constraints.",
+          "essential": true,
+          "competency_id": "money.credit.independent",
+          "guidance": "Check the specific supplied constraints and missing information for this step: Separate cash received, fees, total repayment, dates, essential costs and unknown terms. Approval or a small instalment cannot establish affordability. Partly met means an important constraint is unresolved without a responsible next action."
+        },
+        {
+          "id": "safety",
+          "criterion": "Protect privacy, respect access and consent, stay within professional limits and use guidance with the right scope.",
+          "essential": true,
+          "competency_id": "money.credit.independent",
+          "guidance": "Any unsafe action, private-data disclosure, invented professional advice or wrong-jurisdiction claim makes this essential step not met. General reasoning must not be used as a claim about an unspecified nation’s law or services."
+        },
+        {
+          "id": "reasoning",
+          "criterion": "Explain the choice and at least one limitation or feasible next step.",
+          "essential": true,
+          "competency_id": "money.credit.independent",
+          "guidance": "Explain why your decision follows from the original evidence, name the uncertainty and show what changes your plan. Separate cash received, fees, total repayment, dates, essential costs and unknown terms. Approval or a small instalment cannot establish affordability. Several choices may be defensible; do not mark agreement with a preferred life choice as competence."
+        },
+        {
+          "id": "case-decision",
+          "criterion": "Reach this case's specific decision: Today's available cash decides A, not the total: A needs 90 today, B needs 38 the day after payday but collides with the unconfirmed insurance debit.",
+          "essential": true,
+          "competency_id": "money.credit.independent",
+          "guidance": "A met response reaches this case's particular conclusion — the specific figure, clause, boundary or constraint at issue — not only generic sound reasoning. Name the concrete element you acted on. Partly met means the response reasons fluently but stops short of, or misidentifies, this case's actual decision. Fluency about the topic is not evidence that the specific decision was made."
+        }
+      ],
+      "safety_constraints": [
+        "Fictional data only; do not store personal records or credentials.",
+        "No real payment, treatment change, hazardous repair, confrontation, or emergency simulation.",
+        "Written evidence demonstrates planning and judgement, not physical technique. Urgent help takes priority."
+      ],
+      "source_uses": [
+        {
+          "source_id": "uk-money",
+          "role": "general-principle",
+          "justification": "Only planning, arithmetic, source-verification or safety limits are assessed; no service availability, legal rule, treatment or entitlement is transferred to another jurisdiction."
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "general-principle",
+          "justification": "Only planning, arithmetic, source-verification or safety limits are assessed; no service availability, legal rule, treatment or entitlement is transferred to another jurisdiction."
+        }
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "missed-payment-timing",
+        "ignores-essential-cost",
+        "assumes-missing-information",
+        "unverified-entitlement"
+      ],
+      "next_recommended_tasks": [
+        "M-CR-01",
+        "M-CR-02"
+      ],
+      "answer_ref": "assessor/answers.json#M-CR-06",
+      "variant_axes": [
+        "numbers",
+        "constraints",
+        "wording",
+        "irrelevant-information",
+        "missing-information",
+        "timing",
+        "trade-offs",
+        "ambiguity",
+        "context"
+      ],
+      "exposure_group": "money.credit-case-6",
+      "focus_errors": [
+        "assumes-missing-information"
+      ]
+    },
+    {
+      "id": "M-CR-07",
+      "version": 1,
+      "title": "Credit decision with a hidden cost",
+      "family": "money.credit",
+      "competencies": [
+        "money.credit.independent"
+      ],
+      "mode": "independent",
+      "difficulty": "independent",
+      "estimated_time_minutes": 12,
+      "prerequisites": [
+        "money.credit.foundation",
+        "money.cash-flow.independent",
+        "critical-thinking.verification.foundation",
+        "digital-safety.accounts.foundation"
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "regulated_topics": [],
+      "materials": [
+        "Loan amount 300. Option A advertises no interest but a 45 admin fee taken from the advance. Option B is a 0% arrangement with a one-off 25 arrangement fee. Both repay over 3 months. The lender's cancellation terms are not stated in the advert."
+      ],
+      "task": "Produce a feasible independent response. Show working where relevant, identify missing information, explain trade-offs and verify appropriate local guidance. Do not open feedback until your attempt is complete.",
+      "scoring": [
+        {
+          "id": "criterion",
+          "criterion": "Compare total repayment, payment timing, essential costs and uncertain terms; identify when borrowing is not demonstrably affordable.",
+          "essential": true,
+          "competency_id": "money.credit.independent",
+          "guidance": "Separate cash received, fees, total repayment, dates, essential costs and unknown terms. Approval or a small instalment cannot establish affordability. Judge the complete original output, not a corrected response."
+        },
+        {
+          "id": "constraints",
+          "criterion": "Account for: arithmetic error, missed payment timing, ignores essential cost, assumes missing information, unverified entitlement; use the actual supplied quantities and constraints.",
+          "essential": true,
+          "competency_id": "money.credit.independent",
+          "guidance": "Check the specific supplied constraints and missing information for this step: Separate cash received, fees, total repayment, dates, essential costs and unknown terms. Approval or a small instalment cannot establish affordability. Partly met means an important constraint is unresolved without a responsible next action."
+        },
+        {
+          "id": "safety",
+          "criterion": "Protect privacy, respect access and consent, stay within professional limits and use guidance with the right scope.",
+          "essential": true,
+          "competency_id": "money.credit.independent",
+          "guidance": "Any unsafe action, private-data disclosure, invented professional advice or wrong-jurisdiction claim makes this essential step not met. General reasoning must not be used as a claim about an unspecified nation’s law or services."
+        },
+        {
+          "id": "reasoning",
+          "criterion": "Explain the choice and at least one limitation or feasible next step.",
+          "essential": true,
+          "competency_id": "money.credit.independent",
+          "guidance": "Explain why your decision follows from the original evidence, name the uncertainty and show what changes your plan. Separate cash received, fees, total repayment, dates, essential costs and unknown terms. Approval or a small instalment cannot establish affordability. Several choices may be defensible; do not mark agreement with a preferred life choice as competence."
+        },
+        {
+          "id": "case-decision",
+          "criterion": "Reach this case's specific decision: Compare cash actually received and total repayable: A delivers 255 and must repay 300 (cost 45), B delivers 275 and must repay 300 (cost 25), so B is cheaper on stated terms but the missing cancellation terms must be checked before committing.",
+          "essential": true,
+          "competency_id": "money.credit.independent",
+          "guidance": "A met response reaches this case's particular conclusion — the specific figure, clause, boundary or constraint at issue — not only generic sound reasoning. Name the concrete element you acted on. Partly met means the response reasons fluently but stops short of, or misidentifies, this case's actual decision. Fluency about the topic is not evidence that the specific decision was made."
+        }
+      ],
+      "safety_constraints": [
+        "Fictional data only; do not store personal records or credentials.",
+        "No real payment, treatment change, hazardous repair, confrontation, or emergency simulation.",
+        "Written evidence demonstrates planning and judgement, not physical technique. Urgent help takes priority."
+      ],
+      "source_uses": [
+        {
+          "source_id": "uk-money",
+          "role": "general-principle",
+          "justification": "Only planning, arithmetic, source-verification or safety limits are assessed; no service availability, legal rule, treatment or entitlement is transferred to another jurisdiction."
+        },
+        {
+          "source_id": "wales-general-advice",
+          "role": "general-principle",
+          "justification": "Only planning, arithmetic, source-verification or safety limits are assessed; no service availability, legal rule, treatment or entitlement is transferred to another jurisdiction."
+        }
+      ],
+      "error_tags": [
+        "arithmetic-error",
+        "missed-payment-timing",
+        "ignores-essential-cost",
+        "assumes-missing-information",
+        "unverified-entitlement"
+      ],
+      "next_recommended_tasks": [
+        "M-CR-01",
+        "M-CR-02"
+      ],
+      "answer_ref": "assessor/answers.json#M-CR-07",
+      "variant_axes": [
+        "numbers",
+        "constraints",
+        "wording",
+        "irrelevant-information",
+        "missing-information",
+        "timing",
+        "trade-offs",
+        "ambiguity",
+        "context"
+      ],
+      "exposure_group": "money.credit-case-6",
+      "focus_errors": [
+        "assumes-missing-information"
+      ]
+    },
+    {
+      "id": "W-HO-06",
+      "version": 1,
+      "title": "Unverified landlord claim",
+      "family": "major-decisions.housing",
+      "competencies": [
+        "major-decisions.housing.independent"
+      ],
+      "mode": "independent",
+      "difficulty": "independent",
+      "estimated_time_minutes": 12,
+      "prerequisites": [
+        "major-decisions.housing.foundation",
+        "money.budget.foundation",
+        "home.meals.foundation",
+        "life-admin.contracts.foundation",
+        "critical-thinking.verification.foundation"
+      ],
+      "jurisdictions": [
+        "wales"
+      ],
+      "regulated_topics": [
+        "housing"
+      ],
+      "materials": [
+        "A fictional Wales rental advert states the deposit is 'protected by law' and the tenancy 'follows the standard rules'. The advert links to an unverified private page, not the official source, and no deposit-scheme information is given. The learner must decide whether to proceed."
+      ],
+      "task": "Produce a feasible independent response. Show working where relevant, identify missing information, explain trade-offs and verify appropriate local guidance. Do not open feedback until your attempt is complete.",
+      "scoring": [
+        {
+          "id": "criterion",
+          "criterion": "Use Wales housing sources to identify occupation-contract questions, access and costs without substituting England rules or declaring legal validity.",
+          "essential": true,
+          "competency_id": "major-decisions.housing.independent",
+          "guidance": "Use the Wales property’s occupation-contract routes and ask about costs, responsibility, terms and access. England rules cannot establish Welsh obligations. Judge the complete original output, not a corrected response."
+        },
+        {
+          "id": "constraints",
+          "criterion": "Account for: wrong jurisdiction, unverified entitlement, fails independent verification, assumes missing information; use the actual supplied quantities and constraints.",
+          "essential": true,
+          "competency_id": "major-decisions.housing.independent",
+          "guidance": "Check the specific supplied constraints and missing information for this step: Use the Wales property’s occupation-contract routes and ask about costs, responsibility, terms and access. England rules cannot establish Welsh obligations. Partly met means an important constraint is unresolved without a responsible next action."
+        },
+        {
+          "id": "safety",
+          "criterion": "Protect privacy, respect access and consent, stay within professional limits and use guidance with the right scope.",
+          "essential": true,
+          "competency_id": "major-decisions.housing.independent",
+          "guidance": "Any unsafe action, private-data disclosure, invented professional advice or wrong-jurisdiction claim makes this essential step not met. This task requires Wales guidance; UK or England wording alone cannot establish the local rule."
+        },
+        {
+          "id": "reasoning",
+          "criterion": "Explain the choice and at least one limitation or feasible next step.",
+          "essential": true,
+          "competency_id": "major-decisions.housing.independent",
+          "guidance": "Explain why your decision follows from the original evidence, name the uncertainty and show what changes your plan. Use the Wales property’s occupation-contract routes and ask about costs, responsibility, terms and access. England rules cannot establish Welsh obligations. Several choices may be defensible; do not mark agreement with a preferred life choice as competence."
+        },
+        {
+          "id": "case-decision",
+          "criterion": "Reach this case's specific decision: Verify the deposit-scheme claim against the official Wales source before paying anything.",
+          "essential": true,
+          "competency_id": "major-decisions.housing.independent",
+          "guidance": "A met response reaches this case's particular conclusion — the specific figure, clause, boundary or constraint at issue — not only generic sound reasoning. Name the concrete element you acted on. Partly met means the response reasons fluently but stops short of, or misidentifies, this case's actual decision. Fluency about the topic is not evidence that the specific decision was made."
+        }
+      ],
+      "safety_constraints": [
+        "Fictional data only; do not store personal records or credentials.",
+        "No real payment, treatment change, hazardous repair, confrontation, or emergency simulation.",
+        "Written evidence demonstrates planning and judgement, not physical technique. Urgent help takes priority."
+      ],
+      "source_uses": [
+        {
+          "source_id": "wales-housing",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-housing-advice",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        }
+      ],
+      "error_tags": [
+        "wrong-jurisdiction",
+        "unverified-entitlement",
+        "fails-independent-verification",
+        "assumes-missing-information"
+      ],
+      "next_recommended_tasks": [
+        "W-HO-01",
+        "W-HO-02"
+      ],
+      "answer_ref": "assessor/answers.json#W-HO-06",
+      "variant_axes": [
+        "numbers",
+        "constraints",
+        "wording",
+        "irrelevant-information",
+        "missing-information",
+        "timing",
+        "trade-offs",
+        "ambiguity",
+        "context"
+      ],
+      "exposure_group": "major-decisions.housing-case-6",
+      "focus_errors": [
+        "wrong-jurisdiction",
+        "unverified-entitlement",
+        "fails-independent-verification",
+        "assumes-missing-information"
+      ]
+    },
+    {
+      "id": "W-HO-07",
+      "version": 1,
+      "title": "Accessible tenancy paperwork",
+      "family": "major-decisions.housing",
+      "competencies": [
+        "major-decisions.housing.independent"
+      ],
+      "mode": "independent",
+      "difficulty": "independent",
+      "estimated_time_minutes": 12,
+      "prerequisites": [
+        "major-decisions.housing.foundation",
+        "money.budget.foundation",
+        "home.meals.foundation",
+        "life-admin.contracts.foundation",
+        "critical-thinking.verification.foundation"
+      ],
+      "jurisdictions": [
+        "wales"
+      ],
+      "regulated_topics": [
+        "housing"
+      ],
+      "materials": [
+        "A fictional Wales letting agent sends the contract only as a scanned image with no text. The learner uses a screen reader and cannot read it. The agent says 'sign and we can sort it later'. A relative offers to explain it verbally."
+      ],
+      "task": "Produce a feasible independent response. Show working where relevant, identify missing information, explain trade-offs and verify appropriate local guidance. Do not open feedback until your attempt is complete.",
+      "scoring": [
+        {
+          "id": "criterion",
+          "criterion": "Use Wales housing sources to identify occupation-contract questions, access and costs without substituting England rules or declaring legal validity.",
+          "essential": true,
+          "competency_id": "major-decisions.housing.independent",
+          "guidance": "Use the Wales property’s occupation-contract routes and ask about costs, responsibility, terms and access. England rules cannot establish Welsh obligations. Judge the complete original output, not a corrected response."
+        },
+        {
+          "id": "constraints",
+          "criterion": "Account for: wrong jurisdiction, unverified entitlement, fails independent verification, assumes missing information; use the actual supplied quantities and constraints.",
+          "essential": true,
+          "competency_id": "major-decisions.housing.independent",
+          "guidance": "Check the specific supplied constraints and missing information for this step: Use the Wales property’s occupation-contract routes and ask about costs, responsibility, terms and access. England rules cannot establish Welsh obligations. Partly met means an important constraint is unresolved without a responsible next action."
+        },
+        {
+          "id": "safety",
+          "criterion": "Protect privacy, respect access and consent, stay within professional limits and use guidance with the right scope.",
+          "essential": true,
+          "competency_id": "major-decisions.housing.independent",
+          "guidance": "Any unsafe action, private-data disclosure, invented professional advice or wrong-jurisdiction claim makes this essential step not met. This task requires Wales guidance; UK or England wording alone cannot establish the local rule."
+        },
+        {
+          "id": "reasoning",
+          "criterion": "Explain the choice and at least one limitation or feasible next step.",
+          "essential": true,
+          "competency_id": "major-decisions.housing.independent",
+          "guidance": "Explain why your decision follows from the original evidence, name the uncertainty and show what changes your plan. Use the Wales property’s occupation-contract routes and ask about costs, responsibility, terms and access. England rules cannot establish Welsh obligations. Several choices may be defensible; do not mark agreement with a preferred life choice as competence."
+        },
+        {
+          "id": "case-decision",
+          "criterion": "Reach this case's specific decision: a verbal explanation by a relative is not the contract, and signing unread terms is a decision made without verifying obligations.",
+          "essential": true,
+          "competency_id": "major-decisions.housing.independent",
+          "guidance": "A met response reaches this case's particular conclusion — the specific figure, clause, boundary or constraint at issue — not only generic sound reasoning. Name the concrete element you acted on. Partly met means the response reasons fluently but stops short of, or misidentifies, this case's actual decision. Fluency about the topic is not evidence that the specific decision was made."
+        }
+      ],
+      "safety_constraints": [
+        "Fictional data only; do not store personal records or credentials.",
+        "No real payment, treatment change, hazardous repair, confrontation, or emergency simulation.",
+        "Written evidence demonstrates planning and judgement, not physical technique. Urgent help takes priority."
+      ],
+      "source_uses": [
+        {
+          "source_id": "wales-housing",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        },
+        {
+          "source_id": "wales-housing-advice",
+          "role": "authority",
+          "jurisdictions": [
+            "wales"
+          ]
+        }
+      ],
+      "error_tags": [
+        "wrong-jurisdiction",
+        "unverified-entitlement",
+        "fails-independent-verification",
+        "assumes-missing-information"
+      ],
+      "next_recommended_tasks": [
+        "W-HO-01",
+        "W-HO-02"
+      ],
+      "answer_ref": "assessor/answers.json#W-HO-07",
+      "variant_axes": [
+        "numbers",
+        "constraints",
+        "wording",
+        "irrelevant-information",
+        "missing-information",
+        "timing",
+        "trade-offs",
+        "ambiguity",
+        "context"
+      ],
+      "exposure_group": "major-decisions.housing-case-6",
+      "focus_errors": [
+        "wrong-jurisdiction",
+        "unverified-entitlement",
+        "fails-independent-verification",
+        "assumes-missing-information"
+      ]
     }
   ]
 }
