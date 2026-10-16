@@ -1,18 +1,18 @@
 name: Daily research digest
 
 # Fetches new papers from every source in scripts/research/sources.js,
-# summarises the most useful with a free OpenRouter model, and commits the
+# summarises each selected paper with its own AI agent, and commits the
 # static JSON under research/data/. Vercel redeploys on the push.
 #
-# Setup: Settings → Secrets and variables → Actions → New repository secret
-#   OPENROUTER_API_KEY   (required for summaries)
+# Setup: Settings → Secrets and variables → Actions → New repository secret.
+# Add any or all of these; every provider with a key runs agents in parallel:
+#   NVIDIA_API_KEY       build.nvidia.com (Nemotron)
+#   GROQ_API_KEY         console.groq.com (Qwen)
+#   OPENROUTER_API_KEY   openrouter.ai (free Nemotron)
 # Optional secrets: NCBI_API_KEY, S2_API_KEY, OPENALEX_API_KEY
-# Optional variables: OPENROUTER_MODEL, CONTACT_EMAIL, SITE_URL,
-#   OPENROUTER_RPM (default 18 per minute), OPENROUTER_DAILY_REQUESTS (default 48).
-# Each paper is summarised by its own agent (one model call); agents run in
-# parallel under those shared limits. The no-credit free tier is ~20 requests
-# a minute and 50 a day; with $10+ of credit it is 1000 a day, so raise
-# OPENROUTER_DAILY_REQUESTS and the `max` input together.
+# Optional variables: NVIDIA_MODEL, GROQ_MODEL, OPENROUTER_MODEL, and per
+# provider <ID>_CONCURRENCY, <ID>_RPM, <ID>_DAILY_REQUESTS (e.g. GROQ_RPM),
+# plus CONTACT_EMAIL and SITE_URL.
 
 on:
   schedule:
@@ -23,11 +23,8 @@ on:
         description: 'Look-back window in days (use more for a first backfill)'
         default: '2'
       max:
-        description: 'Papers to summarise, one agent each (no-credit free tier: 50 calls a day)'
-        default: '40'
-      concurrency:
-        description: 'Agents running at once'
-        default: '10'
+        description: 'Papers to summarise, one agent each (blank: 120 with NVIDIA or Groq, else 40)'
+        default: ''
 
 permissions:
   contents: write
@@ -46,19 +43,29 @@ jobs:
         run: node --test tests/research.test.js
       - name: Fetch and summarise new research
         env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          NVIDIA_MODEL: ${{ vars.NVIDIA_MODEL }}
+          GROQ_MODEL: ${{ vars.GROQ_MODEL }}
           OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
+          NVIDIA_CONCURRENCY: ${{ vars.NVIDIA_CONCURRENCY }}
+          NVIDIA_RPM: ${{ vars.NVIDIA_RPM }}
+          NVIDIA_DAILY_REQUESTS: ${{ vars.NVIDIA_DAILY_REQUESTS }}
+          GROQ_CONCURRENCY: ${{ vars.GROQ_CONCURRENCY }}
+          GROQ_RPM: ${{ vars.GROQ_RPM }}
+          GROQ_DAILY_REQUESTS: ${{ vars.GROQ_DAILY_REQUESTS }}
+          OPENROUTER_CONCURRENCY: ${{ vars.OPENROUTER_CONCURRENCY }}
           NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
           S2_API_KEY: ${{ secrets.S2_API_KEY }}
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
           CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
           SITE_URL: ${{ vars.SITE_URL }}
           DAYS: ${{ inputs.days || '2' }}
-          MAX: ${{ inputs.max || '40' }}
-          CONCURRENCY: ${{ inputs.concurrency || '10' }}
+          MAX: ${{ inputs.max }}
           OPENROUTER_RPM: ${{ vars.OPENROUTER_RPM }}
           OPENROUTER_DAILY_REQUESTS: ${{ vars.OPENROUTER_DAILY_REQUESTS }}
-        run: node scripts/research/run.js --days "$DAYS" --max "$MAX" --concurrency "$CONCURRENCY"
+        run: node scripts/research/run.js --days "$DAYS" ${MAX:+--max "$MAX"}
       - name: Commit the digest
         run: |
           git config user.name 'github-actions[bot]'

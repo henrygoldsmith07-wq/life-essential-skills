@@ -1,47 +1,46 @@
 #!/usr/bin/env node
 // Daily research digest: fetch recent work from every source, de-duplicate,
-// pick the most life-relevant papers, summarise them with OpenRouter, and
-// write static JSON the /research/ page reads.
+// pick the most life-relevant papers, summarise each with its own AI agent,
+// and write static JSON the /research/ page reads.
 //
-//   node scripts/research/run.js [--days 2] [--max 40] [--concurrency 10] [--only arxiv,pubmed] [--no-ai]
+//   node scripts/research/run.js [--days 2] [--max 120] [--only arxiv,pubmed] [--no-ai]
 //
-// One agent (model call) per paper, run in parallel under a shared rate
-// limit and daily budget: OPENROUTER_RPM (default 18 per minute) and
-// OPENROUTER_DAILY_REQUESTS (default 48, the no-credit free tier is 50).
+// Agents run in parallel across every provider that has a key: NVIDIA
+// (NVIDIA_API_KEY), Groq (GROQ_API_KEY) and OpenRouter (OPENROUTER_API_KEY).
+// Per-provider limits: <ID>_CONCURRENCY, <ID>_RPM, <ID>_DAILY_REQUESTS and
+// <ID>_MODEL, e.g. GROQ_MODEL. See summarise.js for defaults.
 //
-// Env: OPENROUTER_API_KEY (required for summaries), OPENROUTER_MODEL,
-// CONTACT_EMAIL, NCBI_API_KEY, S2_API_KEY, OPENALEX_API_KEY (all optional).
+// Other env (optional): CONTACT_EMAIL, NCBI_API_KEY, S2_API_KEY, OPENALEX_API_KEY.
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
 const { dedupe, select, daysAgo } = require('./lib');
 const { SOURCES } = require('./sources');
-const { summarise, DEFAULT_MODEL } = require('./summarise');
+const { summarise } = require('./summarise');
 
 const ROOT = path.resolve(__dirname, '../..');
 const OUT = process.env.RESEARCH_OUT ? path.resolve(process.env.RESEARCH_OUT) : path.join(ROOT, 'research', 'data');
-const FEED_DAYS = 30; // rolling window shown on the page
-const FEED_CAP = 800;
+const FEED_DAYS = 14; // rolling window shown on the page; older days stay in archive/
+const FEED_CAP = 2000;
 const PAPERS_CAP = 2500;
 const SEEN_DAYS = 90;
 
-function args(argv) {
-  const opts = { days: 2, max: 40, concurrency: 10, only: null, ai: true };
+function args(argv, env = process.env) {
+  const opts = { days: 2, max: null, only: null, ai: true };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     const next = () => argv[++i];
     if (a === '--days') opts.days = Number(next());
     else if (a === '--max') opts.max = Number(next());
-    else if (a === '--concurrency') opts.concurrency = Number(next());
     else if (a === '--only') opts.only = new Set(String(next()).split(',').map((s) => s.trim()).filter(Boolean));
     else if (a === '--no-ai') opts.ai = false;
     else if (a === '--init') opts.init = true;
   }
   const bounded = (v, lo, hi, d) => (Number.isInteger(v) && v >= lo && v <= hi ? v : d);
   opts.days = bounded(opts.days, 1, 60, 2);
-  opts.max = bounded(opts.max, 1, 1000, 40);
-  opts.concurrency = bounded(opts.concurrency, 1, 64, 10);
+  // NVIDIA and Groq free tiers allow far more requests a day than OpenRouter's 50.
+  opts.max = bounded(opts.max, 1, 2000, env.NVIDIA_API_KEY || env.GROQ_API_KEY ? 120 : 40);
   return opts;
 }
 
@@ -134,13 +133,9 @@ async function main(argv = process.argv.slice(2), log = (...m) => console.log(..
   const picked = select(fresh, opts.max, general);
   log(`\n${all.length} unique items, ${fresh.length} not yet summarised, ${picked.length} selected for summaries`);
 
-  const key = opts.ai ? process.env.OPENROUTER_API_KEY : '';
-  const num = (name) => (process.env[name] ? Number(process.env[name]) : undefined);
-  const ai = await summarise(picked, {
-    key, log, model: process.env.OPENROUTER_MODEL || DEFAULT_MODEL, concurrency: opts.concurrency,
-    rpm: num('OPENROUTER_RPM'), dailyRequests: num('OPENROUTER_DAILY_REQUESTS'), windowMs: num('RESEARCH_WINDOW_MS'), backoffMs: num('RESEARCH_BACKOFF_MS'),
-  });
+  const ai = await summarise(picked, { log, env: opts.ai ? process.env : {} });
   log(`${ai.items.length} summaries from ${ai.calls} model calls (peak ${ai.peak || 0} agents in parallel)${ai.errors.length ? `; errors: ${ai.errors.join(' | ')}` : ''}`);
+  for (const p of Object.values(ai.providers || {})) log(`  ${p.label.padEnd(11)} ${String(p.summaries).padStart(4)} summaries  ${String(p.calls).padStart(4)} calls  ${p.model}${p.stopped ? `  (stopped: ${p.stopped})` : ''}`);
 
   const byId = new Map(results.map((r) => [r.source.id, r]));
   const sourceStatus = registry((s) => {
@@ -152,7 +147,7 @@ async function main(argv = process.argv.slice(2), log = (...m) => console.log(..
     date: today,
     window: { from: ctx.from, to: ctx.to },
     model: ai.model,
-    stats: { sources: sources.length, sources_ok: results.filter((r) => r.ok).length, fetched: results.reduce((a, r) => a + r.items.length, 0), unique: all.length, selected: picked.length, summarised: ai.items.length, model_calls: ai.calls, parallel_agents: ai.peak || 0 },
+    stats: { sources: sources.length, sources_ok: results.filter((r) => r.ok).length, fetched: results.reduce((a, r) => a + r.items.length, 0), unique: all.length, selected: picked.length, summarised: ai.items.length, model_calls: ai.calls, parallel_agents: ai.peak || 0, providers: ai.providers || {} },
     errors: ai.errors.slice(0, 5),
   };
 
@@ -169,7 +164,9 @@ async function main(argv = process.argv.slice(2), log = (...m) => console.log(..
   }
 
   const cutoff = daysAgo(FEED_DAYS, now);
-  const kept = [...todays, ...(feed.items || []).filter((i) => i.digest_date >= cutoff && !todays.some((t) => t.id === i.id))].slice(0, FEED_CAP);
+  // The page never shows the abstract excerpt, so the feed drops it (the archive keeps it).
+  const kept = [...todays, ...(feed.items || []).filter((i) => i.digest_date >= cutoff && !todays.some((t) => t.id === i.id))]
+    .slice(0, FEED_CAP).map(({ excerpt, ...rest }) => rest);
   writeJson(feedFile, { schema: 1, ...run, sources: sourceStatus, items: kept });
 
   // Every fetched item (titles and links only) so readers can browse beyond the digest.

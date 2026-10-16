@@ -199,78 +199,138 @@ test('limiter caps requests per window and in total', async () => {
   assert.strictEqual(lim.used(), 5);
 });
 
-// Minimal OpenRouter mock: per-paper replies, with hooks to observe parallelism.
-function mockOpenRouter({ delayMs = 30, reply } = {}) {
-  const seen = { inFlight: 0, peak: 0, completions: 0 };
+// Mock of the three OpenAI-compatible providers, keyed by host, with hooks
+// to observe parallelism and to script failures.
+const HOSTS = { 'integrate.api.nvidia.com': 'nvidia', 'api.groq.com': 'groq', 'openrouter.ai': 'openrouter' };
+const MODELS = {
+  nvidia: ['nvidia/nv-embedqa-e5-v5', 'nvidia/nemotron-nano-9b-v2', 'nvidia/llama-3.3-nemotron-super-49b-v1.5', 'nvidia/nemotron-3.5-super-vl'],
+  groq: ['whisper-large-v3', 'qwen/qwen3-32b', 'qwen/qwen3.8-27b', 'llama-3.3-70b-versatile'],
+  openrouter: ['nvidia/nemotron-3.5-super-vl:free', 'nvidia/nemotron-3.5-super-vl'],
+};
+function mockProviders({ delayMs = 20, reply } = {}) {
+  const seen = { inFlight: 0, peak: 0, calls: { nvidia: 0, groq: 0, openrouter: 0 }, bodies: [] };
   const fetch = async (url, init = {}) => {
-    const u = String(url);
-    if (u.endsWith('/models')) return new Response(JSON.stringify({ data: [{ id: 'nvidia/nemotron-3.5-super-vl:free' }] }), { status: 200 });
-    seen.completions++;
+    const u = new URL(String(url));
+    const prov = HOSTS[u.host];
+    if (!prov) return new Response('no', { status: 404 });
+    if (u.pathname.endsWith('/models')) return new Response(JSON.stringify({ data: MODELS[prov].map((id) => ({ id })) }), { status: 200 });
+    seen.calls[prov]++;
     seen.inFlight++;
     seen.peak = Math.max(seen.peak, seen.inFlight);
     await new Promise((r) => setTimeout(r, delayMs));
     seen.inFlight--;
     const body = JSON.parse(init.body);
+    seen.bodies.push({ prov, body, auth: init.headers.Authorization });
     const title = (body.messages[1].content.match(/^Title: (.*)$/m) || [])[1];
-    return reply ? reply(title, seen) : new Response(JSON.stringify({ model: body.model, choices: [{ message: { content: JSON.stringify({ headline: `About ${title}`, summary: 'S', confidence: 'moderate' }) } }] }), { status: 200 });
+    const custom = reply && reply(prov, title, body);
+    if (custom) return custom;
+    return new Response(JSON.stringify({ model: body.model, choices: [{ message: { content: JSON.stringify({ headline: `About ${title}`, summary: 'S', confidence: 'moderate' }) } }] }), { status: 200 });
   };
   return { fetch, seen };
 }
+const err = (status, message) => new Response(JSON.stringify({ error: { message } }), { status });
 
 const papersN = (n) => Array.from({ length: n }, (_, i) => ({ id: `p${i}`, title: `Paper ${i}`, kind: 'journal', abstract: 'a' }));
-
-test('one agent per paper, run in parallel up to the concurrency limit', async () => {
-  const { fetch, seen } = mockOpenRouter();
+const quiet = { log: () => {}, backoffMs: 1 };
+async function withFetch(f, fn) {
   const real = global.fetch;
-  global.fetch = fetch;
-  try {
-    const res = await sum.summarise(papersN(12), { key: 'k', concurrency: 5, rpm: 100, dailyRequests: 100, log: () => {} });
-    assert.strictEqual(res.items.length, 12);
-    assert.strictEqual(seen.completions, 12, 'exactly one model call per paper');
-    assert.strictEqual(seen.peak, 5);
-    assert.strictEqual(res.peak, 5);
-    assert.deepStrictEqual(res.items.map((i) => i.ai.headline).sort(), papersN(12).map((p) => `About ${p.title}`).sort(), 'each reply lands on its own paper');
-  } finally { global.fetch = real; }
+  global.fetch = f;
+  try { return await fn(); } finally { global.fetch = real; }
+}
+
+test('providers: only those with a key run, limits come from defaults or env', () => {
+  assert.deepStrictEqual(sum.configure({}).map((p) => p.id), []);
+  const ps = sum.configure({ GROQ_API_KEY: 'g', NVIDIA_API_KEY: 'n', NVIDIA_CONCURRENCY: '32', GROQ_RPM: '12', GROQ_MODEL: 'qwen/x' });
+  assert.deepStrictEqual(ps.map((p) => p.id), ['nvidia', 'groq']);
+  assert.strictEqual(ps[0].concurrency, 32);
+  assert.strictEqual(ps[1].rpm, 12);
+  assert.strictEqual(ps[1].wanted, 'qwen/x');
+  assert.strictEqual(ps[1].daily, sum.PROVIDERS.find((p) => p.id === 'groq').defaults.daily);
 });
 
-test('agents share the daily budget and retry transient failures', async () => {
+test('model resolution picks each provider\'s preferred family from its live list', () => {
+  const spec = (id) => sum.PROVIDERS.find((p) => p.id === id).spec;
+  assert.strictEqual(sum.rankModels(MODELS.nvidia, spec('nvidia'))[0], 'nvidia/nemotron-3.5-super-vl');
+  assert.ok(!sum.rankModels(MODELS.nvidia, spec('nvidia')).includes('nvidia/nv-embedqa-e5-v5'));
+  assert.strictEqual(sum.rankModels(MODELS.groq, spec('groq'))[0], 'qwen/qwen3.8-27b');
+  assert.ok(!sum.rankModels(MODELS.groq, spec('groq')).some((m) => /whisper|llama/.test(m)));
+  assert.deepStrictEqual(sum.rankModels(MODELS.openrouter, spec('openrouter')), ['nvidia/nemotron-3.5-super-vl:free']);
+  assert.strictEqual(sum.rankModels(MODELS.groq, spec('groq'), 'qwen/qwen3-32b')[0], 'qwen/qwen3-32b', 'an explicit, listed model wins');
+});
+
+test('one agent per paper, run in parallel across every provider at once', async () => {
+  const { fetch, seen } = mockProviders();
+  const res = await withFetch(fetch, () => sum.summarise(papersN(30), {
+    ...quiet, env: { NVIDIA_API_KEY: 'nv', GROQ_API_KEY: 'gq', OPENROUTER_API_KEY: 'or' },
+    providers: { nvidia: { concurrency: 5, rpm: 999 }, groq: { concurrency: 3, rpm: 999 }, openrouter: { concurrency: 2, rpm: 999 } },
+  }));
+  assert.strictEqual(res.items.length, 30);
+  const total = seen.calls.nvidia + seen.calls.groq + seen.calls.openrouter;
+  assert.strictEqual(total, 30, 'exactly one model call per paper');
+  assert.ok(seen.calls.nvidia > 0 && seen.calls.groq > 0 && seen.calls.openrouter > 0, JSON.stringify(seen.calls));
+  assert.strictEqual(seen.peak, 10, 'all 5 + 3 + 2 agents ran at the same time');
+  assert.deepStrictEqual(res.items.map((i) => i.ai.headline).sort(), papersN(30).map((p) => `About ${p.title}`).sort(), 'each reply lands on its own paper');
+  const groq = seen.bodies.find((b) => b.prov === 'groq');
+  assert.strictEqual(groq.body.model, 'qwen/qwen3.8-27b');
+  assert.strictEqual(groq.body.reasoning_effort, 'none');
+  assert.strictEqual(groq.auth, 'Bearer gq');
+  assert.ok(!('reasoning_effort' in seen.bodies.find((b) => b.prov === 'nvidia').body));
+  assert.strictEqual(seen.bodies.find((b) => b.prov === 'nvidia').body.model, 'nvidia/nemotron-3.5-super-vl');
+  assert.deepStrictEqual(Object.keys(res.providers), ['nvidia', 'groq', 'openrouter']);
+  assert.strictEqual(res.providers.groq.summaries + res.providers.nvidia.summaries + res.providers.openrouter.summaries, 30);
+  assert.ok(res.items.every((i) => ['nvidia', 'groq', 'openrouter'].includes(i.ai.provider)));
+});
+
+test('a dead provider is retired and the others finish its papers', async () => {
+  const { fetch, seen } = mockProviders({ reply: (prov) => (prov === 'groq' ? err(401, 'Invalid API Key') : null) });
+  const res = await withFetch(fetch, () => sum.summarise(papersN(12), { ...quiet, env: { NVIDIA_API_KEY: 'nv', GROQ_API_KEY: 'bad' }, providers: { nvidia: { concurrency: 3, rpm: 999 }, groq: { concurrency: 3, rpm: 999 } } }));
+  assert.strictEqual(res.items.length, 12);
+  assert.ok(seen.calls.groq <= 3, `groq stopped after its first failures (${seen.calls.groq})`);
+  assert.match(res.providers.groq.stopped, /401/);
+  assert.strictEqual(res.providers.nvidia.summaries, 12);
+});
+
+test('a paper that fails on one provider is retried on another', async () => {
+  const { fetch, seen } = mockProviders({
+    reply: (prov, title) => (prov === 'nvidia' && title === 'Paper 0' ? new Response(JSON.stringify({ choices: [{ message: { content: 'not json at all' } }] }), { status: 200 }) : null),
+  });
+  const res = await withFetch(fetch, () => sum.summarise(papersN(1), { ...quiet, env: { NVIDIA_API_KEY: 'nv', GROQ_API_KEY: 'gq' }, providers: { nvidia: { concurrency: 1, rpm: 999 }, groq: { concurrency: 1, rpm: 999 } } }));
+  assert.strictEqual(res.items.length, 1);
+  assert.ok(seen.calls.nvidia >= 1, 'NVIDIA took the paper first');
+  assert.strictEqual(res.items[0].ai.provider, 'groq', 'and Groq finished it');
+});
+
+test('optional provider flags are dropped if the provider rejects them', async () => {
+  const { fetch, seen } = mockProviders({ reply: (prov, title, body) => (prov === 'groq' && body.reasoning_effort ? err(400, 'unknown parameter reasoning_effort') : null) });
+  const res = await withFetch(fetch, () => sum.summarise(papersN(4), { ...quiet, env: { GROQ_API_KEY: 'gq' }, providers: { groq: { concurrency: 1, rpm: 999 } } }));
+  assert.strictEqual(res.items.length, 4);
+  assert.strictEqual(seen.bodies.filter((b) => b.body.reasoning_effort).length, 1, 'only the first request carried the flag');
+});
+
+test('each provider keeps to its own daily budget, retries included', async () => {
   let fails = 1;
-  const { fetch, seen } = mockOpenRouter({
-    reply: (title) => (title === 'Paper 0' && fails-- > 0
-      ? new Response(JSON.stringify({ error: { message: 'busy' } }), { status: 503 })
-      : new Response(JSON.stringify({ choices: [{ message: { content: `{"headline":"About ${title}"}` } }] }), { status: 200 })),
-  });
-  const real = global.fetch;
-  global.fetch = fetch;
-  try {
-    const res = await sum.summarise(papersN(6), { key: 'k', concurrency: 6, rpm: 100, dailyRequests: 5, backoffMs: 1, log: () => {} });
-    assert.strictEqual(seen.completions, 5, 'never exceeds the daily budget, retries included');
-    assert.strictEqual(res.calls, 5);
-    assert.strictEqual(res.items.length, 4);
-    assert.ok(res.errors.includes('daily request budget used up'));
-  } finally { global.fetch = real; }
+  const { fetch, seen } = mockProviders({ reply: (prov, title) => (title === 'Paper 0' && fails-- > 0 ? err(503, 'busy') : null) });
+  const res = await withFetch(fetch, () => sum.summarise(papersN(6), { ...quiet, env: { NVIDIA_API_KEY: 'nv' }, providers: { nvidia: { concurrency: 6, rpm: 999, daily: 5 } } }));
+  assert.strictEqual(seen.calls.nvidia, 5, 'never exceeds the daily budget');
+  assert.strictEqual(res.calls, 5);
+  assert.strictEqual(res.items.length, 4);
+  assert.ok(res.errors.includes('daily request budget used up'));
 });
 
-test('a daily-quota error stops every agent at once', async () => {
-  const { fetch, seen } = mockOpenRouter({
-    delayMs: 5,
-    reply: () => new Response(JSON.stringify({ error: { message: 'Rate limit exceeded: free-models-per-day' } }), { status: 429 }),
-  });
-  const real = global.fetch;
-  global.fetch = fetch;
-  try {
-    const res = await sum.summarise(papersN(20), { key: 'k', concurrency: 2, rpm: 100, dailyRequests: 100, log: () => {} });
-    assert.ok(seen.completions <= 2, `stopped after the first failures (${seen.completions} calls)`);
-    assert.strictEqual(res.items.length, 0);
-    assert.match(res.errors[0], /per-day/);
-  } finally { global.fetch = real; }
+test('rate-limit replies wait and retry; a daily-quota reply retires the provider', async () => {
+  let n = 0;
+  const { fetch, seen } = mockProviders({ delayMs: 2, reply: (prov) => (prov === 'groq' && n++ < 2 ? err(429, 'Rate limit reached for requests per minute') : prov === 'nvidia' ? err(429, 'Daily quota exceeded') : null) });
+  const res = await withFetch(fetch, () => sum.summarise(papersN(5), { ...quiet, env: { NVIDIA_API_KEY: 'nv', GROQ_API_KEY: 'gq' }, providers: { nvidia: { concurrency: 2, rpm: 999 }, groq: { concurrency: 1, rpm: 999 } } }));
+  assert.strictEqual(res.items.length, 5, 'Groq rode out its per-minute limit and finished everything');
+  assert.ok(seen.calls.nvidia <= 2);
+  assert.match(res.providers.nvidia.stopped, /quota/i);
+  assert.strictEqual(res.providers.groq.summaries, 5);
 });
 
-test('model resolution prefers the requested slug, else the closest free Nemotron Super', () => {
-  const ids = ['openai/gpt-x', 'nvidia/nemotron-nano-9b-v2:free', 'nvidia/nemotron-3.5-super-vl:free', 'nvidia/nemotron-3.5-super-vl'];
-  assert.strictEqual(sum.rankModels(ids, 'nvidia/nemotron-3.5-super-vl:free')[0], 'nvidia/nemotron-3.5-super-vl:free');
-  assert.strictEqual(sum.rankModels(ids, 'nvidia/renamed:free')[0], 'nvidia/nemotron-3.5-super-vl:free');
-  assert.ok(sum.rankModels(ids, 'x').every((m) => m.endsWith(':free')));
+test('no key: papers are kept without summaries and no request is made', async () => {
+  const res = await withFetch(() => assert.fail('no network expected'), () => sum.summarise(papersN(3), { ...quiet, env: {} }));
+  assert.deepStrictEqual([res.items.length, res.calls], [0, 0]);
+  assert.match(res.errors[0], /NVIDIA_API_KEY/);
 });
 
 test('end-to-end run with a mocked network writes feed, archive, index and papers', async () => {
@@ -287,8 +347,8 @@ test('end-to-end run with a mocked network writes feed, archive, index and paper
     if (u.includes('efetch.fcgi')) return ok(PUBMED, 'text/xml');
     if (u.startsWith('https://api.biorxiv.org/details/medrxiv/')) return ok({ messages: [{ total: 1 }], collection: [{ doi: '10.1101/2026.1', title: 'Loneliness and heart disease in older adults', abstract: 'Loneliness was linked to cardiovascular disease in a cohort.', date: today, version: '1', category: 'epidemiology', authors: 'A' }] });
     if (u.startsWith('https://www.nature.com/')) throw new Error('blocked');
-    if (u === 'https://openrouter.ai/api/v1/models') return ok({ data: [{ id: 'nvidia/nemotron-3.5-super-vl:free' }] });
-    if (u === 'https://openrouter.ai/api/v1/chat/completions') {
+    if (u === 'https://integrate.api.nvidia.com/v1/models') return ok({ data: [{ id: 'nvidia/nemotron-3.5-super-vl' }] });
+    if (u === 'https://integrate.api.nvidia.com/v1/chat/completions') {
       const body = JSON.parse(init.body);
       assert.strictEqual(init.headers.Authorization, 'Bearer test-key');
       const row = { keep: true, category: 'health', headline: 'Finding', summary: 'S.', why_it_matters: 'W.', life_skill: 'Try X.', fact: 'F.', evidence: 'observational study', confidence: 'moderate', caveat: 'C.' };
@@ -296,16 +356,18 @@ test('end-to-end run with a mocked network writes feed, archive, index and paper
     }
     return new Response('not found', { status: 404 });
   };
-  process.env.OPENROUTER_API_KEY = 'test-key';
+  process.env.NVIDIA_API_KEY = 'test-key';
   try {
     await run.main(['--only', 'arxiv,pubmed,medrxiv,nature', '--days', '3'], () => {});
   } finally {
     global.fetch = realFetch;
-    delete process.env.OPENROUTER_API_KEY;
+    delete process.env.NVIDIA_API_KEY;
   }
   const feed = JSON.parse(fs.readFileSync(path.join(OUT, 'feed.json'), 'utf8'));
   assert.strictEqual(feed.items.length, 3);
-  assert.strictEqual(feed.model, 'nvidia/nemotron-3.5-super-vl:free');
+  assert.strictEqual(feed.model, 'nvidia/nemotron-3.5-super-vl');
+  assert.strictEqual(feed.stats.providers.nvidia.summaries, 3);
+  assert.ok(feed.items.every((i) => !('excerpt' in i)), 'the feed omits excerpts');
   assert.ok(feed.items.every((i) => i.ai && i.digest_date === today && !('abstract' in i)));
   const nature = feed.sources.find((s) => s.id === 'nature');
   assert.deepStrictEqual([nature.ok, typeof nature.error], [false, 'string']);
@@ -323,13 +385,15 @@ test('end-to-end run with a mocked network writes feed, archive, index and paper
     if (String(url).endsWith('/chat/completions')) assert.fail('re-summarised a seen paper');
     return new Response(String(url).includes('arxiv') ? arxiv : '{}', { status: 200 });
   };
-  process.env.OPENROUTER_API_KEY = 'test-key';
-  try { await run.main(['--only', 'arxiv', '--days', '3'], () => {}); } finally { global.fetch = realFetch; delete process.env.OPENROUTER_API_KEY; }
+  process.env.NVIDIA_API_KEY = 'test-key';
+  try { await run.main(['--only', 'arxiv', '--days', '3'], () => {}); } finally { global.fetch = realFetch; delete process.env.NVIDIA_API_KEY; }
   assert.strictEqual(before, 3);
   assert.strictEqual(JSON.parse(fs.readFileSync(path.join(OUT, 'feed.json'), 'utf8')).items.length, 3);
 });
 
-test('run args are bounded', () => {
-  assert.deepStrictEqual(run.args(['--days', '999', '--max', 'x']).days, 2);
-  assert.strictEqual(run.args(['--max', '10']).max, 10);
+test('run args are bounded, and the default batch grows with the providers available', () => {
+  assert.deepStrictEqual(run.args(['--days', '999', '--max', 'x'], {}).days, 2);
+  assert.strictEqual(run.args(['--max', '10'], {}).max, 10);
+  assert.strictEqual(run.args([], { OPENROUTER_API_KEY: 'k' }).max, 40);
+  assert.strictEqual(run.args([], { GROQ_API_KEY: 'k' }).max, 120);
 });

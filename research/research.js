@@ -9,11 +9,18 @@
     health: 'Health', mind: 'Mind & wellbeing', learning: 'Learning', thinking: 'Thinking', money: 'Money',
     work: 'Work', relationships: 'Relationships', digital: 'Digital life', safety: 'Safety', environment: 'Environment', world: 'The world',
   };
+  // Each topic points at the curriculum guide where the skill can be practised.
+  const GUIDES = {
+    health: ['03-health.md', 'Physical health'], mind: ['04-wellbeing.md', 'Emotional wellbeing'], learning: ['10-learning-and-time.md', 'Learning and time'],
+    thinking: ['06-thinking.md', 'Critical thinking'], money: ['02-money.md', 'Money'], work: ['09-work.md', 'Work and earning'],
+    relationships: ['05-relationships.md', 'Relationships'], digital: ['07-digital-safety.md', 'Digital safety'], safety: ['01-emergencies.md', 'Emergencies'],
+  };
+  const PROVIDER_LABELS = { nvidia: 'NVIDIA', groq: 'Groq', openrouter: 'OpenRouter' };
   const LEVEL = { high: 3, moderate: 2, low: 1 };
   const PAGE = { cards: 24, papers: 100 };
   const SAVED_KEY = 'les-research-saved';
-  const VIEWS = ['skills', 'facts', 'headlines', 'saved', 'papers'];
-  const state = { view: 'skills', topic: '', feed: null, papers: null, archive: {}, dayItems: null, shown: 0, saved: loadSaved() };
+  const VIEWS = ['skills', 'facts', 'headlines', 'quiz', 'saved', 'papers'];
+  const state = { view: 'skills', topic: '', feed: null, papers: null, archive: {}, dayItems: null, shown: 0, saved: loadSaved(), quiz: null };
   const $ = (id) => document.getElementById(id);
 
   function h(tag, attrs, ...children) {
@@ -93,7 +100,7 @@
   // ---- Filtering ---------------------------------------------------------------------
 
   const baseItems = () => (state.view === 'saved' ? state.saved : state.dayItems || (state.feed && state.feed.items) || []).filter((i) => i && i.ai);
-  const viewMatch = (i, view) => (view === 'skills' ? !!i.ai.life_skill : view === 'facts' ? !!i.ai.fact : true);
+  const viewMatch = (i, view) => (view === 'skills' ? !!i.ai.life_skill : view === 'facts' ? !!i.ai.fact : view === 'quiz' ? !!(i.ai.quiz && i.ai.quiz.question) : true);
 
   function filters() {
     return { conf: $('f-confidence').value, src: $('f-source').value, q: $('f-search').value.trim().toLowerCase() };
@@ -150,7 +157,13 @@
         ai.why_it_matters ? h('p', null, h('strong', null, 'Why it matters: '), ai.why_it_matters) : null,
         ai.caveat ? h('p', { class: 'caveat' }, h('strong', null, 'Caveat: '), ai.caveat) : null,
         (ai.key_terms || []).length ? h('div', { class: 'terms', 'aria-label': 'Terms to look up' }, ai.key_terms.map((t) => h('span', null, t))) : null,
-        h('p', { class: 'small' }, `${cap(ai.evidence || '')} · `, i.title)));
+        h('p', { class: 'small' }, `${cap(ai.evidence || '')} · `, i.title),
+        ai.model ? h('p', { class: 'small' }, `Summarised by ${PROVIDER_LABELS[ai.provider] ? `${PROVIDER_LABELS[ai.provider]} · ` : ''}${ai.model}`) : null));
+  }
+
+  function guideLink(i) {
+    const g = GUIDES[i.category];
+    return g ? h('a', { class: 'practise', href: `../guides/${g[0]}` }, `Practise this in ${g[1]} →`) : null;
   }
 
   function quiz(i) {
@@ -172,6 +185,7 @@
       view !== 'headlines' ? h('p', { class: 'sub' }, ai.headline) : h('p', { class: 'sub' }, ai.why_it_matters || ai.summary),
       details(i),
       quiz(i),
+      view === 'skills' ? guideLink(i) : null,
       h('div', { class: 'card-foot' }, sourceLinks(i), actions(i)));
   }
 
@@ -192,8 +206,44 @@
         p.alphaxiv ? [' · ', link(p.alphaxiv, 'alphaXiv')] : null));
   }
 
+  // ---- Quiz: one question at a time, self-marked, nothing stored ------------------------------
+
+  function renderQuiz(list) {
+    const ids = list.map((i) => i.id).join('|');
+    if (!state.quiz || state.quiz.ids !== ids) state.quiz = { ids, order: list, idx: 0, revealed: false, known: 0, missed: [] };
+    const qz = state.quiz;
+    const box = $('results');
+    if (qz.idx >= qz.order.length) {
+      box.replaceChildren(h('div', { class: 'quiz-panel' },
+        h('p', { class: 'label' }, 'Done'),
+        h('h3', null, `You knew ${qz.known} of ${qz.order.length}.`),
+        h('p', { class: 'sub' }, qz.missed.length ? 'Retrieval beats re-reading: look at the ones you missed, then try again tomorrow.' : 'Every one. Come back tomorrow for new questions.'),
+        h('div', { class: 'quiz-actions' }, h('button', { type: 'button', onclick: () => { state.quiz = null; render(true); } }, 'Start again')),
+        qz.missed.length ? h('div', { class: 'grid' }, qz.missed.map((i) => card(i, i.ai.life_skill ? 'skills' : 'headlines'))) : null));
+      return;
+    }
+    const i = qz.order[qz.idx];
+    const next = (knew) => { if (knew) qz.known++; else qz.missed.push(i); qz.idx++; qz.revealed = false; render(true); $('quiz-q') && $('quiz-q').focus(); };
+    const reveal = () => { qz.revealed = true; render(true); $('quiz-a') && $('quiz-a').focus(); };
+    box.replaceChildren(h('div', { class: 'quiz-panel', 'data-cat': i.category },
+      h('div', { class: 'quiz-progress', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(qz.order.length), 'aria-valuenow': String(qz.idx), 'aria-label': 'Quiz progress' },
+        h('span', { style: `width:${Math.round((qz.idx / qz.order.length) * 100)}%` })),
+      h('p', { class: 'label' }, `Question ${qz.idx + 1} of ${qz.order.length} · `, TOPICS[i.category] || cap(i.category)),
+      h('h3', { id: 'quiz-q', tabindex: '-1' }, i.ai.quiz.question),
+      qz.revealed
+        ? [h('p', { id: 'quiz-a', class: 'quiz-answer', tabindex: '-1' }, i.ai.quiz.answer),
+          h('p', { class: 'sub' }, i.ai.headline),
+          h('div', { class: 'quiz-actions' },
+            h('button', { type: 'button', class: 'primary', onclick: () => next(true) }, 'I knew it'),
+            h('button', { type: 'button', onclick: () => next(false) }, 'Not yet')),
+          sourceLinks(i)]
+        : h('div', { class: 'quiz-actions' }, h('button', { type: 'button', class: 'primary', onclick: reveal }, 'Show answer'),
+          h('button', { type: 'button', class: 'link-button', onclick: () => next(false) }, 'Skip'))));
+  }
+
   function emptyState() {
     const feed = state.feed;
+    if (state.view === 'quiz' && state.feed && (state.feed.items || []).length) return h('div', { class: 'empty' }, 'No quiz questions match. Try another topic or clear the search.');
     if (state.view === 'saved' && !state.saved.length) return h('div', { class: 'empty' }, h('strong', null, 'Nothing saved yet. '), 'Use ☆ Save on any card to keep it here. Saved items stay in this browser only.');
     if (!feed || !feed.generated_at) {
       return h('div', { class: 'empty' }, h('strong', null, 'The first digest has not run yet. '),
@@ -224,7 +274,7 @@
       cats.add(i.category);
       picks.push(i);
     }
-    box.hidden = !!filtered || state.view === 'papers' || state.view === 'saved' || picks.length < 2;
+    box.hidden = !!filtered || ['papers', 'saved', 'quiz'].includes(state.view) || picks.length < 2;
     $('picks-list').replaceChildren(...picks.map(pick));
   }
 
@@ -243,7 +293,7 @@
   function updateCounts() {
     const f = filters();
     const pool = (state.dayItems || (state.feed && state.feed.items) || []).filter((i) => i && i.ai && matches(i, f));
-    const n = { skills: pool.filter((i) => i.ai.life_skill).length, facts: pool.filter((i) => i.ai.fact).length, headlines: pool.length, saved: state.saved.length };
+    const n = { skills: pool.filter((i) => i.ai.life_skill).length, facts: pool.filter((i) => i.ai.fact).length, headlines: pool.length, quiz: pool.filter((i) => viewMatch(i, 'quiz')).length, saved: state.saved.length };
     for (const el of document.querySelectorAll('[data-count]')) el.textContent = n[el.dataset.count] ? String(n[el.dataset.count]) : '';
   }
 
@@ -254,6 +304,14 @@
     const step = isPapers ? PAGE.papers : PAGE.cards;
     if (reset) { box.replaceChildren(); state.shown = 0; }
     box.classList.toggle('list', isPapers);
+    if (state.view === 'quiz' && list.length) {
+      renderQuiz(list);
+      $('count').textContent = '';
+      $('more').hidden = true;
+      for (const b of document.querySelectorAll('.tabs button')) b.setAttribute('aria-pressed', String(b.dataset.view === state.view));
+      if (reset) { renderTopics(); renderPicks(); updateCounts(); }
+      return;
+    }
     const next = list.slice(state.shown, state.shown + step);
     if (isPapers) box.append(...next.map(paperRow));
     else {
@@ -315,8 +373,9 @@
       dd.textContent = typeof values[k] === 'number' ? values[k].toLocaleString() : values[k];
     });
     const s = feed.stats || {};
+    const by = Object.values(s.providers || {}).filter((p) => p.summaries).map((p) => `${p.label} ${String(p.model || '').split('/').pop()} (${p.summaries})`);
     $('meta').textContent = feed.generated_at
-      ? `Updated ${new Date(feed.generated_at).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}${s.parallel_agents ? ` · ${s.model_calls} AI agents, up to ${s.parallel_agents} at once` : ''}${feed.model ? ` · ${feed.model}` : ''}`
+      ? `Updated ${new Date(feed.generated_at).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}${s.parallel_agents ? ` · ${s.model_calls} AI agents, up to ${s.parallel_agents} at once` : ''}${by.length ? ` · ${by.join(', ')}` : feed.model ? ` · ${feed.model}` : ''}`
       : 'The daily digest has not run yet.';
   }
 
@@ -355,6 +414,7 @@
 
   function resetFilters() {
     state.topic = '';
+    state.quiz = null;
     $('f-search').value = '';
     $('f-confidence').value = '';
     $('f-source').value = '';

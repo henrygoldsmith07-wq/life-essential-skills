@@ -157,6 +157,20 @@ select, input { font: inherit; padding: .45rem .65rem; border-radius: .6rem; bor
 .icon-btn[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
 .fact .lead-fact { font-size: 1.1rem; font-weight: 650; line-height: 1.4; }
 
+/* Practise link and quiz */
+.practise { font-size: .88rem; font-weight: 650; text-decoration: none; }
+.practise:hover { text-decoration: underline; }
+.quiz-panel { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--cat, var(--accent)); border-radius: 1rem; padding: 1.25rem 1.3rem 1.4rem; max-width: 44rem; margin: .5rem auto 0; display: grid; gap: .75rem; box-shadow: var(--raised); }
+.quiz-panel h3 { font-size: clamp(1.2rem, 1rem + 1vw, 1.5rem); line-height: 1.3; margin: 0; overflow-wrap: anywhere; }
+.quiz-panel h3:focus, .quiz-answer:focus { outline: none; }
+.quiz-panel .grid { margin-top: .5rem; }
+.quiz-progress { height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.quiz-progress span { display: block; height: 100%; background: var(--cat, var(--accent)); transition: width .2s; }
+.quiz-answer { font-size: 1.05rem; padding: .7rem .9rem; background: var(--accent-soft); border-radius: .6rem; margin: 0; }
+.quiz-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+button.primary { background: var(--accent); color: var(--accent-fg); border-color: transparent; }
+@media (prefers-reduced-motion: reduce) { .quiz-progress span { transition: none; } }
+
 /* Papers list */
 .list { display: block; }
 .paper { border-bottom: 1px solid var(--line); padding: .7rem 0; display: grid; gap: .15rem; }

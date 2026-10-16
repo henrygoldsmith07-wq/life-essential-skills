@@ -1,24 +1,48 @@
 // Turn selected papers into plain-language life skills, facts and news
-// takeaways with a free OpenRouter model. The key comes only from the
-// OPENROUTER_API_KEY environment variable (a GitHub Actions secret) and is
-// never written to the repository or shipped to the browser.
+// takeaways with free hosted models. API keys come only from environment
+// variables (GitHub Actions secrets) and are never written to the repository
+// or shipped to the browser.
 //
-// Each paper gets its own agent (one focused model call with the full
-// abstract). Agents run in parallel through a pool, but every request first
-// takes a slot from a shared rate limiter and a shared daily budget, because
-// free models allow ~20 requests a minute and ~50 a day on an account with no
-// credit. A daily-quota, bad-key or no-credit error stops every agent at once.
+// Each paper gets its own agent: one focused model call with the full
+// abstract. Every provider with a key runs its own pool of agents at the
+// same time, all pulling from one shared queue of papers, so total
+// throughput is the sum of every provider's free allowance. Each provider
+// has its own sliding-window rate limit and daily budget. A paper that fails
+// on one provider goes back on the queue for another. A daily-quota, bad-key
+// or no-credit error retires that provider; the others carry on.
 'use strict';
 
 const { USER_AGENT, sleep, cleanText } = require('./lib');
 
-const API = 'https://openrouter.ai/api/v1';
-const DEFAULT_MODEL = 'nvidia/nemotron-3.5-super-vl:free';
-const DEFAULTS = { concurrency: 10, rpm: 18, dailyRequests: 48, windowMs: 60000 };
-
 const CATEGORIES = ['health', 'mind', 'learning', 'thinking', 'money', 'work', 'relationships', 'digital', 'safety', 'environment', 'world'];
 const EVIDENCE = ['systematic review', 'randomised trial', 'observational study', 'lab or animal study', 'modelling', 'qualitative study', 'theory or commentary', 'news report', 'other'];
 const CONFIDENCE = ['high', 'moderate', 'low'];
+
+// Model ids change often, so each provider names a family to prefer and the
+// best match is picked from its live /models list (or the env override).
+const PROVIDERS = [
+  {
+    id: 'nvidia', label: 'NVIDIA', base: 'https://integrate.api.nvidia.com/v1', key: 'NVIDIA_API_KEY', model: 'NVIDIA_MODEL',
+    fallback: 'nvidia/llama-3.3-nemotron-super-49b-v1.5',
+    spec: { include: /nemotron/i, exclude: /embed|rerank|reward|guard|safety|retriev|parse|ocr|asr|tts|translate/i, prefer: [[/super/i, 10], [/3[.-]5/, 4], [/ultra/i, 2], [/vl/i, 1], [/nano|mini/i, -3]] },
+    defaults: { concurrency: 16, rpm: 35, daily: 5000 },
+  },
+  {
+    id: 'groq', label: 'Groq', base: 'https://api.groq.com/openai/v1', key: 'GROQ_API_KEY', model: 'GROQ_MODEL',
+    fallback: 'qwen/qwen3-32b',
+    spec: { include: /qwen/i, exclude: /guard|tts|whisper|embed|coder/i, prefer: [[/27b/i, 10], [/3[.-]8/, 6], [/32b/i, 3]] },
+    // Qwen 3 thinks out loud unless told not to; Groq accepts this flag.
+    extra: (model) => (/qwen/i.test(model) ? { reasoning_effort: 'none' } : {}),
+    defaults: { concurrency: 6, rpm: 25, daily: 1000 },
+  },
+  {
+    id: 'openrouter', label: 'OpenRouter', base: 'https://openrouter.ai/api/v1', key: 'OPENROUTER_API_KEY', model: 'OPENROUTER_MODEL',
+    fallback: 'nvidia/nemotron-3.5-super-vl:free',
+    spec: { include: /nemotron/i, exclude: /embed|reward|guard|safety/i, freeOnly: true, prefer: [[/super/i, 10], [/3[.-]5/, 4], [/vl/i, 2], [/ultra/i, 1]] },
+    headers: () => ({ 'HTTP-Referer': process.env.SITE_URL || 'https://github.com/henrygoldsmith07-wq/life-essential-skills', 'X-Title': 'Life Essential Skills research digest' }),
+    defaults: { concurrency: 6, rpm: 18, daily: 48 },
+  },
+];
 
 const SYSTEM = `You are the research editor for "Life Essential Skills", a free curriculum that helps people become capable, independent adults.
 You read one new piece of research and explain, in plain British English for a curious 16-year-old, what it means for everyday life and for understanding the world.
@@ -31,7 +55,7 @@ Rules:
 - "quiz" is one short question that checks the reader understood the finding, with a one-sentence answer drawn from the abstract.
 - Correlation is not causation: use "is linked to" unless the design is a randomised trial or systematic review of trials.
 - Set "keep" to false if there is no takeaway a non-specialist could understand or use.
-Reply with one JSON object only, no prose and no code fences.`;
+Reply with one JSON object only, no prose, no reasoning and no code fences.`;
 
 function prompt(p) {
   return `Summarise this paper.
@@ -45,7 +69,7 @@ Return exactly this object:
 {"keep":true,"category":"one of ${CATEGORIES.join('|')}","headline":"the finding in one plain sentence (max 22 words)","summary":"2-3 plain sentences: what was studied, what was found","why_it_matters":"one sentence on why this matters to everyday life or understanding the world","life_skill":"one actionable sentence or empty string","fact":"one sentence or empty string","key_terms":["up to 3 short terms a reader could look up"],"quiz":{"question":"one short question","answer":"one sentence"},"evidence":"one of ${EVIDENCE.join('|')}","confidence":"high|moderate|low","caveat":"one sentence on the main limitation"}`;
 }
 
-// Free models sometimes wrap JSON in fences or reasoning tags; recover the object.
+// Models sometimes wrap JSON in fences or reasoning tags; recover the object.
 function parseObject(text) {
   const cleaned = String(text || '').replace(/<think>[\s\S]*?<\/think>/gi, '').replace(/```(?:json)?/gi, '').trim();
   const tries = [cleaned];
@@ -72,7 +96,7 @@ const pick = (v, allowed, fallback) => {
 };
 
 // Validate one model reply against the schema. Returns null to drop the paper.
-function applySummary(paper, row, model) {
+function applySummary(paper, row, model, provider) {
   if (!row || row.keep === false) return null;
   const headline = clip(row.headline, 220);
   if (!headline) return null;
@@ -94,12 +118,13 @@ function applySummary(paper, row, model) {
       confidence,
       caveat: clip(row.caveat, 300),
       model,
+      ...(provider ? { provider } : {}),
     },
   };
 }
 
-// Sliding-window limiter shared by every agent: at most `rpm` requests start
-// in any `windowMs`, and at most `budget` requests start in the whole run.
+// Sliding-window limiter: at most `rpm` requests start in any `windowMs`,
+// and at most `budget` requests start in the whole run.
 function limiter({ rpm, windowMs, budget }) {
   const starts = [];
   let used = 0;
@@ -123,15 +148,15 @@ function limiter({ rpm, windowMs, budget }) {
   return { take, used: () => used };
 }
 
-async function api(path, key, body, { timeoutMs = 120000 } = {}) {
-  const res = await fetch(`${API}${path}`, {
+async function api(prov, path, body, { timeoutMs = 120000 } = {}) {
+  const res = await fetch(`${prov.base}${path}`, {
     method: body ? 'POST' : 'GET',
     headers: {
       'User-Agent': USER_AGENT,
       'Content-Type': 'application/json',
-      ...(key ? { Authorization: `Bearer ${key}` } : {}),
-      'HTTP-Referer': process.env.SITE_URL || 'https://github.com/henrygoldsmith07-wq/life-essential-skills',
-      'X-Title': 'Life Essential Skills research digest',
+      Accept: 'application/json',
+      Authorization: `Bearer ${prov.apiKey}`,
+      ...(prov.headers ? prov.headers() : {}),
     },
     body: body ? JSON.stringify(body) : undefined,
     signal: AbortSignal.timeout(timeoutMs),
@@ -139,97 +164,170 @@ async function api(path, key, body, { timeoutMs = 120000 } = {}) {
   const text = await res.text();
   let json;
   try { json = JSON.parse(text); } catch { json = { error: { message: text.slice(0, 200) } }; }
+  const errMsg = json.error && (json.error.message || json.error) || json.detail;
   if (!res.ok || json.error) {
-    const err = new Error(`OpenRouter ${res.status}: ${json.error?.message || 'error'}`);
-    err.status = res.ok ? Number(json.error?.code) || 502 : res.status;
+    const err = new Error(`${prov.label} ${res.status}: ${typeof errMsg === 'string' ? errMsg.slice(0, 200) : 'error'}`);
+    err.status = res.ok ? Number(json.error && json.error.code) || 502 : res.status;
     err.retryAfter = Number(res.headers.get('retry-after')) || 0;
     throw err;
   }
   return json;
 }
 
-// Model slugs change; resolve the requested one against OpenRouter's public
-// model list and fall back to the closest free Nemotron model if it is gone.
-function rankModels(ids, wanted) {
-  if (ids.includes(wanted)) return [wanted, ...ids.filter((m) => m !== wanted && /nemotron/i.test(m) && m.endsWith(':free'))];
-  const scoreId = (m) => (/super/i.test(m) ? 4 : 0) + (/3[.-]5/.test(m) ? 3 : 0) + (/vl/i.test(m) ? 2 : 0) + (/ultra/i.test(m) ? 1 : 0);
-  return ids.filter((m) => /nemotron/i.test(m) && m.endsWith(':free')).sort((a, b) => scoreId(b) - scoreId(a));
+const versionOf = (m) => Math.max(0, ...[...m.matchAll(/(?:qwen|nemotron|-v)-?(\d+(?:\.\d+)?)/gi)].map((x) => Number(x[1])));
+
+function rankModels(ids, spec, wanted) {
+  const ok = ids.filter((m) => spec.include.test(m) && !(spec.exclude && spec.exclude.test(m)) && (!spec.freeOnly || m.endsWith(':free')));
+  const score = (m) => spec.prefer.reduce((s, [re, w]) => s + (re.test(m) ? w : 0), 0) + versionOf(m) / 100;
+  const ranked = ok.sort((a, b) => score(b) - score(a));
+  if (wanted && ids.includes(wanted)) return [wanted, ...ranked.filter((m) => m !== wanted)];
+  return ranked;
 }
 
-async function resolveModels(key, wanted, log) {
+async function resolveModels(prov, log) {
+  const wanted = prov.wanted;
   try {
-    const list = await api('/models', key, null, { timeoutMs: 30000 });
-    const ids = (list.data || []).map((m) => m.id);
-    const ranked = rankModels(ids, wanted);
-    if (ranked[0] !== wanted) log(`model ${wanted} not listed; using ${ranked[0] || wanted}`);
-    return ranked.length ? ranked.slice(0, 3) : [wanted];
+    const list = await api(prov, '/models', null, { timeoutMs: 30000 });
+    const ranked = rankModels((list.data || []).map((m) => m.id), prov.spec, wanted);
+    if (wanted && ranked[0] !== wanted) log(`  ${prov.label}: ${wanted} not listed; using ${ranked[0] || wanted}`);
+    return ranked.length ? ranked.slice(0, 3) : [wanted || prov.fallback];
   } catch (e) {
-    log(`could not list models (${e.message}); trying ${wanted}`);
-    return [wanted];
+    log(`  ${prov.label}: could not list models (${e.message}); trying ${wanted || prov.fallback}`);
+    return [wanted || prov.fallback];
   }
 }
 
-const fatal = (e) => e.status === 401 || e.status === 402 || (e.status === 429 && /per-day|per day|quota|credits/i.test(e.message));
+const fatal = (e) => e.status === 401 || e.status === 402 || e.status === 403 || (e.status === 429 && /per-day|per day|daily|quota|credits|tokens per day|\bTPD\b|\bRPD\b/i.test(e.message));
 
-// One agent: summarise one paper, retrying transient failures and falling
-// back through the model list. Returns { item } or { error }.
-async function agent(paper, ctx) {
-  let lastErr = new Error('daily request budget used up');
-  for (const model of ctx.models) {
-    for (let attempt = 0; attempt < 2; attempt++) {
-      if (ctx.stopped) return { error: ctx.stopped };
-      if (!(await ctx.limit.take())) return { error: 'daily request budget used up' };
+// One agent on one provider: summarise one paper. Rate-limit replies wait
+// and retry; other transient errors get two tries per model.
+async function runOn(prov, paper, ctx) {
+  let lastErr = new Error('no models');
+  for (const model of prov.models) {
+    let attempts = 0;
+    let waits = 0;
+    let useExtra = !prov.noExtra;
+    while (attempts < 2) {
+      if (prov.stopped) return { error: prov.stopped };
+      if (!(await prov.limit.take())) {
+        prov.stopped = prov.stopped || 'daily request budget used up';
+        return { error: prov.stopped };
+      }
       try {
-        const json = await api('/chat/completions', ctx.key, {
+        const json = await api(prov, '/chat/completions', {
           model,
           temperature: 0.2,
           max_tokens: 3000,
           messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: prompt(paper) }],
+          ...(useExtra && prov.extra ? prov.extra(model) : {}),
         });
+        prov.calls++;
         const used = json.model || model;
         const row = parseObject(json.choices?.[0]?.message?.content);
-        if (!row) throw Object.assign(new Error('unparseable reply'), { status: 502 });
-        return { item: applySummary(paper, row, used), model: used };
+        if (!row) throw Object.assign(new Error(`${prov.label}: unparseable reply`), { status: 502 });
+        return { item: applySummary(paper, row, used, prov.id), model: used };
       } catch (e) {
         lastErr = e;
         if (fatal(e)) {
-          ctx.stopped = e.message;
+          prov.stopped = e.message;
           return { error: e.message };
         }
+        if (e.status === 400 && useExtra && prov.extra && Object.keys(prov.extra(model)).length) {
+          useExtra = false; // the provider rejected our optional flags: drop them for good
+          prov.noExtra = true;
+          continue;
+        }
         if (e.status === 404 || e.status === 400) break; // model gone or refused: next model
-        await sleep(e.retryAfter ? e.retryAfter * 1000 : ctx.backoffMs * (attempt + 1));
+        if (e.status === 429 && waits < 5) {
+          waits++;
+          await sleep(e.retryAfter ? e.retryAfter * 1000 : ctx.backoffMs * waits);
+          continue;
+        }
+        attempts++;
+        await sleep(ctx.backoffMs * attempts);
       }
     }
   }
   return { error: lastErr.message };
 }
 
-async function summarise(papers, opts = {}) {
-  const { key, model = DEFAULT_MODEL, log = console.log } = opts;
-  const o = { ...DEFAULTS, backoffMs: 8000, ...Object.fromEntries(Object.entries(opts).filter(([, v]) => v !== undefined && !Number.isNaN(v))) };
-  if (!key) return { items: [], model: null, calls: 0, errors: ['OPENROUTER_API_KEY not set — papers listed without AI summaries'] };
-  const ctx = { key, models: await resolveModels(key, model, log), limit: limiter({ rpm: o.rpm, windowMs: o.windowMs, budget: o.dailyRequests }), backoffMs: o.backoffMs, stopped: null };
-  log(`  ${papers.length} agents, ${o.concurrency} in parallel, ≤${o.rpm} requests per ${o.windowMs / 1000}s, budget ${o.dailyRequests}`);
+const envNum = (env, name) => (env[name] !== undefined && env[name] !== '' && Number.isFinite(Number(env[name])) ? Number(env[name]) : undefined);
 
-  const results = new Array(papers.length);
-  let next = 0;
-  let inFlight = 0;
-  let peak = 0;
-  await Promise.all(Array.from({ length: Math.min(o.concurrency, papers.length) }, async () => {
-    while (next < papers.length) {
-      const i = next++;
-      inFlight++;
-      peak = Math.max(peak, inFlight);
-      results[i] = await agent(papers[i], ctx);
-      inFlight--;
-      if (results[i].error) log(`  ✗ ${papers[i].title.slice(0, 70)} — ${results[i].error}`);
-    }
-  }));
-
-  const items = results.filter((r) => r && r.item).map((r) => r.item);
-  const errors = [...new Set(results.filter((r) => r && r.error).map((r) => r.error))];
-  const used = results.find((r) => r && r.model)?.model || ctx.models[0];
-  return { items, model: used, calls: ctx.limit.used(), peak, errors };
+// Providers that have a key, with limits from defaults or env
+// (<ID>_CONCURRENCY, <ID>_RPM, <ID>_DAILY_REQUESTS).
+function configure(env = process.env, overrides = {}) {
+  return PROVIDERS.filter((p) => env[p.key]).map((p) => {
+    const id = p.id.toUpperCase();
+    const o = overrides[p.id] || {};
+    return {
+      ...p,
+      apiKey: env[p.key],
+      wanted: env[p.model] || '',
+      concurrency: o.concurrency ?? envNum(env, `${id}_CONCURRENCY`) ?? p.defaults.concurrency,
+      rpm: o.rpm ?? envNum(env, `${id}_RPM`) ?? p.defaults.rpm,
+      daily: o.daily ?? envNum(env, `${id}_DAILY_REQUESTS`) ?? p.defaults.daily,
+    };
+  });
 }
 
-module.exports = { summarise, prompt, parseObject, applySummary, limiter, rankModels, DEFAULT_MODEL, DEFAULTS, CATEGORIES, EVIDENCE };
+async function summarise(papers, opts = {}) {
+  const log = opts.log || console.log;
+  const env = opts.env || process.env;
+  const windowMs = opts.windowMs ?? envNum(env, 'RESEARCH_WINDOW_MS') ?? 60000;
+  const ctx = { backoffMs: opts.backoffMs ?? envNum(env, 'RESEARCH_BACKOFF_MS') ?? 8000 };
+  const providers = configure(env, opts.providers);
+  if (!providers.length) return { items: [], model: null, calls: 0, peak: 0, providers: {}, errors: ['No model API key set (NVIDIA_API_KEY, GROQ_API_KEY or OPENROUTER_API_KEY) — papers listed without AI summaries'] };
+
+  await Promise.all(providers.map(async (p) => {
+    p.models = await resolveModels(p, log);
+    p.limit = limiter({ rpm: p.rpm, windowMs, budget: p.daily });
+    p.calls = 0;
+    p.items = 0;
+    p.stopped = null;
+  }));
+  log(`  ${papers.length} papers, one agent each: ${providers.map((p) => `${p.label} ${p.models[0]} ×${p.concurrency} (≤${p.rpm}/min, budget ${p.daily})`).join(' · ')}`);
+
+  const queue = papers.map((paper, i) => ({ i, paper, tried: new Set() }));
+  const results = new Array(papers.length);
+  let inFlight = 0;
+  let peak = 0;
+  const live = () => providers.filter((p) => !p.stopped);
+
+  async function worker(prov) {
+    for (;;) {
+      if (prov.stopped) return;
+      const k = queue.findIndex((j) => !j.tried.has(prov.id));
+      if (k < 0) {
+        if (!inFlight) return;
+        await sleep(25); // a job in flight elsewhere may still bounce back to this provider
+        continue;
+      }
+      const [job] = queue.splice(k, 1);
+      inFlight++;
+      peak = Math.max(peak, inFlight);
+      const r = await runOn(prov, job.paper, ctx);
+      job.tried.add(prov.id);
+      if (r.item || r.model) {
+        results[job.i] = { ...r, provider: prov.id };
+        if (r.item) prov.items++;
+      } else if (live().some((p) => !job.tried.has(p.id))) {
+        queue.push(job); // let another provider try it
+      } else {
+        results[job.i] = { error: r.error };
+        log(`  ✗ ${job.paper.title.slice(0, 70)} — ${r.error}`);
+      }
+      inFlight--;
+    }
+  }
+
+  await Promise.all(providers.flatMap((p) => Array.from({ length: Math.min(p.concurrency, papers.length) }, () => worker(p))));
+  for (const job of queue) results[job.i] = results[job.i] || { error: 'every provider was unavailable' };
+
+  const items = results.filter((r) => r && r.item).map((r) => r.item);
+  const errors = [...new Set([...results.filter((r) => r && r.error).map((r) => r.error), ...providers.filter((p) => p.stopped).map((p) => p.stopped)])];
+  const byProvider = Object.fromEntries(providers.map((p) => [p.id, { label: p.label, model: p.models[0], calls: p.calls, summaries: p.items, concurrency: p.concurrency, ...(p.stopped ? { stopped: p.stopped.slice(0, 160) } : {}) }]));
+  const top = providers.slice().sort((a, b) => b.items - a.items)[0];
+  return { items, model: top.models[0], calls: providers.reduce((a, p) => a + p.limit.used(), 0), peak, providers: byProvider, errors };
+}
+
+module.exports = { summarise, configure, prompt, parseObject, applySummary, limiter, rankModels, PROVIDERS, CATEGORIES, EVIDENCE };
