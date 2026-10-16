@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Keep the 40 shared-tool deposit only if the unwritten maintenance rota is agreed in writing within 2 weeks; otherwise hire per weekend. Record the missing rota and the employer-recognition check as the conditions that would reverse this.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Keep the 40 shared-tool deposit only if the unwritten maintenance rota is agreed in writing within 2 weeks; otherwise hire per weekend. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+    "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+    "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+  },
+  "next_steps": {
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+    "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+    "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+  }
+}

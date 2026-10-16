@@ -4031,6 +4031,1153 @@
         "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different numbers.",
         "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different numbers."
       }
+    },
+    "CRITICAL-THINKING-DECISIONS-I04": {
+      "version": 1,
+      "solution": "Keep the 40 shared-tool deposit only if the unwritten maintenance rota is agreed in writing within 2 weeks; otherwise hire per weekend. Record the missing rota and the employer-recognition check as the conditions that would reverse this.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Keep the 40 shared-tool deposit only if the unwritten maintenance rota is agreed in writing within 2 weeks; otherwise hire per weekend. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+      },
+      "next_steps": {
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "CRITICAL-THINKING-DECISIONS-I05": {
+      "version": 1,
+      "solution": "Decline both enrolments until the unknown rota and the unverified employer recognition are confirmed; hold the 60 online module as the reversible fallback. Name the rota and recognition gaps as the facts that decide.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Decline both enrolments until the unknown rota and the unverified employer recognition are confirmed; hold the 60 online module as the reversible fallback. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+      },
+      "next_steps": {
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "CRITICAL-THINKING-STATISTICS-I04": {
+      "version": 1,
+      "solution": "Report 30% against 50% with denominators 150 and 60, a 20-point gap favouring non-recipients; reject the doubling claim as association only. State voluntary joining and missing dropouts as the reasons causation cannot be claimed.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Report 30% against 50% with denominators 150 and 60, a 20-point gap favouring non-recipients; reject the doubling claim as association only. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; State the denominator and compute both the absolute and the relative change before drawing a conclusion; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "confuses-relative-absolute": "Quoting a headline percentage without the denominator or mixing absolute with relative change — state the denominator and compute both changes",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "confuses-relative-absolute": "State the denominator and compute both the absolute and the relative change before drawing a conclusion. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "CRITICAL-THINKING-STATISTICS-I05": {
+      "version": 1,
+      "solution": "Compute 30% against 45% from 80 and 40, so members finished 15 points lower in absolute terms; treat the 15% boost as unverified association. Name self-selection and uneven follow-up as the blocks on any causal claim.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Compute 30% against 45% from 80 and 40, so members finished 15 points lower in absolute terms; treat the 15% boost as unverified association. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; State the denominator and compute both the absolute and the relative change before drawing a conclusion; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "confuses-relative-absolute": "Quoting a headline percentage without the denominator or mixing absolute with relative change — state the denominator and compute both changes",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "confuses-relative-absolute": "State the denominator and compute both the absolute and the relative change before drawing a conclusion. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "CRITICAL-THINKING-VERIFICATION-I04": {
+      "version": 1,
+      "solution": "Refuse the tonight deadline and trace the undated council page through an independently reached official site before acting; treat the forwarded link as unverified. Name the missing date and nation as the facts that block action.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Refuse the tonight deadline and trace the undated council page through an independently reached official site before acting; treat the forwarded link as unverified. This item is set up to catch: Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence; Name the facts that were not given and state what you would need to confirm them; Check the nation and the scope of the guidance before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "wrong-jurisdiction": "Carrying a rule or service from one nation into another without checking scope — confirm the nation and that the guidance covers it before relying on it"
+      },
+      "next_steps": {
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "wrong-jurisdiction": "Check the nation and the scope of the guidance before relying on it. Do not carry a rule from one nation into another. Then attempt an unseen variant with a different context."
+      }
+    },
+    "CRITICAL-THINKING-VERIFICATION-I05": {
+      "version": 1,
+      "solution": "Hold the everywhere discount as unproven until the operator's own current page, reached independently, confirms the year and Wales coverage. Record the missing year and coverage as the uncertainties that prevent reliance.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Hold the everywhere discount as unproven until the operator's own current page, reached independently, confirms the year and Wales coverage. This item is set up to catch: Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence; Name the facts that were not given and state what you would need to confirm them; Check the nation and the scope of the guidance before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "wrong-jurisdiction": "Carrying a rule or service from one nation into another without checking scope — confirm the nation and that the guidance covers it before relying on it"
+      },
+      "next_steps": {
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "wrong-jurisdiction": "Check the nation and the scope of the guidance before relying on it. Do not carry a rule from one nation into another. Then attempt an unseen variant with a different context."
+      }
+    },
+    "DIGITAL-SAFETY-ACCOUNTS-I04": {
+      "version": 1,
+      "solution": "Replace the reused password with a unique one, refuse the worksheet password request, and set up accessible MFA plus printed recovery codes stored separately. Name the independent recovery check as the verification step.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Replace the reused password with a unique one, refuse the worksheet password request, and set up accessible MFA plus printed recovery codes stored separately. This item is set up to catch: Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "DIGITAL-SAFETY-ACCOUNTS-I05": {
+      "version": 1,
+      "solution": "Move the MFA to the new phone using the provider's independently reached transfer guide before the wipe in 3 days; decline the chat password offer. Keep a separate offline copy of recovery codes as the fallback.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Move the MFA to the new phone using the provider's independently reached transfer guide before the wipe in 3 days; decline the chat password offer. This item is set up to catch: Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "DIGITAL-SAFETY-BACKUP-I04": {
+      "version": 1,
+      "solution": "Copy the 2 missing folders to a separate backup today and complete a test restore of 1 sample file; refuse the contact-access tool. Record the untested restore as the gap that blocks any complete claim.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Copy the 2 missing folders to a separate backup today and complete a test restore of 1 sample file; refuse the contact-access tool. This item is set up to catch: Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "DIGITAL-SAFETY-BACKUP-I05": {
+      "version": 1,
+      "solution": "Restore last month's copy to a new location and rebuild the 4 days of changes from notes without sharing any personal ID. Name the 4-day gap and the unverified recovery request as the limits on the plan.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Restore last month's copy to a new location and rebuild the 4 days of changes from notes without sharing any personal ID. This item is set up to catch: Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "EMERGENCIES-PREPAREDNESS-I04": {
+      "version": 1,
+      "solution": "Clear the stored boxes from the second exit before the weekend and move the meeting point to the lit bus shelter 50 metres out; write an offline contact list tonight. Name the blocked exit and unlit meeting point as the changes that decide.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Clear the stored boxes from the second exit before the weekend and move the meeting point to the lit bus shelter 50 metres out; write an offline contact list tonight. This item is set up to catch: State the safety limit and the qualified help you would seek; Describe the verification step only; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "EMERGENCIES-PREPAREDNESS-I05": {
+      "version": 1,
+      "solution": "Replace the phone-torch plan with 2 battery lanterns and a paper contact sheet; test the backup battery today and arrange a neighbour check for the powered reminder. State the untested battery as the fact that must be resolved.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Replace the phone-torch plan with 2 battery lanterns and a paper contact sheet; test the backup battery today and arrange a neighbour check for the powered reminder. This item is set up to catch: State the safety limit and the qualified help you would seek; Describe the verification step only; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "EMERGENCIES-RESPONSE-I04": {
+      "version": 1,
+      "solution": "Avoid the sticking main doors and direct the 60 people to the side exit while sending 1 person to fetch the steward for the unknown gate code; use a visual hand-signal for the attendee who cannot hear. Name the professional handover as the limit.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Avoid the sticking main doors and direct the 60 people to the side exit while sending 1 person to fetch the steward for the unknown gate code; use a visual hand-signal for the attendee who cannot hear. This item is set up to catch: State the safety limit and the qualified help you would seek; Verify through a route you reach independently, not one supplied in the message; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "EMERGENCIES-RESPONSE-I05": {
+      "version": 1,
+      "solution": "Turn back from the knee-deep lane and wait at the community centre 200 metres back; refuse the unlit shortcut and verify an accessible route with staff. Record the unconfirmed alternative as the missing fact.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Turn back from the knee-deep lane and wait at the community centre 200 metres back; refuse the unlit shortcut and verify an accessible route with staff. This item is set up to catch: State the safety limit and the qualified help you would seek; Verify through a route you reach independently, not one supplied in the message; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "EMERGENCIES-TRAINING-I04": {
+      "version": 1,
+      "solution": "Reject the 15 video badge as proof of choking-response technique; book verified supervised practice with step-free access and refuse any practice on a real child. Name the missing supervised assessment as the decider.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Reject the 15 video badge as proof of choking-response technique; book verified supervised practice with step-free access and refuse any practice on a real child. This item is set up to catch: State the safety limit and the qualified help you would seek; Match the strength of the conclusion to the evidence; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "EMERGENCIES-TRAINING-I05": {
+      "version": 1,
+      "solution": "Decline the 2-hour webinar as evidence of practical competence and request the 5-day extension needed to attend an accredited supervised session; verify the accrediting body independently. State the unknown accreditation as the block.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Decline the 2-hour webinar as evidence of practical competence and request the 5-day extension needed to attend an accredited supervised session; verify the accrediting body independently. This item is set up to catch: State the safety limit and the qualified help you would seek; Match the strength of the conclusion to the evidence; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HEALTH-ACCESS-I04": {
+      "version": 1,
+      "solution": "Contact the triage line through its independently verified official number within 48 hours to request an ID-free route and confirm step-free parking; refuse the fee-for-booking text and any ID scan. Name the access check as the next step.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Contact the triage line through its independently verified official number within 48 hours to request an ID-free route and confirm step-free parking; refuse the fee-for-booking text and any ID scan. This item is set up to catch: Verify through a route you reach independently, not one supplied in the message; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Describe the verification step only; State the safety limit and the qualified help you would seek. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead"
+      },
+      "next_steps": {
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HEALTH-ACCESS-I05": {
+      "version": 1,
+      "solution": "Verify the 3-mile venue and its step-free entrance on the clinic's own official page today, and rebook the 18:30 slot if the 20:10 bus cannot be met; decline the unverified lift until checked. Record the fallback rebooking as the safety net.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Verify the 3-mile venue and its step-free entrance on the clinic's own official page today, and rebook the 18:30 slot if the 20:10 bus cannot be met; decline the unverified lift until checked. This item is set up to catch: Verify through a route you reach independently, not one supplied in the message; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Describe the verification step only; State the safety limit and the qualified help you would seek. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead"
+      },
+      "next_steps": {
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HEALTH-MEDICINE-I04": {
+      "version": 1,
+      "solution": "Do not double the uncertain drops; contact the pharmacist through the verified surgery number within 1 hour with the box details and keep the 2 uncertain doses recorded as missed. State the professional check as the only safe route.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Do not double the uncertain drops; contact the pharmacist through the verified surgery number within 1 hour with the box details and keep the 2 uncertain doses recorded as missed. This item is set up to catch: State the safety limit and the qualified help you would seek; Name the facts that were not given and state what you would need to confirm them; Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HEALTH-MEDICINE-I05": {
+      "version": 1,
+      "solution": "Leave the unlabelled bag unused and call the prescriber's verified contact before tomorrow's departure to confirm identity and schedule; refuse the forum schedule for a different product. Name the missing label as the blocking fact.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Leave the unlabelled bag unused and call the prescriber's verified contact before tomorrow's departure to confirm identity and schedule; refuse the forum schedule for a different product. This item is set up to catch: State the safety limit and the qualified help you would seek; Name the facts that were not given and state what you would need to confirm them; Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HEALTH-ROUTINE-I04": {
+      "version": 1,
+      "solution": "Reject the 25 powder as a meal-and-sleep replacement; plan 3 short packable meals plus a 7-hour protected sleep window and seated movement for the knee limit. Name the missing research as the reason the claim cannot be used.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Reject the 25 powder as a meal-and-sleep replacement; plan 3 short packable meals plus a 7-hour protected sleep window and seated movement for the knee limit. This item is set up to catch: State the safety limit and the qualified help you would seek; Match the strength of the conclusion to the evidence; Re-plan against the time and energy actually available, including rest and a contingency; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "unrealistic-capacity": "Fitting more work, cost or effort than the time, energy or budget allows — re-plan against what is actually available including rest and a contingency",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "unrealistic-capacity": "Re-plan against the time and energy actually available, including rest and a contingency. A feasible smaller plan beats a complete unachievable one. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HEALTH-ROUTINE-I05": {
+      "version": 1,
+      "solution": "Replace the 60-minute intense plan with 20 minutes of accessible movement, a 20-minute lunch and 2 rest breaks inside the 90 minutes; treat the testimonial as no evidence. State the professional limit for any health claim.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Replace the 60-minute intense plan with 20 minutes of accessible movement, a 20-minute lunch and 2 rest breaks inside the 90 minutes; treat the testimonial as no evidence. This item is set up to catch: State the safety limit and the qualified help you would seek; Match the strength of the conclusion to the evidence; Re-plan against the time and energy actually available, including rest and a contingency; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "unrealistic-capacity": "Fitting more work, cost or effort than the time, energy or budget allows — re-plan against what is actually available including rest and a contingency",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "unrealistic-capacity": "Re-plan against the time and energy actually available, including rest and a contingency. A feasible smaller plan beats a complete unachievable one. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HOME-MAINTENANCE-I04": {
+      "version": 1,
+      "solution": "Do not cut the wall or touch the socket; report the spreading damp in writing to the independently verified landlord route today and switch off that socket circuit. Name the professional electrician handover as the limit.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Do not cut the wall or touch the socket; report the spreading damp in writing to the independently verified landlord route today and switch off that socket circuit. This item is set up to catch: State the safety limit and the qualified help you would seek; Verify through a route you reach independently, not one supplied in the message; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HOME-MAINTENANCE-I05": {
+      "version": 1,
+      "solution": "Close the stairs to children and report the 3 loose brackets to the independently verified building manager before tonight; refuse the neighbour's unverified fix. Record the unknown emergency line as the fact to confirm.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Close the stairs to children and report the 3 loose brackets to the independently verified building manager before tonight; refuse the neighbour's unverified fix. This item is set up to catch: State the safety limit and the qualified help you would seek; Verify through a route you reach independently, not one supplied in the message; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HOME-MEALS-I04": {
+      "version": 1,
+      "solution": "Spend 5.00 on rice 1.10, lentils 1.40, bread 1.20 and frozen veg 1.30, leaving 2.00 unspent; exclude the 1.60 yoghurt for lack of chill space. Check the storage leaflet before cooking in the 20-minute slot.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Spend 5.00 on rice 1.10, lentils 1.40, bread 1.20 and frozen veg 1.30, leaving 2.00 unspent; exclude the 1.60 yoghurt for lack of chill space. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; State the safety limit and the qualified help you would seek; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HOME-MEALS-I05": {
+      "version": 1,
+      "solution": "Buy oats 1.30, peanut butter 2.00, bananas 1.10 and shelf milk 1.20 totalling 5.60; refuse the 2.40 chilled wraps without refrigeration. Name the unanswered storage question as the reason.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Buy oats 1.30, peanut butter 2.00, bananas 1.10 and shelf milk 1.20 totalling 5.60; refuse the 2.40 chilled wraps without refrigeration. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; State the safety limit and the qualified help you would seek; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HOME-ROUTINES-I04": {
+      "version": 1,
+      "solution": "Refuse to mix the sprays and postpone the task beyond the 15 minutes until gloves are available and the painted-shut window can be opened for ventilation. Follow the single-product label as the binding constraint.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Refuse to mix the sprays and postpone the task beyond the 15 minutes until gloves are available and the painted-shut window can be opened for ventilation. This item is set up to catch: State the safety limit and the qualified help you would seek; Name the facts that were not given and state what you would need to confirm them; Re-plan against the time and energy actually available, including rest and a contingency. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "unrealistic-capacity": "Fitting more work, cost or effort than the time, energy or budget allows — re-plan against what is actually available including rest and a contingency"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "unrealistic-capacity": "Re-plan against the time and energy actually available, including rest and a contingency. A feasible smaller plan beats a complete unachievable one. Then attempt an unseen variant with a different context."
+      }
+    },
+    "HOME-ROUTINES-I05": {
+      "version": 1,
+      "solution": "Keep the wool jumper out of the 40-minute dryer slot and dry it flat; split the remaining loads across 2 slots rather than combining against the label. Check the unknown heat setting before any dryer use.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Keep the wool jumper out of the 40-minute dryer slot and dry it flat; split the remaining loads across 2 slots rather than combining against the label. This item is set up to catch: State the safety limit and the qualified help you would seek; Name the facts that were not given and state what you would need to confirm them; Re-plan against the time and energy actually available, including rest and a contingency. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "unrealistic-capacity": "Fitting more work, cost or effort than the time, energy or budget allows — re-plan against what is actually available including rest and a contingency"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "unrealistic-capacity": "Re-plan against the time and energy actually available, including rest and a contingency. A feasible smaller plan beats a complete unachievable one. Then attempt an unseen variant with a different context."
+      }
+    },
+    "LEARNING-TIME-RETRIEVAL-I04": {
+      "version": 1,
+      "solution": "Replace the 5 same-card recitals with 3 shuffled-order attempts plus 1 feedback check before the 14-day review; treat the fluent recital as rereading, not retention. Schedule the different-materials check as the proof.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Replace the 5 same-card recitals with 3 shuffled-order attempts plus 1 feedback check before the 14-day review; treat the fluent recital as rereading, not retention. This item is set up to catch: Apply the criterion to the changed numbers and wording in this case; Match the strength of the conclusion to the evidence; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "memorised-answer": "Repeating a recalled model answer instead of applying the criterion to these materials — re-apply each step to the changed numbers and wording here",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+      },
+      "next_steps": {
+        "memorised-answer": "Apply the criterion to the changed numbers and wording in this case. An answer recalled from a previous item is not evidence. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "LEARNING-TIME-RETRIEVAL-I05": {
+      "version": 1,
+      "solution": "Test the 12 phrases in the 3 new market situations after a 2-day gap with feedback on each miss; stop counting the same-list 100% as competence. Name the missing delayed check as the gap.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Test the 12 phrases in the 3 new market situations after a 2-day gap with feedback on each miss; stop counting the same-list 100% as competence. This item is set up to catch: Apply the criterion to the changed numbers and wording in this case; Match the strength of the conclusion to the evidence; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "memorised-answer": "Repeating a recalled model answer instead of applying the criterion to these materials — re-apply each step to the changed numbers and wording here",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+      },
+      "next_steps": {
+        "memorised-answer": "Apply the criterion to the changed numbers and wording in this case. An answer recalled from a previous item is not evidence. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "LEARNING-TIME-REVISION-I04": {
+      "version": 1,
+      "solution": "Protect the 40-minute rest and the 30-minute documents, shrink the mock to 20 minutes tonight and move the rest past 19:00 by asking the venue; do not compress all 130 minutes into the remaining 90. Name the fallback ask as the next step.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Protect the 40-minute rest and the 30-minute documents, shrink the mock to 20 minutes tonight and move the rest past 19:00 by asking the venue; do not compress all 130 minutes into the remaining 90. This item is set up to catch: Re-plan against the time and energy actually available, including rest and a contingency; Respect consent and refusal; Name the facts that were not given and state what you would need to confirm them; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unrealistic-capacity": "Fitting more work, cost or effort than the time, energy or budget allows — re-plan against what is actually available including rest and a contingency",
+        "ignores-consent": "Proceeding on assumed agreement or pressuring after a refusal — offer a request the other person can freely decline and respect the refusal",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "unrealistic-capacity": "Re-plan against the time and energy actually available, including rest and a contingency. A feasible smaller plan beats a complete unachievable one. Then attempt an unseen variant with a different context.",
+        "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "LEARNING-TIME-REVISION-I05": {
+      "version": 1,
+      "solution": "Do the 70-minute form plus 25-minute rest in the remaining 90 minutes and defer the 30-minute tidy to Friday; request the tidy swap rather than assuming it. State the unconfirmed extension as the missing fact.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Do the 70-minute form plus 25-minute rest in the remaining 90 minutes and defer the 30-minute tidy to Friday; request the tidy swap rather than assuming it. This item is set up to catch: Re-plan against the time and energy actually available, including rest and a contingency; Respect consent and refusal; Name the facts that were not given and state what you would need to confirm them; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unrealistic-capacity": "Fitting more work, cost or effort than the time, energy or budget allows — re-plan against what is actually available including rest and a contingency",
+        "ignores-consent": "Proceeding on assumed agreement or pressuring after a refusal — offer a request the other person can freely decline and respect the refusal",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "unrealistic-capacity": "Re-plan against the time and energy actually available, including rest and a contingency. A feasible smaller plan beats a complete unachievable one. Then attempt an unseen variant with a different context.",
+        "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "LIFE-ADMIN-COMPLAINTS-I04": {
+      "version": 1,
+      "solution": "Dispute the 22 charge citing the page-4 freeze clause and request the 22 reversal through the independently verified support route; refuse the public-chat statement. Attach only the freeze clause as evidence.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Dispute the 22 charge citing the page-4 freeze clause and request the 22 reversal through the independently verified support route; refuse the public-chat statement. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+      }
+    },
+    "LIFE-ADMIN-COMPLAINTS-I05": {
+      "version": 1,
+      "solution": "Challenge the 6 surcharge on the 14 total and ask for the written policy through the verified retailer channel; decline the code-for-refund call. Record the broken policy link as the missing evidence.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Challenge the 6 surcharge on the 14 total and ask for the written policy through the verified retailer channel; decline the code-for-refund call. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+      }
+    },
+    "LIFE-ADMIN-CONTRACTS-I04": {
+      "version": 1,
+      "solution": "Total A at 366 plus unknown renewal against B at 228 over 12 months; refuse the monthly-price-only cheapest claim until cancellation and renewal terms are supplied. Name the missing renewal rate as the block.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Total A at 366 plus unknown renewal against B at 228 over 12 months; refuse the monthly-price-only cheapest claim until cancellation and renewal terms are supplied. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+      }
+    },
+    "LIFE-ADMIN-CONTRACTS-I05": {
+      "version": 1,
+      "solution": "Cost A at 530 for 12 months against B at 275 for 5 months; choose neither until access hours and insurance are confirmed, holding the rolling B as the reversible option. State the 5-month need as the deciding constraint.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Cost A at 530 for 12 months against B at 275 for 5 months; choose neither until access hours and insurance are confirmed, holding the rolling B as the reversible option. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+      }
+    },
+    "LIFE-ADMIN-RECORDS-I04": {
+      "version": 1,
+      "solution": "Set the reminder for day 35, giving 10 days before day 45, and store only the renewal date plus the verified agent contact; refuse the passport and login uploads. Verify the real renewal form independently.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Set the reminder for day 35, giving 10 days before day 45, and store only the renewal date plus the verified agent contact; refuse the passport and login uploads. This item is set up to catch: Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Put the statements in date order and identify the earliest day the balance goes negative; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "missed-payment-timing": "Reading only the month total instead of dating each payment, so the earliest negative day is missed — place every movement in date order and name the lowest dated balance",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+      },
+      "next_steps": {
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "missed-payment-timing": "Put the statements in date order and identify the earliest day the balance goes negative. Timing decides whether the month works, not the total. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+      }
+    },
+    "LIFE-ADMIN-RECORDS-I05": {
+      "version": 1,
+      "solution": "Book the refresher by day 46, 14 days before day 60, using only the expiry date on a private reminder; decline the spreadsheet's medical and password fields. Check the awarding-body portal as the verified route.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Book the refresher by day 46, 14 days before day 60, using only the expiry date on a private reminder; decline the spreadsheet's medical and password fields. This item is set up to catch: Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Put the statements in date order and identify the earliest day the balance goes negative; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "missed-payment-timing": "Reading only the month total instead of dating each payment, so the earliest negative day is missed — place every movement in date order and name the lowest dated balance",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+      },
+      "next_steps": {
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "missed-payment-timing": "Put the statements in date order and identify the earliest day the balance goes negative. Timing decides whether the month works, not the total. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MAJOR-DECISIONS-ACCESS-I04": {
+      "version": 1,
+      "solution": "Verify the ward lift and the taxi voucher scheme on the hospital's own page before the 19:00 visit; if the 18:52 bus plus 8-minute walk cannot be met, rebook to a daytime slot. Keep the rebooking as the fallback.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Verify the ward lift and the taxi voucher scheme on the hospital's own page before the 19:00 visit; if the 18:52 bus plus 8-minute walk cannot be met, rebook to a daytime slot. This item is set up to catch: Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Verify through a route you reach independently, not one supplied in the message; Name the facts that were not given and state what you would need to confirm them; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MAJOR-DECISIONS-ACCESS-I05": {
+      "version": 1,
+      "solution": "Ask the employer in writing for an 08:30 accessible start to fit the 07:55 bus; refuse the stranger lift and verify the 4.50 fare cap independently. Name the unconfirmed start time as the blocking fact.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Ask the employer in writing for an 08:30 accessible start to fit the 07:55 bus; refuse the stranger lift and verify the 4.50 fare cap independently. This item is set up to catch: Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Verify through a route you reach independently, not one supplied in the message; Name the facts that were not given and state what you would need to confirm them; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MAJOR-DECISIONS-COMPARISON-I04": {
+      "version": 1,
+      "solution": "Total A at 310 inside the 350 budget against B at 380 over budget; take the 20 reversible taster until completion and refund terms are confirmed. Reject any overconfident choice without those terms.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Total A at 310 inside the 350 budget against B at 380 over budget; take the 20 reversible taster until completion and refund terms are confirmed. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Name the facts that were not given and state what you would need to confirm them; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MAJOR-DECISIONS-COMPARISON-I05": {
+      "version": 1,
+      "solution": "Count A at 1190 upfront against B at 880 with only 700 available; prefer the lift-access B pending the unstated tenancy length. Name the stairs-only bar plus the 700 cap as the joint deciders.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Count A at 1190 upfront against B at 880 with only 700 available; prefer the lift-access B pending the unstated tenancy length. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Name the facts that were not given and state what you would need to confirm them; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-BANKING-I04": {
+      "version": 1,
+      "solution": "State the cleared balance as 410, treat the 120 hold as unavailable until the bank's own definition confirms otherwise, and refuse the passcode text. Verify the hold through the independently reached bank app.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: State the cleared balance as 410, treat the 120 hold as unavailable until the bank's own definition confirms otherwise, and refuse the passcode text. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Name the facts that were not given and state what you would need to confirm them; Describe the verification step only; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-BANKING-I05": {
+      "version": 1,
+      "solution": "Keep the 250 rent against the 300 cleared only, excluding the pending 400; decline the 50 verification transfer and check the missing payment date with the verified grant office. Name the pending status as the block.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Keep the 250 rent against the 300 cleared only, excluding the pending 400; decline the 50 verification transfer and check the missing payment date with the verified grant office. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Name the facts that were not given and state what you would need to confirm them; Describe the verification step only; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-BUDGET-I06": {
+      "version": 1,
+      "solution": "Allocations total 1175, leaving 145 unallocated; refuse the 95 jacket if it breaks the 70 reserve that covers the 840 annual bill. Protect the reserve and do not double-count the 840.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Allocations total 1175, leaving 145 unallocated; refuse the 95 jacket if it breaks the 70 reserve that covers the 840 annual bill. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; List every essential cost first and protect it in the plan; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "ignores-essential-cost": "Leaving an essential cost or reserve out of the plan to make the numbers fit — list every essential cost first and protect it before any optional spend",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-BUDGET-I07": {
+      "version": 1,
+      "solution": "Total 1305 allocated with 195 unallocated; keep the 90 reserve and decline the 120 event unless it fits the 195 without touching essentials. State the reserve as the protected line.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Total 1305 allocated with 195 unallocated; keep the 90 reserve and decline the 120 event unless it fits the 195 without touching essentials. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; List every essential cost first and protect it in the plan; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "ignores-essential-cost": "Leaving an essential cost or reserve out of the plan to make the numbers fit — list every essential cost first and protect it before any optional spend",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "M-CF-06": {
+      "version": 1,
+      "solution": "Dated balances 5, -35, 185, 100, 60, 280; the lowest is minus 35 on day 3 despite the 280 close. Refuse the buy-now-pay-later food and seek a day-3 cover agreed in advance; do not count the undated 45.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Dated balances 5, -35, 185, 100, 60, 280; the lowest is minus 35 on day 3 despite the 280 close. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Put the statements in date order and identify the earliest day the balance goes negative; List every essential cost first and protect it in the plan; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "missed-payment-timing": "Reading only the month total instead of dating each payment, so the earliest negative day is missed — place every movement in date order and name the lowest dated balance",
+        "ignores-essential-cost": "Leaving an essential cost or reserve out of the plan to make the numbers fit — list every essential cost first and protect it before any optional spend",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "missed-payment-timing": "Put the statements in date order and identify the earliest day the balance goes negative. Timing decides whether the month works, not the total. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-INSURANCE-I04": {
+      "version": 1,
+      "solution": "Compare 120 yearly plus 150 excess against 192 plus 50 excess for the 300 bike; buy neither until shed-cover, deadline and proof needs are confirmed. Name the missing exclusions as the block on any cover claim.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Compare 120 yearly plus 150 excess against 192 plus 50 excess for the 300 bike; buy neither until shed-cover, deadline and proof needs are confirmed. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Match the strength of the conclusion to the evidence; List every essential cost first and protect it in the plan; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "ignores-essential-cost": "Leaving an essential cost or reserve out of the plan to make the numbers fit — list every essential cost first and protect it before any optional spend",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-INSURANCE-I05": {
+      "version": 1,
+      "solution": "Reject the 8 monthly add-on as cover for the 250 phone because phones are excluded; do not rely on the full-cover headline. Verify the claim process and the 12 renewal before any decision.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Reject the 8 monthly add-on as cover for the 250 phone because phones are excluded; do not rely on the full-cover headline. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Match the strength of the conclusion to the evidence; List every essential cost first and protect it in the plan; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "ignores-essential-cost": "Leaving an essential cost or reserve out of the plan to make the numbers fit — list every essential cost first and protect it before any optional spend",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-INVESTING-I04": {
+      "version": 1,
+      "solution": "Refuse the 300 deposit because the 280 rent due in 30 days cannot be locked for 90 days; treat the 12% past gain as no promise. Verify authorisation independently before any investing.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Refuse the 300 deposit because the 280 rent due in 30 days cannot be locked for 90 days; treat the 12% past gain as no promise. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Match the strength of the conclusion to the evidence; List every essential cost first and protect it in the plan; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "ignores-essential-cost": "Leaving an essential cost or reserve out of the plan to make the numbers fit — list every essential cost first and protect it before any optional spend",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-INVESTING-I05": {
+      "version": 1,
+      "solution": "Keep the 200 emergency fund intact and decline the coin because the 180 bills due next week outrank any 40% past rise. Name the missing fees and lock-in as facts that prevent any recommendation.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Keep the 200 emergency fund intact and decline the coin because the 180 bills due next week outrank any 40% past rise. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Match the strength of the conclusion to the evidence; List every essential cost first and protect it in the plan; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "ignores-essential-cost": "Leaving an essential cost or reserve out of the plan to make the numbers fit — list every essential cost first and protect it before any optional spend",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-PAYSLIP-I04": {
+      "version": 1,
+      "solution": "Reconcile 880 minus 85 as 795 received; query the unstated 80 overtime rate with payroll privately and refuse the group-chat slip share. Do not infer anything about the tax code.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Reconcile 880 minus 85 as 795 received; query the unstated 80 overtime rate with payroll privately and refuse the group-chat slip share. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it; Describe the verification step only. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-PAYSLIP-I05": {
+      "version": 1,
+      "solution": "Total expected 870 from 500 minus 32 plus 420 minus 18; match the 870 receipt but query the unclear transfer label and both missing tax codes privately. Share no full statements to verify.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Total expected 870 from 500 minus 32 plus 420 minus 18; match the 870 receipt but query the unclear transfer label and both missing tax codes privately. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it; Describe the verification step only. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-SAVING-I04": {
+      "version": 1,
+      "solution": "Save the 80 monthly for 3 months to reach 360 including the 120 start; exclude the unconfirmed 150 gift and protect the 600 essentials. Name the gift uncertainty as the reason the plan shows 90 short without it.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Save the 80 monthly for 3 months to reach 360 including the 120 start; exclude the unconfirmed 150 gift and protect the 600 essentials. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Match the strength of the conclusion to the evidence; List every essential cost first and protect it in the plan; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "ignores-essential-cost": "Leaving an essential cost or reserve out of the plan to make the numbers fit — list every essential cost first and protect it before any optional spend",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "MONEY-SAVING-I05": {
+      "version": 1,
+      "solution": "Hold the 30 reserve and decline the unstated-fee loan; the 90 arriving day 35 misses the day-30 deadline, so request a 5-day extension or a 150 instalment plan. State the date mismatch as the decider.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Hold the 30 reserve and decline the unstated-fee loan; the 90 arriving day 35 misses the day-30 deadline, so request a 5-day extension or a 150 instalment plan. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Match the strength of the conclusion to the evidence; List every essential cost first and protect it in the plan; Verify through a route you reach independently, not one supplied in the message. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "ignores-essential-cost": "Leaving an essential cost or reserve out of the plan to make the numbers fit — list every essential cost first and protect it before any optional spend",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it"
+      },
+      "next_steps": {
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "ignores-essential-cost": "List every essential cost first and protect it in the plan. Then show what is reduced and confirm the essentials still hold. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context."
+      }
+    },
+    "RELATIONSHIPS-BOUNDARIES-I04": {
+      "version": 1,
+      "solution": "Decline the month of swaps and offer only 1 weekend you control, keeping the 2 family weekends; check the manager's swap policy rather than deciding on guilt. Name your own availability as the boundary.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Decline the month of swaps and offer only 1 weekend you control, keeping the 2 family weekends; check the manager's swap policy rather than deciding on guilt. This item is set up to catch: Respect consent and refusal; State the safety limit and the qualified help you would seek; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "ignores-consent": "Proceeding on assumed agreement or pressuring after a refusal — offer a request the other person can freely decline and respect the refusal",
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+      },
+      "next_steps": {
+        "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "RELATIONSHIPS-BOUNDARIES-I05": {
+      "version": 1,
+      "solution": "Refuse the 100 loan because the essentials budget cannot cover it; offer a non-money help you control instead and decline the secrecy. State the refusal plainly without justifying beyond capacity.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Refuse the 100 loan because the essentials budget cannot cover it; offer a non-money help you control instead and decline the secrecy. This item is set up to catch: Respect consent and refusal; State the safety limit and the qualified help you would seek; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "ignores-consent": "Proceeding on assumed agreement or pressuring after a refusal — offer a request the other person can freely decline and respect the refusal",
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+      },
+      "next_steps": {
+        "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+      }
+    },
+    "RELATIONSHIPS-COMMUNICATION-I04": {
+      "version": 1,
+      "solution": "Replace the lazy-and-useless motive claim with the 3 missed dates observed, reflect the blurry-photo point, and request a readable rota plus one written confirmation; offer a short text summary instead of voice notes. Name the access need on both sides.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Replace the lazy-and-useless motive claim with the 3 missed dates observed, reflect the blurry-photo point, and request a readable rota plus one written confirmation; offer a short text summary instead of voice notes. This item is set up to catch: Match the strength of the conclusion to the evidence; Respect consent and refusal; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "ignores-consent": "Proceeding on assumed agreement or pressuring after a refusal — offer a request the other person can freely decline and respect the refusal",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request"
+      },
+      "next_steps": {
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context."
+      }
+    },
+    "RELATIONSHIPS-COMMUNICATION-I05": {
+      "version": 1,
+      "solution": "State the 2 twenty-minute lates observed without a respect motive, reflect the changed timetable, and request a 10-minute earlier start with written updates; decline late-evening calls because of caring duties. Keep the request specific and declinable.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: State the 2 twenty-minute lates observed without a respect motive, reflect the changed timetable, and request a 10-minute earlier start with written updates; decline late-evening calls because of caring duties. This item is set up to catch: Match the strength of the conclusion to the evidence; Respect consent and refusal; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "ignores-consent": "Proceeding on assumed agreement or pressuring after a refusal — offer a request the other person can freely decline and respect the refusal",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request"
+      },
+      "next_steps": {
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context."
+      }
+    },
+    "RELATIONSHIPS-CONFLICT-I04": {
+      "version": 1,
+      "solution": "Refuse the alone pull-aside and pause the queue by stepping back to the staff 5 metres away; offer to resume after a 10-minute cool-down rather than forcing tonight's resolution. Name staff handover as the safe route.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Refuse the alone pull-aside and pause the queue by stepping back to the staff 5 metres away; offer to resume after a 10-minute cool-down rather than forcing tonight's resolution. This item is set up to catch: State the safety limit and the qualified help you would seek; Respect consent and refusal; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "ignores-consent": "Proceeding on assumed agreement or pressuring after a refusal — offer a request the other person can freely decline and respect the refusal",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "RELATIONSHIPS-CONFLICT-I05": {
+      "version": 1,
+      "solution": "Stop the late-night decision and propose a daytime talk in 2 days with a written agenda; respect the stop request and share 1 verified support contact as the fallback. Do not force agreement tonight.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Stop the late-night decision and propose a daytime talk in 2 days with a written agenda; respect the stop request and share 1 verified support contact as the fallback. This item is set up to catch: State the safety limit and the qualified help you would seek; Respect consent and refusal; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "ignores-consent": "Proceeding on assumed agreement or pressuring after a refusal — offer a request the other person can freely decline and respect the refusal",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "WELLBEING-CAPACITY-I04": {
+      "version": 1,
+      "solution": "Do the 15-minute bill call plus food and a 10-minute rest inside the 50 minutes; defer the 60-minute essay to 3 sessions next week. Name the 4-hour sleep and missed meal as the capacity limits that force the smaller plan.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Do the 15-minute bill call plus food and a 10-minute rest inside the 50 minutes; defer the 60-minute essay to 3 sessions next week. This item is set up to catch: Re-plan against the time and energy actually available, including rest and a contingency; State the safety limit and the qualified help you would seek; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unrealistic-capacity": "Fitting more work, cost or effort than the time, energy or budget allows — re-plan against what is actually available including rest and a contingency",
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+      },
+      "next_steps": {
+        "unrealistic-capacity": "Re-plan against the time and energy actually available, including rest and a contingency. A feasible smaller plan beats a complete unachievable one. Then attempt an unseen variant with a different context.",
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "WELLBEING-CAPACITY-I05": {
+      "version": 1,
+      "solution": "Choose the 45-minute form plus the 30-minute walk inside the 90 minutes and leave messages for tomorrow; refuse the skip-sleep plan. Distinguish the planning overload from any need for professional support.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Choose the 45-minute form plus the 30-minute walk inside the 90 minutes and leave messages for tomorrow; refuse the skip-sleep plan. This item is set up to catch: Re-plan against the time and energy actually available, including rest and a contingency; State the safety limit and the qualified help you would seek; Match the strength of the conclusion to the evidence. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "unrealistic-capacity": "Fitting more work, cost or effort than the time, energy or budget allows — re-plan against what is actually available including rest and a contingency",
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision"
+      },
+      "next_steps": {
+        "unrealistic-capacity": "Re-plan against the time and energy actually available, including rest and a contingency. A feasible smaller plan beats a complete unachievable one. Then attempt an unseen variant with a different context.",
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "WELLBEING-SUPPORT-I04": {
+      "version": 1,
+      "solution": "Ask the neighbour tonight for the specific 09:00 lift with a clear no-pressure opt-out, and verify the clinic transport number independently as the fallback; if neither confirms, call the clinic before 08:00. Respect any refusal.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Ask the neighbour tonight for the specific 09:00 lift with a clear no-pressure opt-out, and verify the clinic transport number independently as the fallback; if neither confirms, call the clinic before 08:00. This item is set up to catch: Respect consent and refusal; Verify through a route you reach independently, not one supplied in the message; State the safety limit and the qualified help you would seek; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "ignores-consent": "Proceeding on assumed agreement or pressuring after a refusal — offer a request the other person can freely decline and respect the refusal",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "WELLBEING-SUPPORT-I05": {
+      "version": 1,
+      "solution": "Request the specific 30-minute text-based split from the friend with a free opt-out, refuse the ID-scan service, and keep 1 verified helpline as the fallback; name urgent help as the priority if distress worsens. Do not share scans.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Request the specific 30-minute text-based split from the friend with a free opt-out, refuse the ID-scan service, and keep 1 verified helpline as the fallback; name urgent help as the priority if distress worsens. This item is set up to catch: Respect consent and refusal; Verify through a route you reach independently, not one supplied in the message; State the safety limit and the qualified help you would seek; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "ignores-consent": "Proceeding on assumed agreement or pressuring after a refusal — offer a request the other person can freely decline and respect the refusal",
+        "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+        "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+        "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+      },
+      "next_steps": {
+        "ignores-consent": "Respect consent and refusal. Offer a request the other person can decline; do not proceed on assumed agreement. Then attempt an unseen variant with a different context.",
+        "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+        "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+        "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+      }
+    },
+    "WORK-EVIDENCE-I04": {
+      "version": 1,
+      "solution": "Offer the 6 weekend tills plus the 2 reported discrepancies as the reliability example with its limit stated; remove the 5-year supervision claim as un evidenced. Name till cover, not supervision, as the matched skill.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Offer the 6 weekend tills plus the 2 reported discrepancies as the reliability example with its limit stated; remove the 5-year supervision claim as un evidenced. This item is set up to catch: Match the strength of the conclusion to the evidence; Name the facts that were not given and state what you would need to confirm them; Describe the verification step only. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private"
+      },
+      "next_steps": {
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "WORK-EVIDENCE-I05": {
+      "version": 1,
+      "solution": "Use the 15 weekly visitors plus the 1 follow-up check as the customer-help example; strip the budget and team-lead claims as invented. State the limit that no supervisory evidence is offered.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Use the 15 weekly visitors plus the 1 follow-up check as the customer-help example; strip the budget and team-lead claims as invented. This item is set up to catch: Match the strength of the conclusion to the evidence; Name the facts that were not given and state what you would need to confirm them; Describe the verification step only. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private"
+      },
+      "next_steps": {
+        "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "WORK-OFFERS-I04": {
+      "version": 1,
+      "solution": "Query the 3 night shifts, the 6 travel cost, step-free access and the unstated pay date in writing through a verified company channel; refuse the personal-email ID request. Hold acceptance until all 4 points are answered.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Query the 3 night shifts, the 6 travel cost, step-free access and the unstated pay date in writing through a verified company channel; refuse the personal-email ID request. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Check what you are actually entitled to against the current official source before relying on it; Describe the verification step only. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private"
+      },
+      "next_steps": {
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "WORK-OFFERS-I05": {
+      "version": 1,
+      "solution": "Ask for the trial insurance, weekend notice terms and pay setup route in writing via the verified employer; decline the bank-login request and any unpaid 2-day trial beyond a short observed visit. Name the missing insurance as the block.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Ask for the trial insurance, weekend notice terms and pay setup route in writing via the verified employer; decline the bank-login request and any unpaid 2-day trial beyond a short observed visit. This item is set up to catch: Name the facts that were not given and state what you would need to confirm them; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Check what you are actually entitled to against the current official source before relying on it; Describe the verification step only. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private"
+      },
+      "next_steps": {
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context."
+      }
+    },
+    "WORK-PAY-I04": {
+      "version": 1,
+      "solution": "Reconcile 750 minus 62 as 688 received, then query the 4 unrecorded overtime hours and the missing hourly breakdown privately with payroll; do not accept ignoring it. Keep the query factual without inferring tax.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Reconcile 750 minus 62 as 688 received, then query the 4 unrecorded overtime hours and the missing hourly breakdown privately with payroll; do not accept ignoring it. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Describe the verification step only; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+      }
+    },
+    "WORK-PAY-I05": {
+      "version": 1,
+      "solution": "Flag the 30 gap between the expected 570 and the 540 received, querying the 30 transport deduction against the agreement in a private verified channel; refuse the online slip post. State the vague note as the missing evidence.",
+      "explanation": "For this case a met response reaches the same conclusion as the reference: Flag the 30 gap between the expected 570 and the 540 received, querying the 30 transport deduction against the agreement in a private verified channel; refuse the online slip post. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Describe the verification step only; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+      "common_mistakes": {
+        "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+        "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+        "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+        "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+      },
+      "next_steps": {
+        "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+        "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+        "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+        "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+      }
     }
   }
 }

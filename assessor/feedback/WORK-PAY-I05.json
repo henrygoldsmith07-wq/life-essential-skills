@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Flag the 30 gap between the expected 570 and the 540 received, querying the 30 transport deduction against the agreement in a private verified channel; refuse the online slip post. State the vague note as the missing evidence.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Flag the 30 gap between the expected 570 and the 540 received, querying the 30 transport deduction against the agreement in a private verified channel; refuse the online slip post. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Describe the verification step only; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+    "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+    "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+    "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+  },
+  "next_steps": {
+    "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+    "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+    "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+  }
+}

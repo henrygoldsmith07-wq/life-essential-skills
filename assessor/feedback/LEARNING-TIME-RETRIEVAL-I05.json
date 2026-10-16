@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Test the 12 phrases in the 3 new market situations after a 2-day gap with feedback on each miss; stop counting the same-list 100% as competence. Name the missing delayed check as the gap.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Test the 12 phrases in the 3 new market situations after a 2-day gap with feedback on each miss; stop counting the same-list 100% as competence. This item is set up to catch: Apply the criterion to the changed numbers and wording in this case; Match the strength of the conclusion to the evidence; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "memorised-answer": "Repeating a recalled model answer instead of applying the criterion to these materials — re-apply each step to the changed numbers and wording here",
+    "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+    "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+  },
+  "next_steps": {
+    "memorised-answer": "Apply the criterion to the changed numbers and wording in this case. An answer recalled from a previous item is not evidence. Then attempt an unseen variant with a different context.",
+    "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+  }
+}

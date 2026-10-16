@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Spend 5.00 on rice 1.10, lentils 1.40, bread 1.20 and frozen veg 1.30, leaving 2.00 unspent; exclude the 1.60 yoghurt for lack of chill space. Check the storage leaflet before cooking in the 20-minute slot.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Spend 5.00 on rice 1.10, lentils 1.40, bread 1.20 and frozen veg 1.30, leaving 2.00 unspent; exclude the 1.60 yoghurt for lack of chill space. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; State the safety limit and the qualified help you would seek; Name the facts that were not given and state what you would need to confirm them. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+    "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+    "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding"
+  },
+  "next_steps": {
+    "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+    "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context."
+  }
+}

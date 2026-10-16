@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Refuse the tonight deadline and trace the undated council page through an independently reached official site before acting; treat the forwarded link as unverified. Name the missing date and nation as the facts that block action.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Refuse the tonight deadline and trace the undated council page through an independently reached official site before acting; treat the forwarded link as unverified. This item is set up to catch: Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence; Name the facts that were not given and state what you would need to confirm them; Check the nation and the scope of the guidance before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+    "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+    "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+    "wrong-jurisdiction": "Carrying a rule or service from one nation into another without checking scope — confirm the nation and that the guidance covers it before relying on it"
+  },
+  "next_steps": {
+    "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+    "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+    "wrong-jurisdiction": "Check the nation and the scope of the guidance before relying on it. Do not carry a rule from one nation into another. Then attempt an unseen variant with a different context."
+  }
+}

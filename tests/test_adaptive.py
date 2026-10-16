@@ -96,7 +96,9 @@ class AdaptiveIntegrityTests(unittest.TestCase):
         schema=json.loads((self.root/'schemas/learner-state.schema.json').read_text());s=json.loads((self.root/'examples/learners/assessor-reviewed.json').read_text());self.assertEqual(validate_schema(s,schema),[])
         s['reviews'][0]['notes']='private';self.assertTrue(validate_schema(s,schema))
     def test_initial_core_has_no_task_content_and_stays_small(self):
-        text=(self.root/'learner/data.js').read_text(encoding='utf-8');self.assertNotIn('"materials":',text);self.assertNotIn('"task":',text);self.assertLess(len(text.encode()),400000)
+        # Retention capacity grew the bank 234 -> 305 header-only items (5 fresh
+        # independent cases per family); the header-only core necessarily grows.
+        text=(self.root/'learner/data.js').read_text(encoding='utf-8');self.assertNotIn('"materials":',text);self.assertNotIn('"task":',text);self.assertLess(len(text.encode()),500000)
     def test_capstone_materials_cannot_drift_from_markdown(self):
         self.change('assessments/capstones.json',lambda d:d['items'][0]['materials'].append('Different fictional costs'));self.reject('Markdown/data drift')
     def test_duplicate_calibration_references_refused(self):

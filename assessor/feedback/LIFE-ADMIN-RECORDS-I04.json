@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Set the reminder for day 35, giving 10 days before day 45, and store only the renewal date plus the verified agent contact; refuse the passport and login uploads. Verify the real renewal form independently.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Set the reminder for day 35, giving 10 days before day 45, and store only the renewal date plus the verified agent contact; refuse the passport and login uploads. This item is set up to catch: Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Put the statements in date order and identify the earliest day the balance goes negative; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+    "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+    "missed-payment-timing": "Reading only the month total instead of dating each payment, so the earliest negative day is missed — place every movement in date order and name the lowest dated balance",
+    "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+  },
+  "next_steps": {
+    "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+    "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+    "missed-payment-timing": "Put the statements in date order and identify the earliest day the balance goes negative. Timing decides whether the month works, not the total. Then attempt an unseen variant with a different context.",
+    "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+  }
+}

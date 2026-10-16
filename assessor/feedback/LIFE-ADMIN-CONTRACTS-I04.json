@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "solution": "Total A at 366 plus unknown renewal against B at 228 over 12 months; refuse the monthly-price-only cheapest claim until cancellation and renewal terms are supplied. Name the missing renewal rate as the block.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Total A at 366 plus unknown renewal against B at 228 over 12 months; refuse the monthly-price-only cheapest claim until cancellation and renewal terms are supplied. This item is set up to catch: Redo every figure from the supplied numbers and state each calculation; Name the facts that were not given and state what you would need to confirm them; Check what you are actually entitled to against the current official source before relying on it. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "arithmetic-error": "Adding figures without dated working, so a mid-period shortfall or total is miscalculated — re-add each figure line by line and state every calculation",
+    "assumes-missing-information": "Filling an unstated gap with a guess instead of naming it — list each fact not given and state what must be checked before deciding",
+    "unverified-entitlement": "Promising a refund, benefit, cover or right before checking the current official terms — verify entitlement against the official source first"
+  },
+  "next_steps": {
+    "arithmetic-error": "Redo every figure from the supplied numbers and state each calculation. Show the lowest dated balance, not only the month total. Then attempt an unseen variant with a different context.",
+    "assumes-missing-information": "Name the facts that were not given and state what you would need to confirm them. Do not fill a gap with a guess. Then attempt an unseen variant with a different context.",
+    "unverified-entitlement": "Check what you are actually entitled to against the current official source before relying on it. Do not promise an entitlement. Then attempt an unseen variant with a different context."
+  }
+}

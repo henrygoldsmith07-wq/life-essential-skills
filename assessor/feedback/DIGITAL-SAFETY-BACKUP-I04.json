@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Copy the 2 missing folders to a separate backup today and complete a test restore of 1 sample file; refuse the contact-access tool. Record the untested restore as the gap that blocks any complete claim.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Copy the 2 missing folders to a separate backup today and complete a test restore of 1 sample file; refuse the contact-access tool. This item is set up to catch: Describe the verification step only; Verify through a route you reach independently, not one supplied in the message; Match the strength of the conclusion to the evidence; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "reveals-sensitive-information": "Placing a password, code, account detail or private record in a message or worksheet — describe only the verification step and keep secrets private",
+    "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+    "overconfident-conclusion": "Stating one certain answer when the evidence allows several readings — match the conclusion to the evidence and name what would change the decision",
+    "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+  },
+  "next_steps": {
+    "reveals-sensitive-information": "Describe the verification step only. Never place a password, code or account detail in a worksheet, message or answer. Then attempt an unseen variant with a different context.",
+    "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+    "overconfident-conclusion": "Match the strength of the conclusion to the evidence. Say what would change your decision rather than asserting a single answer. Then attempt an unseen variant with a different context.",
+    "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+  }
+}

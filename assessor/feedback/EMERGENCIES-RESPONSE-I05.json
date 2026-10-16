@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "solution": "Turn back from the knee-deep lane and wait at the community centre 200 metres back; refuse the unlit shortcut and verify an accessible route with staff. Record the unconfirmed alternative as the missing fact.",
+  "explanation": "For this case a met response reaches the same conclusion as the reference: Turn back from the knee-deep lane and wait at the community centre 200 metres back; refuse the unlit shortcut and verify an accessible route with staff. This item is set up to catch: State the safety limit and the qualified help you would seek; Verify through a route you reach independently, not one supplied in the message; Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment; Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. A safe justified refusal, or naming a fact you cannot resolve, can meet the criterion here; a confident invented answer cannot.",
+  "common_mistakes": {
+    "unsafe-advice": "Proposing a real-world action beyond a safe planning limit — state the safety boundary and name the qualified help or escalation route instead",
+    "fails-independent-verification": "Trusting a supplied message, screenshot or caller instead of checking yourself — verify through an official route you reach independently and name it",
+    "misses-access-constraint": "Planning as if transport, step-free access, timing or adjustments do not matter — account for the access need explicitly and state the adjustment request",
+    "no-fallback": "Giving a single route with nothing if it is closed or delayed — name a feasible fallback and who would be contacted"
+  },
+  "next_steps": {
+    "unsafe-advice": "State the safety limit and the qualified help you would seek. A safe refusal or escalation is a correct answer here. Then attempt an unseen variant with a different context.",
+    "fails-independent-verification": "Verify through a route you reach independently, not one supplied in the message. Name the official route you would use. Then attempt an unseen variant with a different context.",
+    "misses-access-constraint": "Account for the access need explicitly: transport, step-free access, time of day and how you would request an adjustment. Then attempt an unseen variant with a different context.",
+    "no-fallback": "Give the fallback you would use if the primary route is closed or delayed, and say who you would contact. Then attempt an unseen variant with a different context."
+  }
+}
