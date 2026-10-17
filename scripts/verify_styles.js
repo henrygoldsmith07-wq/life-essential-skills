@@ -12,6 +12,7 @@ const SV = load('simulation-view.js', 'SimulationView');
 const FV = load('feedback-view.js', 'FeedbackView');
 const PV = load('profile-view.js', 'ProfileView');
 const E = require(path.join(root, 'learner/engine.js'));
+const PT = require(path.join(root, 'learner/tools.js'));
 const R = require(path.join(root, 'learner/roadmap.js'));
 const read = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
 const D = {
@@ -36,7 +37,10 @@ const html = [
   FV.nextPractice({ why: 'b', item_id: 'X', kind: 'transfer', learn_path: 'g.md', reason: ['r'] }),
   FV.reassessment('2026-11-01'), FV.whyItMatters('Because it matters.'),
   FV.preemptiveGuidance(['check your arithmetic']),
-  PV.render(R.profile(ex, D, TODAY), 'UK')
+  PV.render(R.profile(ex, D, TODAY), 'UK'),
+  PT.budgetForm(PT.emptyBudget()), PT.budgetResult((() => { const b = PT.emptyBudget(); b.income[0].amount = '800'; b.outgoings[0].amount = '900'; return b; })()),
+  PT.reviewForm(PT.emptyReview()),
+  PT.decisionForm(PT.emptyDecision()), PT.decisionResult((() => { const d = PT.emptyDecision(); d.question = 'Which flat?'; d.importance = ['3', '', '', '']; d.ratings[0] = ['3', '1', '']; return d; })())
 ].join('\n');
 
 const used = new Set();

@@ -67,6 +67,8 @@ Solutions are hidden beneath expandable sections. Written judgement and hands-on
 
 ## Tools to use locally
 
+The budget, weekly review, and decision journal also run as **interactive tools inside the app** (Tools tab): a budget builder with automatic totals and bill-timing checks, a weekly planner, and a decision workspace that compares options against what matters most, each saving a private per-learner draft in the browser. Practice aids only — they never award evidence.
+
 | Need | Worksheet |
 | --- | --- |
 | Track demonstrations and retention | [Progress tracker](templates/progress-tracker.md) |
@@ -86,7 +88,7 @@ Use the maintained [source register](RESOURCES.md) for organisation, purpose, ju
 
 ## Privacy and accessibility
 
-Copy worksheets into `personal/` locally; that folder is ignored by Git. Keep actual identity documents, account details, passwords, recovery codes, contacts, and health records out of GitHub, including private repositories. Use fictional or redacted evidence. `.gitignore` is a guardrail, not secure storage.
+On a shared browser, My setup keeps a separate named learner profile per person — switching never mixes evidence. Copy worksheets into `personal/` locally; that folder is ignored by Git. Keep actual identity documents, account details, passwords, recovery codes, contacts, and health records out of GitHub, including private repositories. Use fictional or redacted evidence. `.gitignore` is a guardrail, not secure storage. My setup also offers a passphrase-encrypted evidence backup (AES-GCM-256, PBKDF2-SHA256) for copies kept on shared computers or sent over channels others can see — a forgotten passphrase cannot be recovered.
 
 Use spoken, typed, or other accessible responses; adapt tasks to your abilities and equipment. Split sessions as needed. No real payment, treatment change, hazardous repair, or disclosure is required for assessment.
 

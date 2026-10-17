@@ -96,7 +96,7 @@ const fire = (type, event) => {
   check('install creates exactly one versioned cache', cacheNames.length === 1 && /^les-/.test(cacheNames[0]));
   const cached = [...(store.get(cacheNames[0]) || new Map()).keys()];
   check('precache covers the dashboard shell and learner core',
-    ['/learner/index.html', '/learner/app.js', '/learner/data.js', '/manifest.webmanifest'].every((u) => cached.includes(u)));
+    ['/learner/index.html', '/learner/app.js', '/learner/crypto-backup.js', '/learner/profiles.js', '/learner/tools.js', '/learner/data.js', '/manifest.webmanifest'].every((u) => cached.includes(u)));
   check('precache never includes an aggregate answer file',
     cached.every((u) => !u.includes('assessor/answers.json') && !u.includes('assessor/benchmarks.json')));
 

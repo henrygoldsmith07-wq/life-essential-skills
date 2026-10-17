@@ -103,7 +103,7 @@ test('life-transition simulation develops across three parts and saves per-skill
   await page.getByRole('link',{name:'Simulations',exact:true}).click();
   await expect(page.locator('.simcard').filter({hasText:'Moving out in six weeks'})).toContainText('FAMILIAR SITUATION');
 });
-for(const view of ['today','progress','practice','pathways','settings','assessor','roadmap','simulations','profile']){
+for(const view of ['today','progress','practice','pathways','settings','assessor','roadmap','simulations','profile','tools']){
   test('mobile accessibility and reflow: '+view,async({page})=>{
     await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/learner/#'+view);await expect(page.locator('#'+view)).toBeVisible();
     const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(result.violations,view).toEqual([]);

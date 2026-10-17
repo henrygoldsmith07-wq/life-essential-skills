@@ -222,5 +222,41 @@ ok('profile recommended-next surfaces an action button', profWithRec.includes('d
 ok('profile retention-due items surface a start button when items exist',
   profWithRec.includes('Start the later check') || !R.profile(ex, D, TODAY).retention_due.length);
 
+// 10. Practical tools: the budget builder, weekly review planner and
+// decision workspace render from empty drafts, escape hostile input, and
+// never touch evidence.
+const PT = require(path.join(root, 'learner/tools.js'));
+const emptyBudget = PT.emptyBudget();
+ok('budget form renders every income and outgoing row',
+  PT.budgetForm(emptyBudget).includes('Take-home income') && PT.budgetForm(emptyBudget).includes('Emergency savings'));
+ok('budget result totals an entered income',
+  (() => { const b = PT.emptyBudget(); b.income[0].amount = '800'; return PT.budgetResult(b).includes('800.00'); })());
+ok('budget form escapes hostile labels (no raw script tag)',
+  (() => { const b = PT.emptyBudget(); b.irregularLabel = '<script>x</script>'; return !/<script/.test(PT.budgetForm(b)); })());
+ok('budget overspend warns in plain words',
+  (() => { const b = PT.emptyBudget(); b.income[0].amount = '200'; b.outgoings[0].amount = '500'; return PT.budgetResult(b).includes('exceed income'); })());
+ok('review form renders priorities and validates empty',
+  PT.reviewForm(PT.emptyReview()).includes('Priority 1 action') && PT.validateReview(PT.emptyReview()).length > 0);
+ok('tool storage keys isolate profiles', PT.storageKey('a') !== PT.storageKey('b'));
+ok('decision form renders options and criteria',
+  PT.decisionForm(PT.emptyDecision()).includes('Wait or test first') && PT.decisionForm(PT.emptyDecision()).includes('Risks and exit options'));
+ok('decision totals weight importance by rating',
+  (() => { const d = PT.emptyDecision(); d.importance = ['3', '1', '', '']; d.ratings = [['3', '1', '2'], ['2', '2', '2'], ['', '', ''], ['', '', '']]; return PT.decisionTotals(d).scores.join(',') === '11,5,8'; })());
+ok('decision result frames totals as support, never a verdict',
+  (() => { const d = PT.emptyDecision(); d.importance = ['3', '', '', '']; d.ratings[0] = ['3', '1', '']; return PT.decisionResult(d).includes('not a verdict'); })());
+ok('decision form escapes hostile option names',
+  (() => { const d = PT.emptyDecision(); d.options[0].name = '<img src=x onerror=y>'; return !/<img src=x onerror=y>/.test(PT.decisionForm(d)); })());
+ok('decision markdown records choice and review date',
+  (() => { const d = PT.emptyDecision(); d.question = 'Which flat?'; d.choice = 'wait'; d.reviewDate = '2026-12-01'; const md = PT.decisionMarkdown(d); return md.includes('Which flat?') && md.includes('2026-12-01'); })());
+ok('evidence log groups one attempt bundle into one entry',
+  (() => {
+    const s = { records: [
+      { id: 'r1', attempt_id: 'a1', competency_id: 'c.1', item_id: 'I', date: TODAY, outcome: 'demonstrated', evidence_level: 'self-reviewed' },
+      { id: 'r2', attempt_id: 'a1', competency_id: 'c.2', item_id: 'I', date: TODAY, outcome: 'assisted', evidence_level: 'self-reviewed' }
+    ], reviews: [], observations: [], exposures: [{ item_id: 'X', attempt_id: 'e1', date: TODAY, assessment_version: 1 }] };
+    const entries = PT.logEntries(s);
+    return entries.length === 1 && entries[0].summary.includes('c.1');
+  })());
+
 console.log(fail === 0 ? '\nALL VIEW CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
 process.exit(fail === 0 ? 0 : 1);

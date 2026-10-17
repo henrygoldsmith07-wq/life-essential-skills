@@ -1,11 +1,29 @@
 /* Local educational evidence only. Responses never enter storage. */
 'use strict';
 (()=>{
-  const E=LifeSkills,D=LEARNING_DATA,U=LearnerUI,RV=RoadmapView,OV=OnboardingView,SV=SimulationView,FV=FeedbackView,PV=ProfileView,load=Catalog.create(D);
-  const $=id=>document.getElementById(id),esc=U.esc,list=U.list,key='life-essential-skills-evidence-v1';
-  const VIEWS=['today','roadmap','progress','practice','simulations','pathways','profile','settings','assessor'];
+  const E=LifeSkills,D=LEARNING_DATA,U=LearnerUI,RV=RoadmapView,OV=OnboardingView,SV=SimulationView,FV=FeedbackView,PV=ProfileView,T=PracticalTools,load=Catalog.create(D);
+  const $=id=>document.getElementById(id),esc=U.esc,list=U.list;
+  // Named learner profiles share one browser without sharing evidence. Each
+  // profile keeps its own evidence slot; the index, the slots and the backup
+  // stamps all live in localStorage, and switching never merges. The backend
+  // object keeps the store testable outside the browser.
+  const profilesBackend={getItem:k=>localStorage.getItem(k),setItem:(k,v)=>localStorage.setItem(k,v),removeItem:k=>localStorage.removeItem(k)};
+  let profileId='personal';
+  const evidenceKey=()=>LearnerProfiles.evidenceKey(profileId);
+  const legacyKey=()=>LearnerProfiles.EVIDENCE_PREFIX;
+  const profileBackupKey=()=>'life-essential-skills-backup::'+profileId;
+  const VIEWS=['today','roadmap','progress','practice','simulations','tools','pathways','profile','settings','assessor'];
   const today=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');};
   let state=E.emptyState(),blocked=false,current=null,token=0,view='today';
+  // Practical tool drafts (budget builder, weekly review, decision
+  // workspace) live outside the evidence state under a per-profile key, so
+  // they can never affect validation or derivation. They are practice aids,
+  // not evidence.
+  const freshToolsDraft=()=>({budget:T.emptyBudget(),review:T.emptyReview(),decision:T.emptyDecision()});
+  let toolsDraft=freshToolsDraft(),toolsProfile=null;
+  const toolsKey=()=>T.storageKey(profileId);
+  function loadTools(){try{const raw=localStorage.getItem(toolsKey());if(raw){const d=JSON.parse(raw);toolsDraft={budget:{...T.emptyBudget(),...(d.budget||{})},review:{...T.emptyReview(),...(d.review||{})},decision:{...T.emptyDecision(),...(d.decision||{})}};}else toolsDraft=freshToolsDraft();}catch{toolsDraft=freshToolsDraft();}toolsProfile=profileId;}
+  function saveTools(){try{const stamp=new Date().toISOString();toolsDraft.budget.updated=stamp;toolsDraft.review.updated=stamp;toolsDraft.decision.updated=stamp;localStorage.setItem(toolsKey(),JSON.stringify(toolsDraft));}catch{}}
   window.ROADMAP_TODAY=today();
   // Offline-first: register the service worker when served over HTTP(S) so
   // the dashboard, guides and already-visited tasks open without
@@ -26,9 +44,15 @@
   // AI-assisted attempt can never become independent evidence.
   let aiUsed=false;
   function notice(text){$('notice').textContent=text;$('notice').hidden=!text;}
-  try{const saved=localStorage.getItem(key);if(saved)state=E.migrateState(JSON.parse(saved),D,today());}
+  try{
+    profileId=LearnerProfiles.ensure(profilesBackend).current;
+    // Adopt pre-profile evidence once: the legacy single slot moves into the
+    // Personal profile so an upgrade never strands existing evidence.
+    try{const legacy=localStorage.getItem(legacyKey());if(legacy&&!localStorage.getItem(evidenceKey())){localStorage.setItem(evidenceKey(),legacy);localStorage.removeItem(legacyKey());}}catch{}
+    const saved=localStorage.getItem(evidenceKey());if(saved)state=E.migrateState(JSON.parse(saved),D,today());
+  }
   catch(e){blocked=true;notice('Stored evidence needs repair and will not be overwritten. Download the original from My setup. '+e.message);}
-  function persist(next){state=next;try{if(!blocked)localStorage.setItem(key,JSON.stringify(next));}catch{notice('Browser storage is unavailable. Download a copy to keep this session’s evidence.');}render();}
+  function persist(next){state=next;try{if(!blocked)localStorage.setItem(evidenceKey(),JSON.stringify(next));}catch{notice('Browser storage is unavailable. Download a copy to keep this session’s evidence.');}render();}
   const skillName=cid=>D.skills.competencies.find(c=>c.id===cid).title.replace(' · independent','').replace(' · foundation',' · knowledge check').replace(' · adaptation',' · adapting to change');
   // Learner-facing wording for an error tag id. Raw ids like
   // 'assumes-missing-information' mean nothing to a learner, so every surface
@@ -43,12 +67,14 @@
   // keep a backup once they actually have something worth losing, and to stop
   // nagging once they have taken one. The stamp lives outside the evidence
   // state so it can never affect validation or derivation.
-  const backupKey='life-essential-skills-backup';
+  // Backup stamps are per profile: a fresh profile with real evidence must
+  // still be reminded even when another profile was backed up long ago.
+  const backupKey=()=>profileBackupKey();
   const BACKUP_DAYS=30;
   const hasEvidence=()=>state.records.length||state.exposures.length||state.observations.length||state.reviews.length;
-  function backupStamp(){const v=Number(localStorage.getItem(backupKey));return Number.isFinite(v)&&v>0?v:0;}
+  function backupStamp(){const v=Number(localStorage.getItem(backupKey()));return Number.isFinite(v)&&v>0?v:0;}
   function backupOverdue(){const last=backupStamp();return !last||Math.floor((Date.now()-last)/86400000)>=BACKUP_DAYS;}
-  function markBackedUp(){try{localStorage.setItem(backupKey,String(Date.now()));}catch{}}
+  function markBackedUp(){try{localStorage.setItem(backupKey(),String(Date.now()));}catch{}}
   function backupReminder(){
     if(blocked||!hasEvidence()||!backupOverdue())return '';
     const last=backupStamp();
@@ -207,9 +233,66 @@
       OV.goalList(D.goals.goals,null)+
       '</div>';
   }
+  function renderProfiles(){
+    const sel=$('profile-switch');if(!sel)return;
+    let list=[];try{list=LearnerProfiles.list(profilesBackend);}catch{sel.disabled=true;return;}
+    sel.innerHTML=list.map(p=>'<option value="'+esc(p.id)+'"'+(p.current?' selected':'')+'>'+esc(p.name)+'</option>').join('');
+    const cur=list.find(p=>p.current);
+    $('profile-current').textContent=cur?('Showing evidence for '+cur.name+'. Switch to change learner; nothing is merged.') :'';
+    const rn=$('profile-rename');if(rn&&document.activeElement!==rn)rn.value=cur?cur.name:'';
+  }
+  function loadProfileState(){
+    blocked=false;
+    try{const saved=localStorage.getItem(evidenceKey());state=saved?E.migrateState(JSON.parse(saved),D,today()):E.emptyState(state.locality,state.pathway);}
+    catch(e){blocked=true;state=E.emptyState(state.locality,state.pathway);notice('Stored evidence needs repair and will not be overwritten. Download the original from My setup. '+e.message);}
+    persist(state);
+  }
+  // Chronological evidence log: one line per attempt bundle, review and
+  // observed check, newest first — the same stored evidence the roadmap is
+  // built from. Uses only existing styled classes. Exposures are excluded.
+  function evidenceLogHtml(){
+    const entries=T.logEntries(state);
+    if(!entries.length)return '<div class="card"><h2>My evidence log</h2><p class="empty">No attempts recorded yet. Your first task on Today is the place to start.</p></div>';
+    const kindLabel={attempt:'Attempt',review:'Assessor review',observation:'Practical observation'};
+    const rows=entries.slice(-30).reverse().map(e=>'<li><strong>'+esc(e.date)+'</strong> · '+esc(kindLabel[e.kind]||e.kind)+' — '+esc(e.summary)+'</li>').join('');
+    return '<div class="card"><h2>My evidence log</h2><p class="muted">Every attempt, review and observed check kept in this browser, newest first'+(entries.length>30?' (latest 30 of '+entries.length+')':'')+'.</p><ul class="profilelist">'+rows+'</ul></div>';
+  }
+  function readToolsFromDom(){
+    const q=id=>{const el=document.getElementById(id);return el?el.value:'';};
+    toolsDraft.budget.opening=q('t-opening');
+    toolsDraft.budget.income.forEach((r,n)=>{r.amount=q('t-income-'+n);r.day=q('t-income-day-'+n);});
+    toolsDraft.budget.outgoings.forEach((r,n)=>{r.amount=q('t-out-'+n);r.day=q('t-out-day-'+n);});
+    toolsDraft.budget.irregularLabel=q('t-irr-label');toolsDraft.budget.irregularExpected=q('t-irr-expected');toolsDraft.budget.irregularMonths=q('t-irr-months');
+    toolsDraft.review.practised=q('r-practised');toolsDraft.review.independent=q('r-independent');toolsDraft.review.forgot=q('r-forgot');
+    toolsDraft.review.priorities.forEach((p,n)=>{p.action=q('r-p'+n+'-action');p.when=q('r-p'+n+'-when');p.barrier=q('r-p'+n+'-barrier');});
+    toolsDraft.review.reviewDate=q('r-date');
+    const dec=toolsDraft.decision;
+    dec.question=q('d-question');dec.date=q('d-date');dec.deadline=q('d-deadline');
+    dec.options.forEach((o,n)=>{o.name=q('d-opt-'+n+'-name');o.notes=q('d-opt-'+n+'-notes');});
+    dec.importance=dec.importance.map((_,n)=>q('d-imp-'+n));
+    dec.ratings=dec.ratings.map((row,n)=>row.map((_,o)=>q('d-rate-'+n+'-'+o)));
+    dec.confidence=q('d-confidence');dec.baseRate=q('d-baserate');dec.talkTo=q('d-talkto');
+    dec.choice=q('d-choice');dec.reason=q('d-reason');dec.reviewDate=q('d-review-date');
+    dec.outcome=q('d-outcome');dec.reflection=q('d-reflection');
+  }
+  // Tools render without disturbing the evidence flow: inputs write through
+  // to the per-profile draft on every keystroke, and only the budget result
+  // panel (a separate div) re-renders live, so focus is never stolen.
+  function renderTools(rebuild){
+    if(!$('budget-tool'))return;
+    if(toolsProfile!==profileId){loadTools();rebuild=true;}
+    if(rebuild||!$('budget-tool').dataset.built){
+      $('budget-tool').innerHTML=T.budgetForm(toolsDraft.budget);
+      $('review-tool').innerHTML=T.reviewForm(toolsDraft.review);
+      $('decision-tool').innerHTML=T.decisionForm(toolsDraft.decision);
+      $('budget-tool').dataset.built='1';
+    }
+    $('budget-result').innerHTML=T.budgetResult(toolsDraft.budget);
+    $('decision-result').innerHTML=T.decisionResult(toolsDraft.decision);
+  }
   function render(){
-    const rec=E.recommend(state,D,today()),p=E.progress(state,D,today());$('locality').value=state.locality;$('goal').value=state.goal_competencies[0]||'';
-    renderToday(rec,p);renderRoadmap();renderProgress(p);renderPractice();renderSimulations();renderProfile();assessor.render();
+    const rec=E.recommend(state,D,today()),p=E.progress(state,D,today());$('locality').value=state.locality;$('goal').value=state.goal_competencies[0]||'';renderProfiles();
+    renderToday(rec,p);renderRoadmap();renderProgress(p);$('progress-content').insertAdjacentHTML('beforeend',evidenceLogHtml());renderPractice();renderSimulations();renderTools(false);renderProfile();assessor.render();
     $('pathways-content').innerHTML='<div class="grid">'+D.index.pathways.map(p=>'<div class="card"><h2>'+esc(p.title)+'</h2><p>'+esc(p.domains.map(d=>D.index.domains.find(x=>x.id===d).title).join(', '))+'</p><p>30 suggested sessions, adjusted to your evidence. Finish with '+esc(D.index.capstones.find(c=>c.id===p.capstone).title)+'.</p><button type="button" data-pathway="'+p.id+'" '+(p.id===state.pathway?'disabled':'')+'>'+(p.id===state.pathway?'Your current pathway':'Choose this pathway')+'</button></div>').join('')+'</div>';
   }
   async function showLesson(path){
@@ -408,9 +491,61 @@
   $('goal').onchange=()=>persist({...state,goal_competencies:$('goal').value?[$('goal').value]:[]});
   $('locality').onchange=()=>{const next={...state,locality:$('locality').value},errors=E.validateState(next,D,today());if(errors.length){$('locality').value=state.locality;notice('Historical evidence uses nation-specific guidance. Download a copy and begin a separate profile to change locality.');}else{closeTask();persist(next);}};
   $('import-state').onchange=()=>importEvidence($('import-state'));$('assessor-import').onchange=()=>importEvidence($('assessor-import'));
-  $('export-state').onclick=()=>{try{markBackedUp();render();}catch{}if(blocked){try{const original=localStorage.getItem(key);if(original){downloadText('life-skills-original-needs-repair.json',original);notice('Backup downloaded.');return;}}catch{notice('The original storage could not be downloaded.');return;}}download('life-skills-evidence.json',state);notice('Backup downloaded.');};
+  $('export-state').onclick=()=>{try{markBackedUp();render();}catch{}if(blocked){try{const original=localStorage.getItem(evidenceKey());if(original){downloadText('life-skills-original-needs-repair.json',original);notice('Backup downloaded.');return;}}catch{notice('The original storage could not be downloaded.');return;}}download('life-skills-evidence-'+profileId+'.json',state);notice('Backup downloaded.');};
+  // Passphrase-encrypted backup: the same evidence wrapped by CryptoBackup
+  // (AES-GCM-256, PBKDF2-SHA256) so the file is opaque without the
+  // passphrase. The passphrase never enters storage, state or telemetry —
+  // it lives only in these inputs, which are cleared after a successful
+  // export or import. A forgotten passphrase cannot be recovered.
+  $('export-encrypted').onclick=async()=>{
+    const p=$('backup-passphrase').value,q=$('backup-passphrase-confirm').value;
+    if(p!==q){notice('The two passphrases do not match.');$('backup-passphrase-confirm').focus();return;}
+    try{
+      const envelope=await CryptoBackup.encryptJson(JSON.stringify(state),p);
+      try{markBackedUp();render();}catch{}
+      downloadText('life-skills-evidence-'+profileId+'.encrypted.json',JSON.stringify(envelope,null,2)+'\n');
+      $('backup-passphrase').value='';$('backup-passphrase-confirm').value='';
+      notice('Encrypted backup downloaded. Keep the passphrase somewhere safe.');
+    }catch(e){notice(e.message);}
+  };
+  $('import-encrypted').onclick=async()=>{
+    try{
+      const file=$('encrypted-import').files[0];if(!file){notice('Choose an encrypted backup file first.');return;}
+      if(file.size>8000000)throw new Error('Evidence file is too large');
+      const plain=await CryptoBackup.decryptJson(await file.text(),$('decrypt-passphrase').value);
+      const next=E.migrateState(JSON.parse(plain),D,today());closeTask();assessor.cancel();blocked=false;persist(next);
+      $('decrypt-passphrase').value='';$('encrypted-import').value='';
+      notice('Encrypted evidence imported. Review labels are local claims, not authenticated certificates.');
+    }catch(e){notice(e.message==='Wrong passphrase or damaged file.'?'Import refused: wrong passphrase or damaged file.':'Import refused: '+e.message);}
+  };
   $('export-evaluation').onclick=()=>download('life-skills-evaluation.json',{schema_version:2,locality:state.locality,pathway:state.pathway,results:E.evaluate(state,D),note:'Descriptive educational evidence, not a causal effectiveness study.'});
   $('reset-state').onclick=()=>{if(confirm('Clear this browser’s evidence? Download a backup first.')){blocked=false;persist(E.emptyState(state.locality,state.pathway));navigate('today');notice('Evidence cleared from this browser.');}};
+  $('profile-switch').onchange=()=>{try{LearnerProfiles.switchTo(profilesBackend,$('profile-switch').value);profileId=LearnerProfiles.currentId(profilesBackend);closeTask();assessor.cancel();loadProfileState();notice('Switched learner. The evidence shown is theirs alone.');}catch(e){notice(e.message);render();}};
+  $('profile-add').onclick=()=>{try{profileId=LearnerProfiles.create(profilesBackend,$('profile-new').value);$('profile-new').value='';closeTask();assessor.cancel();loadProfileState();notice('New learner added. This browser now keeps their evidence separately.');}catch(e){notice(e.message);}};
+  $('profile-rename-save').onclick=()=>{try{LearnerProfiles.rename(profilesBackend,profileId,$('profile-rename').value);render();notice('Learner renamed.');}catch(e){notice(e.message);}};
+  $('profile-remove').onclick=()=>{
+    let list=[];try{list=LearnerProfiles.list(profilesBackend);}catch(e){notice(e.message);return;}
+    const target=list.find(p=>p.id===profileId),others=list.filter(p=>p.id!==profileId);
+    if(!others.length){notice('Keep at least one learner on this browser.');return;}
+    if(!confirm('Remove '+(target?target.name:'this learner')+' and delete only their evidence on this browser? Download a backup first.'))return;
+    try{LearnerProfiles.switchTo(profilesBackend,others[0].id);LearnerProfiles.remove(profilesBackend,target.id);profileId=LearnerProfiles.currentId(profilesBackend);closeTask();assessor.cancel();loadProfileState();notice('Learner removed. Everyone else’s evidence is untouched.');}catch(e){notice(e.message);render();}
+  };
+  // Tool drafts autosave per keystroke into the active profile's slot; the
+  // budget result panel updates live while review warnings refresh on
+  // navigation, so typing never loses focus to a re-render.
+  if($('budget-tool')){
+    $('budget-tool').addEventListener('input',()=>{readToolsFromDom();saveTools();$('budget-result').innerHTML=T.budgetResult(toolsDraft.budget);});
+    $('review-tool').addEventListener('input',()=>{readToolsFromDom();saveTools();});
+    $('decision-tool').addEventListener('input',()=>{readToolsFromDom();saveTools();$('decision-result').innerHTML=T.decisionResult(toolsDraft.decision);});
+    $('decision-tool').addEventListener('change',()=>{readToolsFromDom();saveTools();$('decision-result').innerHTML=T.decisionResult(toolsDraft.decision);});
+    $('budget-download').onclick=()=>downloadText('budget-plan-'+profileId+'.md',T.budgetMarkdown(toolsDraft.budget),'text/markdown');
+    $('budget-print').onclick=()=>window.print();
+    $('budget-clear').onclick=()=>{if(confirm('Clear this budget draft? This cannot be undone.')){toolsDraft.budget=T.emptyBudget();saveTools();delete $('budget-tool').dataset.built;renderTools(true);notice('Budget draft cleared.');}};
+    $('review-download').onclick=()=>downloadText('weekly-review-'+profileId+'.md',T.reviewMarkdown(toolsDraft.review),'text/markdown');
+    $('decision-download').onclick=()=>downloadText('decision-'+profileId+'.md',T.decisionMarkdown(toolsDraft.decision),'text/markdown');
+    $('decision-clear').onclick=()=>{if(confirm('Clear this decision draft? This cannot be undone.')){toolsDraft.decision=T.emptyDecision();saveTools();delete $('budget-tool').dataset.built;renderTools(true);notice('Decision draft cleared.');}};
+    $('review-clear').onclick=()=>{if(confirm('Clear this review draft? This cannot be undone.')){toolsDraft.review=T.emptyReview();saveTools();delete $('budget-tool').dataset.built;renderTools(true);notice('Review draft cleared.');}};
+  }
   document.addEventListener('click',event=>{const b=event.target.closest('button');if(!b)return;if(b.dataset.task)startTask(b.dataset.task);if(b.dataset.sim)launchSimulation(b.dataset.sim);if(b.dataset.goal)startOnboarding(b.dataset.goal);if(b.dataset.learn)showLesson(b.dataset.learn);if(b.dataset.pathway){persist({...state,pathway:b.dataset.pathway});notice('Pathway changed. Today now uses your chosen direction.');}});
   window.addEventListener('hashchange',()=>navigate(location.hash.slice(1)));navigate(location.hash.slice(1),false);
 })();

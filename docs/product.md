@@ -67,6 +67,14 @@ A variant must change at least one meaningful dimension:
 
 Every generated candidate must carry the metadata contract in that file — base item, changed axes, a variant digest, jurisdictions, expected error tags and a calibration status — and only `calibrated` material may enter the bank.
 
+## Practical tools
+
+The monthly budget worksheet, the weekly review, and the decision journal run as interactive tools (Tools tab), not just Markdown to copy. The budget builder totals income and outgoings automatically, folds a yearly bill into a monthly allowance, walks dated bills through the month to find the lowest balance, and warns in plain words when outgoings exceed income or the balance drops below zero. The weekly planner records what was practised, what now works without the guide, and the smallest next actions with their barriers. The decision workspace turns the journal into something a learner can reason with: name the question, weigh what matters, rate each option (waiting included) on the same points, note confidence and what usually happens in similar situations, choose with a reason, and review later against what actually happened. The weighted comparison is shown as support for judgement, never a verdict. Each learner profile keeps its own drafts, saved automatically in the browser and downloadable as Markdown.
+
+Tools are practice aids, never evidence: they cannot derive an outcome, write a record, or be imported as one. Figures reused to solve a task count as solving help and must be recorded honestly on the attempt.
+
+The Progress page also carries a chronological evidence log — every attempt bundle, assessor review and observed check, newest first — so a learner (or an assessor sitting with them) can see what actually happened and when, rather than reconstructing it from per-skill cards.
+
 ## Feedback
 
 Feedback is built to answer seven questions: what you got right, what was missing, why it mattered, which competency is affected, what to practise, what fresh situation to try next, and when to expect reassessment.
@@ -105,9 +113,9 @@ It is explicitly **a learning record, not a qualification**. Most of it is self-
 
 ## Privacy
 
-Local-first and unchanged. No mandatory login, no analytics, no backend. Your written response is temporary and never stored. Only bounded educational evidence is kept, in this browser. Download a backup if you want one.
+Local-first and unchanged. No mandatory login, no analytics, no backend. Where one browser serves several learners — a family computer, a classroom tablet — My setup keeps a named profile each: separate evidence slots, separate backup reminders, switching that never merges, and removal that deletes only that learner's slot. Your written response is temporary and never stored. Only bounded educational evidence is kept, in this browser. Download a backup if you want one.
 
-Because the evidence lives only in this browser, a browser clear, quota change, or profile switch can silently wipe it. Once a learner has something worth keeping, Today shows a gentle backup reminder pointing to the download action in My setup, and stops reminding once a copy has been taken. The reminder is suppressed when there is no evidence to lose and when storage is already blocked. The backup stamp uses a separate key from the evidence state, so it can never affect validation or derivation.
+Because the evidence lives only in this browser, a browser clear, quota change, or profile switch can silently wipe it. Once a learner has something worth keeping, Today shows a gentle backup reminder pointing to the download action in My setup, and stops reminding once a copy has been taken. My setup offers the backup plain or passphrase-encrypted (AES-GCM-256 with a PBKDF2-SHA256 key, no dependencies): the encrypted file is opaque without the passphrase, which is never stored, logged, or transmitted, and a forgotten passphrase cannot be recovered — so the encrypted copy is safe on a shared computer or in an inbox in a way the plain file is not. The reminder is suppressed when there is no evidence to lose and when storage is already blocked. The backup stamp uses a separate key from the evidence state, so it can never affect validation or derivation.
 
 ## What CI enforces
 

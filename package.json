@@ -2,6 +2,6 @@
   "name": "life-essential-skills",
   "private": true,
   "description": "Development-only browser checks for a dependency-free static learner app",
-  "scripts": {"test:e2e": "playwright test", "test:engine": "node --test tests/engine.test.js tests/evidence.test.js", "test:research": "node --test tests/research.test.js", "research": "node scripts/research/run.js"},
+  "scripts": {"test:e2e": "playwright test", "test:engine": "node --test tests/engine.test.js tests/evidence.test.js tests/crypto-backup.test.js tests/profiles.test.js tests/tools.test.js", "test:research": "node --test tests/research.test.js", "research": "node scripts/research/run.js"},
   "devDependencies": {"@playwright/test": "1.63.0", "@axe-core/playwright": "4.13.0"}
 }
