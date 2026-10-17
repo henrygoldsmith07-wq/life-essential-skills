@@ -6,7 +6,8 @@
 //   node scripts/research/run.js [--days 2] [--max 120] [--only arxiv,pubmed] [--no-ai]
 //
 // Agents run in parallel across every provider that has a key: NVIDIA,
-// Groq, OpenRouter, Cerebras, GitHub Models, Gemini, Mistral and SambaNova
+// Groq, OpenRouter, Cerebras, GitHub Models, Gemini, Mistral, SambaNova and
+// Cloudflare Workers AI
 // (see PROVIDERS in summarise.js for the key names).
 // Per-provider limits: <ID>_CONCURRENCY, <ID>_RPM, <ID>_DAILY_REQUESTS and
 // <ID>_MODEL, e.g. GROQ_MODEL. See summarise.js for defaults.
@@ -36,6 +37,7 @@ const FEED_DAYS = 14; // rolling window shown on the page; older days stay in ar
 const FEED_CAP = 2000;
 const PAPERS_CAP = 2500;
 const SEEN_DAYS = 90;
+const ARCHIVE_DAYS = 180; // older day files leave the deployed site (git history keeps them)
 
 function args(argv, env = process.env) {
   const opts = { days: 2, max: null, only: null, ai: true };
@@ -51,7 +53,7 @@ function args(argv, env = process.env) {
   const bounded = (v, lo, hi, d) => (Number.isInteger(v) && v >= lo && v <= hi ? v : d);
   opts.days = bounded(opts.days, 1, 60, 2);
   // Every provider but OpenRouter (50 a day without credit) allows far more.
-  const big = ['NVIDIA_API_KEY', 'GROQ_API_KEY', 'CEREBRAS_API_KEY', 'GEMINI_API_KEY', 'MISTRAL_API_KEY', 'SAMBANOVA_API_KEY', 'GITHUB_MODELS_TOKEN'].some((k) => env[k]);
+  const big = ['NVIDIA_API_KEY', 'GROQ_API_KEY', 'CEREBRAS_API_KEY', 'GEMINI_API_KEY', 'MISTRAL_API_KEY', 'SAMBANOVA_API_KEY', 'GITHUB_MODELS_TOKEN', 'CLOUDFLARE_API_TOKEN'].some((k) => env[k]);
   opts.max = bounded(opts.max, 1, 2000, big ? 120 : 40);
   return opts;
 }
@@ -104,7 +106,7 @@ function seenIds(feed, archiveIndex, today) {
 
 const strip = (item) => {
   const { _score, _category, abstract, ...rest } = item;
-  return { ...rest, category: item.category || _category || 'world', excerpt: abstract ? abstract.slice(0, 600) : '' };
+  return { ...rest, category: item.category || _category || 'world' };
 };
 
 const registry = (extra = () => ({})) => SOURCES.map((s) => ({ id: s.id, name: s.name, kind: s.kind, group: s.group, home: s.home, ...(s.requires ? { requires: s.requires } : {}), ...extra(s) }));
@@ -172,16 +174,17 @@ async function main(argv = process.argv.slice(2), log = (...m) => console.log(..
     const prior = readJson(archiveFile, { items: [] }).items || [];
     const merged = [...todays, ...prior.filter((p) => !todays.some((t) => t.id === p.id))];
     writeJson(archiveFile, { schema: 1, ...run, items: merged });
+    const keepFrom = daysAgo(ARCHIVE_DAYS, now);
     const days = (archiveIndex.days || []).filter((d) => d.date !== today);
     days.unshift({ date: today, count: merged.length });
     days.sort((a, b) => b.date.localeCompare(a.date));
-    writeJson(indexFile, { schema: 1, days });
+    for (const d of days.filter((x) => x.date < keepFrom)) fs.rmSync(path.join(OUT, 'archive', `${d.date}.json`), { force: true });
+    writeJson(indexFile, { schema: 1, days: days.filter((x) => x.date >= keepFrom) });
   }
 
   const cutoff = daysAgo(FEED_DAYS, now);
-  // The page never shows the abstract excerpt, so the feed drops it (the archive keeps it).
   const kept = [...todays, ...(feed.items || []).filter((i) => i.digest_date >= cutoff && !todays.some((t) => t.id === i.id))]
-    .slice(0, FEED_CAP).map(({ excerpt, ...rest }) => rest);
+    .slice(0, FEED_CAP).map(({ excerpt, ...rest }) => rest); // older feeds carried an unused abstract excerpt
   const glossary = await buildGlossary(kept, feed.glossary || {}, log);
   writeJson(feedFile, { schema: 1, ...run, sources: sourceStatus, glossary, items: kept });
 

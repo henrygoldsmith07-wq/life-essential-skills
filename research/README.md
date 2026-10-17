@@ -25,8 +25,9 @@ The [Discover page](index.html) shows new research every day, turned into plain-
    | Google Gemini (`GEMINI_API_KEY`) | Gemini Flash | 4 | 9 | 240 |
    | SambaNova (`SAMBANOVA_API_KEY`) | Llama 3.3 70B | 4 | 15 | 500 |
    | Mistral (`MISTRAL_API_KEY`) | Mistral Small | 2 | 50 | 2000 |
+   | Cloudflare Workers AI (`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`) | Llama 3.3 70B fast | 4 | 20 | 100 |
 
-   With every provider enabled, that is 50 agents running at once. The defaults are deliberately below each free tier's published limits. Each provider has its own rate limiter and daily budget. When a provider answers "rate limited" its agents wait and retry. A paper that fails on one provider goes back on the queue for another. A daily-quota, bad-key or no-credit error retires that provider and the others finish its papers. Each agent returns a life skill, a fact, a headline, terms to look up and a "check yourself" question. Model output is validated against a fixed schema, and preprints are never labelled high confidence.
+   With every provider enabled, that is 54 agents running at once. Reasoning models (Nemotron, Qwen 3, gpt-oss) are told not to think out loud. That saves their token budget and keeps the reply as plain JSON. The defaults are deliberately below each free tier's published limits. Each provider has its own rate limiter and daily budget. When a provider answers "rate limited" its agents wait and retry. A paper that fails on one provider goes back on the queue for another. A daily-quota, bad-key or no-credit error retires that provider and the others finish its papers. Each agent returns a life skill, a fact, a headline, terms to look up and a "check yourself" question. Model output is validated against a fixed schema, and preprints are never labelled high confidence.
 6. Enrichment, free and key-less:
    - Unpaywall adds a "Free to read" link wherever a legal free copy of the paper exists. It runs only when `CONTACT_EMAIL` is set, because Unpaywall requires an email.
    - Wikipedia adds a one-line definition for each card's key terms. Definitions are kept in a feed-level glossary, so each term is looked up only once.
@@ -38,9 +39,9 @@ Elicit has no free public API. Its corpus (Semantic Scholar and OpenAlex) is pul
 
 | File | Contents |
 | --- | --- |
-| `data/feed.json` | Summaries from the last 30 days, source health, and run statistics |
+| `data/feed.json` | Summaries from the last 14 days, the key-term glossary, source health, and run statistics |
 | `data/papers.json` | Every paper fetched in the latest run, with titles and links only |
-| `data/archive/YYYY-MM-DD.json` | That day's summaries, kept permanently |
+| `data/archive/YYYY-MM-DD.json` | That day's summaries, kept on the site for 180 days (older days stay in git history) |
 | `data/archive/index.json` | List of archived days |
 
 ## Setup

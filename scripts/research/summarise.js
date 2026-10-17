@@ -76,12 +76,29 @@ const PROVIDERS = [
     defaults: { concurrency: 2, rpm: 50, daily: 2000 },
   },
   {
+    // Workers AI: about 10,000 free "neurons" a day, roughly 100–200 summaries
+    // from a 70B model. Needs the account id as well as an API token.
+    id: 'cloudflare', label: 'Cloudflare Workers AI', key: 'CLOUDFLARE_API_TOKEN', model: 'CLOUDFLARE_MODEL', needs: ['CLOUDFLARE_ACCOUNT_ID'],
+    base: (env) => `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(env.CLOUDFLARE_ACCOUNT_ID)}/ai/v1`,
+    modelsUrl: (env) => `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(env.CLOUDFLARE_ACCOUNT_ID)}/ai/models/search?task=${encodeURIComponent('Text Generation')}&per_page=100`,
+    fallback: '@cf/meta/llama-3.3-70b-instruct-fp8-fast',
+    spec: { include: /llama-3\.3-70b|llama-4|gpt-oss|qwen|mistral-small/i, exclude: /guard|coder|lora|awq|vision/i, prefer: [[/llama-3\.3-70b.*fast/i, 8], [/gpt-oss-120b/i, 7], [/llama-4-scout/i, 6], [/mistral-small/i, 4]] },
+    defaults: { concurrency: 4, rpm: 20, daily: 100 },
+  },
+  {
     id: 'sambanova', label: 'SambaNova', base: 'https://api.sambanova.ai/v1', key: 'SAMBANOVA_API_KEY', model: 'SAMBANOVA_MODEL',
     fallback: 'Meta-Llama-3.3-70B-Instruct',
     spec: { include: /llama|qwen|deepseek-v/i, exclude: /guard|vision|embed|whisper|r1|distill|coder/i, prefer: [[/llama-3\.3-70b/i, 8], [/llama-4-maverick/i, 7], [/qwen3/i, 5]] },
     defaults: { concurrency: 4, rpm: 15, daily: 500 },
   },
 ];
+
+// Reasoning models think out loud by default, which burns the token budget
+// and breaks the JSON reply. Each family has its own off switch; a provider
+// that rejects a flag gets the request again without it (see runOn).
+const thinkingSuffix = (model) => (/nemotron|qwen-?3/i.test(model) ? '\n/no_think' : '');
+const thinkingExtra = (model) => (/gpt-oss/i.test(model) ? { reasoning_effort: 'low' } : /nemotron/i.test(model) ? { chat_template_kwargs: { enable_thinking: false } } : {});
+const extrasFor = (prov, model) => ({ ...thinkingExtra(model), ...(prov.extra ? prov.extra(model) : {}) });
 
 const SYSTEM = `You are the research editor for "Life Essential Skills", a free curriculum that helps people become capable, independent adults.
 You read one new piece of research and explain, in plain British English for a curious 16-year-old, what it means for everyday life and for understanding the world.
@@ -227,9 +244,11 @@ async function resolveModels(prov, log) {
   const wanted = prov.wanted;
   try {
     const list = await api(prov, prov.modelsUrl || '/models', null, { timeoutMs: 30000 });
-    const rows = Array.isArray(list) ? list : list.data || list.models || [];
-    // Gemini lists "models/gemini-…"; chat calls take the bare id.
-    const ids = rows.map((m) => String((m && (m.id || m.name)) || m).replace(/^models\//, '')).filter(Boolean);
+    const rows = Array.isArray(list) ? list : list.data || list.models || list.result || [];
+    // Gemini lists "models/gemini-…" and Cloudflare lists "@cf/…" names next
+    // to a uuid id; chat calls take the bare model name.
+    const idOf = (m) => (m && typeof m === 'object' ? (/^@/.test(m.name || '') ? m.name : m.id || m.name) : m);
+    const ids = rows.map((m) => String(idOf(m) || '').replace(/^models\//, '')).filter(Boolean);
     const ranked = rankModels(ids, prov.spec, wanted);
     if (wanted && ranked[0] !== wanted) log(`  ${prov.label}: ${wanted} not listed; using ${ranked[0] || wanted}`);
     return ranked.length ? ranked.slice(0, 3) : [wanted || prov.fallback];
@@ -260,8 +279,8 @@ async function runOn(prov, paper, ctx) {
           model,
           temperature: 0.2,
           max_tokens: 3000,
-          messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: prompt(paper) }],
-          ...(useExtra && prov.extra ? prov.extra(model) : {}),
+          messages: [{ role: 'system', content: SYSTEM + thinkingSuffix(model) }, { role: 'user', content: prompt(paper) }],
+          ...(useExtra ? extrasFor(prov, model) : {}),
         });
         prov.calls++;
         const used = json.model || model;
@@ -274,7 +293,7 @@ async function runOn(prov, paper, ctx) {
           prov.stopped = e.message;
           return { error: e.message };
         }
-        if (e.status === 400 && useExtra && prov.extra && Object.keys(prov.extra(model)).length) {
+        if (e.status === 400 && useExtra && Object.keys(extrasFor(prov, model)).length) {
           useExtra = false; // the provider rejected our optional flags: drop them for good
           prov.noExtra = true;
           continue;
@@ -298,11 +317,13 @@ const envNum = (env, name) => (env[name] !== undefined && env[name] !== '' && Nu
 // Providers that have a key, with limits from defaults or env
 // (<ID>_CONCURRENCY, <ID>_RPM, <ID>_DAILY_REQUESTS).
 function configure(env = process.env, overrides = {}) {
-  return PROVIDERS.filter((p) => env[p.key]).map((p) => {
+  return PROVIDERS.filter((p) => env[p.key] && (p.needs || []).every((k) => env[k])).map((p) => {
     const id = p.id.toUpperCase();
     const o = overrides[p.id] || {};
     return {
       ...p,
+      base: typeof p.base === 'function' ? p.base(env) : p.base,
+      modelsUrl: typeof p.modelsUrl === 'function' ? p.modelsUrl(env) : p.modelsUrl,
       apiKey: env[p.key],
       wanted: env[p.model] || '',
       concurrency: o.concurrency ?? envNum(env, `${id}_CONCURRENCY`) ?? p.defaults.concurrency,
@@ -372,4 +393,4 @@ async function summarise(papers, opts = {}) {
   return { items, model: top.models[0], calls: providers.reduce((a, p) => a + p.limit.used(), 0), peak, providers: byProvider, errors };
 }
 
-module.exports = { summarise, configure, prompt, parseObject, applySummary, limiter, rankModels, PROVIDERS, CATEGORIES, EVIDENCE };
+module.exports = { summarise, configure, extrasFor, thinkingSuffix, prompt, parseObject, applySummary, limiter, rankModels, PROVIDERS, CATEGORIES, EVIDENCE };

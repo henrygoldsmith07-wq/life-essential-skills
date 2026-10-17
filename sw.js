@@ -18,7 +18,7 @@
  */
 'use strict';
 
-const CACHE = 'les-v5';
+const CACHE = 'les-v6';
 
 const PRECACHE = [
   '/',

@@ -472,6 +472,65 @@ test('end-to-end run with a mocked network writes feed, archive, index and paper
   assert.strictEqual(JSON.parse(fs.readFileSync(path.join(OUT, 'feed.json'), 'utf8')).items.length, 3);
 });
 
+test('Cloudflare Workers AI needs an account id and resolves "@cf/" model names', async () => {
+  assert.deepStrictEqual(sum.configure({ CLOUDFLARE_API_TOKEN: 't' }).map((p) => p.id), [], 'no account id, no provider');
+  const [cf] = sum.configure({ CLOUDFLARE_API_TOKEN: 't', CLOUDFLARE_ACCOUNT_ID: 'acc 1' });
+  assert.strictEqual(cf.base, 'https://api.cloudflare.com/client/v4/accounts/acc%201/ai/v1');
+  const used = [];
+  const f = async (url, init = {}) => {
+    const u = String(url);
+    if (init.method === 'GET') {
+      assert.match(u, /\/ai\/models\/search\?task=Text%20Generation/);
+      return new Response(JSON.stringify({ result: [{ id: 'uuid-1', name: '@cf/meta/llama-3.1-8b-instruct' }, { id: 'uuid-2', name: '@cf/meta/llama-3.3-70b-instruct-fp8-fast' }, { id: 'uuid-3', name: '@cf/meta/llama-guard-3-8b' }] }), { status: 200 });
+    }
+    used.push({ u, model: JSON.parse(init.body).model });
+    return new Response(JSON.stringify({ choices: [{ message: { content: '{"headline":"h"}' } }] }), { status: 200 });
+  };
+  const res = await withFetch(f, () => sum.summarise(papersN(2), { ...quiet, env: { CLOUDFLARE_API_TOKEN: 't', CLOUDFLARE_ACCOUNT_ID: 'acc1' }, providers: { cloudflare: { rpm: 999 } } }));
+  assert.strictEqual(res.items.length, 2);
+  assert.deepStrictEqual(used[0], { u: 'https://api.cloudflare.com/client/v4/accounts/acc1/ai/v1/chat/completions', model: '@cf/meta/llama-3.3-70b-instruct-fp8-fast' });
+});
+
+test('reasoning models are asked not to think out loud', () => {
+  const groq = sum.PROVIDERS.find((p) => p.id === 'groq');
+  const nvidia = sum.PROVIDERS.find((p) => p.id === 'nvidia');
+  const cerebras = sum.PROVIDERS.find((p) => p.id === 'cerebras');
+  assert.strictEqual(sum.thinkingSuffix('nvidia/nemotron-3.5-super-vl'), '\n/no_think');
+  assert.strictEqual(sum.thinkingSuffix('qwen/qwen3.8-27b'), '\n/no_think');
+  assert.strictEqual(sum.thinkingSuffix('llama-3.3-70b'), '');
+  assert.deepStrictEqual(sum.extrasFor(nvidia, 'nvidia/nemotron-3.5-super-vl'), { chat_template_kwargs: { enable_thinking: false } });
+  assert.deepStrictEqual(sum.extrasFor(groq, 'qwen/qwen3.8-27b'), { reasoning_effort: 'none' });
+  assert.deepStrictEqual(sum.extrasFor(cerebras, 'gpt-oss-120b'), { reasoning_effort: 'low' });
+  assert.deepStrictEqual(sum.extrasFor(cerebras, 'llama-3.3-70b'), {});
+});
+
+test('archive keeps 180 days and stores no abstract text', async () => {
+  const arch = path.join(OUT, 'archive');
+  fs.mkdirSync(arch, { recursive: true });
+  const old = new Date(Date.now() - 200 * 86400000).toISOString().slice(0, 10);
+  const recentDay = new Date(Date.now() - 20 * 86400000).toISOString().slice(0, 10);
+  for (const d of [old, recentDay]) fs.writeFileSync(path.join(arch, `${d}.json`), JSON.stringify({ items: [] }));
+  const index = JSON.parse(fs.readFileSync(path.join(arch, 'index.json'), 'utf8'));
+  fs.writeFileSync(path.join(arch, 'index.json'), JSON.stringify({ schema: 1, days: [...index.days, { date: recentDay, count: 0 }, { date: old, count: 0 }] }));
+  const today = new Date().toISOString().slice(0, 10);
+  const doc = `<feed><entry><id>http://arxiv.org/abs/2610.09999v1</id><published>${today}T08:00:00Z</published><title>Sleep and memory in older adults</title><summary>Sleep, memory and depression in a cohort of 5,000 adults.</summary></entry></feed>`;
+  const f = async (url, init = {}) => {
+    const u = String(url);
+    if (u.startsWith('https://export.arxiv.org/')) return new Response(doc, { status: 200 });
+    if (u.endsWith('/models')) return new Response(JSON.stringify({ data: [{ id: 'nvidia/nemotron-3.5-super-vl' }] }), { status: 200 });
+    if (u.endsWith('/chat/completions')) return new Response(JSON.stringify({ choices: [{ message: { content: '{"headline":"h","category":"health"}' } }] }), { status: 200 });
+    return new Response('{}', { status: 404 });
+  };
+  process.env.NVIDIA_API_KEY = 'k';
+  try { await withFetch(f, () => run.main(['--only', 'arxiv', '--days', '3'], () => {})); } finally { delete process.env.NVIDIA_API_KEY; }
+  assert.ok(!fs.existsSync(path.join(arch, `${old}.json`)), 'the 200-day-old file is removed');
+  assert.ok(fs.existsSync(path.join(arch, `${recentDay}.json`)), 'a 20-day-old file stays');
+  const days = JSON.parse(fs.readFileSync(path.join(arch, 'index.json'), 'utf8')).days.map((d) => d.date);
+  assert.ok(!days.includes(old) && days.includes(recentDay) && days.includes(today));
+  const todays = JSON.parse(fs.readFileSync(path.join(arch, `${today}.json`), 'utf8')).items;
+  assert.ok(todays.length && todays.every((i) => !('abstract' in i) && !('excerpt' in i)));
+});
+
 test('run args are bounded, and the default batch grows with the providers available', () => {
   assert.deepStrictEqual(run.args(['--days', '999', '--max', 'x'], {}).days, 2);
   assert.strictEqual(run.args(['--max', '10'], {}).max, 10);
