@@ -60,6 +60,12 @@ const urls = [
   '/assessor/calibration/C01.json',
   '/START-HERE.md',
   '/guides/02-money.md',
+  '/research/',
+  '/research/research.js',
+  '/research/research.css',
+  '/research/data/feed.json',
+  '/research/data/papers.json',
+  '/research/data/archive/index.json',
 ];
 
 function get(u) {
@@ -110,7 +116,7 @@ server.listen(PORT, '127.0.0.1', async () => {
   const ignored = new Set(
     ignoreText.split(/\r?\n/).map((l) => l.trim()).filter((l) => l && !l.startsWith('#'))
   );
-  const runtimeAssets = ['learner/data.js', 'learner/index.html', 'learner/chunks/money.json', 'assessor/feedback/MONEY-BUDGET-I01.json', 'assessor/calibration/C01.json', 'index.html', 'START-HERE.md', 'manifest.webmanifest', 'sw.js', 'learner/icon-192.png', 'learner/icon-512.png'];
+  const runtimeAssets = ['learner/data.js', 'learner/index.html', 'learner/chunks/money.json', 'assessor/feedback/MONEY-BUDGET-I01.json', 'assessor/calibration/C01.json', 'index.html', 'START-HERE.md', 'manifest.webmanifest', 'sw.js', 'learner/icon-192.png', 'learner/icon-512.png', 'research/index.html', 'research/data/feed.json'];
   const wronglyIgnored = runtimeAssets.filter((f) => ignored.has(f));
   if (wronglyIgnored.length) { fail++; console.log('FAIL .vercelignore would exclude required runtime asset(s):', wronglyIgnored.join(', ')); }
   else console.log('PASS .vercelignore keeps every runtime asset');

@@ -1,0 +1,76 @@
+name: Daily research digest
+
+# Fetches new papers from every source in scripts/research/sources.js,
+# summarises each selected paper with its own AI agent, and commits the
+# static JSON under research/data/. Vercel redeploys on the push.
+#
+# Setup: Settings → Secrets and variables → Actions → New repository secret.
+# Add any of these; every model provider with a key runs agents in parallel:
+#   NVIDIA_API_KEY      build.nvidia.com (Nemotron)
+#   GROQ_API_KEY        console.groq.com (Qwen)
+#   CEREBRAS_API_KEY    cloud.cerebras.ai (30-day trial since July 2026)
+#   OPENROUTER_API_KEY  openrouter.ai
+#   CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID  dash.cloudflare.com (Workers AI)
+# Optional source keys: ADS_API_KEY (NASA ADS), CORE_API_KEY, NCBI_API_KEY,
+# S2_API_KEY, OPENALEX_API_KEY.
+# Repository variables are all passed through, so any of these can be set
+# under the Variables tab: <ID>_MODEL, <ID>_CONCURRENCY, <ID>_RPM,
+# <ID>_DAILY_REQUESTS (e.g. GROQ_RPM), CONTACT_EMAIL (also turns on
+# Unpaywall "free to read" links) and SITE_URL.
+
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Look-back window in days (use more for a first backfill)'
+        default: '2'
+      max:
+        description: 'Papers to summarise, one agent each (blank: 120, or 40 with OpenRouter alone)'
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Test the digest pipeline
+        run: node --test tests/research.test.js
+      - name: Fetch and summarise new research
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ADS_API_KEY: ${{ secrets.ADS_API_KEY }}
+          CORE_API_KEY: ${{ secrets.CORE_API_KEY }}
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          RESEARCH_VARS: ${{ toJSON(vars) }}
+          DAYS: ${{ inputs.days || '2' }}
+          MAX: ${{ inputs.max }}
+        run: node scripts/research/run.js --days "$DAYS" ${MAX:+--max "$MAX"}
+      - name: Commit the digest
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/data
+          if git diff --cached --quiet; then echo 'No changes'; exit 0; fi
+          git commit -m "chore(research): daily digest $(date -u +%F)"
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
