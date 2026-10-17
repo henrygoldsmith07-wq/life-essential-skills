@@ -59,23 +59,6 @@ const PROVIDERS = [
     defaults: { concurrency: 2, rpm: 5, daily: 400 },
   },
   {
-    id: 'gemini', label: 'Google Gemini', base: 'https://generativelanguage.googleapis.com/v1beta/openai', key: 'GEMINI_API_KEY', model: 'GEMINI_MODEL',
-    // Pro models left the free tier in April 2026; Flash and Flash-Lite remain (about 10 requests/min,
-    // 1,500/day). gemini-3.6-flash is current; the newest listed Flash is picked.
-    fallback: 'gemini-3.6-flash',
-    spec: { include: /gemini.*flash/i, exclude: /embed|image|tts|live|audio|thinking|exp|preview|8b/i, prefer: [[/flash(?!-lite)/i, 8], [/flash-lite/i, 4]] },
-    // Flash models think by default; "low" is accepted by every current Flash generation.
-    extra: () => ({ reasoning_effort: 'low' }),
-    defaults: { concurrency: 4, rpm: 9, daily: 1000 },
-  },
-  {
-    id: 'mistral', label: 'Mistral', base: 'https://api.mistral.ai/v1', key: 'MISTRAL_API_KEY', model: 'MISTRAL_MODEL',
-    // "Free mode" (formerly the Experiment plan): limits are shown per workspace in the console.
-    fallback: 'mistral-small-latest',
-    spec: { include: /mistral|ministral|nemo/i, exclude: /embed|moderation|ocr|codestral|pixtral|voxtral|devstral|magistral|saba/i, prefer: [[/mistral-small-latest/i, 9], [/mistral-medium-latest/i, 8], [/mistral-small/i, 6], [/nemo/i, 3]] },
-    defaults: { concurrency: 2, rpm: 50, daily: 2000 },
-  },
-  {
     // Workers AI: about 10,000 free "neurons" a day, roughly 100–200 summaries
     // from a 70B model. Needs the account id as well as an API token.
     id: 'cloudflare', label: 'Cloudflare Workers AI', key: 'CLOUDFLARE_API_TOKEN', model: 'CLOUDFLARE_MODEL', needs: ['CLOUDFLARE_ACCOUNT_ID'],
@@ -84,15 +67,6 @@ const PROVIDERS = [
     fallback: '@cf/meta/llama-3.3-70b-instruct-fp8-fast',
     spec: { include: /llama-3\.3-70b|llama-4|gpt-oss|qwen|mistral-small/i, exclude: /guard|coder|lora|awq|vision/i, prefer: [[/llama-3\.3-70b.*fast/i, 8], [/gpt-oss-120b/i, 7], [/llama-4-scout/i, 6], [/mistral-small/i, 4]] },
     defaults: { concurrency: 4, rpm: 20, daily: 100 },
-  },
-  {
-    id: 'sambanova', label: 'SambaNova', base: 'https://api.sambanova.ai/v1', key: 'SAMBANOVA_API_KEY', model: 'SAMBANOVA_MODEL',
-    // Free tier as of Oct 2026: 20 requests/min and only 20/day per model, on Meta-Llama-3.3-70B-Instruct,
-    // DeepSeek-V3.1, gpt-oss-120b, DeepSeek-V3.2 and gemma-4-31B-it, so agents rotate across all five.
-    fallback: 'DeepSeek-V3.1',
-    spec: { include: /llama|qwen|deepseek-v|gpt-oss|gemma/i, exclude: /guard|vision|embed|whisper|r1|distill|coder/i, prefer: [[/deepseek-v3\.1/i, 9], [/deepseek-v3\.2/i, 8], [/gpt-oss-120b/i, 7], [/llama-3\.3-70b/i, 6], [/gemma/i, 5]] },
-    maxModels: 5,
-    defaults: { concurrency: 2, rpm: 15, daily: 100, modelDaily: 20 },
   },
 ];
 
@@ -233,7 +207,7 @@ async function api(prov, path, body, { timeoutMs = 120000 } = {}) {
   return json;
 }
 
-const versionOf = (m) => Math.max(0, ...[...m.matchAll(/(?:qwen|nemotron|gemini|llama|-v)-?(\d+(?:\.\d+)?)/gi)].map((x) => Number(x[1])));
+const versionOf = (m) => Math.max(0, ...[...m.matchAll(/(?:qwen|nemotron|llama|-v)-?(\d+(?:\.\d+)?)/gi)].map((x) => Number(x[1])));
 
 function rankModels(ids, spec, wanted) {
   const ok = ids.filter((m) => spec.include.test(m) && !(spec.exclude && spec.exclude.test(m)) && (!spec.freeOnly || m.endsWith(':free')));
@@ -248,8 +222,8 @@ async function resolveModels(prov, log) {
   try {
     const list = await api(prov, prov.modelsUrl || '/models', null, { timeoutMs: 30000 });
     const rows = Array.isArray(list) ? list : list.data || list.models || list.result || [];
-    // Gemini lists "models/gemini-…" and Cloudflare lists "@cf/…" names next
-    // to a uuid id; chat calls take the bare model name.
+    // Cloudflare lists "@cf/…" names next to a uuid id; chat calls take the
+    // name. A "models/" prefix (used by some catalogs) is dropped too.
     const idOf = (m) => (m && typeof m === 'object' ? (/^@/.test(m.name || '') ? m.name : m.id || m.name) : m);
     const ids = rows.map((m) => String(idOf(m) || '').replace(/^models\//, '')).filter(Boolean);
     const ranked = rankModels(ids, prov.spec, wanted);

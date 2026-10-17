@@ -339,17 +339,17 @@ test('a model out of daily quota is set aside and the provider moves to its next
 });
 
 test('a per-model daily allowance rotates agents across a provider\'s models', async () => {
-  const lists = { data: [{ id: 'DeepSeek-V3.1' }, { id: 'DeepSeek-V3.2' }, { id: 'gpt-oss-120b' }] };
+  const lists = { data: [{ id: 'openai/gpt-oss-120b' }, { id: 'qwen/qwen3.6-27b' }, { id: 'qwen/qwen3.8-27b' }] };
   const used = [];
   const f = async (url, init = {}) => {
     if (init.method === 'GET') return new Response(JSON.stringify(lists), { status: 200 });
     used.push(JSON.parse(init.body).model);
     return new Response(JSON.stringify({ choices: [{ message: { content: '{"headline":"h"}' } }] }), { status: 200 });
   };
-  const res = await withFetch(f, () => sum.summarise(papersN(7), { ...quiet, env: { SAMBANOVA_API_KEY: 'sa' }, providers: { sambanova: { concurrency: 1, rpm: 999, modelDaily: 2 } } }));
-  assert.deepStrictEqual(used, ['DeepSeek-V3.1', 'DeepSeek-V3.1', 'DeepSeek-V3.2', 'DeepSeek-V3.2', 'gpt-oss-120b', 'gpt-oss-120b']);
+  const res = await withFetch(f, () => sum.summarise(papersN(7), { ...quiet, env: { GROQ_API_KEY: 'gq' }, providers: { groq: { concurrency: 1, rpm: 999, modelDaily: 2 } } }));
+  assert.deepStrictEqual(used, ['qwen/qwen3.8-27b', 'qwen/qwen3.8-27b', 'qwen/qwen3.6-27b', 'qwen/qwen3.6-27b', 'openai/gpt-oss-120b', 'openai/gpt-oss-120b']);
   assert.strictEqual(res.items.length, 6, 'six allowances across three models');
-  assert.match(res.providers.sambanova.stopped, /every model unavailable/);
+  assert.match(res.providers.groq.stopped, /every model unavailable/);
 });
 
 test('no key: papers are kept without summaries and no request is made', async () => {
@@ -383,32 +383,24 @@ test('sources that need a key are skipped, not failed, when it is missing', asyn
   assert.strictEqual(feed.date, today);
 });
 
-test('Gemini, Cerebras, Mistral and SambaNova model lists resolve to the best free model', async () => {
-  const lists = {
-    'generativelanguage.googleapis.com': { data: [{ id: 'models/gemini-3.1-pro' }, { id: 'models/gemini-2.5-flash' }, { id: 'models/gemini-3.6-flash' }, { id: 'models/gemini-3.6-flash-lite' }, { id: 'models/text-embedding-004' }] },
-    'api.cerebras.ai': { data: [{ id: 'qwen-3.8-27b' }, { id: 'gpt-oss-120b' }] },
-    'api.mistral.ai': { data: [{ id: 'mistral-embed' }, { id: 'mistral-small-latest' }] },
-    'api.sambanova.ai': { data: [{ id: 'Meta-Llama-3.3-70B-Instruct' }, { id: 'DeepSeek-V3.1' }, { id: 'DeepSeek-R1' }, { id: 'gpt-oss-120b' }] },
-  };
+test('Cerebras resolves its best free model and asks gpt-oss for low reasoning', async () => {
   const used = {};
   const f = async (url, init = {}) => {
     const u = new URL(String(url));
-    if (init.method === 'GET') {
-      assert.ok(u.pathname.endsWith('/models'), u.href);
-      return new Response(JSON.stringify(lists[u.host]), { status: 200 });
-    }
+    if (init.method === 'GET') return new Response(JSON.stringify({ data: [{ id: 'qwen-3.8-27b' }, { id: 'gpt-oss-120b' }] }), { status: 200 });
     const body = JSON.parse(init.body);
     used[u.host] = { model: body.model, path: u.pathname, extra: body.reasoning_effort };
     return new Response(JSON.stringify({ choices: [{ message: { content: '{"headline":"h"}' } }] }), { status: 200 });
   };
-  const env = { GEMINI_API_KEY: 'ge', CEREBRAS_API_KEY: 'ce', MISTRAL_API_KEY: 'mi', SAMBANOVA_API_KEY: 'sa' };
-  const res = await withFetch(f, () => sum.summarise(papersN(20), { ...quiet, env, providers: { gemini: { rpm: 999 }, cerebras: { rpm: 999 }, mistral: { rpm: 999 }, sambanova: { rpm: 999 } } }));
-  assert.strictEqual(res.items.length, 20);
-  assert.deepStrictEqual(used['generativelanguage.googleapis.com'], { model: 'gemini-3.6-flash', path: '/v1beta/openai/chat/completions', extra: 'low' }, 'newest Flash, never Pro');
+  const res = await withFetch(f, () => sum.summarise(papersN(4), { ...quiet, env: { CEREBRAS_API_KEY: 'ce' }, providers: { cerebras: { rpm: 999 } } }));
+  assert.strictEqual(res.items.length, 4);
   assert.deepStrictEqual(used['api.cerebras.ai'], { model: 'gpt-oss-120b', path: '/v1/chat/completions', extra: 'low' });
-  assert.strictEqual(used['api.mistral.ai'].model, 'mistral-small-latest');
-  assert.strictEqual(used['api.sambanova.ai'].model, 'DeepSeek-V3.1');
-  assert.strictEqual(res.peak, 10, 'all 4 + 2 + 2 + 2 default agents ran at once');
+  assert.strictEqual(res.peak, 2, 'two default agents');
+});
+
+test('only the five supported providers exist', () => {
+  assert.deepStrictEqual(sum.PROVIDERS.map((p) => p.id).sort(), ['cerebras', 'cloudflare', 'groq', 'nvidia', 'openrouter']);
+  assert.deepStrictEqual(sum.configure({ GEMINI_API_KEY: 'x', MISTRAL_API_KEY: 'x', SAMBANOVA_API_KEY: 'x' }), []);
 });
 
 test('Unpaywall and Wikipedia enrichment', async () => {

@@ -20,13 +20,10 @@ The [Discover page](index.html) shows new research every day, turned into plain-
    | NVIDIA (`NVIDIA_API_KEY`) | Nemotron 3.5 Super VL 120B (early access), then Nemotron 3 Super 120B | ~40/min | 16 | 35 | 5000 |
    | Groq (`GROQ_API_KEY`) | Qwen 3.8 27B, then Qwen 3.6 27B, then gpt-oss-120b | 30/min, 1,000/day, 8K tokens/min, 200K tokens/day per model | 2 | 4 | 300 (100 per model) |
    | OpenRouter (`OPENROUTER_API_KEY`) | Nemotron 3 Ultra 550B (free), then Nemotron 3 Super (free) | ~50/day without credit | 6 | 18 | 48 |
-   | Google Gemini (`GEMINI_API_KEY`) | Gemini 3.6 Flash (Pro left the free tier in April 2026) | ~10/min, ~1,500/day | 4 | 9 | 1000 |
-   | Mistral (`MISTRAL_API_KEY`) | Mistral Small (latest) | shown per workspace in the console | 2 | 50 | 2000 |
-   | SambaNova (`SAMBANOVA_API_KEY`) | DeepSeek-V3.1, then V3.2, gpt-oss-120b, Llama 3.3 70B, Gemma 4 31B | 20/min, 20/day per model | 2 | 15 | 100 (20 per model) |
    | Cloudflare Workers AI (`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`) | Llama 3.3 70B fast | 10,000 neurons/day | 4 | 20 | 100 |
    | Cerebras (`CEREBRAS_API_KEY`) | gpt-oss-120b, then Qwen 3.8 27B | 30-day $5 trial only (card required): 5/min, 1M tokens/day | 2 | 5 | 400 |
 
-   With every provider enabled, that is 38 agents running at once, all kept below each free tier's limits. Where a provider gives each model its own daily allowance (Groq, SambaNova), agents rotate to the next model when one runs out, and only then retire the provider. Reasoning models (Nemotron, Qwen 3, gpt-oss) are told not to think out loud. That saves their token budget and keeps the reply as plain JSON. Each provider has its own rate limiter and daily budget. When a provider answers "rate limited" its agents wait and retry. A paper that fails on one provider goes back on the queue for another. A daily-quota, bad-key or no-credit error retires that provider and the others finish its papers. Each agent returns a life skill, a fact, a headline, terms to look up and a "check yourself" question. Model output is validated against a fixed schema, and preprints are never labelled high confidence.
+   With every provider enabled, that is 30 agents running at once, all kept below each free tier's limits. Where a provider gives each model its own daily allowance (Groq), agents rotate to the next model when one runs out, and only then retire the provider. Reasoning models (Nemotron, Qwen 3, gpt-oss) are told not to think out loud. That saves their token budget and keeps the reply as plain JSON. Each provider has its own rate limiter and daily budget. When a provider answers "rate limited" its agents wait and retry. A paper that fails on one provider goes back on the queue for another. A daily-quota, bad-key or no-credit error retires that provider and the others finish its papers. Each agent returns a life skill, a fact, a headline, terms to look up and a "check yourself" question. Model output is validated against a fixed schema, and preprints are never labelled high confidence.
 6. Enrichment, free and key-less:
    - Unpaywall adds a "Free to read" link wherever a legal free copy of the paper exists. It runs only when `CONTACT_EMAIL` is set, because Unpaywall requires an email.
    - Wikipedia adds a one-line definition for each card's key terms. Definitions are kept in a feed-level glossary, so each term is looked up only once.
@@ -57,7 +54,7 @@ One agent per paper means one request per paper. By default the run summarises 1
 ## Run locally
 
 ```sh
-NVIDIA_API_KEY=... GROQ_API_KEY=... GEMINI_API_KEY=... CONTACT_EMAIL=you@example.org node scripts/research/run.js --days 2
+NVIDIA_API_KEY=... GROQ_API_KEY=... CONTACT_EMAIL=you@example.org node scripts/research/run.js --days 2
 node scripts/research/run.js --no-ai --only arxiv,pubmed   # fetch only, no model calls
 node --test tests/research.test.js                          # parsers and pipeline, mocked network
 ```
