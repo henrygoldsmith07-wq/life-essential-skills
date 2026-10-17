@@ -8,13 +8,12 @@ name: Daily research digest
 # Add any of these; every model provider with a key runs agents in parallel:
 #   NVIDIA_API_KEY      build.nvidia.com (Nemotron)
 #   GROQ_API_KEY        console.groq.com (Qwen)
-#   CEREBRAS_API_KEY    cloud.cerebras.ai
+#   CEREBRAS_API_KEY    cloud.cerebras.ai (30-day trial since July 2026)
 #   GEMINI_API_KEY      aistudio.google.com
 #   MISTRAL_API_KEY     console.mistral.ai (free Experiment plan)
 #   SAMBANOVA_API_KEY   cloud.sambanova.ai
 #   OPENROUTER_API_KEY  openrouter.ai
 #   CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID  dash.cloudflare.com (Workers AI)
-# GitHub Models needs no secret: it uses this workflow's own token.
 # Optional source keys: ADS_API_KEY (NASA ADS), CORE_API_KEY, NCBI_API_KEY,
 # S2_API_KEY, OPENALEX_API_KEY.
 # Repository variables are all passed through, so any of these can be set
@@ -36,7 +35,6 @@ on:
 
 permissions:
   contents: write
-  models: read
 
 concurrency:
   group: research-digest
@@ -61,7 +59,6 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          GITHUB_MODELS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ADS_API_KEY: ${{ secrets.ADS_API_KEY }}
           CORE_API_KEY: ${{ secrets.CORE_API_KEY }}
           NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}

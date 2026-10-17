@@ -6,8 +6,8 @@
 //   node scripts/research/run.js [--days 2] [--max 120] [--only arxiv,pubmed] [--no-ai]
 //
 // Agents run in parallel across every provider that has a key: NVIDIA,
-// Groq, OpenRouter, Cerebras, GitHub Models, Gemini, Mistral, SambaNova and
-// Cloudflare Workers AI
+// Groq, OpenRouter, Cerebras, Gemini, Mistral, SambaNova and Cloudflare
+// Workers AI
 // (see PROVIDERS in summarise.js for the key names).
 // Per-provider limits: <ID>_CONCURRENCY, <ID>_RPM, <ID>_DAILY_REQUESTS and
 // <ID>_MODEL, e.g. GROQ_MODEL. See summarise.js for defaults.
@@ -53,7 +53,7 @@ function args(argv, env = process.env) {
   const bounded = (v, lo, hi, d) => (Number.isInteger(v) && v >= lo && v <= hi ? v : d);
   opts.days = bounded(opts.days, 1, 60, 2);
   // Every provider but OpenRouter (50 a day without credit) allows far more.
-  const big = ['NVIDIA_API_KEY', 'GROQ_API_KEY', 'CEREBRAS_API_KEY', 'GEMINI_API_KEY', 'MISTRAL_API_KEY', 'SAMBANOVA_API_KEY', 'GITHUB_MODELS_TOKEN', 'CLOUDFLARE_API_TOKEN'].some((k) => env[k]);
+  const big = ['NVIDIA_API_KEY', 'GROQ_API_KEY', 'CEREBRAS_API_KEY', 'GEMINI_API_KEY', 'MISTRAL_API_KEY', 'SAMBANOVA_API_KEY', 'CLOUDFLARE_API_TOKEN'].some((k) => env[k]);
   opts.max = bounded(opts.max, 1, 2000, big ? 120 : 40);
   return opts;
 }

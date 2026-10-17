@@ -15,7 +15,7 @@
     thinking: ['06-thinking.md', 'Critical thinking'], money: ['02-money.md', 'Money'], work: ['09-work.md', 'Work and earning'],
     relationships: ['05-relationships.md', 'Relationships'], digital: ['07-digital-safety.md', 'Digital safety'], safety: ['01-emergencies.md', 'Emergencies'],
   };
-  const PROVIDER_LABELS = { nvidia: 'NVIDIA', groq: 'Groq', openrouter: 'OpenRouter', cerebras: 'Cerebras', github: 'GitHub Models', gemini: 'Google Gemini', mistral: 'Mistral', sambanova: 'SambaNova', cloudflare: 'Cloudflare' };
+  const PROVIDER_LABELS = { nvidia: 'NVIDIA', groq: 'Groq', openrouter: 'OpenRouter', cerebras: 'Cerebras', gemini: 'Google Gemini', mistral: 'Mistral', sambanova: 'SambaNova', cloudflare: 'Cloudflare' };
   const LEVEL = { high: 3, moderate: 2, low: 1 };
   const PAGE = { cards: 24, papers: 100 };
   const SAVED_KEY = 'les-research-saved';

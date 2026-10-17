@@ -318,14 +318,38 @@ test('each provider keeps to its own daily budget, retries included', async () =
   assert.ok(res.errors.includes('daily request budget used up'));
 });
 
-test('rate-limit replies wait and retry; a daily-quota reply retires the provider', async () => {
+test('rate-limit replies wait and retry; daily quota on every model retires the provider', async () => {
   let n = 0;
   const { fetch, seen } = mockProviders({ delayMs: 2, reply: (prov) => (prov === 'groq' && n++ < 2 ? err(429, 'Rate limit reached for requests per minute') : prov === 'nvidia' ? err(429, 'Daily quota exceeded') : null) });
   const res = await withFetch(fetch, () => sum.summarise(papersN(5), { ...quiet, env: { NVIDIA_API_KEY: 'nv', GROQ_API_KEY: 'gq' }, providers: { nvidia: { concurrency: 2, rpm: 999 }, groq: { concurrency: 1, rpm: 999 } } }));
   assert.strictEqual(res.items.length, 5, 'Groq rode out its per-minute limit and finished everything');
-  assert.ok(seen.calls.nvidia <= 2);
-  assert.match(res.providers.nvidia.stopped, /quota/i);
+  assert.ok(seen.calls.nvidia <= 6, `at most one try per model per agent (${seen.calls.nvidia})`);
+  assert.match(res.providers.nvidia.stopped, /every model unavailable.*quota/i);
   assert.strictEqual(res.providers.groq.summaries, 5);
+});
+
+test('a model out of daily quota is set aside and the provider moves to its next model', async () => {
+  const { fetch, seen } = mockProviders({ reply: (prov, title, body) => (body.model === 'qwen/qwen3.8-27b' ? err(429, 'Rate limit reached for model qwen/qwen3.8-27b on tokens per day (TPD)') : null) });
+  const res = await withFetch(fetch, () => sum.summarise(papersN(4), { ...quiet, env: { GROQ_API_KEY: 'gq' }, providers: { groq: { concurrency: 1, rpm: 999 } } }));
+  assert.strictEqual(res.items.length, 4);
+  assert.ok(!res.providers.groq.stopped);
+  const models = seen.bodies.map((b) => b.body.model);
+  assert.strictEqual(models.filter((m) => m === 'qwen/qwen3.8-27b').length, 1, 'the exhausted model is not retried');
+  assert.ok(models.slice(1).every((m) => m === 'qwen/qwen3-32b'), models.join());
+});
+
+test('a per-model daily allowance rotates agents across a provider\'s models', async () => {
+  const lists = { data: [{ id: 'DeepSeek-V3.1' }, { id: 'DeepSeek-V3.2' }, { id: 'gpt-oss-120b' }] };
+  const used = [];
+  const f = async (url, init = {}) => {
+    if (init.method === 'GET') return new Response(JSON.stringify(lists), { status: 200 });
+    used.push(JSON.parse(init.body).model);
+    return new Response(JSON.stringify({ choices: [{ message: { content: '{"headline":"h"}' } }] }), { status: 200 });
+  };
+  const res = await withFetch(f, () => sum.summarise(papersN(7), { ...quiet, env: { SAMBANOVA_API_KEY: 'sa' }, providers: { sambanova: { concurrency: 1, rpm: 999, modelDaily: 2 } } }));
+  assert.deepStrictEqual(used, ['DeepSeek-V3.1', 'DeepSeek-V3.1', 'DeepSeek-V3.2', 'DeepSeek-V3.2', 'gpt-oss-120b', 'gpt-oss-120b']);
+  assert.strictEqual(res.items.length, 6, 'six allowances across three models');
+  assert.match(res.providers.sambanova.stopped, /every model unavailable/);
 });
 
 test('no key: papers are kept without summaries and no request is made', async () => {
@@ -359,34 +383,32 @@ test('sources that need a key are skipped, not failed, when it is missing', asyn
   assert.strictEqual(feed.date, today);
 });
 
-test('new providers: GitHub Models catalog and Gemini model names resolve', async () => {
+test('Gemini, Cerebras, Mistral and SambaNova model lists resolve to the best free model', async () => {
   const lists = {
-    'models.github.ai': [{ id: 'openai/o3-mini' }, { id: 'openai/gpt-4o-mini' }, { id: 'openai/gpt-4.1-mini' }, { id: 'openai/text-embedding-3-small' }],
-    'generativelanguage.googleapis.com': { data: [{ id: 'models/gemini-2.5-pro' }, { id: 'models/gemini-2.5-flash' }, { id: 'models/text-embedding-004' }] },
-    'api.cerebras.ai': { data: [{ id: 'llama3.1-8b' }, { id: 'gpt-oss-120b' }] },
+    'generativelanguage.googleapis.com': { data: [{ id: 'models/gemini-3.1-pro' }, { id: 'models/gemini-2.5-flash' }, { id: 'models/gemini-3.6-flash' }, { id: 'models/gemini-3.6-flash-lite' }, { id: 'models/text-embedding-004' }] },
+    'api.cerebras.ai': { data: [{ id: 'qwen-3.8-27b' }, { id: 'gpt-oss-120b' }] },
     'api.mistral.ai': { data: [{ id: 'mistral-embed' }, { id: 'mistral-small-latest' }] },
-    'api.sambanova.ai': { data: [{ id: 'Meta-Llama-3.3-70B-Instruct' }, { id: 'DeepSeek-R1' }] },
+    'api.sambanova.ai': { data: [{ id: 'Meta-Llama-3.3-70B-Instruct' }, { id: 'DeepSeek-V3.1' }, { id: 'DeepSeek-R1' }, { id: 'gpt-oss-120b' }] },
   };
   const used = {};
   const f = async (url, init = {}) => {
     const u = new URL(String(url));
     if (init.method === 'GET') {
-      assert.ok(u.pathname.endsWith('/catalog/models') || u.pathname.endsWith('/models'), u.href);
+      assert.ok(u.pathname.endsWith('/models'), u.href);
       return new Response(JSON.stringify(lists[u.host]), { status: 200 });
     }
     const body = JSON.parse(init.body);
     used[u.host] = { model: body.model, path: u.pathname, extra: body.reasoning_effort };
     return new Response(JSON.stringify({ choices: [{ message: { content: '{"headline":"h"}' } }] }), { status: 200 });
   };
-  const env = { GITHUB_MODELS_TOKEN: 'gh', GEMINI_API_KEY: 'ge', CEREBRAS_API_KEY: 'ce', MISTRAL_API_KEY: 'mi', SAMBANOVA_API_KEY: 'sa' };
-  const res = await withFetch(f, () => sum.summarise(papersN(20), { ...quiet, env, providers: Object.fromEntries(Object.keys(lists).map((_, k) => [['github', 'gemini', 'cerebras', 'mistral', 'sambanova'][k], { rpm: 999 }])) }));
+  const env = { GEMINI_API_KEY: 'ge', CEREBRAS_API_KEY: 'ce', MISTRAL_API_KEY: 'mi', SAMBANOVA_API_KEY: 'sa' };
+  const res = await withFetch(f, () => sum.summarise(papersN(20), { ...quiet, env, providers: { gemini: { rpm: 999 }, cerebras: { rpm: 999 }, mistral: { rpm: 999 }, sambanova: { rpm: 999 } } }));
   assert.strictEqual(res.items.length, 20);
-  assert.deepStrictEqual(used['models.github.ai'], { model: 'openai/gpt-4.1-mini', path: '/inference/chat/completions', extra: undefined });
-  assert.deepStrictEqual(used['generativelanguage.googleapis.com'], { model: 'gemini-2.5-flash', path: '/v1beta/openai/chat/completions', extra: 'none' });
-  assert.strictEqual(used['api.cerebras.ai'].model, 'gpt-oss-120b');
+  assert.deepStrictEqual(used['generativelanguage.googleapis.com'], { model: 'gemini-3.6-flash', path: '/v1beta/openai/chat/completions', extra: 'low' }, 'newest Flash, never Pro');
+  assert.deepStrictEqual(used['api.cerebras.ai'], { model: 'gpt-oss-120b', path: '/v1/chat/completions', extra: 'low' });
   assert.strictEqual(used['api.mistral.ai'].model, 'mistral-small-latest');
-  assert.strictEqual(used['api.sambanova.ai'].model, 'Meta-Llama-3.3-70B-Instruct');
-  assert.strictEqual(res.peak, 20, 'agents across all five providers (22 slots) took every paper at once');
+  assert.strictEqual(used['api.sambanova.ai'].model, 'DeepSeek-V3.1');
+  assert.strictEqual(res.peak, 10, 'all 4 + 2 + 2 + 2 default agents ran at once');
 });
 
 test('Unpaywall and Wikipedia enrichment', async () => {
