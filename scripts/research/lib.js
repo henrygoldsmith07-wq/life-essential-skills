@@ -181,11 +181,17 @@ function score(item) {
   return { score: s, category };
 }
 
-// Round-robin across sources so one prolific server cannot crowd the digest.
+// A protocol describes a study that has not produced results yet.
+const PROTOCOL = /\b(study|trial|review|research) protocol\b|\bprotocol for an? (systematic|scoping|randomi[sz]ed|umbrella|rapid|mixed|multi)|^protocol\b/i;
+
+// Round-robin across sources so one prolific server cannot crowd the digest,
+// and no topic takes more than `maxShare` of the picks while other topics
+// still have candidates (the first live run was over half health).
 // Items with no life-relevance signal are only taken from general sources.
-function select(items, max, generalSources = new Set()) {
+function select(items, max, generalSources = new Set(), { maxShare = 0.3 } = {}) {
   const groups = new Map();
   for (const item of items) {
+    if (PROTOCOL.test(item.title) || PROTOCOL.test(item.abstract.slice(0, 200))) continue;
     const { score: s, category } = score(item);
     if (s < 2 && !generalSources.has(item.source)) continue;
     item._score = s;
@@ -195,13 +201,24 @@ function select(items, max, generalSources = new Set()) {
   }
   for (const g of groups.values()) g.sort((a, b) => b._score - a._score || (b.published || '').localeCompare(a.published || ''));
   const order = [...groups.values()].sort((a, b) => b[0]._score - a[0]._score);
+  const cap = Math.max(1, Math.ceil(max * maxShare));
+  const perCat = {};
   const picked = [];
+  const deferred = [];
   while (picked.length < max && order.some((g) => g.length)) {
     for (const g of order) {
       if (picked.length >= max) break;
-      if (g.length) picked.push(g.shift());
+      // Take this source's best item from a topic that is not yet full.
+      const k = g.findIndex((i) => (perCat[i._category] || 0) < cap);
+      if (k < 0) { deferred.push(...g.splice(0)); continue; }
+      const [item] = g.splice(k, 1);
+      perCat[item._category] = (perCat[item._category] || 0) + 1;
+      picked.push(item);
     }
   }
+  // Only if every other topic ran dry, fill the remaining slots past the cap.
+  deferred.sort((a, b) => b._score - a._score);
+  while (picked.length < max && deferred.length) picked.push(deferred.shift());
   return picked;
 }
 

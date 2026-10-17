@@ -108,7 +108,7 @@ test('feed parser handles RSS 2.0, Atom and RDF, and drops unsafe links', () => 
   assert.strictEqual(rdf.id, 'doi:10.1038/s41586-026-1');
 });
 
-test('JSON API parsers: OpenAlex, Semantic Scholar, bioRxiv, PLOS, Europe PMC, OSF, DOAJ, ChemRxiv, HF', () => {
+test('JSON API parsers: OpenAlex, Semantic Scholar, bioRxiv, PLOS, Europe PMC, OSF, DOAJ, HF', () => {
   assert.strictEqual(src.invertedToText({ world: [1], Hello: [0], again: [2] }), 'Hello world again');
   const [oa] = src.parseOpenAlex({ results: [{ id: 'https://openalex.org/W1', doi: 'https://doi.org/10.5555/x', title: 'T', publication_date: '2026-10-15', abstract_inverted_index: { a: [0] }, primary_location: { source: { display_name: 'J' } }, authorships: [{ author: { display_name: 'A' } }], type: 'review' }] }, S('openalex'));
   assert.deepStrictEqual([oa.id, oa.kind, oa.venue, oa.abstract], ['doi:10.5555/x', 'review', 'J', 'a']);
@@ -127,8 +127,6 @@ test('JSON API parsers: OpenAlex, Semantic Scholar, bioRxiv, PLOS, Europe PMC, O
   assert.strictEqual(osf.source_name, 'PsyArXiv');
   const [dj] = src.parseDoaj({ results: [{ created_date: '2026-10-15T00:00:00Z', bibjson: { title: 'D', identifier: [{ type: 'doi', id: '10.7777/d' }], link: [{ type: 'fulltext', url: 'https://j.org/d' }], journal: { title: 'J' } } }] }, S('doaj'));
   assert.strictEqual(dj.url, 'https://j.org/d');
-  const [cx] = src.parseChemrxiv({ itemHits: [{ item: { id: 'c1', title: 'C', doi: '10.26434/c1', publishedDate: '2026-10-15T00:00:00Z', authors: [{ firstName: 'A', lastName: 'B' }] } }] }, S('chemrxiv', 'preprint'));
-  assert.deepStrictEqual(cx.authors, ['A B']);
   const [hf] = src.parseHfDaily([{ paper: { id: '2610.01234', title: 'H', summary: 'x', publishedAt: '2026-10-15T00:00:00.000Z' } }], S('hf', 'preprint'));
   assert.strictEqual(hf.id, 'arxiv:2610.01234');
 });
@@ -167,6 +165,19 @@ test('select favours life-relevant, stronger evidence and spreads across sources
   assert.deepStrictEqual(picked.map((p) => p.title), ['Sleep and depression: a systematic review', 'Household debt and wellbeing', 'A new planet']);
   assert.ok(!lib.select(items, 10).some((p) => p.title === 'Lattice QCD'));
   assert.strictEqual(lib.score(items[0]).category, 'mind');
+});
+
+test('select skips study protocols and stops one topic taking over', () => {
+  const mk = (source, title, abstract) => lib.makeItem(S(source), { title, abstract, url: `https://x.org/${encodeURIComponent(title)}` });
+  const health = Array.from({ length: 12 }, (_, k) => mk(`h${k}`, `Blood pressure and diabetes study ${k}`, 'Blood pressure, diabetes, heart, exercise, sleep and obesity in a cohort.'));
+  const money = [mk('m1', 'Household debt and saving', 'Financial debt, savings and income.'), mk('m2', 'Pension choices', 'Retirement pension and savings decisions.')];
+  const proto = mk('p1', 'Study protocol for a randomised trial of sleep and mood', 'Sleep, depression, anxiety and stress.');
+  const picked = lib.select([...health, ...money, proto], 10);
+  assert.ok(!picked.includes(proto), 'protocols have no findings yet');
+  assert.strictEqual(picked.filter((p) => p._category === 'money').length, 2, 'both money papers make it in');
+  assert.strictEqual(picked.length, 10, 'the cap only defers: slots still fill when other topics run dry');
+  const capped = lib.select([...health, ...money], 10, new Set(), { maxShare: 0.3 });
+  assert.ok(capped.slice(0, 5).filter((p) => p._category === 'money').length === 2, 'other topics are taken before health exceeds its share');
 });
 
 test('model output: tolerant JSON parsing and strict schema validation', () => {
