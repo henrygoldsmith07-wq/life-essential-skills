@@ -6,13 +6,13 @@ The [Discover page](index.html) shows new research every day, turned into plain-
 
 1. A scheduled GitHub Actions workflow (`.github/workflows/research-digest.yml`) runs every morning at 05:17 UTC.
 2. `scripts/research/run.js` queries more than 40 free public APIs and feeds in parallel (see `scripts/research/sources.js`):
-   - **Preprint servers:** arXiv (every paper links to its alphaXiv discussion), Hugging Face Daily Papers, medRxiv, bioRxiv, Europe PMC preprints (Research Square, SSRN, Preprints.org and others), OSF Preprints (PsyArXiv, SocArXiv, EdArXiv, MetaArXiv), ChemRxiv, NBER working papers.
+   - **Preprint servers:** arXiv (every paper links to its alphaXiv discussion), Hugging Face Daily Papers, medRxiv, bioRxiv, Europe PMC preprints (Research Square, SSRN, Preprints.org and others), OSF Preprints (PsyArXiv, SocArXiv, EdArXiv, MetaArXiv), NBER working papers.
    - **Scholarly indexes:** Semantic Scholar, OpenAlex, DOAJ, ERIC (education research), and, with a free key, CORE (open-access papers) and NASA ADS (astronomy).
    - **Medicine and health:** PubMed (systematic reviews, meta-analyses, trials and cohorts), Cochrane Library reviews via PubMed, and behavioural trials that have just posted results on ClinicalTrials.gov.
-   - **Journals:** Nature, Nature Human Behaviour, Nature Medicine, PNAS, The Lancet, NEJM, The BMJ, JAMA Network Open, eLife, PLOS, Frontiers in Psychology.
-   - **Evidence-based explainers and science news:** Our World in Data, WHO, NIH, Science, ScienceDaily, EurekAlert!, Medical Xpress, Phys.org, Quanta, Knowable, MIT News, New Scientist, BBC Science.
+   - **Journals:** Nature, Nature Human Behaviour, Nature Medicine, PNAS, The Lancet, NEJM, The BMJ, eLife, PLOS, Frontiers in Psychology.
+   - **Evidence-based explainers and science news:** Our World in Data, WHO, Science, ScienceDaily, Medical Xpress, Phys.org, Quanta, Knowable, MIT News, New Scientist, BBC Science.
 3. Results are de-duplicated by DOI, arXiv id and title, so a paper covered by several sources appears once, with its other sources listed. Papers summarised in the last 90 days are skipped.
-4. Papers are scored for everyday relevance (health, wellbeing, learning, decisions, money, work, relationships, digital safety and the wider world) and strength of evidence. They are then picked round-robin across sources so that no single server dominates.
+4. Papers are scored for everyday relevance (health, wellbeing, learning, decisions, money, work, relationships, digital safety and the wider world) and strength of evidence. Study protocols are skipped, because they report no results yet. Papers are then picked round-robin across sources, so that no single server dominates. No topic may take more than 30% of the picks while other topics still have candidates.
 5. Each selected paper gets its own AI agent: one focused model call with the full abstract. Every provider with a key runs a pool of agents at the same time, all pulling from one shared queue of papers:
 
    | Provider (key) | Best free model (Oct 2026; best listed match is picked) | Free limits (approx.) | Agents at once | Per minute | Daily budget |
@@ -43,7 +43,7 @@ Elicit has no free public API. Its corpus (Semantic Scholar and OpenAlex) is pul
 ## Setup
 
 1. In GitHub, go to **Settings → Secrets and variables → Actions** and add any of the model keys in the table above as repository secrets. (GitHub Models was retired on 30 July 2026 and is not used.)
-2. Optional source secrets: `ADS_API_KEY` (NASA ADS) and `CORE_API_KEY` switch those sources on; `NCBI_API_KEY`, `S2_API_KEY` and `OPENALEX_API_KEY` raise rate limits.
+2. Optional source secrets: `ADS_API_KEY` (NASA ADS) and `CORE_API_KEY` switch those sources on; `NCBI_API_KEY`, `S2_API_KEY` and `OPENALEX_API_KEY` raise rate limits. Semantic Scholar's keyless pool is often busy, so without `S2_API_KEY` (free from semanticscholar.org) only a few slow queries are made.
 3. Optional repository variables (every variable is passed to the run): `<ID>_MODEL` to pin a model id, and `<ID>_CONCURRENCY`, `<ID>_RPM`, `<ID>_DAILY_REQUESTS` and `<ID>_MODEL_DAILY_REQUESTS` to match your account's limits, for example `GROQ_MODEL` or `CEREBRAS_RPM`. Set `CONTACT_EMAIL` to turn on Unpaywall links; it is also sent to PubMed and OpenAlex for their polite pools. `SITE_URL` is also optional.
 4. Run **Actions → Daily research digest → Run workflow** once. Set `days` to 7 for a first backfill.
 

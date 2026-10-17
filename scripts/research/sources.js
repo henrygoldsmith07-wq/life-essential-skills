@@ -247,21 +247,6 @@ function parseOsf(json, source, provider) {
   }).filter(Boolean);
 }
 
-// ---- ChemRxiv ----------------------------------------------------------------------------
-
-function parseChemrxiv(json, source) {
-  return (json.itemHits || []).map(({ item }) => item && makeItem(source, {
-    title: item.title,
-    abstract: item.abstract,
-    doi: item.doi,
-    url: `https://chemrxiv.org/engage/chemrxiv/article-details/${item.id}`,
-    venue: 'ChemRxiv',
-    authors: (item.authors || []).map((a) => `${a.firstName || ''} ${a.lastName || ''}`),
-    published: item.publishedDate,
-    kind: 'preprint',
-  })).filter(Boolean);
-}
-
 // ---- ERIC (education research, US Institute of Education Sciences) ----------------------
 
 function parseEric(json, source) {
@@ -380,7 +365,10 @@ const SOURCES = [
   {
     id: 'semanticscholar', name: 'Semantic Scholar', kind: 'journal', group: 'Scholarly indexes', home: 'https://www.semanticscholar.org',
     fetch: async (ctx) => {
-      const queries = ['sleep health', 'mental health wellbeing', 'personal finance household debt', 'learning memory study', 'misinformation decision making', 'physical activity exercise', 'diet nutrition', 'loneliness social relationships', 'online scams cybersecurity users'];
+      const all = ['sleep health', 'mental health wellbeing', 'personal finance household debt', 'learning memory study', 'misinformation decision making', 'physical activity exercise', 'diet nutrition', 'loneliness social relationships', 'online scams cybersecurity users'];
+      // Without a (free) S2_API_KEY requests share one busy public pool that
+      // answered 429 on the first live run, so ask fewer questions, slowly.
+      const queries = ctx.env.S2_API_KEY ? all : all.filter((_, k) => k % 3 === 0);
       const headers = ctx.env.S2_API_KEY ? { 'x-api-key': ctx.env.S2_API_KEY } : {};
       const out = [];
       const errors = [];
@@ -389,7 +377,7 @@ const SOURCES = [
           const json = await fetchJson(`https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(q)}&publicationDateOrYear=${ctx.from}:${ctx.to}&fields=title,abstract,url,publicationDate,externalIds,venue,authors,publicationTypes&limit=20`, { headers, retries: 2 });
           out.push(...parseSemanticScholar(json, { id: 'semanticscholar', name: 'Semantic Scholar', kind: 'journal' }));
         } catch (e) { errors.push(e.message); }
-        await sleep(ctx.env.S2_API_KEY ? 1100 : 3000);
+        await sleep(ctx.env.S2_API_KEY ? 1100 : 8000);
       }
       if (!out.length && errors.length) throw new Error(errors[0]);
       return out;
@@ -472,10 +460,6 @@ const SOURCES = [
     },
   },
   {
-    id: 'chemrxiv', name: 'ChemRxiv', kind: 'preprint', group: 'Preprint servers', home: 'https://chemrxiv.org',
-    fetch: async (ctx) => recent(parseChemrxiv(await fetchJson(`https://chemrxiv.org/engage/chemrxiv/public-api/v1/items?limit=50&sort=PUBLISHED_DATE_DESC&searchDateFrom=${ctx.from}T00:00:00.000Z`), { id: 'chemrxiv', name: 'ChemRxiv', kind: 'preprint' }), ctx.from),
-  },
-  {
     id: 'eric', name: 'ERIC (education research)', kind: 'journal', group: 'Scholarly indexes', home: 'https://eric.ed.gov',
     fetch: async (ctx) => {
       const year = ctx.to.slice(0, 4);
@@ -517,19 +501,15 @@ const SOURCES = [
   feed('lancet', 'The Lancet', 'https://www.thelancet.com/rssfeed/lancet_current.xml', 'journal'),
   feed('nejm', 'New England Journal of Medicine', 'https://www.nejm.org/action/showFeed?jc=nejm&type=etoc&feed=rss', 'journal'),
   feed('bmj', 'The BMJ', 'https://www.bmj.com/rss/recent.xml', 'journal'),
-  feed('jama-network-open', 'JAMA Network Open', 'https://jamanetwork.com/rss/site_214/70.xml', 'journal'),
   feed('elife', 'eLife', 'https://elifesciences.org/rss/recent.xml', 'journal'),
   feed('frontiers-psychology', 'Frontiers in Psychology', 'https://www.frontiersin.org/journals/psychology/rss', 'journal'),
   feed('nber', 'NBER working papers', 'https://www.nber.org/rss/new.xml', 'preprint'),
   // Evidence-based explainers and science news
   feed('our-world-in-data', 'Our World in Data', 'https://ourworldindata.org/atom.xml', 'news'),
   feed('who', 'World Health Organization news', 'https://www.who.int/rss-feeds/news-english.xml', 'news'),
-  feed('nih', 'NIH news releases', 'https://www.nih.gov/news-releases/feed.xml', 'news'),
   feed('sciencedaily', 'ScienceDaily', 'https://www.sciencedaily.com/rss/top/science.xml', 'news'),
   feed('sciencedaily-health', 'ScienceDaily · Health', 'https://www.sciencedaily.com/rss/top/health.xml', 'news'),
   feed('sciencedaily-mind', 'ScienceDaily · Mind & Brain', 'https://www.sciencedaily.com/rss/mind_brain.xml', 'news'),
-  feed('eurekalert-health', 'EurekAlert! · Health', 'https://www.eurekalert.org/rss/health_medicine.xml', 'news'),
-  feed('eurekalert-social', 'EurekAlert! · Social & behaviour', 'https://www.eurekalert.org/rss/social_behavior.xml', 'news'),
   feed('medicalxpress', 'Medical Xpress', 'https://medicalxpress.com/rss-feed/', 'news'),
   feed('phys-org', 'Phys.org', 'https://phys.org/rss-feed/', 'news'),
   feed('quanta', 'Quanta Magazine', 'https://www.quantamagazine.org/feed/', 'news'),
@@ -553,5 +533,5 @@ async function biorxivPages(ctx, server, name) {
 
 module.exports = {
   SOURCES, parseArxiv, parseHfDaily, parseSemanticScholar, parseOpenAlex, invertedToText, parsePubmed,
-  parseEuropePmc, parseBiorxiv, parsePlos, parseDoaj, parseOsf, parseChemrxiv, parseFeed, parseEric, parseClinicalTrials, parseAds, parseCore, isoDate,
+  parseEuropePmc, parseBiorxiv, parsePlos, parseDoaj, parseOsf, parseFeed, parseEric, parseClinicalTrials, parseAds, parseCore, isoDate,
 };
