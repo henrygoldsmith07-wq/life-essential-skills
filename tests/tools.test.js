@@ -39,6 +39,30 @@ t('irregular allowance needs whole months in range', () => {
   assert.strictEqual(T.irregularAllowance(b), 0);
 });
 
+t('irregular allowance matches the worksheet example and warns only when unusable', () => {
+  // templates/budget.md: an annual expense of 120 saved over twelve months
+  // gives a monthly allowance of 10; with six months remaining it is 20.
+  const b = T.emptyBudget();
+  b.irregularExpected = '120'; b.irregularMonths = '12';
+  assert.strictEqual(T.irregularAllowance(b), 10);
+  b.irregularMonths = '6';
+  assert.strictEqual(T.irregularAllowance(b), 20);
+  assert.ok(!T.validateBudget(b).some(w => /irregular/i.test(w)), 'a valid allowance raises no warning');
+  // Amount present but months unusable: the plain-word warning appears.
+  b.irregularMonths = '0';
+  assert.ok(T.validateBudget(b).some(w => /whole months remaining/.test(w)));
+});
+
+t('decision totals count cells so partial coverage can warn', () => {
+  // validateDecision warns when rated < cells, so cells must cover every
+  // importance x rating box, set or not.
+  const d = T.emptyDecision();
+  d.importance = ['3', '1', '', ''];
+  d.ratings = [['3', '1', '2'], ['2', '2', '2'], ['', '', ''], ['', '', '']];
+  assert.strictEqual(T.decisionTotals(d).cells, 12, 'four criteria x three options');
+  assert.strictEqual(T.decisionTotals(T.emptyDecision()).cells, 12, 'empty boxes still count');
+});
+
 t('timing check finds a below-zero low point', () => {
   const b = T.emptyBudget();
   b.income[0] = { label: 'Pay', amount: '500', day: '1' };
