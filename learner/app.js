@@ -295,9 +295,14 @@
     renderToday(rec,p);renderRoadmap();renderProgress(p);$('progress-content').insertAdjacentHTML('beforeend',evidenceLogHtml());renderPractice();renderSimulations();renderTools(false);renderProfile();assessor.render();
     $('pathways-content').innerHTML='<div class="grid">'+D.index.pathways.map(p=>'<div class="card"><h2>'+esc(p.title)+'</h2><p>'+esc(p.domains.map(d=>D.index.domains.find(x=>x.id===d).title).join(', '))+'</p><p>30 suggested sessions, adjusted to your evidence. Finish with '+esc(D.index.capstones.find(c=>c.id===p.capstone).title)+'.</p><button type="button" data-pathway="'+p.id+'" '+(p.id===state.pathway?'disabled':'')+'>'+(p.id===state.pathway?'Your current pathway':'Choose this pathway')+'</button></div>').join('')+'</div>';
   }
+  function renderLoadError(message,retry){
+    $('workspace').hidden=false;
+    $('workspace').innerHTML='<div class="card"><h2 id="load-error-title">Content unavailable</h2><p role="alert">'+esc(message)+'</p><div class="actions"><button type="button" id="retry-load">Try again</button><button type="button" class="secondary" id="close-task">Close</button></div></div>';
+    $('retry-load').onclick=retry;$('close-task').onclick=closeTask;U.focus('load-error-title');
+  }
   async function showLesson(path){
     const n=++token;current=null;
-    try{const chunk=await load.lesson(path);if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><h2 id="task-title">'+esc(D.index.domains.find(d=>d.path===path).title)+'</h2><p>Use the guide freely for practice. Close it before a fresh independent attempt.</p><div class="lesson">'+teachingMarkdown(chunk.lesson,path)+'</div><button type="button" class="secondary" id="close-task">Close the guide</button></div>';$('close-task').onclick=closeTask;U.focus('task-title');}catch(e){notice(e.message);}
+    try{const chunk=await load.lesson(path);if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><h2 id="task-title">'+esc(D.index.domains.find(d=>d.path===path).title)+'</h2><p>Use the guide freely for practice. Close it before a fresh independent attempt.</p><div class="lesson">'+teachingMarkdown(chunk.lesson,path)+'</div><button type="button" class="secondary" id="close-task">Close the guide</button></div>';$('close-task').onclick=closeTask;U.focus('task-title');}catch(e){if(n===token)renderLoadError(e.message,()=>showLesson(path));}
   }
   function closeTask(){token++;current=null;$('workspace').replaceChildren();$('workspace').hidden=true;U.focus(view+'-title');}
   function renderMaterials(item){return item.family==='capstone'?item.materials.map(text=>teachingMarkdown(text,D.index.capstones.find(c=>c.id===item.id).path)).join(''):list(item.materials);}
