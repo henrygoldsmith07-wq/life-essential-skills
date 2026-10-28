@@ -308,7 +308,7 @@
   function renderMaterials(item){return item.family==='capstone'?item.materials.map(text=>teachingMarkdown(text,D.index.capstones.find(c=>c.id===item.id).path)).join(''):list(item.materials);}
   async function startTask(id){
     const n=++token;current=null;aiUsed=false;
-    try{const item=await load.item(id);if(n!==token||!E.eligible(item,state.locality))return;
+    try{const item=await load.item(id);if(n!==token)return;if(!E.eligible(item,state.locality)){renderLoadError('This task is not available for the selected locality.',()=>startTask(id));return;}
       const known=E.seen(state,item,D),missing=item.prerequisites.filter(c=>E.summary(state,c,D).status!=='demonstrated');
       current={item,known,finished:false,attemptId:'a-'+Date.now()+'-'+state.exposures.length,phase:known?'practice':(!state.records.length||missing.length)?'diagnostic':undefined};
       // Preemptive guidance: show error-tag labels from the competency data
@@ -320,7 +320,7 @@
       const prepHtml=FV.preemptiveGuidance(prepTags.map(t=>t&&labels[t]).filter(Boolean));
       if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><p class="eyebrow">'+(known?'PRACTISE A FAMILIAR TASK':'TRY A NEW SITUATION')+'</p><h2 id="task-title">'+esc(item.title)+'</h2><p class="time">About '+item.estimated_time_minutes+' minutes</p>'+(missing.length?'<p class="notice">Supporting skills still to check: '+esc(missing.map(skillName).join(', '))+'. This diagnostic will not award those supporting skills.</p>':'')+renderMaterials(item)+'<p class="task-text">'+esc(item.task)+'</p>'+prepHtml+'<details><summary>Safety and access</summary>'+list(item.safety_constraints)+'<p>Written performance cannot prove physical competence. Access adjustments do not reduce the outcome.</p></details><details><summary>Relevant guidance</summary>'+item.source_uses.filter(u=>u.role==='general-principle'||(u.jurisdictions||[]).some(j=>E.covers(j,state.locality))).map(u=>{const s=D.sources.find(s=>s.id===u.source_id);return '<p><a href="'+esc(s.url)+'" rel="noopener noreferrer" target="_blank">'+esc(s.title)+'</a></p><p class="muted">'+esc(u.justification||'Check the current source and its locality before using guidance.')+'</p>';}).join('')+'</details><label for="response">Your fictional response</label><textarea id="response" placeholder="Write your reasoning here, or use paper or speech. This answer is never saved."></textarea><label><input type="checkbox" id="paper-attempt"> I completed a response on paper or by speaking.</label><div class="actions">'+(AI_ADAPTER&&AI_ADAPTER.coach_practice?'<button type="button" class="secondary" id="ai-hint">Get a practice coaching hint</button>':'')+'<button type="button" id="finish-attempt">Finish attempt & check feedback</button><button type="button" class="secondary" id="close-task">Close task</button></div><div id="ai-hint-body"></div><div id="feedback-area" hidden></div></div>';
       $('finish-attempt').onclick=finishAttempt;$('close-task').onclick=closeTask;if($('ai-hint'))$('ai-hint').onclick=aiHint;U.focus('task-title');
-    }catch(e){notice(e.message);}
+    }catch(e){if(n===token)renderLoadError(e.message,()=>startTask(id));}
   }
   async function aiHint(){
     const n=token;
