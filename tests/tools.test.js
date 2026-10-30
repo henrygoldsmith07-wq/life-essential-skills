@@ -100,6 +100,25 @@ t('review validation asks for one action', () => {
   assert.strictEqual(T.validateReview(r).length, 0);
 });
 
+t('review and decision dates validate real calendar days including leap years', () => {
+  const review = T.emptyReview();
+  review.practised = 'budget'; review.priorities[0].action = 'cook once';
+  review.reviewDate = '2024-02-29';
+  assert.strictEqual(T.validateReview(review).length, 0);
+  review.reviewDate = '2026-02-29';
+  assert.ok(T.validateReview(review).some(w => /real date/.test(w)));
+
+  const decision = T.emptyDecision();
+  decision.date = '2026-02-31';
+  decision.deadline = '2026-04-30';
+  assert.ok(T.validateDecision(decision).some(w => /real dates/.test(w)));
+  decision.date = '2024-02-29';
+  decision.deadline = '2026-04-31';
+  assert.ok(T.validateDecision(decision).some(w => /real dates/.test(w)));
+  decision.deadline = '2026-04-30';
+  assert.ok(!T.validateDecision(decision).some(w => /real dates/.test(w)));
+});
+
 t('storage keys isolate profiles', () => {
   assert.notStrictEqual(T.storageKey('a'), T.storageKey('b'));
   assert.ok(T.storageKey('a').includes('a'));
