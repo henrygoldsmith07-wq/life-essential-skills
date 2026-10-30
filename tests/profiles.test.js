@@ -54,7 +54,8 @@ describe('learner profiles', () => {
   });
 
   it('rebuilds a corrupt index instead of crashing', () => {
-    for (const bad of ['{oops', '{"current":"x"}', '{"current":"a","order":[],"names":{}}']) {
+    for (const bad of ['{oops', '{"current":"x"}', '{"current":"a","order":[],"names":{}}',
+      '{"current":"a","order":["a","a"],"names":{"a":"A"}}']) {
       const s = stub({ [Profiles.INDEX_KEY]: bad });
       assert.equal(Profiles.currentId(s), 'personal');
     }
