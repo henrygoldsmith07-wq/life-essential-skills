@@ -295,15 +295,20 @@
     renderToday(rec,p);renderRoadmap();renderProgress(p);$('progress-content').insertAdjacentHTML('beforeend',evidenceLogHtml());renderPractice();renderSimulations();renderTools(false);renderProfile();assessor.render();
     $('pathways-content').innerHTML='<div class="grid">'+D.index.pathways.map(p=>'<div class="card"><h2>'+esc(p.title)+'</h2><p>'+esc(p.domains.map(d=>D.index.domains.find(x=>x.id===d).title).join(', '))+'</p><p>30 suggested sessions, adjusted to your evidence. Finish with '+esc(D.index.capstones.find(c=>c.id===p.capstone).title)+'.</p><button type="button" data-pathway="'+p.id+'" '+(p.id===state.pathway?'disabled':'')+'>'+(p.id===state.pathway?'Your current pathway':'Choose this pathway')+'</button></div>').join('')+'</div>';
   }
+  function renderLoadError(message,retry){
+    $('workspace').hidden=false;
+    $('workspace').innerHTML='<div class="card"><h2 id="load-error-title">Content unavailable</h2><p role="alert">'+esc(message)+'</p><div class="actions"><button type="button" id="retry-load">Try again</button><button type="button" class="secondary" id="close-task">Close</button></div></div>';
+    $('retry-load').onclick=retry;$('close-task').onclick=closeTask;U.focus('load-error-title');
+  }
   async function showLesson(path){
     const n=++token;current=null;
-    try{const chunk=await load.lesson(path);if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><h2 id="task-title">'+esc(D.index.domains.find(d=>d.path===path).title)+'</h2><p>Use the guide freely for practice. Close it before a fresh independent attempt.</p><div class="lesson">'+teachingMarkdown(chunk.lesson,path)+'</div><button type="button" class="secondary" id="close-task">Close the guide</button></div>';$('close-task').onclick=closeTask;U.focus('task-title');}catch(e){notice(e.message);}
+    try{const chunk=await load.lesson(path);if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><h2 id="task-title">'+esc(D.index.domains.find(d=>d.path===path).title)+'</h2><p>Use the guide freely for practice. Close it before a fresh independent attempt.</p><div class="lesson">'+teachingMarkdown(chunk.lesson,path)+'</div><button type="button" class="secondary" id="close-task">Close the guide</button></div>';$('close-task').onclick=closeTask;U.focus('task-title');}catch(e){if(n===token)renderLoadError(e.message,()=>showLesson(path));}
   }
   function closeTask(){token++;current=null;$('workspace').replaceChildren();$('workspace').hidden=true;U.focus(view+'-title');}
   function renderMaterials(item){return item.family==='capstone'?item.materials.map(text=>teachingMarkdown(text,D.index.capstones.find(c=>c.id===item.id).path)).join(''):list(item.materials);}
   async function startTask(id){
     const n=++token;current=null;aiUsed=false;
-    try{const item=await load.item(id);if(n!==token||!E.eligible(item,state.locality))return;
+    try{const item=await load.item(id);if(n!==token)return;if(!E.eligible(item,state.locality)){renderLoadError('This task is not available for the selected locality.',()=>startTask(id));return;}
       const known=E.seen(state,item,D),missing=item.prerequisites.filter(c=>E.summary(state,c,D).status!=='demonstrated');
       current={item,known,finished:false,attemptId:'a-'+Date.now()+'-'+state.exposures.length,phase:known?'practice':(!state.records.length||missing.length)?'diagnostic':undefined};
       // Preemptive guidance: show error-tag labels from the competency data
@@ -315,7 +320,7 @@
       const prepHtml=FV.preemptiveGuidance(prepTags.map(t=>t&&labels[t]).filter(Boolean));
       if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><p class="eyebrow">'+(known?'PRACTISE A FAMILIAR TASK':'TRY A NEW SITUATION')+'</p><h2 id="task-title">'+esc(item.title)+'</h2><p class="time">About '+item.estimated_time_minutes+' minutes</p>'+(missing.length?'<p class="notice">Supporting skills still to check: '+esc(missing.map(skillName).join(', '))+'. This diagnostic will not award those supporting skills.</p>':'')+renderMaterials(item)+'<p class="task-text">'+esc(item.task)+'</p>'+prepHtml+'<details><summary>Safety and access</summary>'+list(item.safety_constraints)+'<p>Written performance cannot prove physical competence. Access adjustments do not reduce the outcome.</p></details><details><summary>Relevant guidance</summary>'+item.source_uses.filter(u=>u.role==='general-principle'||(u.jurisdictions||[]).some(j=>E.covers(j,state.locality))).map(u=>{const s=D.sources.find(s=>s.id===u.source_id);return '<p><a href="'+esc(s.url)+'" rel="noopener noreferrer" target="_blank">'+esc(s.title)+'</a></p><p class="muted">'+esc(u.justification||'Check the current source and its locality before using guidance.')+'</p>';}).join('')+'</details><label for="response">Your fictional response</label><textarea id="response" placeholder="Write your reasoning here, or use paper or speech. This answer is never saved."></textarea><label><input type="checkbox" id="paper-attempt"> I completed a response on paper or by speaking.</label><div class="actions">'+(AI_ADAPTER&&AI_ADAPTER.coach_practice?'<button type="button" class="secondary" id="ai-hint">Get a practice coaching hint</button>':'')+'<button type="button" id="finish-attempt">Finish attempt & check feedback</button><button type="button" class="secondary" id="close-task">Close task</button></div><div id="ai-hint-body"></div><div id="feedback-area" hidden></div></div>';
       $('finish-attempt').onclick=finishAttempt;$('close-task').onclick=closeTask;if($('ai-hint'))$('ai-hint').onclick=aiHint;U.focus('task-title');
-    }catch(e){notice(e.message);}
+    }catch(e){if(n===token)renderLoadError(e.message,()=>startTask(id));}
   }
   async function aiHint(){
     const n=token;

@@ -141,7 +141,7 @@
     if (!String(r.practised).trim() && !String(r.independent).trim()) warnings.push('Note at least what you practised — the review is for you, not for the record.');
     const filled = (r.priorities || []).filter(p => String(p.action).trim());
     if (!filled.length) warnings.push('Name one smallest next action — a plan without an action is a wish.');
-    if (String(r.reviewDate).trim() && !/^\d{4}-\d{2}-\d{2}$/.test(String(r.reviewDate).trim())) warnings.push('The review date should be a real date (YYYY-MM-DD).');
+    if (String(r.reviewDate).trim() && !validDate(r.reviewDate)) warnings.push('The review date should be a real date (YYYY-MM-DD).');
     return warnings;
   }
 
@@ -250,6 +250,14 @@
     };
   }
 
+  function validDate(value) {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value).trim());
+    if (!match) return false;
+    const [, year, month, day] = match.map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
+  }
+
   const weightOf = v => { const n = Number(String(v).trim()); return n === 1 || n === 2 || n === 3 ? n : 0; };
 
   // Weighted support per option: sum of importance x rating over criteria
@@ -276,7 +284,9 @@
     if (!t.rated) warnings.push('Set an importance and a rating to see the comparison — it stays empty until then.');
     else if (t.rated < t.cells) warnings.push('Some importance or rating boxes are still empty — the comparison only covers what you rated.');
     if (String(d.choice).trim() && !String(d.reason).trim()) warnings.push('You picked an option without saying why — the reason is what the later review learns from.');
-    if (String(d.reviewDate).trim() && !/^\d{4}-\d{2}-\d{2}$/.test(String(d.reviewDate).trim())) warnings.push('The review date should be a real date (YYYY-MM-DD).');
+    for (const field of ['date', 'deadline', 'reviewDate']) {
+      if (String(d[field]).trim() && !validDate(d[field])) warnings.push('Dates should be real dates (YYYY-MM-DD).');
+    }
     return warnings;
   }
 
