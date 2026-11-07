@@ -7,7 +7,7 @@
       if(!cache.has(id))cache.set(id,fetcher('chunks/'+encodeURIComponent(id)+'.json').then(r=>{if(!r.ok)throw new Error('Learning material could not load.');return r.json();}).catch(e=>{cache.delete(id);throw e;}));
       return cache.get(id);
     }
-    return {item:async id=>{const header=data.bank.items.find(i=>i.id===id);if(!header)throw new Error('Unknown task');return (await chunk(header.chunk)).items.find(i=>i.id===id);},lesson:async path=>chunk(data.index.domains.find(d=>d.path===path).id)};
+    return {item:async id=>{const header=data.bank.items.find(i=>i.id===id);if(!header)throw new Error('Unknown task');const loaded=await chunk(header.chunk),item=loaded.items.find(i=>i.id===id);if(!item)throw new Error('Learning task could not load.');return item;},lesson:async path=>{const domain=data.index.domains.find(d=>d.path===path);if(!domain)throw new Error('Learning guide could not load.');return chunk(domain.id);}};
   }
   function discover(state,data,engine,today,options){
     const rec=engine.recommend(state,data,today),{mode='recommended',domain='all',search=''}=options;
