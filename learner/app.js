@@ -98,15 +98,19 @@
     const today = new Date();
     const maxDate = new Date(today); maxDate.setFullYear(today.getFullYear() + 1);
     const stamp = today.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-    const dateOnly = v => { const d = new Date(v + 'T12:00:00'); return [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join(''); };
+    // All-day dates are calendar dates, not instants. Parse and format them
+    // purely in UTC so an export does not gain or lose a day for learners at
+    // extreme UTC offsets.
+    const parseDay = v => new Date(v + 'T00:00:00Z');
+    const dateOnly = v => { const d = parseDay(v); return Number.isNaN(d.getTime()) ? '' : d.toISOString().slice(0, 10).replace(/-/g, ''); };
     const escText = t => String(t).replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\r?\n/g, '\\n');
     const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//life-essential-skills//EN', 'CALSCALE:GREGORIAN'];
     for (const c of items) {
-      const d = new Date(c.next_review + 'T12:00:00');
-      if (d > maxDate) continue;
+      const d = parseDay(c.next_review);
+      if (Number.isNaN(d.getTime()) || d > maxDate) continue;
       const summary = c.domain_title ? c.title + ' (' + c.domain_title + ')' : c.title;
       // RFC 5545: all-day events span DTSTART (inclusive) to DTEND (exclusive).
-      const end = new Date(d); end.setDate(end.getDate() + 1);
+      const end = new Date(d.getTime() + 86400000);
       lines.push('BEGIN:VEVENT',
         'UID:' + escText(c.id) + '-' + dateOnly(c.next_review) + '@life-essential-skills',
         'DTSTAMP:' + stamp,

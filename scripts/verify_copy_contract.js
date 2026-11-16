@@ -25,7 +25,7 @@ const sources = ['learner/app.js', 'learner/index.html', 'learner/ui.js', 'learn
 const NOT_COPY = new Set([
   'button', 'link', 'heading', 'met', 'not-met', 'partly-met',
   'capstones', 'guided', 'unseen', 'money', 'wales', 'uk',
-  'observed-sample-restore'
+  'observed-sample-restore', 'second-learner'
 ]);
 
 const wanted = new Set();

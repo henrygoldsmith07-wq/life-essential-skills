@@ -58,6 +58,16 @@ test('legacy migrations are explicit and preserve unstructured observations with
   const s=E.migrateState(legacy,D,date);assert.equal(s.schema_version,2);assert.equal(s.legacy_observations.length,1);assert.equal(s.observations.length,0);assert.equal(s.records[0].evidence_level,legacy.records[0].reviewed_by==='self'?'self-reviewed':'assessor-reviewed');
   legacy.password='private';assert.throws(()=>E.migrateState(legacy,D,date),/fields/);
 });
+test('legacy migration keeps an 80-character record id within the attempt-id limit',()=>{
+  const legacy=read('examples/legacy/review-due.json');
+  const longId='a'.repeat(80);
+  legacy.records=[{...legacy.records[0],id:longId}];
+  const s=E.migrateState(legacy,D,date);
+  assert.equal(s.records[0].id,longId);
+  assert.ok(s.records[0].attempt_id.length<=80);
+  assert.match(s.records[0].attempt_id,/^[a-zA-Z0-9-]{1,80}$/);
+  assert.equal(new Set(s.records.map(r=>r.attempt_id)).size,s.records.length);
+});
 test('structured practical failure replaces current success but retains the earlier observation',()=>{
   const rubric=D.practical.rubrics[1];let s=E.recordObservation(E.emptyState(),D,rubric.id,{criteria_judgements:judgments(rubric),access_supports:['scribe']},date);
   const j=judgments(rubric);j[0].judgement='partly-met';s=E.recordObservation(s,D,rubric.id,{criteria_judgements:j},'2026-10-04');
