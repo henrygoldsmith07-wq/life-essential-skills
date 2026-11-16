@@ -65,8 +65,8 @@ jobs:
         run: node scripts/verify_copy_contract.js
       - name: Test validator and link-check failure cases
         run: python3 -m unittest discover -s tests -v
-      - name: Test the shared learner rules engine
-        run: node --test tests/engine.test.js tests/evidence.test.js
+      - name: Test the shared learner rules engine and browser-side modules
+        run: node --test tests/engine.test.js tests/evidence.test.js tests/crypto-backup.test.js tests/profiles.test.js tests/tools.test.js
       - name: Test the research digest pipeline (mocked network)
         run: node --test tests/research.test.js
       - name: Verify the rendered Discover page and committed digest

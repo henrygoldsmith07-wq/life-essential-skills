@@ -362,6 +362,11 @@ ok('renderRoadmap guards the lazy body against double loading',
       ics.slice(0, 300));
     ok('DTSTART;VALUE=DATE carries an all-day YYYYMMDD value, not a datetime',
       /DTSTART;VALUE=DATE:\d{8}\r/.test(ics) && !/DTSTART;VALUE=DATE:\d{8}T/.test(ics), 'an all-day VALUE=DATE must not include a T');
+    const starts = [...ics.matchAll(/DTSTART;VALUE=DATE:(\d{8})/g)].map(m => m[1]);
+    const ends = [...ics.matchAll(/DTEND;VALUE=DATE:(\d{8})/g)].map(m => m[1]);
+    const nextDay = s => new Date(Date.UTC(+s.slice(0, 4), +s.slice(4, 6) - 1, +s.slice(6, 8)) + 86400000).toISOString().slice(0, 10).replace(/-/g, '');
+    ok('each all-day event spans exactly one day in every timezone',
+      starts.length === 2 && ends.length === 2 && starts.every((s, i) => nextDay(s) === ends[i]), starts + ' -> ' + ends);
     ok('SUMMARY text escapes commas/semicolons/newlines',
       ics.includes('Budget\\, and essential costs') && ics.includes('Line one\\nLine two') && !/SUMMARY:[^\r\n]*[^\\][;,]/.test(ics), ics.split('\r\n').find(l => l.startsWith('SUMMARY:')) || '');
     ok('an empty feed exports nothing rather than an invalid skeleton', icsExport({ retention_due: [], retention_upcoming: [] }) === '');
