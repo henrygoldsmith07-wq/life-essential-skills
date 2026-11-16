@@ -41,7 +41,7 @@ GitHub Actions uses read-only repository permission. `quality.yml` checks struct
 
 `check_calibration_queue.py` keeps the case-decision warnings honest. `docs/calibration-review-queue.md` lists the benchmarked items whose rubric gained the case-decision gate and whose assessor references still need a human check; this script derives the same set from `validate_adaptive.py` and fails if an item is added, removed or duplicated without updating the queue. It does not mark anything reviewed — the decisions in the queue remain pending until an assessor makes them.
 
-Version-2 evidence tests additionally cover structured outcomes, separate assessor reviews, practical observation gates, checked migration, abandoned-feedback exposure and granular capstones. Run `node --test tests/engine.test.js tests/evidence.test.js`. The normal quality workflow also runs the locked Playwright/axe suite: `npm ci`, `npx playwright install chromium`, `npm run test:e2e`. These packages are development-only; the static learner app has no runtime package dependencies.
+Version-2 evidence tests additionally cover structured outcomes, separate assessor reviews, practical observation gates, checked migration, abandoned-feedback exposure and granular capstones. Run `node --test tests/engine.test.js tests/evidence.test.js tests/crypto-backup.test.js tests/profiles.test.js tests/tools.test.js` (all five browser-side suites; CI runs the same command). The normal quality workflow also runs the locked Playwright/axe suite: `npm ci`, `npx playwright install chromium`, `npm run test:e2e`. These packages are development-only; the static learner app has no runtime package dependencies.
 
 ## Discover checks
 

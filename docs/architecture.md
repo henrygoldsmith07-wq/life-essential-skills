@@ -58,7 +58,7 @@ python scripts/check_calibration_queue.py
 python scripts/render_registry.py --check
 python scripts/build_learner.py --check
 python -m unittest discover -s tests -v
-node --test tests/engine.test.js tests/evidence.test.js
+node --test tests/engine.test.js tests/evidence.test.js tests/crypto-backup.test.js tests/profiles.test.js tests/tools.test.js
 node scripts/verify_research.js
 node scripts/verify_research_ui.js
 node --check learner/app.js

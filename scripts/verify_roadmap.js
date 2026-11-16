@@ -38,7 +38,13 @@ ok('example: some independent capabilities demonstrated', demonstrated.length > 
 let mismatch = 0;
 for (const g of D.goals.milestones) {
   const ms = R.milestone(ex, D, g);
-  const needOk = (g.requires || []).every(cid => (E.summary(ex, cid, D).status === 'demonstrated') === ms.earned || !(g.requires || []).every(c2 => E.summary(ex, c2, D).status === 'demonstrated'));
+  // Mirror every part of R.milestone's earned rule, including the negative
+  // case: a milestone shown as earned with only partial evidence must fail.
+  const all = cid => E.summary(ex, cid, D).status === 'demonstrated';
+  const expected = (g.requires || []).every(all)
+    && (!(g.requires_any || []).length || (g.requires_any || []).some(all))
+    && (g.requires_practical || []).every(kind => ex.observations.filter(o => o.kind === kind).at(-1)?.outcome === 'demonstrated');
+  const needOk = ms.earned === expected;
   if (!needOk) mismatch++;
 }
 ok('example: every milestone agrees with engine status', mismatch === 0, mismatch + ' mismatches');
