@@ -92,7 +92,11 @@
       if (Number.isInteger(day) && day >= 1 && day <= 31 && Number.isFinite(v) && v > 0) flows.push({ day, delta: -v, label: r.label });
     }
     if (!flows.length) return null;
-    flows.sort((a, b) => a.day - b.day);
+    // Within one day, count money going out before money arriving. The point
+    // of this check is to surface the lowest balance a learner could reach;
+    // with the opposite order a bill paid before that day's pay would be
+    // hidden behind the pay, so the warning could miss a real shortfall.
+    flows.sort((a, b) => a.day - b.day || a.delta - b.delta);
     let balance = opening, lowest = opening, lowestDay = null;
     for (const f of flows) {
       balance = Math.round((balance + f.delta) * 100) / 100;
@@ -188,7 +192,7 @@
     let html = '<div class="tool__grid">';
     html += '<div><h3>Income</h3>' + b.income.map((r, n) => num('t-income-' + n, r.label + ' (£)', r.amount)).join('') + '</div>';
     html += '<div><h3>Planned outgoings</h3>' + b.outgoings.map((r, n) => num('t-out-' + n, r.label + ' (£)', r.amount)).join('') + '</div></div>';
-    html += '<details><summary>Bill timing (optional — checks the balance through the month)</summary><p class="muted">Opening balance plus the day each bill or pay arrives (1–31). Undated rows are ignored here but still count in the totals.</p>';
+    html += '<details><summary>Bill timing (optional — checks the balance through the month)</summary><p class="muted">Opening balance plus the day each bill or pay arrives (1–31). Undated rows are ignored here but still count in the totals. Where pay and a bill share a day, the bill is counted first so the low point shows the worst case.</p>';
     html += num('t-opening', 'Opening available balance (£)', b.opening);
     html += '<div class="tool__grid"><div>' + b.income.map((r, n) => num('t-income-day-' + n, r.label + ' — day received', r.day)).join('') + '</div>';
     html += '<div>' + b.outgoings.map((r, n) => num('t-out-day-' + n, r.label + ' — day due', r.day)).join('') + '</div></div></details>';

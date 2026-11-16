@@ -1,8 +1,13 @@
 'use strict';
 const {test,expect}=require('@playwright/test'),AxeBuilder=require('@axe-core/playwright').default;
-const path=require('node:path');
-const key='life-essential-skills-evidence-v1';
-const evidence=page=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),key);
+const path=require('node:path'),fs=require('node:fs');
+// Evidence now lives in a per-profile slot. Ask the app's own store for the
+// key so this helper cannot silently read the pre-profiles legacy slot again.
+const evidence=page=>page.evaluate(()=>JSON.parse(localStorage.getItem(LearnerProfiles.evidenceKey(LearnerProfiles.DEFAULT_ID))));
+const activeEvidence=page=>page.evaluate(()=>{
+  const index=JSON.parse(localStorage.getItem(LearnerProfiles.INDEX_KEY));
+  return JSON.parse(localStorage.getItem(LearnerProfiles.evidenceKey(index.current)));
+});
 async function start(page){await page.goto('/learner/');await page.getByRole('button',{name:'Start this task',exact:true}).click();await expect(page.getByLabel('Your fictional response')).toBeVisible();}
 async function finish(page){await page.getByLabel('Your fictional response').fill('FICTIONAL ORIGINAL RESPONSE — evidence and uncertainty explained.');await page.getByRole('button',{name:'Finish attempt & check feedback'}).click();await expect(page.getByRole('heading',{name:'Compare with your original answer'})).toBeVisible();}
 async function judge(page,scope='#feedback-area',value='met'){const controls=page.locator(scope+' [data-criterion]');for(let n=0;n<await controls.count();n++)await controls.nth(n).selectOption(value);}
@@ -103,9 +108,58 @@ test('life-transition simulation develops across three parts and saves per-skill
   await page.getByRole('link',{name:'Simulations',exact:true}).click();
   await expect(page.locator('.simcard').filter({hasText:'Moving out in six weeks'})).toContainText('FAMILIAR SITUATION');
 });
+test('goal onboarding sets a pathway and focus without creating evidence',async({page})=>{
+  await page.goto('/learner/');
+  await page.getByRole('button',{name:/Moving out/}).click();
+  await expect(page.locator('#onboard-form')).toBeVisible();
+  await page.locator('#q-timing-soon').check();await page.locator('#q-support-alone').check();
+  await page.getByRole('button',{name:'Build my roadmap'}).click();
+  await expect(page.locator('#roadmap')).toBeVisible();
+  const s=await evidence(page);
+  expect(s.pathway).toBe('independent-living');expect(s.goal_competencies.length).toBeGreaterThan(3);
+  expect(s.records).toEqual([]);expect(s.reviews).toEqual([]);
+  expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
+});
+test('a new learner starts with their own locality and pathway, not the previous learner’s',async({page})=>{
+  await page.goto('/learner/#settings');await page.getByLabel('Guidance locality').selectOption('wales');
+  await expect(page.getByRole('button',{name:'Remove active learner'})).toBeDisabled();
+  await page.getByRole('link',{name:'Pathways',exact:true}).click();await page.locator('[data-pathway="digital-safety"]').click();
+  const personal=await evidence(page);expect(personal.locality).toBe('wales');expect(personal.pathway).toBe('digital-safety');
+  await page.getByRole('link',{name:'My setup',exact:true}).click();
+  await page.getByLabel('New learner name').fill('Second learner');await page.getByRole('button',{name:'Add learner'}).click();
+  const fresh=await activeEvidence(page);
+  expect(fresh.locality).toBe('uk');expect(fresh.pathway).toBe('general');
+  await expect(page.getByRole('button',{name:'Remove active learner'})).toBeEnabled();
+  await page.getByLabel('Active learner',{exact:true}).selectOption('personal');expect(await activeEvidence(page)).toEqual(personal);
+});
+test('encrypted backup round-trips in the browser and refuses a wrong passphrase',async({page})=>{
+  await page.goto('/learner/#settings');await page.getByLabel('Guidance locality').selectOption('wales');
+  const original=await evidence(page);
+  await page.getByText('Encrypted backup with a passphrase').click();
+  await page.getByLabel('Passphrase (8 or more characters)').fill('correct horse battery');
+  await page.getByLabel('Repeat the passphrase').fill('correct horse battery');
+  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Download encrypted backup'}).click();
+  const file=await download;const envelope=fs.readFileSync(await file.path(),'utf8');
+  expect(envelope).toContain('les-encrypted-backup');expect(envelope).not.toContain('goal_competencies');
+  expect(await page.getByLabel('Passphrase (8 or more characters)').inputValue()).toBe('');
+  await page.evaluate(()=>localStorage.removeItem(LearnerProfiles.evidenceKey(LearnerProfiles.DEFAULT_ID)));
+  await page.reload();
+  await page.getByText('Encrypted backup with a passphrase').click();
+  const input={name:'backup.json',mimeType:'application/json',buffer:Buffer.from(envelope)};
+  await page.locator('#encrypted-import').setInputFiles(input);
+  await page.getByLabel('Passphrase for this file').fill('wrong passphrase');
+  await page.getByRole('button',{name:'Import encrypted backup'}).click();
+  await expect(page.locator('#notice')).toContainText('wrong passphrase or damaged file');expect(await evidence(page)).toBeNull();
+  await page.getByLabel('Passphrase for this file').fill('correct horse battery');
+  await page.getByRole('button',{name:'Import encrypted backup'}).click();
+  await expect(page.locator('#notice')).toContainText('Encrypted evidence imported');expect(await evidence(page)).toEqual(original);
+});
 for(const view of ['today','progress','practice','pathways','settings','assessor','roadmap','simulations','profile','tools']){
   test('mobile accessibility and reflow: '+view,async({page})=>{
-    await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/learner/#'+view);await expect(page.locator('#'+view)).toBeVisible();
+    // Hash routing is synchronous, but a loaded machine can delay the page
+    // scripts past the default 5s assertion; allow time without weakening the
+    // check itself (a hash that never routes still fails).
+    await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/learner/#'+view);await expect(page.locator('#'+view)).toBeVisible({timeout:15000});
     const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(result.violations,view).toEqual([]);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   });

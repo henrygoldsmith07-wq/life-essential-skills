@@ -44,7 +44,7 @@ Elicit has no free public API. Its corpus (Semantic Scholar and OpenAlex) is pul
 
 1. In GitHub, go to **Settings → Secrets and variables → Actions** and add any of the model keys in the table above as repository secrets. (GitHub Models was retired on 30 July 2026 and is not used.)
 2. Optional source secrets: `ADS_API_KEY` (NASA ADS) and `CORE_API_KEY` switch those sources on; `NCBI_API_KEY`, `S2_API_KEY` and `OPENALEX_API_KEY` raise rate limits. Semantic Scholar's keyless pool is often busy, so without `S2_API_KEY` (free from semanticscholar.org) only a few slow queries are made.
-3. Optional repository variables (every variable is passed to the run): `<ID>_MODEL` to pin a model id, and `<ID>_CONCURRENCY`, `<ID>_RPM`, `<ID>_DAILY_REQUESTS` and `<ID>_MODEL_DAILY_REQUESTS` to match your account's limits, for example `GROQ_MODEL` or `CEREBRAS_RPM`. Set `CONTACT_EMAIL` to turn on Unpaywall links; it is also sent to PubMed and OpenAlex for their polite pools. `SITE_URL` is also optional.
+3. Optional repository variables (every variable is passed to the run): `<ID>_MODEL` to pin a model id, and `<ID>_CONCURRENCY`, `<ID>_RPM`, `<ID>_DAILY_REQUESTS` and `<ID>_MODEL_DAILY_REQUESTS` to match your account's limits, for example `GROQ_MODEL` or `CEREBRAS_RPM`. Set `CONTACT_EMAIL` to turn on Unpaywall links; it is also sent to PubMed and OpenAlex for their polite pools. `SITE_URL` is also optional. Limits must be positive numbers; zero, negative or malformed values fall back to the defaults so a typo cannot stall or silently disable a run.
 4. Run **Actions → Daily research digest → Run workflow** once. Set `days` to 7 for a first backfill.
 
 Never commit a key: providers revoke keys found in public repositories. Without any key, the run still lists papers but writes no summaries.
@@ -57,6 +57,8 @@ One agent per paper means one request per paper. By default the run summarises 1
 NVIDIA_API_KEY=... GROQ_API_KEY=... CONTACT_EMAIL=you@example.org node scripts/research/run.js --days 2
 node scripts/research/run.js --no-ai --only arxiv,pubmed   # fetch only, no model calls
 node --test tests/research.test.js                          # parsers and pipeline, mocked network
+node scripts/verify_research.js                             # committed feed and rendered page contracts
+node scripts/verify_research_ui.js                          # execute the page against real data in a DOM stub
 ```
 
 The summaries are written by AI from abstracts and can be wrong. They sit outside the learner's evidence record and never affect assessment. This page is general education, not medical, financial or legal advice.

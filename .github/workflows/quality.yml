@@ -25,6 +25,8 @@ jobs:
         run: python3 scripts/validate_curriculum.py
       - name: Validate adaptive evidence graph, safety and calibration
         run: python3 scripts/validate_adaptive.py
+      - name: Track case-decision calibration reviews
+        run: python3 scripts/check_calibration_queue.py
       - name: Verify source registry render
         run: python3 scripts/render_registry.py --check
       - name: Verify learner assets contain current canonical data
@@ -67,6 +69,10 @@ jobs:
         run: node --test tests/engine.test.js tests/evidence.test.js
       - name: Test the research digest pipeline (mocked network)
         run: node --test tests/research.test.js
+      - name: Verify the rendered Discover page and committed digest
+        run: node scripts/verify_research.js
+      - name: Execute the Discover page against real digest data
+        run: node scripts/verify_research_ui.js
       - name: Check dashboard JavaScript syntax
         run: node --check learner/app.js
       - name: Lint Markdown

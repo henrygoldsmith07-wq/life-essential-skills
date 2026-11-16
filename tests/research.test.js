@@ -152,6 +152,20 @@ test('dedupe merges the same paper from different sources and keeps the richest 
   assert.deepStrictEqual(out[0].also_in.map((x) => x.source_name), ['openalex', 'rss']);
 });
 
+test('dedupe merges a later DOI match even when the titles differ', () => {
+  // One paper can appear under different titles (a preprint title and a
+  // published title). Merging by title must also register the DOI alias, or a
+  // third copy keyed by that DOI would be summarised twice and crowd out
+  // other research.
+  const a = lib.makeItem(S('arxiv'), { id: 'arxiv:1', title: 'Same paper about sleep and memory', abstract: 'short', url: 'https://arxiv.org/abs/1' });
+  const b = lib.makeItem(S('openalex'), { title: 'Same paper about sleep and memory', abstract: 'long abstract', url: 'https://doi.org/10.1234/a', doi: '10.1234/a' });
+  const c = lib.makeItem(S('pubmed'), { title: 'A totally different published title about exercise', abstract: 'x', url: 'https://x.org/c', doi: '10.1234/a' });
+  const out = lib.dedupe([a, b, c]);
+  assert.strictEqual(out.length, 1);
+  assert.strictEqual(out[0].abstract, 'long abstract');
+  assert.deepStrictEqual(out[0].also_in.map((x) => x.source_name), ['openalex', 'pubmed']);
+});
+
 test('select favours life-relevant, stronger evidence and spreads across sources', () => {
   const mk = (source, title, abstract) => lib.makeItem(S(source), { title, abstract, url: `https://x.org/${encodeURIComponent(title)}` });
   const items = [
@@ -209,6 +223,29 @@ test('limiter caps requests per window and in total', async () => {
   assert.deepStrictEqual(got, [true, true, true, true, true, false, false]);
   assert.ok(Date.now() - t0 >= 230, 'five requests at two per window span three windows');
   assert.strictEqual(lim.used(), 5);
+});
+
+test('a zero rate or budget setting cannot stall the limiter', async () => {
+  // Repository variables are user input. rpm=0 used to spin on a NaN sleep
+  // forever, taking the whole daily run down with it.
+  const lim = sum.limiter({ rpm: 0, windowMs: 20, budget: 2 });
+  const got = await Promise.race([
+    Promise.all([lim.take(), lim.take(), lim.take()]),
+    new Promise((_, reject) => setTimeout(() => reject(new Error('limiter stalled')), 2000)),
+  ]);
+  assert.deepStrictEqual(got, [true, true, false]);
+  assert.strictEqual(lim.used(), 2);
+});
+
+test('invalid provider limits fall back to safe defaults', () => {
+  const [p] = sum.configure({ GROQ_API_KEY: 'g', GROQ_RPM: '0', GROQ_CONCURRENCY: '0', GROQ_DAILY_REQUESTS: '-2', GROQ_MODEL_DAILY_REQUESTS: '0' });
+  const def = sum.PROVIDERS.find((x) => x.id === 'groq').defaults;
+  assert.strictEqual(p.rpm, def.rpm);
+  assert.strictEqual(p.concurrency, def.concurrency);
+  assert.strictEqual(p.daily, def.daily);
+  assert.strictEqual(p.modelDaily, def.modelDaily);
+  const [n] = sum.configure({ NVIDIA_API_KEY: 'n', NVIDIA_MODEL_DAILY_REQUESTS: '5' });
+  assert.strictEqual(n.modelDaily, 5, 'a valid override still applies without a default');
 });
 
 // Mock of the three OpenAI-compatible providers, keyed by host, with hooks

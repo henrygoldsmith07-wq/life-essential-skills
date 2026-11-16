@@ -159,17 +159,23 @@ function applySummary(paper, row, model, provider) {
 // Sliding-window limiter: at most `rpm` requests start in any `windowMs`,
 // and at most `budget` requests start in the whole run.
 function limiter({ rpm, windowMs, budget }) {
+  // These values can come from repository variables. A zero or negative rate
+  // would spin forever on a NaN sleep, stalling the whole daily run; clamp to
+  // a usable value instead of trusting the configuration.
+  const perWindow = Number.isFinite(rpm) && rpm >= 1 ? Math.floor(rpm) : 1;
+  const window = Number.isFinite(windowMs) && windowMs >= 1 ? windowMs : 60000;
+  const max = Number.isFinite(budget) && budget >= 0 ? Math.floor(budget) : 1;
   const starts = [];
   let used = 0;
   let queue = Promise.resolve();
   const take = () => {
     const slot = queue.then(async () => {
-      if (used >= budget) return false;
+      if (used >= max) return false;
       for (;;) {
         const now = Date.now();
-        while (starts.length && now - starts[0] >= windowMs) starts.shift();
-        if (starts.length < rpm) break;
-        await sleep(windowMs - (now - starts[0]) + 5);
+        while (starts.length && now - starts[0] >= window) starts.shift();
+        if (starts.length < perWindow) break;
+        await sleep(window - (now - starts[0]) + 5);
       }
       starts.push(Date.now());
       used++;
@@ -311,6 +317,7 @@ function retireModel(prov, model, reason) {
 }
 
 const envNum = (env, name) => (env[name] !== undefined && env[name] !== '' && Number.isFinite(Number(env[name])) ? Number(env[name]) : undefined);
+const positive = (value, fallback) => (Number.isFinite(value) && value >= 1 ? Math.floor(value) : fallback);
 
 // Providers that have a key, with limits from defaults or env
 // (<ID>_CONCURRENCY, <ID>_RPM, <ID>_DAILY_REQUESTS).
@@ -318,16 +325,17 @@ function configure(env = process.env, overrides = {}) {
   return PROVIDERS.filter((p) => env[p.key] && (p.needs || []).every((k) => env[k])).map((p) => {
     const id = p.id.toUpperCase();
     const o = overrides[p.id] || {};
+    const modelDaily = o.modelDaily ?? envNum(env, `${id}_MODEL_DAILY_REQUESTS`);
     return {
       ...p,
       base: typeof p.base === 'function' ? p.base(env) : p.base,
       modelsUrl: typeof p.modelsUrl === 'function' ? p.modelsUrl(env) : p.modelsUrl,
       apiKey: env[p.key],
       wanted: env[p.model] || '',
-      concurrency: o.concurrency ?? envNum(env, `${id}_CONCURRENCY`) ?? p.defaults.concurrency,
-      rpm: o.rpm ?? envNum(env, `${id}_RPM`) ?? p.defaults.rpm,
-      daily: o.daily ?? envNum(env, `${id}_DAILY_REQUESTS`) ?? p.defaults.daily,
-      modelDaily: o.modelDaily ?? envNum(env, `${id}_MODEL_DAILY_REQUESTS`) ?? p.defaults.modelDaily,
+      concurrency: positive(o.concurrency ?? envNum(env, `${id}_CONCURRENCY`), p.defaults.concurrency),
+      rpm: positive(o.rpm ?? envNum(env, `${id}_RPM`), p.defaults.rpm),
+      daily: positive(o.daily ?? envNum(env, `${id}_DAILY_REQUESTS`), p.defaults.daily),
+      modelDaily: modelDaily === undefined ? p.defaults.modelDaily : positive(modelDaily, p.defaults.modelDaily ?? 1),
     };
   });
 }

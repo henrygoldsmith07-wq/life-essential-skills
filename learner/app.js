@@ -238,13 +238,21 @@
     let list=[];try{list=LearnerProfiles.list(profilesBackend);}catch{sel.disabled=true;return;}
     sel.innerHTML=list.map(p=>'<option value="'+esc(p.id)+'"'+(p.current?' selected':'')+'>'+esc(p.name)+'</option>').join('');
     const cur=list.find(p=>p.current);
+    // There is nobody else to switch to when only one learner exists, so the
+    // removal action can never succeed; show it as unavailable rather than
+    // letting a learner click through to an error.
+    const rm=$('profile-remove');if(rm)rm.disabled=list.length<=1;
     $('profile-current').textContent=cur?('Showing evidence for '+cur.name+'. Switch to change learner; nothing is merged.') :'';
     const rn=$('profile-rename');if(rn&&document.activeElement!==rn)rn.value=cur?cur.name:'';
   }
   function loadProfileState(){
     blocked=false;
-    try{const saved=localStorage.getItem(evidenceKey());state=saved?E.migrateState(JSON.parse(saved),D,today()):E.emptyState(state.locality,state.pathway);}
-    catch(e){blocked=true;state=E.emptyState(state.locality,state.pathway);notice('Stored evidence needs repair and will not be overwritten. Download the original from My setup. '+e.message);}
+    // A new profile starts from the product defaults, never from the previous
+    // learner's locality or pathway: those are part of that learner's evidence
+    // state, so carrying them over would mix two learners without merging any
+    // records. Existing profiles still load their own saved state unchanged.
+    try{const saved=localStorage.getItem(evidenceKey());state=saved?E.migrateState(JSON.parse(saved),D,today()):E.emptyState();}
+    catch(e){blocked=true;state=E.emptyState();notice('Stored evidence needs repair and will not be overwritten. Download the original from My setup. '+e.message);}
     persist(state);
   }
   // Chronological evidence log: one line per attempt bundle, review and

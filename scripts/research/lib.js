@@ -137,8 +137,14 @@ function dedupe(items) {
     if (!existing.doi && item.doi) existing.doi = item.doi;
     if (!existing.published && item.published) existing.published = item.published;
     existing.links = { ...item.links, ...existing.links };
+    // A copy can match by title while carrying an id or DOI the kept record
+    // lacks. Register those aliases too, or a later copy using that key would
+    // be treated as a new paper and summarised a second time.
+    byKey.set(key, existing);
+    if (item.doi) byKey.set(`doi:${item.doi}`, existing);
+    if (tkey.length > 24) byTitle.set(tkey, existing);
   }
-  return [...byKey.values()];
+  return [...new Set(byKey.values())];
 }
 
 // ---- Relevance ---------------------------------------------------------------

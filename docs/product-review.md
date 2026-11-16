@@ -39,3 +39,24 @@ Regression and mutation tests cover schemas, graph, scopes, source roles, safety
 - **Learning effectiveness is unproven.** Descriptive diagnostic, unseen-transfer and delayed-check evidence supports a pilot; it does not establish that this curriculum caused improvement. Human source review and substantive legal/health/financial checks remain essential even when links work.
 
 The next product evaluation should use a small consent-based pilot with matched tasks, calibrated independent assessors, access adjustments, delayed follow-up and minimal educational data. Its findings should guide quality improvements before expanding the question bank.
+
+## Update · 16 Nov 2026
+
+Read-only review of current `main` (commit `68a45b1`). The evidence model and assessment rules above are unchanged; the product around them has grown. This section records the new surfaces and their risks. It does not replace the original review or its limitations.
+
+### New surfaces
+
+- **Discover** (`/research/`): a daily digest built from 40+ public APIs and feeds. Each selected paper gets one AI agent that writes a labelled life skill, fact, headline, caveat, terms and a check-yourself question. Results are committed as static JSON and Vercel redeploys on the push. Summaries sit outside the learner's evidence record.
+- **Learner additions**: named profiles for shared browsers, passphrase-encrypted evidence backup, budget/planner/decision practice tools, a chronological evidence log, the Independence Roadmap, capability milestones, goal-based onboarding, life-transition simulations, a printable profile, more actionable feedback and an installable offline-first shell.
+- Onboarding, AI assistance and practice tools remain evidence-free: none can derive an outcome or turn assisted work into independent evidence.
+
+### Weaknesses to track
+
+- AI-written summaries are labelled, schema-checked and tied to a model and source, but a fluent summary can still be wrong. Preprints are never labelled high confidence; `moderate` remains an editorial judgement, not psychometric validation.
+- The digest workflow needs `contents: write` and redeploys daily. Provider keys, free-tier limits and upstream source health are external dependencies. A failed source is reported as unavailable. A run that reaches almost no sources or summarises almost nothing now fails the data-only health checks, and a run that stops altogether is caught by the daily `research-freshness.yml` job (a stopped digest produces no commit, so the push-triggered quality job would never notice). The freshness gate tolerates two missed days and is opt-in so ordinary pushes stay clock-independent.
+- Evidence is browser-local. An encrypted export helps a learner keep it, but there is no server-side recovery; clearing storage loses access without a kept backup.
+- Both curriculum validators currently warn on thirteen benchmarked items whose rubric includes the case-decision gate (the earlier count of nine was stale). These are human confirmation prompts, not failures; the assessor references and fingerprints need a reviewed decision. `docs/calibration-review-queue.md` lists all thirteen as pending, and `scripts/check_calibration_queue.py` fails CI if the warning set drifts, but neither makes the assessor decision — it is still outstanding.
+
+### Verification added
+
+`scripts/verify_research.js` now checks the committed digest and the rendered page, and runs in CI on every push. It covers schema and run statistics, source health, AI attribution, the preprint confidence rule, link safety, archive retention, the AI-written and preprint labels, all six views, no HTML injection of feed text, no network posts, browser-local saves and resolvable guide links. It also checks that the run reached most sources, summarised most selected items and that the generation timestamp falls on the digest day. With `RESEARCH_CHECK_FRESHNESS=1` it additionally fails when the committed digest is more than two days old; the daily `research-freshness.yml` job sets that flag so a stopped digest raises an alert. This review ran it against the live digest along with the Node engine/evidence, full engine and research pipeline tests, the Python validators and the build checks; all passed. Browser/Playwright journeys, external links, Markdown lint and live provider behaviour were not run in this review.

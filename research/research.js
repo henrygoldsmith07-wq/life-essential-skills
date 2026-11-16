@@ -386,7 +386,7 @@
     const s = feed.stats || {};
     const by = Object.values(s.providers || {}).filter((p) => p.summaries).map((p) => `${p.label} ${String(p.model || '').split('/').pop()} (${p.summaries})`);
     $('meta').textContent = feed.generated_at
-      ? `Updated ${new Date(feed.generated_at).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}${s.parallel_agents ? ` · ${s.model_calls} AI agents, up to ${s.parallel_agents} at once` : ''}${by.length ? ` · ${by.join(', ')}` : feed.model ? ` · ${feed.model}` : ''}`
+      ? `Updated ${new Date(feed.generated_at).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}${s.parallel_agents ? ` · ${s.model_calls} model calls, up to ${s.parallel_agents} agents at once` : ''}${by.length ? ` · ${by.join(', ')}` : feed.model ? ` · ${feed.model}` : ''}`
       : 'The daily digest has not run yet.';
   }
 

@@ -7,7 +7,10 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const PORT = 8123;
+// Bind to an OS-assigned free port. A fixed port made the check crash with
+// EADDRINUSE when someone else was using it, so the whole smoke check never
+// ran instead of reporting on the site.
+const PORT = 0;
 
 const TYPES = {
   '.html': 'text/html',
@@ -73,7 +76,7 @@ const urls = [
 
 function get(u) {
   return new Promise((resolve) => {
-    const req = http.get({ host: '127.0.0.1', port: PORT, path: u }, (res) => {
+    const req = http.get({ host: '127.0.0.1', port: server.address().port, path: u }, (res) => {
       let bytes = 0;
       res.on('data', (c) => (bytes += c.length));
       res.on('end', () => resolve({ status: res.statusCode, type: res.headers['content-type'] || '', bytes }));
@@ -82,6 +85,7 @@ function get(u) {
   });
 }
 
+server.on('error', (e) => { console.error(`FAIL could not start smoke server: ${e.message}`); process.exit(1); });
 server.listen(PORT, '127.0.0.1', async () => {
   let fail = 0;
   for (const u of urls) {

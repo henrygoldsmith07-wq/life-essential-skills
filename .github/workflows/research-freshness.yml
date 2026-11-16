@@ -1,0 +1,32 @@
+name: Discover digest freshness
+
+# A stopped daily digest produces no commit, so the push-triggered quality job
+# never runs again and a stale page looks healthy. This small daily job runs the
+# same committed-data check with the freshness gate on and fails if the digest
+# has not been refreshed, giving an alert without re-running the whole suite.
+# It runs at 06:45 UTC, after the 05:17 UTC digest run has had time to commit.
+
+on:
+  schedule:
+    - cron: '45 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: discover-freshness
+  cancel-in-progress: true
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Alert if the committed digest is stale or degraded
+        env:
+          RESEARCH_CHECK_FRESHNESS: '1'
+        run: node scripts/verify_research.js

@@ -53,10 +53,14 @@ Each source use declares `authority`, `general-principle` or `local-alternative`
 python scripts/render_registry.py
 python scripts/build_learner.py
 python scripts/validate_curriculum.py
+python scripts/validate_adaptive.py
+python scripts/check_calibration_queue.py
 python scripts/render_registry.py --check
 python scripts/build_learner.py --check
 python -m unittest discover -s tests -v
 node --test tests/engine.test.js tests/evidence.test.js
+node scripts/verify_research.js
+node scripts/verify_research_ui.js
 node --check learner/app.js
 npx --yes markdownlint-cli2@0.18.1
 ```

@@ -48,6 +48,17 @@ t('timing check finds a below-zero low point', () => {
   assert.strictEqual(timing.lowest, -100);
 });
 
+t('timing check counts same-day bills before pay so a shortfall is not hidden', () => {
+  const b = T.emptyBudget();
+  b.income[0] = { label: 'Pay', amount: '500', day: '1' };
+  b.outgoings[0] = { label: 'Rent', amount: '600', day: '1' };
+  const timing = T.timingCheck('0', b.income, b.outgoings);
+  assert.strictEqual(timing.lowest, -600);
+  assert.strictEqual(timing.lowestDay, 1);
+  assert.strictEqual(timing.belowZero, true);
+  assert.ok(T.validateBudget(b).some(w => /falls below zero/.test(w)));
+});
+
 t('timing check returns null with no dated rows', () => {
   const b = T.emptyBudget();
   assert.strictEqual(T.timingCheck('100', b.income, b.outgoings), null);
