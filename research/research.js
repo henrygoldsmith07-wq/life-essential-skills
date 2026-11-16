@@ -20,7 +20,7 @@
   const PAGE = { cards: 24, papers: 100 };
   const SAVED_KEY = 'les-research-saved';
   const VIEWS = ['skills', 'facts', 'headlines', 'quiz', 'saved', 'papers'];
-  const state = { view: 'skills', topic: '', feed: null, papers: null, archive: {}, dayItems: null, shown: 0, saved: loadSaved(), quiz: null };
+  const state = { view: 'skills', topic: '', feed: null, papers: null, archive: {}, dayItems: null, shown: 0, saved: loadSaved(), quiz: null, loadError: false, pendingSrc: '' };
   const $ = (id) => document.getElementById(id);
 
   function h(tag, attrs, ...children) {
@@ -254,6 +254,10 @@
 
   function emptyState() {
     const feed = state.feed;
+    // A failed fetch is not the same as a digest that never ran. Say so and
+    // give the reader a way to retry instead of blaming the publisher.
+    if (state.loadError) return h('div', { class: 'empty' }, h('strong', null, 'Today’s digest could not be loaded. '),
+      'Check your connection and ', h('button', { type: 'button', class: 'link-button', onclick: () => location.reload() }, 'try again'), '.');
     if (state.view === 'quiz' && state.feed && (state.feed.items || []).length) return h('div', { class: 'empty' }, 'No quiz questions match. Try another topic or clear the search.');
     if (state.view === 'saved' && !state.saved.length) return h('div', { class: 'empty' }, h('strong', null, 'Nothing saved yet. '), 'Use ☆ Save on any card to keep it here. Saved items stay in this browser only.');
     if (!feed || !feed.generated_at) {
@@ -362,6 +366,9 @@
   function refreshSources() {
     const pool = state.view === 'papers' ? (state.papers && state.papers.items) || [] : baseItems();
     fillSelect($('f-source'), [...new Set(pool.map((i) => i.source_name))].sort());
+    // A shared URL can name a source before its options have been built.
+    if (state.pendingSrc && [...$('f-source').options].some((o) => o.value === state.pendingSrc)) $('f-source').value = state.pendingSrc;
+    state.pendingSrc = '';
   }
 
   function renderSourceHealth(feed) {
@@ -370,7 +377,7 @@
     $('source-list').replaceChildren(...Object.entries(groups).map(([g, list]) => h('div', { class: 'source-group' },
       h('h3', null, g),
       h('ul', null, list.map((s) => h('li', null, link(s.home, s.name) || s.name, ' — ',
-        s.ok ? `${s.count} new item${s.count === 1 ? '' : 's'}` : s.ok === null ? (s.requires ? `needs a free key (${s.requires})` : 'not checked yet') : h('span', { class: 'bad', title: s.error || '' }, 'unavailable today')))))));
+        s.ok ? `${s.count} new item${s.count === 1 ? '' : 's'}` : s.ok === null ? (s.requires ? `needs a free key (${s.requires})` : 'not checked yet') : h('span', { class: 'bad', title: s.error || '' }, 'unavailable today', s.error ? ` — ${s.error}` : '')))))));
   }
 
   function renderStats(feed) {
@@ -388,9 +395,11 @@
     // Show which provider did how many summaries; the exact model stays on
     // each card's "Summarised by" line for anyone who wants the detail.
     const by = Object.values(s.providers || {}).filter((p) => p.summaries).map((p) => `${p.label} ${p.summaries}`);
-    $('meta').textContent = feed.generated_at
-      ? `Updated ${new Date(feed.generated_at).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}${s.parallel_agents ? ` · ${s.model_calls} model calls, up to ${s.parallel_agents} agents at once` : ''}${by.length ? ` · ${by.join(', ')}` : ''}`
-      : 'The daily digest has not run yet.';
+    $('meta').textContent = state.loadError
+      ? 'Today’s digest could not be loaded. Check your connection and try again.'
+      : feed.generated_at
+        ? `Updated ${new Date(feed.generated_at).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}${s.parallel_agents ? ` · ${s.model_calls} model calls, up to ${s.parallel_agents} agents at once` : ''}${by.length ? ` · ${by.join(', ')}` : ''}`
+        : 'The daily digest has not run yet.';
   }
 
   function skeleton() {
@@ -408,9 +417,9 @@
         try {
           state.archive[date] = state.archive[date] || await getJson(`data/archive/${encodeURIComponent(date)}.json`);
           state.dayItems = state.archive[date].items || [];
-        } catch { state.dayItems = []; }
+        } catch { state.loadError = true; state.dayItems = []; }
       }
-    }
+    } else state.loadError = false;
     refreshSources();
     render(true);
   }
@@ -419,7 +428,7 @@
     state.view = VIEWS.includes(view) ? view : 'skills';
     if (state.view === 'papers' && !state.papers) {
       skeleton();
-      try { state.papers = await getJson('data/papers.json'); } catch { state.papers = { items: [] }; }
+      try { state.papers = await getJson('data/papers.json'); } catch { state.papers = { items: [] }; state.loadError = true; }
     }
     refreshSources();
     syncHash();
@@ -436,13 +445,16 @@
     syncHash();
   }
 
-  // Shareable state: #view=facts&topic=health&q=sleep
+  // Shareable state: #view=facts&topic=health&q=sleep&day=2026-11-16&conf=high&src=PubMed
   function syncHash() {
     const p = new URLSearchParams();
     if (state.view !== 'skills') p.set('view', state.view);
     if (state.topic) p.set('topic', state.topic);
     const q = $('f-search').value.trim();
     if (q) p.set('q', q);
+    if ($('f-day').value) p.set('day', $('f-day').value);
+    if ($('f-confidence').value) p.set('conf', $('f-confidence').value);
+    if ($('f-source').value) p.set('src', $('f-source').value);
     const hash = p.toString();
     try { history.replaceState(null, '', hash ? `#${hash}` : location.pathname + location.search); } catch { /* file:// */ }
   }
@@ -451,8 +463,11 @@
     const p = new URLSearchParams(location.hash.slice(1));
     if (TOPICS[p.get('topic')]) state.topic = p.get('topic');
     if (p.get('q')) $('f-search').value = p.get('q').slice(0, 100);
+    if (['high', 'moderate', 'reviewed'].includes(p.get('conf'))) $('f-confidence').value = p.get('conf');
+    const sharedDay = p.get('day');
+    state.pendingSrc = p.get('src') || '';
     skeleton();
-    try { state.feed = await getJson('data/feed.json'); } catch { state.feed = { items: [] }; }
+    try { state.feed = await getJson('data/feed.json'); state.loadError = false; } catch { state.feed = { items: [] }; state.loadError = true; }
     const feed = state.feed;
     renderStats(feed);
     let days = [...new Set((feed.items || []).map((i) => i.digest_date).filter(Boolean))];
@@ -461,8 +476,10 @@
       days = [...new Set([...days, ...(index.days || []).map((d) => d.date)])];
     } catch { /* archive optional */ }
     fillSelect($('f-day'), days.sort().reverse(), fmtDate);
+    if (sharedDay && [...$('f-day').options].some((o) => o.value === sharedDay)) $('f-day').value = sharedDay;
     renderSourceHealth(feed);
     await setView(p.get('view') || 'skills');
+    if ($('f-day').value) await loadDay($('f-day').value);
   }
 
   document.addEventListener('DOMContentLoaded', () => {

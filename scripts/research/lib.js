@@ -123,7 +123,11 @@ function dedupe(items) {
   for (const item of items) {
     const key = dedupeKey(item);
     const tkey = normTitle(item.title);
-    const existing = byKey.get(key) || (tkey.length > 24 ? byTitle.get(tkey) : undefined);
+    const titleMatch = tkey.length > 24 ? byTitle.get(tkey) : undefined;
+    // A matching title is not enough when both records carry DOIs: two
+    // different papers can share a generic title ("Editorial", "Corrigendum").
+    let existing = byKey.get(key);
+    if (!existing && titleMatch && !(item.doi && titleMatch.doi && item.doi !== titleMatch.doi)) existing = titleMatch;
     if (!existing) {
       const copy = { ...item, also_in: [] };
       byKey.set(key, copy);
@@ -235,12 +239,17 @@ async function fetchText(url, { timeoutMs = 25000, headers = {}, retries = 1 } =
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT, Accept: '*/*', ...headers }, signal: AbortSignal.timeout(timeoutMs) });
-      if (res.status === 429 || res.status >= 500) throw Object.assign(new Error(`HTTP ${res.status}`), { retryable: true });
+      if (res.status === 429 || res.status >= 500) {
+        // A 429 carries the wait the server wants; ignoring it can burn the
+        // single retry before the window closes and lose a whole source.
+        const retryAfter = Number(res.headers.get('retry-after')) || 0;
+        throw Object.assign(new Error(`HTTP ${res.status}`), { retryable: true, retryAfter });
+      }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return await res.text();
     } catch (e) {
       lastErr = e;
-      if (attempt < retries && (e.retryable || e.name === 'TimeoutError')) await sleep(2000 * (attempt + 1));
+      if (attempt < retries && (e.retryable || e.name === 'TimeoutError')) await sleep(Math.max(2000 * (attempt + 1), (e.retryAfter || 0) * 1000));
       else break;
     }
   }
@@ -256,5 +265,5 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 module.exports = {
   USER_AGENT, decodeEntities, cleanText, blocks, first, attrs, isoDate, daysAgo, normTitle, normDoi, safeUrl,
-  makeItem, dedupe, score, select, fetchText, fetchJson, sleep, TOPICS,
+  makeItem, dedupe, dedupeKey, score, select, fetchText, fetchJson, sleep, TOPICS,
 };

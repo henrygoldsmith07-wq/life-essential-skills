@@ -166,6 +166,22 @@ test('dedupe merges a later DOI match even when the titles differ', () => {
   assert.deepStrictEqual(out[0].also_in.map((x) => x.source_name), ['openalex', 'pubmed']);
 });
 
+test('a paper already seen under a URL id is not summarised again under its DOI id', () => {
+  const prior = { id: 'url:https://news.example/x', title: 'A study about sleep and memory', doi: '10.1234/abc' };
+  const seen = run.seenIds({ items: [prior] }, { days: [] }, '2026-11-16');
+  const newCopy = { id: 'doi:10.1234/abc', title: 'A study about sleep and memory', doi: '10.1234/abc' };
+  assert.ok(seen.has(lib.dedupeKey(newCopy)));
+});
+
+test('dedupe keeps different papers that share a generic title but have different DOIs', () => {
+  const title = 'Editorial: what the new guidance means for everyday decisions';
+  const a = lib.makeItem(S('pubmed'), { title, abstract: 'first paper', url: 'https://x.org/a', doi: '10.1234/aaaa' });
+  const b = lib.makeItem(S('openalex'), { title, abstract: 'second paper', url: 'https://x.org/b', doi: '10.5678/bbbb' });
+  const out = lib.dedupe([a, b]);
+  assert.strictEqual(out.length, 2);
+  assert.deepStrictEqual(out.map((i) => i.doi).sort(), ['10.1234/aaaa', '10.5678/bbbb']);
+});
+
 test('select favours life-relevant, stronger evidence and spreads across sources', () => {
   const mk = (source, title, abstract) => lib.makeItem(S(source), { title, abstract, url: `https://x.org/${encodeURIComponent(title)}` });
   const items = [
@@ -286,6 +302,20 @@ async function withFetch(f, fn) {
   global.fetch = f;
   try { return await fn(); } finally { global.fetch = real; }
 }
+
+test('fetchText waits for Retry-After before its 429 retry', async () => {
+  const times = [];
+  await withFetch(async () => {
+    times.push(Date.now());
+    return times.length === 1
+      ? new Response('slow down', { status: 429, headers: { 'Retry-After': '3' } })
+      : new Response('ok', { status: 200 });
+  }, async () => {
+    assert.strictEqual(await lib.fetchText('https://example.test/feed', { retries: 1, timeoutMs: 5000 }), 'ok');
+  });
+  assert.strictEqual(times.length, 2);
+  assert.ok(times[1] - times[0] >= 2800, `retry waited ${times[1] - times[0]}ms, shorter than Retry-After`);
+});
 
 test('providers: only those with a key run, limits come from defaults or env', () => {
   assert.deepStrictEqual(sum.configure({}).map((p) => p.id), []);

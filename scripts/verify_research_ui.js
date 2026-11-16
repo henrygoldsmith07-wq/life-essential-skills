@@ -131,10 +131,14 @@ const textOf = (id) => byId[id].textContent;
   ok('init renders cards from the real feed', cardCount() > 0, cardCount() + ' cards');
   ok('today’s picks render', byId.picks.hidden === false && byId['picks-list'].children.length >= 2);
   ok('source health renders', byId['source-list'].descendants().some((c) => c.tagName === 'LI'));
+  ok('a failed source explains why in visible text', /unavailable today — HTTP 429/.test(textOf('source-list')), textOf('source-list').slice(-90));
 
   tabs.find((t) => t.dataset.view === 'facts').fire('click');
   await flush();
   ok('facts view renders', cardCount() > 0 && /Did you know\?/.test(textOf('results')));
+  tabs.find((t) => t.dataset.view === 'headlines').fire('click');
+  await flush();
+  ok('headlines view renders', cardCount() > 0 && textOf('results').length > 200);
   tabs.find((t) => t.dataset.view === 'papers').fire('click');
   await flush();
   ok('all-papers view renders rows', byId.results.children.some((c) => c.classList.contains('paper') || c.tagName === 'DIV'));
@@ -171,6 +175,12 @@ const textOf = (id) => byId[id].textContent;
   byId['f-search'].fire('input');
   await flush(220);
   ok('search is shareable in the URL hash', lastHash.includes('q=sleep'), lastHash);
+  byId['f-confidence'].value = 'high';
+  byId['f-source'].value = 'PubMed';
+  byId['f-day'].value = '2026-11-15';
+  tabs.find((t) => t.dataset.view === 'facts').fire('click');
+  await flush();
+  ok('day, evidence and source filters are shareable', ['day=2026-11-15', 'conf=high', 'src=PubMed'].every((k) => lastHash.includes(k)), lastHash);
 
   // Untrusted feed text must stay text, and unsafe links must not render.
   const hostile = JSON.parse(JSON.stringify(FEED));
@@ -186,6 +196,19 @@ const textOf = (id) => byId[id].textContent;
   await flush();
   ok('hostile feed text is not parsed as HTML', byId.results.descendants().every((c) => c.tagName !== 'IMG'));
   ok('javascript: links are not rendered', byId.results.descendants().every((c) => c.getAttribute('href') !== 'javascript:alert(1)'));
+
+  // A failed fetch must not be blamed on the publisher.
+  const failSandbox = { ...sandbox, document: { ...document, getElementById: (id) => byId[id] || null } };
+  failSandbox.fetch = async (url) => {
+    if (url === 'data/feed.json') throw new Error('offline');
+    return { ok: true, status: 200, json: async () => url === 'data/papers.json' ? PAPERS : ARCHIVE };
+  };
+  vm.createContext(failSandbox);
+  vm.runInContext(fs.readFileSync(path.join(ROOT, 'research/research.js'), 'utf8'), failSandbox, { filename: 'research.js' });
+  (docListeners.DOMContentLoaded || []).slice(-1).forEach((fn) => fn());
+  await flush();
+  ok('a failed fetch is not reported as a digest that never ran', /could not be loaded/.test(textOf('results')) && /could not be loaded/.test(textOf('meta')));
+  ok('a retry action is offered', byId.results.descendants().some((c) => c.tagName === 'BUTTON' && /try again/.test(c.textContent)));
 
   console.log(fail ? `FAIL ${fail} Discover UI contract(s)` : 'PASS Discover UI executes against real data');
   process.exit(fail ? 1 : 0);

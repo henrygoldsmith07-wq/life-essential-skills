@@ -18,6 +18,8 @@ test('Discover renders the committed digest, switches views and stays accessible
 
   await page.locator('[data-view="facts"]').click();
   await expect(page.locator('#results')).toContainText('Did you know?');
+  await page.locator('[data-view="headlines"]').click();
+  expect(await page.locator('#results .card').count()).toBeGreaterThan(0);
   await page.locator('[data-view="quiz"]').click();
   await expect(page.locator('#results')).toContainText('Question 1 of');
   await page.locator('[data-view="papers"]').click();

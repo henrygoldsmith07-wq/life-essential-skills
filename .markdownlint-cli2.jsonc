@@ -1,6 +1,6 @@
 {
   "globs": ["**/*.md"],
-  "ignores": ["node_modules/**", "personal/**", "private/**"],
+  "ignores": ["node_modules/**", "personal/**", "private/**", "test-results/**", "playwright-report/**"],
   "config": {
     "default": true,
     "MD013": false,

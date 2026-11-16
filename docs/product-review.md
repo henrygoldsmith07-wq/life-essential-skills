@@ -46,7 +46,7 @@ Read-only review of current `main` (commit `68a45b1`). The evidence model and as
 
 ### New surfaces
 
-- **Discover** (`/research/`): a daily digest built from 40+ public APIs and feeds. Each selected paper gets one AI agent that writes a labelled life skill, fact, headline, caveat, terms and a check-yourself question. Results are committed as static JSON and Vercel redeploys on the push. Summaries sit outside the learner's evidence record.
+- **Discover** (`/research/`): a daily digest built from 39 public APIs and feeds. Each selected paper gets one AI agent that writes a labelled life skill, fact, headline, caveat, terms and a check-yourself question. Results are committed as static JSON and Vercel redeploys on the push. Summaries sit outside the learner's evidence record.
 - **Learner additions**: named profiles for shared browsers, passphrase-encrypted evidence backup, budget/planner/decision practice tools, a chronological evidence log, the Independence Roadmap, capability milestones, goal-based onboarding, life-transition simulations, a printable profile, more actionable feedback and an installable offline-first shell.
 - Onboarding, AI assistance and practice tools remain evidence-free: none can derive an outcome or turn assisted work into independent evidence.
 

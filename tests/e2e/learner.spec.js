@@ -36,8 +36,17 @@ test('locality, grouped practice, search, pathways and refused import preserve t
   await page.getByRole('link',{name:'Practice',exact:true}).click();await page.getByLabel('Find tasks').selectOption('capstones');await expect(page.locator('#practice-content')).toContainText('Moving out');
   await page.getByLabel('Skill area').selectOption('money');await page.getByLabel('Search tasks and skills').fill('unexpected');await expect(page.locator('#practice-content [data-task]')).toHaveCount(1);
   await page.getByRole('link',{name:'Pathways',exact:true}).click();await page.locator('[data-pathway="digital-safety"]').click();expect((await evidence(page)).pathway).toBe('digital-safety');
+  // A confirmation only makes sense when there is evidence to overwrite.
+  await page.getByRole('link',{name:'Today',exact:true}).click();
+  await start(page);await finish(page);await judge(page);
+  await page.getByRole('button',{name:'Save evidence & find next task'}).click();
   await page.getByRole('link',{name:'My setup',exact:true}).click();const old=await evidence(page);
   await page.locator('#import-state').setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({...old,password:'forbidden'}))});await expect(page.locator('#notice')).toContainText('Import refused');expect(await evidence(page)).toEqual(old);
+  // A valid file must not silently overwrite an existing learner's evidence.
+  page.once('dialog',d=>d.dismiss());
+  await page.locator('#import-state').setInputFiles(path.resolve('examples/learners/wales-housing.json'));
+  expect(await evidence(page)).toEqual(old);
+  page.once('dialog',d=>d.accept());
   await page.locator('#import-state').setInputFiles(path.resolve('examples/learners/wales-housing.json'));await expect(page.locator('#notice')).toContainText('Valid educational');expect((await evidence(page)).records.length).toBeGreaterThan(0);
   await page.getByLabel('Guidance locality').selectOption('uk');await expect(page.locator('#notice')).toContainText('nation-specific');expect((await evidence(page)).locality).toBe('wales');
 });
@@ -107,6 +116,19 @@ test('life-transition simulation develops across three parts and saves per-skill
   // a familiar situation and cannot silently claim fresh transfer.
   await page.getByRole('link',{name:'Simulations',exact:true}).click();
   await expect(page.locator('.simcard').filter({hasText:'Moving out in six weeks'})).toContainText('FAMILIAR SITUATION');
+});
+test('the backup reminder appears only with evidence and stops after a backup',async({page})=>{
+  await page.goto('/learner/');
+  await expect(page.locator('#backup-reminder')).toHaveCount(0);
+  await start(page);await finish(page);await judge(page);
+  await page.getByRole('button',{name:'Save evidence & find next task'}).click();
+  await expect(page.locator('#backup-reminder')).toBeVisible();
+  await page.getByRole('link',{name:'Download a backup in My setup'}).click();
+  await expect(page.locator('#settings')).toBeVisible();
+  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Download evidence'}).click();
+  expect((await download).suggestedFilename()).toMatch(/^life-skills-evidence-/);
+  await page.getByRole('link',{name:'Today',exact:true}).click();
+  await expect(page.locator('#backup-reminder')).toHaveCount(0);
 });
 test('goal onboarding sets a pathway and focus without creating evidence',async({page})=>{
   await page.goto('/learner/');

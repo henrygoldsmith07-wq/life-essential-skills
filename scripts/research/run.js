@@ -17,7 +17,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { dedupe, select, daysAgo } = require('./lib');
+const { dedupe, dedupeKey, select, daysAgo } = require('./lib');
 const { SOURCES } = require('./sources');
 const { summarise } = require('./summarise');
 const { addFreeLinks, buildGlossary } = require('./enrich');
@@ -94,11 +94,11 @@ async function fetchAll(sources, ctx, log) {
 
 // Ids already summarised recently, so the same paper is not repeated daily.
 function seenIds(feed, archiveIndex, today) {
-  const seen = new Set((feed.items || []).map((i) => i.id));
+  const seen = new Set((feed.items || []).map(dedupeKey));
   const cutoff = daysAgo(SEEN_DAYS, new Date(`${today}T12:00:00Z`));
   for (const day of archiveIndex.days || []) {
     if (day.date < cutoff) continue;
-    for (const item of readJson(path.join(OUT, 'archive', `${day.date}.json`), { items: [] }).items || []) seen.add(item.id);
+    for (const item of readJson(path.join(OUT, 'archive', `${day.date}.json`), { items: [] }).items || []) seen.add(dedupeKey(item));
   }
   return seen;
 }
@@ -142,7 +142,7 @@ async function main(argv = process.argv.slice(2), log = (...m) => console.log(..
   const feed = readJson(feedFile, { items: [] });
   const archiveIndex = readJson(indexFile, { days: [] });
   const seen = seenIds(feed, archiveIndex, today);
-  const fresh = all.filter((i) => !seen.has(i.id));
+  const fresh = all.filter((i) => !seen.has(dedupeKey(i)));
   const general = new Set(SOURCES.filter((s) => s.general).map((s) => s.id));
   const picked = select(fresh, opts.max, general);
   log(`\n${all.length} unique items, ${fresh.length} not yet summarised, ${picked.length} selected for summaries`);
@@ -182,7 +182,7 @@ async function main(argv = process.argv.slice(2), log = (...m) => console.log(..
   }
 
   const cutoff = daysAgo(FEED_DAYS, now);
-  const kept = [...todays, ...(feed.items || []).filter((i) => i.digest_date >= cutoff && !todays.some((t) => t.id === i.id))]
+  const kept = [...todays, ...(feed.items || []).filter((i) => i.digest_date >= cutoff && !todays.some((t) => dedupeKey(t) === dedupeKey(i)))]
     .slice(0, FEED_CAP).map(({ excerpt, ...rest }) => rest); // older feeds carried an unused abstract excerpt
   const glossary = await buildGlossary(kept, feed.glossary || {}, log);
   writeJson(feedFile, { schema: 1, ...run, sources: sourceStatus, glossary, items: kept });

@@ -5,6 +5,8 @@
   const click=selector=>{const e=document.querySelector(selector);if(!e)throw new Error('Missing '+selector);e.click();};
   const wait=async fn=>{for(let n=0;n<80;n++){if(fn())return;await new Promise(r=>setTimeout(r,75));}throw new Error('Timed out waiting for UI');};
   const key=LearnerProfiles.evidenceKey(LearnerProfiles.DEFAULT_ID);
+  // The import in this script is deliberate; accept the overwrite prompt.
+  window.confirm=()=>true;
   assert(document.querySelector('h1').textContent==='A little more capable.','Today renders');
   assert(!performance.getEntriesByType('resource').some(r=>r.name.includes('/assessor/')),'No solutions fetched before attempt');
   click('[data-learn]');await wait(()=>document.querySelector('.lesson h3'));assert(document.querySelector('.lesson h3')&&!document.querySelector('.lesson').textContent.includes('## Learn'),'Guide renders readable headings');click('#close-task');

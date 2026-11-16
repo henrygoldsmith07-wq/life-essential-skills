@@ -5,7 +5,7 @@ The [Discover page](index.html) shows new research every day, turned into plain-
 ## How it works
 
 1. A scheduled GitHub Actions workflow (`.github/workflows/research-digest.yml`) runs every morning at 05:17 UTC.
-2. `scripts/research/run.js` queries more than 40 free public APIs and feeds in parallel (see `scripts/research/sources.js`):
+2. `scripts/research/run.js` queries 39 free public APIs and feeds in parallel (see `scripts/research/sources.js`):
    - **Preprint servers:** arXiv (every paper links to its alphaXiv discussion), Hugging Face Daily Papers, medRxiv, bioRxiv, Europe PMC preprints (Research Square, SSRN, Preprints.org and others), OSF Preprints (PsyArXiv, SocArXiv, EdArXiv, MetaArXiv), NBER working papers.
    - **Scholarly indexes:** Semantic Scholar, OpenAlex, DOAJ, ERIC (education research), and, with a free key, CORE (open-access papers) and NASA ADS (astronomy).
    - **Medicine and health:** PubMed (systematic reviews, meta-analyses, trials and cohorts), Cochrane Library reviews via PubMed, and behavioural trials that have just posted results on ClinicalTrials.gov.
@@ -51,7 +51,7 @@ Elicit has no free public API. Its corpus (Semantic Scholar and OpenAlex) is pul
 
 Never commit a key: providers revoke keys found in public repositories. Without any key, the run still lists papers but writes no summaries.
 
-One agent per paper means one request per paper. By default the run summarises 120 papers a day when any provider other than OpenRouter is available, and 40 with OpenRouter alone, whose no-credit free tier allows only 50 requests a day. Free-tier limits change often. The figures above come from a web search in October 2026, mostly from third-party trackers, so check each provider's console. If the log shows repeated rate-limit waits, lower that provider's `_RPM` or `_CONCURRENCY`.
+One agent per paper means one request per paper. By default the run summarises 120 papers a day when any provider other than OpenRouter is available, and 40 with OpenRouter alone, whose no-credit free tier allows only 50 requests a day. Free-tier limits change often. Groq, OpenRouter, Cloudflare and Cerebras figures were checked against their official documentation on 16 Nov 2026 (links above); NVIDIA's ~40/min is a community report because no primary rate-limit page was found. Recheck each provider's console before relying on the numbers. If the log shows repeated rate-limit waits, lower that provider's `_RPM` or `_CONCURRENCY`.
 
 ## Run locally
 

@@ -220,7 +220,7 @@
         (eligible?'<div class="actions"><button type="button" data-sim="'+esc(s.id)+'">'+(known?'Go through it again':'Begin this situation')+'</button></div>':'<p class="muted">This situation depends on nation-specific guidance. Change locality in My setup if that applies to you.</p>')+
         '</div>';
     }).join('');
-    $('simulations-content').innerHTML=cards||'<p class="empty">No simulations available. Choose a pathway and supported locality in My setup to unlock life-transition challenges.</p>';
+    $('simulations-content').innerHTML=cards||'<p class="empty">No simulations are available for the current guidance locality.</p>';
   }
   function renderProfile(){
     const p=Roadmap.profile(state,D,today());
@@ -307,14 +307,16 @@
     renderToday(rec,p);renderRoadmap();renderProgress(p);$('progress-content').insertAdjacentHTML('beforeend',evidenceLogHtml());renderPractice();renderSimulations();renderTools(false);renderProfile();assessor.render();
     $('pathways-content').innerHTML='<div class="grid">'+D.index.pathways.map(p=>'<div class="card"><h2>'+esc(p.title)+'</h2><p>'+esc(p.domains.map(d=>D.index.domains.find(x=>x.id===d).title).join(', '))+'</p><p>30 suggested sessions, adjusted to your evidence. Finish with '+esc(D.index.capstones.find(c=>c.id===p.capstone).title)+'.</p><button type="button" data-pathway="'+esc(p.id)+'" '+(p.id===state.pathway?'disabled':'')+'>'+(p.id===state.pathway?'Your current pathway':'Choose this pathway')+'</button></div>').join('')+'</div>';
   }
+  function showLoading(){current=null;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><p class="muted" role="status" aria-live="polite">Loading…</p></div>';}
+  function failLoading(e){$('workspace').hidden=true;$('workspace').replaceChildren();notice(e.message);}
   async function showLesson(path){
-    const n=++token;current=null;
-    try{const chunk=await load.lesson(path);if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><h2 id="task-title">'+esc(D.index.domains.find(d=>d.path===path).title)+'</h2><p>Use the guide freely for practice. Close it before a fresh independent attempt.</p><div class="lesson">'+teachingMarkdown(chunk.lesson,path)+'</div><button type="button" class="secondary" id="close-task">Close the guide</button></div>';$('close-task').onclick=closeTask;U.focus('task-title');}catch(e){notice(e.message);}
+    const n=++token;current=null;showLoading();
+    try{const chunk=await load.lesson(path);if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><h2 id="task-title">'+esc(D.index.domains.find(d=>d.path===path).title)+'</h2><p>Use the guide freely for practice. Close it before a fresh independent attempt.</p><div class="lesson">'+teachingMarkdown(chunk.lesson,path)+'</div><button type="button" class="secondary" id="close-task">Close the guide</button></div>';$('close-task').onclick=closeTask;U.focus('task-title');}catch(e){failLoading(e);}
   }
   function closeTask(){token++;current=null;$('workspace').replaceChildren();$('workspace').hidden=true;U.focus(view+'-title');}
   function renderMaterials(item){return item.family==='capstone'?item.materials.map(text=>teachingMarkdown(text,D.index.capstones.find(c=>c.id===item.id).path)).join(''):list(item.materials);}
   async function startTask(id){
-    const n=++token;current=null;aiUsed=false;
+    const n=++token;current=null;aiUsed=false;showLoading();
     try{const item=await load.item(id);if(n!==token||!E.eligible(item,state.locality))return;
       const known=E.seen(state,item,D),missing=item.prerequisites.filter(c=>E.summary(state,c,D).status!=='demonstrated');
       current={item,known,finished:false,attemptId:'a-'+Date.now()+'-'+state.exposures.length,phase:known?'practice':(!state.records.length||missing.length)?'diagnostic':undefined};
@@ -327,7 +329,7 @@
       const prepHtml=FV.preemptiveGuidance(prepTags.map(t=>t&&labels[t]).filter(Boolean));
       if(n!==token)return;$('workspace').hidden=false;$('workspace').innerHTML='<div class="card"><p class="eyebrow">'+(known?'PRACTISE A FAMILIAR TASK':'TRY A NEW SITUATION')+'</p><h2 id="task-title">'+esc(item.title)+'</h2><p class="time">About '+item.estimated_time_minutes+' minutes</p>'+(missing.length?'<p class="notice">Supporting skills still to check: '+esc(missing.map(skillName).join(', '))+'. This diagnostic will not award those supporting skills.</p>':'')+renderMaterials(item)+'<p class="task-text">'+esc(item.task)+'</p>'+prepHtml+'<details><summary>Safety and access</summary>'+list(item.safety_constraints)+'<p>Written performance cannot prove physical competence. Access adjustments do not reduce the outcome.</p></details><details><summary>Relevant guidance</summary>'+item.source_uses.filter(u=>u.role==='general-principle'||(u.jurisdictions||[]).some(j=>E.covers(j,state.locality))).map(u=>{const s=D.sources.find(s=>s.id===u.source_id);return '<p><a href="'+esc(s.url)+'" rel="noopener noreferrer" target="_blank">'+esc(s.title)+'</a></p><p class="muted">'+esc(u.justification||'Check the current source and its locality before using guidance.')+'</p>';}).join('')+'</details><label for="response">Your fictional response</label><textarea id="response" placeholder="Write your reasoning here, or use paper or speech. This answer is never saved."></textarea><label><input type="checkbox" id="paper-attempt"> I completed a response on paper or by speaking.</label><div class="actions">'+(AI_ADAPTER&&AI_ADAPTER.coach_practice?'<button type="button" class="secondary" id="ai-hint">Get a practice coaching hint</button>':'')+'<button type="button" id="finish-attempt">Finish attempt & check feedback</button><button type="button" class="secondary" id="close-task">Close task</button></div><div id="ai-hint-body"></div><div id="feedback-area" hidden></div></div>';
       $('finish-attempt').onclick=finishAttempt;$('close-task').onclick=closeTask;if($('ai-hint'))$('ai-hint').onclick=aiHint;U.focus('task-title');
-    }catch(e){notice(e.message);}
+    }catch(e){failLoading(e);}
   }
   async function aiHint(){
     const n=token;
@@ -426,7 +428,7 @@
   }
   async function launchSimulation(simId){
     const sim=(D.simulations&&D.simulations.simulations||[]).find(s=>s.id===simId);if(!sim)return;
-    const n=++token;current=null;
+    const n=++token;current=null;showLoading();
     try{
       const item=await load.item(sim.capstone);if(n!==token||!E.eligible(item,state.locality))return;
       const known=E.seen(state,item,D),missing=item.prerequisites.filter(c=>E.summary(state,c,D).status!=='demonstrated');
@@ -435,7 +437,7 @@
       $('workspace').innerHTML=SV.intro(sim,item);
       $('sim-begin').onclick=()=>{current.stage=0;$('workspace').innerHTML=SV.stage(sim,0);bindSim(sim,item);U.focus('task-title');};
       $('close-task').onclick=closeTask;U.focus('task-title');
-    }catch(e){notice(e.message);}
+    }catch(e){failLoading(e);}
   }
   function bindSim(sim,item){
     // Each stage re-renders the workspace, which discards handlers attached to
@@ -501,13 +503,13 @@
     }else{navigate('roadmap');location.hash='roadmap';}
     notice('Your pathway and focus skills are set. Start with the highlighted next step.');
   }
-  async function importEvidence(input){try{const file=input.files[0];if(!file)return;if(file.size>8000000)throw new Error('Evidence file is too large');const next=E.migrateState(JSON.parse(await file.text()),D,today());closeTask();assessor.cancel();blocked=false;persist(next);notice('Valid educational evidence imported. Review labels are local claims, not authenticated certificates.');}catch(e){notice('Import refused: '+e.message);}finally{input.value='';}}
+  async function importEvidence(input){try{const file=input.files[0];if(!file)return;if(file.size>8000000)throw new Error('Evidence file is too large');const next=E.migrateState(JSON.parse(await file.text()),D,today());if(hasEvidence()&&!confirm('Replace this learner’s current evidence with the selected file? This cannot be undone. Download a backup first if you are unsure.'))return;closeTask();assessor.cancel();blocked=false;persist(next);notice('Valid educational evidence imported. Review labels are local claims, not authenticated certificates.');}catch(e){notice('Import refused: '+e.message);}finally{input.value='';}}
   $('domain-filter').innerHTML='<option value="all">All skill areas</option>'+D.index.domains.map(d=>'<option value="'+esc(d.id)+'">'+esc(d.title)+'</option>').join('');
   $('domain-filter').onchange=renderPractice;$('practice-filter').onchange=renderPractice;$('practice-search').oninput=renderPractice;
   $('goal').innerHTML+='<optgroup label="Skills">'+D.skills.competencies.filter(c=>c.mode==='independent').map(c=>'<option value="'+c.id+'">'+esc(skillName(c.id))+'</option>').join('')+'</optgroup>';
   $('goal').onchange=()=>persist({...state,goal_competencies:$('goal').value?[$('goal').value]:[]});
   $('locality').onchange=()=>{const next={...state,locality:$('locality').value},errors=E.validateState(next,D,today());if(errors.length){$('locality').value=state.locality;notice('Historical evidence uses nation-specific guidance. Download a copy and begin a separate profile to change locality.');}else{closeTask();persist(next);}};
-  $('import-state').onchange=()=>importEvidence($('import-state'));$('assessor-import').onchange=()=>importEvidence($('assessor-import'));
+  $('import-state').onchange=()=>importEvidence($('import-state'));$('import-state-button').onclick=()=>$('import-state').click();$('assessor-import').onchange=()=>importEvidence($('assessor-import'));
   $('export-state').onclick=()=>{try{markBackedUp();render();}catch{}if(blocked){try{const original=localStorage.getItem(evidenceKey());if(original){downloadText('life-skills-original-needs-repair.json',original);notice('Backup downloaded.');return;}}catch{notice('The original storage could not be downloaded.');return;}}download('life-skills-evidence-'+profileId+'.json',state);notice('Backup downloaded.');};
   // Passphrase-encrypted backup: the same evidence wrapped by CryptoBackup
   // (AES-GCM-256, PBKDF2-SHA256) so the file is opaque without the

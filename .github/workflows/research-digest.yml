@@ -3,6 +3,8 @@ name: Daily research digest
 # Fetches new papers from every source in scripts/research/sources.js,
 # summarises each selected paper with its own AI agent, and commits the
 # static JSON under research/data/. Vercel redeploys on the push.
+# The fetch/summarise job parses untrusted feed and model text with a
+# read-only token; a second, write-scoped job only commits the generated JSON.
 #
 # Setup: Settings → Secrets and variables → Actions → New repository secret.
 # Add any of these; every model provider with a key runs agents in parallel:
@@ -31,18 +33,22 @@ on:
         default: ''
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: research-digest
   cancel-in-progress: false
 
 jobs:
+  # Feed text and model replies are untrusted. Parse them with a read-only
+  # token and no persisted credentials; only the commit job can write.
   digest:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - name: Test the digest pipeline
         run: node --test tests/research.test.js
       - name: Fetch and summarise new research
@@ -62,7 +68,31 @@ jobs:
           DAYS: ${{ inputs.days || '2' }}
           MAX: ${{ inputs.max }}
         run: node scripts/research/run.js --days "$DAYS" ${MAX:+--max "$MAX"}
+      - name: Upload the generated digest
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-data
+          path: research/data/
+          if-no-files-found: error
+
+  commit:
+    needs: digest
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Download the generated digest
+        uses: actions/download-artifact@v4
+        with:
+          name: research-data
+          path: research/data
       - name: Commit the digest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -70,7 +100,7 @@ jobs:
           if git diff --cached --quiet; then echo 'No changes'; exit 0; fi
           git commit -m "chore(research): daily digest $(date -u +%F)"
           for i in 1 2 3 4; do
-            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            git -c http.extraHeader="AUTHORIZATION: bearer ${GITHUB_TOKEN}" pull --rebase origin "${GITHUB_REF_NAME}" && git -c http.extraHeader="AUTHORIZATION: bearer ${GITHUB_TOKEN}" push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
             sleep $((i * 5))
           done
           exit 1
