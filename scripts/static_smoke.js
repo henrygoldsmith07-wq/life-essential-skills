@@ -90,9 +90,12 @@ server.listen(PORT, '127.0.0.1', async () => {
   let fail = 0;
   for (const u of urls) {
     const r = await get(u);
-    const ok = r.status === 200 && r.bytes > 0;
+    const file = u === '/' ? '/index.html' : u.endsWith('/') ? u + 'index.html' : u;
+    const expectedType = (TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream');
+    const typeOk = r.type.split(';')[0] === expectedType;
+    const ok = r.status === 200 && r.bytes > 0 && typeOk;
     if (!ok) fail++;
-    console.log(`${ok ? 'PASS' : 'FAIL'} ${u.padEnd(46)} ${r.status}  ${String(r.bytes).padStart(7)}b  ${r.type}`);
+    console.log(`${ok ? 'PASS' : 'FAIL'} ${u.padEnd(46)} ${r.status}  ${String(r.bytes).padStart(7)}b  ${r.type}${typeOk ? '' : ' (expected ' + expectedType + ')'}`);
   }
   // Verify the critical invariant: data.js has no embedded solutions.
   const body = fs.readFileSync(path.join(ROOT, 'learner/data.js'), 'utf8');

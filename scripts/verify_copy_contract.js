@@ -50,9 +50,24 @@ for (const s of [...wanted].sort()) {
   }
 }
 
-console.log('\nchecked ' + wanted.size + ' strings the browser suite depends on');
+// Discover's browser spec also drives the real page by visible text. Its
+// lookups are template literals, so check the source fragments they rely on.
+const discover = ['research/research.js', 'research/index.html']
+  .map(f => fs.readFileSync(path.join(root, f), 'utf8')).join('\n');
+const discoverCopy = [
+  ['Updated', discover.includes('Updated ')],
+  ['Did you know?', discover.includes('Did you know?')],
+  ['Question 1 of', /Question \$\{[^}]+\} of \$\{/.test(discover)],
+  ['Nothing saved', discover.includes('Nothing saved')]
+];
+for (const [s, present] of discoverCopy) {
+  console.log((present ? 'PASS ' : 'FAIL ') + s + (present ? '' : '  (Discover copy changed)'));
+  if (!present) { missing.push('Discover: ' + s); fail++; }
+}
+
+console.log('\nchecked ' + wanted.size + ' learner strings plus ' + discoverCopy.length + ' Discover strings the browser suite depends on');
 if (missing.length) {
-  console.log('\nThese lookups would fail in the browser job. Either restore the copy or update tests/e2e/learner.spec.js:');
+  console.log('\nThese lookups would fail in the browser job. Either restore the copy or update the affected browser spec:');
   missing.forEach(s => console.log('  - ' + s));
 }
 console.log(fail === 0 ? '\nALL COPY-CONTRACT CHECKS PASS' : '\n' + fail + ' FAILURE(S)');
