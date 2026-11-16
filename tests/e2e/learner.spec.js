@@ -43,10 +43,11 @@ test('locality, grouped practice, search, pathways and refused import preserve t
   await page.getByRole('link',{name:'My setup',exact:true}).click();const old=await evidence(page);
   await page.locator('#import-state').setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({...old,password:'forbidden'}))});await expect(page.locator('#notice')).toContainText('Import refused');expect(await evidence(page)).toEqual(old);
   // A valid file must not silently overwrite an existing learner's evidence.
-  page.once('dialog',d=>d.dismiss());
+  let acceptOverwrite=false;
+  page.on('dialog',d=>acceptOverwrite?d.accept():d.dismiss());
   await page.locator('#import-state').setInputFiles(path.resolve('examples/learners/wales-housing.json'));
   expect(await evidence(page)).toEqual(old);
-  page.once('dialog',d=>d.accept());
+  acceptOverwrite=true;
   await page.locator('#import-state').setInputFiles(path.resolve('examples/learners/wales-housing.json'));await expect(page.locator('#notice')).toContainText('Valid educational');expect((await evidence(page)).records.length).toBeGreaterThan(0);
   await page.getByLabel('Guidance locality').selectOption('uk');await expect(page.locator('#notice')).toContainText('nation-specific');expect((await evidence(page)).locality).toBe('wales');
 });
