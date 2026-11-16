@@ -195,9 +195,10 @@ for(const view of ['today','progress','practice','pathways','settings','assessor
     // Hash routing is synchronous, but a loaded machine can delay the page
     // scripts past the default 5s assertion; allow time without weakening the
     // check itself (a hash that never routes still fails).
-    await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/learner/#'+view);await expect(page.locator('#'+view)).toBeVisible({timeout:15000});
+    await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/learner/#'+view);await expect(page.locator('#'+view)).toBeVisible({timeout:30000});
     const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(result.violations,view).toEqual([]);
-    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    // Let layout settle before measuring; a genuinely too-wide page still fails.
+    expect(await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(()=>r(document.documentElement.scrollWidth<=innerWidth)))))).toBe(true);
     // Standalone card actions are not inline text; they need a usable target.
     expect(await page.evaluate(()=>[...document.querySelectorAll('section:not([hidden]) .card > a')]
       .filter(e=>{const b=e.getBoundingClientRect();return b.width>0&&b.height>0&&b.height<24;}).length),view).toBe(0);
