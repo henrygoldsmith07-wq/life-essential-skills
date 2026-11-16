@@ -39,6 +39,30 @@ t('irregular allowance needs whole months in range', () => {
   assert.strictEqual(T.irregularAllowance(b), 0);
 });
 
+t('irregular allowance matches the worksheet example and warns only when unusable', () => {
+  // templates/budget.md: an annual expense of 120 saved over twelve months
+  // gives a monthly allowance of 10; with six months remaining it is 20.
+  const b = T.emptyBudget();
+  b.irregularExpected = '120'; b.irregularMonths = '12';
+  assert.strictEqual(T.irregularAllowance(b), 10);
+  b.irregularMonths = '6';
+  assert.strictEqual(T.irregularAllowance(b), 20);
+  assert.ok(!T.validateBudget(b).some(w => /irregular/i.test(w)), 'a valid allowance raises no warning');
+  // Amount present but months unusable: the plain-word warning appears.
+  b.irregularMonths = '0';
+  assert.ok(T.validateBudget(b).some(w => /whole months remaining/.test(w)));
+});
+
+t('decision totals count cells so partial coverage can warn', () => {
+  // validateDecision warns when rated < cells, so cells must cover every
+  // importance x rating box, set or not.
+  const d = T.emptyDecision();
+  d.importance = ['3', '1', '', ''];
+  d.ratings = [['3', '1', '2'], ['2', '2', '2'], ['', '', ''], ['', '', '']];
+  assert.strictEqual(T.decisionTotals(d).cells, 12, 'four criteria x three options');
+  assert.strictEqual(T.decisionTotals(T.emptyDecision()).cells, 12, 'empty boxes still count');
+});
+
 t('timing check finds a below-zero low point', () => {
   const b = T.emptyBudget();
   b.income[0] = { label: 'Pay', amount: '500', day: '1' };
@@ -74,6 +98,25 @@ t('review validation asks for one action', () => {
   const r = T.emptyReview();
   r.practised = 'budget'; r.priorities[0].action = 'cook once';
   assert.strictEqual(T.validateReview(r).length, 0);
+});
+
+t('review and decision dates validate real calendar days including leap years', () => {
+  const review = T.emptyReview();
+  review.practised = 'budget'; review.priorities[0].action = 'cook once';
+  review.reviewDate = '2024-02-29';
+  assert.strictEqual(T.validateReview(review).length, 0);
+  review.reviewDate = '2026-02-29';
+  assert.ok(T.validateReview(review).some(w => /real date/.test(w)));
+
+  const decision = T.emptyDecision();
+  decision.date = '2026-02-31';
+  decision.deadline = '2026-04-30';
+  assert.ok(T.validateDecision(decision).some(w => /real dates/.test(w)));
+  decision.date = '2024-02-29';
+  decision.deadline = '2026-04-31';
+  assert.ok(T.validateDecision(decision).some(w => /real dates/.test(w)));
+  decision.deadline = '2026-04-30';
+  assert.ok(!T.validateDecision(decision).some(w => /real dates/.test(w)));
 });
 
 t('storage keys isolate profiles', () => {

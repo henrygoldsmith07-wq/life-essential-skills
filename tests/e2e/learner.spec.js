@@ -20,6 +20,15 @@ test('Today, lazy learning, attempt gating, structured derived review and privat
   await page.getByRole('button',{name:'Save evidence & find next task'}).click();const s=await evidence(page);expect(s.records[0].outcome).toBe('demonstrated');expect(s.records[0].evidence_level).toBe('self-reviewed');expect(s.records[0].access_supports).toEqual(['extra-time']);expect(JSON.stringify(s)).not.toContain('FICTIONAL ORIGINAL');expect(Object.keys(s.records[0])).not.toContain('response');
   await page.reload();await page.getByRole('link',{name:'Progress',exact:true}).click();await expect(page.locator('#progress-content')).toContainText('Independent, self-reviewed');expect(errors).toEqual([]);
 });
+test('failed task content load leaves a visible retry state',async({page})=>{
+  await page.goto('/learner/');
+  await page.route('**/learner/chunks/*.json',route=>route.abort());
+  await page.getByRole('button',{name:'Start this task',exact:true}).click();
+  await expect(page.locator('#workspace')).toBeVisible();
+  await expect(page.locator('#workspace')).toContainText('Content unavailable');
+  await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible();
+  await expect(page.locator('#workspace [role="alert"]')).toContainText('failed');
+});
 test('help prevents independent outcomes, and cancelled feedback is never fresh again',async({page})=>{
   await start(page);const id=await page.locator('#today-content [data-task]').getAttribute('data-task');await finish(page);await page.getByRole('button',{name:'Close task',exact:true}).click();
   await page.getByRole('link',{name:'Practice',exact:true}).click();await page.getByLabel('Find tasks').selectOption('guided');await page.locator('[data-task="'+id+'"]').click();await finish(page);await judge(page);await expect(page.locator('#solution-before')).toBeChecked();await expect(page.locator('#derived-result')).toContainText('Completed with help');

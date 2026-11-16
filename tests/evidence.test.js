@@ -78,6 +78,11 @@ test('lazy catalog caches domain fetches, retries failures and never loads feedb
   await catalog.item('M-CF-01');await catalog.item('M-CF-01');assert.deepEqual(calls,['chunks/money.json']);
   let n=0;const retry=C.create({...D,bank:{items:[{...item('M-CF-01'),chunk:'money'}]}},async()=>({ok:++n>1,json:async()=>({items:[item('M-CF-01')]})}));await assert.rejects(()=>retry.item('M-CF-01'));await retry.item('M-CF-01');assert.equal(n,2);
 });
+test('catalog rejects missing content instead of returning undefined or crashing on an invalid guide path',async()=>{
+  const catalog=C.create({...D,bank:{items:[{...item('M-CF-01'),chunk:'money'}]}},async()=>({ok:true,json:async()=>({items:[]})}));
+  await assert.rejects(()=>catalog.item('M-CF-01'),/Learning task could not load/);
+  await assert.rejects(()=>catalog.lesson('guides/not-published.md'),/Learning guide could not load/);
+});
 test('prior solutions cannot be transfer even when exposure history is absent',()=>{
   assert.throws(()=>attempt(E.emptyState(),'M-CF-01',{solution_seen:true,phase:'transfer'}),/known answers/);
   assert.equal(attempt(E.emptyState(),'M-CF-01',{solution_seen:true}).records[0].phase,'practice');
