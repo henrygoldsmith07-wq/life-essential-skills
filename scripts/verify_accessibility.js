@@ -134,6 +134,17 @@ ok('every simulation stage renders', D.simulations.simulations.every(s => s.stag
   ok('the view-rendered workspace label id exists',
     ['roadmap-view.js', 'onboarding-view.js', 'simulation-view.js', 'feedback-view.js', 'profile-view.js', 'app.js', 'assessor.js']
       .some(f => /id="task-title"/.test(fs.readFileSync(path.join(root, 'learner', f), 'utf8'))));
+  // Shell inputs are not covered by the rendered-view label check above. The
+  // hidden file input behind "Import evidence" had no accessible name until
+  // axe caught it on the settings view.
+  const unlabelledFiles = [...sh.matchAll(/<input[^>]*type="file"[^>]*>/g)]
+    .map(m => m[0])
+    .filter(tag => {
+      const id = (tag.match(/id="([^"]+)"/) || [])[1];
+      return !/aria-label=/.test(tag) && !(id && sh.includes('<label for="' + id + '"'));
+    });
+  ok('every shell file input has an accessible name', unlabelledFiles.length === 0,
+    unlabelledFiles.map(t => t.slice(0, 60)).join(', '));
 }
 
 console.log(fail === 0 ? '\nALL ACCESSIBILITY/ESCAPING CHECKS PASS' : '\n' + fail + ' FAILURE(S)');

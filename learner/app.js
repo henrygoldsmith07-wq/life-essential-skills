@@ -568,7 +568,7 @@
     $('decision-tool').addEventListener('input',()=>{readToolsFromDom();saveTools();$('decision-result').innerHTML=T.decisionResult(toolsDraft.decision);});
     $('decision-tool').addEventListener('change',()=>{readToolsFromDom();saveTools();$('decision-result').innerHTML=T.decisionResult(toolsDraft.decision);});
     $('budget-download').onclick=()=>downloadText('budget-plan-'+profileId+'.md',T.budgetMarkdown(toolsDraft.budget),'text/markdown');
-    $('budget-print').onclick=()=>window.print();
+    $('budget-print').onclick=()=>{document.body.classList.add('printing-budget');const done=()=>{document.body.classList.remove('printing-budget');window.removeEventListener('afterprint',done);};window.addEventListener('afterprint',done);window.print();};
     $('budget-clear').onclick=()=>{if(confirm('Clear this budget draft? This cannot be undone.')){toolsDraft.budget=T.emptyBudget();saveTools();delete $('budget-tool').dataset.built;renderTools(true);notice('Budget draft cleared.');}};
     $('review-download').onclick=()=>downloadText('weekly-review-'+profileId+'.md',T.reviewMarkdown(toolsDraft.review),'text/markdown');
     $('decision-download').onclick=()=>downloadText('decision-'+profileId+'.md',T.decisionMarkdown(toolsDraft.decision),'text/markdown');
