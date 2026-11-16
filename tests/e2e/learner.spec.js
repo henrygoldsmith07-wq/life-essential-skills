@@ -131,6 +131,20 @@ test('a new learner starts with their own locality and pathway, not the previous
   expect(fresh.locality).toBe('uk');expect(fresh.pathway).toBe('general');
   await expect(page.getByRole('button',{name:'Remove active learner'})).toBeEnabled();
   await page.getByLabel('Active learner',{exact:true}).selectOption('personal');expect(await activeEvidence(page)).toEqual(personal);
+  // Removing and re-adding a learner must not hand over their private tools
+  // draft or backup reminder stamp, which are stored outside the evidence slot.
+  await page.evaluate(()=>{
+    localStorage.setItem('life-essential-skills-tools-v1::second-learner','{"budget":{"opening":"private"}}');
+    localStorage.setItem('life-essential-skills-backup::second-learner','12345');
+  });
+  await page.getByLabel('Active learner',{exact:true}).selectOption('second-learner');
+  page.once('dialog',d=>d.accept());
+  await page.getByRole('button',{name:'Remove active learner'}).click();
+  const leftovers=await page.evaluate(()=>({
+    tools:localStorage.getItem('life-essential-skills-tools-v1::second-learner'),
+    backup:localStorage.getItem('life-essential-skills-backup::second-learner')
+  }));
+  expect(leftovers).toEqual({tools:null,backup:null});
 });
 test('encrypted backup round-trips in the browser and refuses a wrong passphrase',async({page})=>{
   await page.goto('/learner/#settings');await page.getByLabel('Guidance locality').selectOption('wales');

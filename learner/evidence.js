@@ -7,6 +7,9 @@
   const access=['screen-reader','scribe','extra-time','spoken-response','large-print','translation','alternative-context'];
   const clone=v=>JSON.parse(JSON.stringify(v));
   const id=v=>typeof v==='string'&&/^[a-zA-Z0-9-]{1,80}$/.test(v);
+  // A stable short digest keeps a migrated attempt_id unique and within the
+  // 80-character id limit even when the legacy record id is itself 80 chars.
+  const shortHash=(s)=>{let h=2166136261;for(let n=0;n<s.length;n++){h^=s.charCodeAt(n);h=Math.imul(h,16777619);}return (h>>>0).toString(16).padStart(8,'0');};
   function exact(v,keys){return !!v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).length===keys.length&&keys.every(k=>Object.hasOwn(v,k));}
   function strings(v,allowed,max=80){return Array.isArray(v)&&v.length<=max&&new Set(v).size===v.length&&v.every(x=>allowed.includes(x));}
   function rubric(item,cid){return item.scoring.filter(s=>!s.competency_id||s.competency_id===cid);}
@@ -93,7 +96,7 @@
       const judgements=rubric(item,r.competency_id).map(s=>({criterion_id:s.id,judgement:criteria_met.includes(s.id)?'met':'not-met'}));
       const known=state.records.slice(0,n).some(x=>data.bank.items.find(i=>i.id===x.item_id)?.exposure_group===item.exposure_group);
       const exposed=r.solution_seen||known;
-      return {...facts,solution_seen:exposed,attempt_id:'legacy-'+r.id,criteria_judgements:judgements,evidence_level:reviewed_by==='assessor'?'assessor-reviewed':'self-reviewed',reviewer_type:reviewed_by==='assessor'?'assessor':'learner',outcome:derive(rubric(item,r.competency_id),judgements,r.help_used,exposed,r.error_tags)};
+      return {...facts,solution_seen:exposed,attempt_id:'lg-'+r.id.slice(0,68)+'-'+shortHash(r.id),criteria_judgements:judgements,evidence_level:reviewed_by==='assessor'?'assessor-reviewed':'self-reviewed',reviewer_type:reviewed_by==='assessor'?'assessor':'learner',outcome:derive(rubric(item,r.competency_id),judgements,r.help_used,exposed,r.error_tags)};
     });return next;
   }
   return {access,clone,exact,strings,rubric,validJudgements,derive,effective,seen,validate,migrate};

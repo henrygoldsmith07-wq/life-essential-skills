@@ -52,15 +52,18 @@ const PROVIDERS = [
   },
   {
     id: 'cerebras', label: 'Cerebras', base: 'https://api.cerebras.ai/v1', key: 'CEREBRAS_API_KEY', model: 'CEREBRAS_MODEL',
-    // No permanent free tier since July 2026: a 30-day, $5 trial (card required) on gpt-oss-120b and
-    // qwen-3.8-27b at 5 requests/min and 1M tokens/day.
+    // No permanent free tier: a 30-day, $5 trial (card required). Official limits:
+    // gpt-oss-120b 5 RPM / 1M TPD; qwen-3.8-27b 300 RPM / 150K uncached TPM.
+    // We stay at 5 RPM for either model rather than relying on the higher Qwen ceiling.
     fallback: 'gpt-oss-120b',
     spec: { include: /llama|qwen|gpt-oss/i, exclude: /guard|coder|vision/i, prefer: [[/gpt-oss-120b/i, 8], [/qwen-?3\.8/i, 7], [/235b/i, 6], [/70b/i, 5]] },
     defaults: { concurrency: 2, rpm: 5, daily: 400 },
   },
   {
-    // Workers AI: about 10,000 free "neurons" a day, roughly 100–200 summaries
-    // from a 70B model. Needs the account id as well as an API token.
+    // Workers AI needs the account id as well as an API token. Official docs
+    // (Sep 2026) list 300 RPM for Text Generation; models needing the Paid plan
+    // are 20 RPM, or 50 with unified gateway credits. Keep the low local budget
+    // rather than assuming the full allowance.
     id: 'cloudflare', label: 'Cloudflare Workers AI', key: 'CLOUDFLARE_API_TOKEN', model: 'CLOUDFLARE_MODEL', needs: ['CLOUDFLARE_ACCOUNT_ID'],
     base: (env) => `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(env.CLOUDFLARE_ACCOUNT_ID)}/ai/v1`,
     modelsUrl: (env) => `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(env.CLOUDFLARE_ACCOUNT_ID)}/ai/models/search?task=${encodeURIComponent('Text Generation')}&per_page=100`,

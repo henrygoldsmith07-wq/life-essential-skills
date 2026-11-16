@@ -541,7 +541,17 @@
     const target=list.find(p=>p.id===profileId),others=list.filter(p=>p.id!==profileId);
     if(!others.length){notice('Keep at least one learner on this browser.');return;}
     if(!confirm('Remove '+(target?target.name:'this learner')+' and delete only their evidence on this browser? Download a backup first.'))return;
-    try{LearnerProfiles.switchTo(profilesBackend,others[0].id);LearnerProfiles.remove(profilesBackend,target.id);profileId=LearnerProfiles.currentId(profilesBackend);closeTask();assessor.cancel();loadProfileState();notice('Learner removed. Everyone else’s evidence is untouched.');}catch(e){notice(e.message);render();}
+    try{
+      LearnerProfiles.switchTo(profilesBackend,others[0].id);
+      LearnerProfiles.remove(profilesBackend,target.id);
+      // The store removes only the evidence slot. Tool drafts and the backup
+      // reminder stamp are also per-profile; leaving them would hand a new
+      // learner with the same name another learner's private draft and state.
+      for(const key of [T.storageKey(target.id),'life-essential-skills-backup::'+target.id]){
+        try{localStorage.removeItem(key);}catch{}
+      }
+      profileId=LearnerProfiles.currentId(profilesBackend);closeTask();assessor.cancel();loadProfileState();notice('Learner removed. Everyone else’s evidence is untouched.');
+    }catch(e){notice(e.message);render();}
   };
   // Tool drafts autosave per keystroke into the active profile's slot; the
   // budget result panel updates live while review warnings refresh on
