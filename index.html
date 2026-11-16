@@ -21,7 +21,7 @@
     .eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; opacity: .7; margin: 0 0 .25rem; }
     h1 { font-size: clamp(1.6rem, 1.1rem + 2vw, 2.4rem); line-height: 1.2; margin: .25rem 0 .75rem; }
     .intro { font-size: 1.05rem; opacity: .85; margin: 0 0 1.5rem; }
-    .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.25rem 0; }
+    .actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: .75rem; margin: 1.25rem 0; }
     .button { display: inline-block; padding: .7rem 1.1rem; border-radius: .6rem; background: #1f6f5c; color: #fff; text-decoration: none; font-weight: 600; border: 1px solid transparent; }
     .button.secondary { background: transparent; color: inherit; border-color: rgba(128,128,128,.5); }
     .button:focus-visible, a:focus-visible { outline: 3px solid #1f6f5c; outline-offset: 2px; }

@@ -60,6 +60,17 @@ describe('learner profiles', () => {
     }
   });
 
+  it('rebuilds a damaged index that exceeds the cap or repeats an id', () => {
+    const repeated = { current: 'personal', order: ['personal', 'jo', 'jo'], names: { personal: 'Personal', jo: 'Jo' } };
+    const ids = Array.from({ length: Profiles.MAX_PROFILES + 1 }, (_, n) => 'p' + n);
+    const tooMany = { current: ids[0], order: ids, names: Object.fromEntries(ids.map(id => [id, 'Learner'])) };
+    for (const bad of [repeated, tooMany]) {
+      const s = stub({ [Profiles.INDEX_KEY]: JSON.stringify(bad) });
+      assert.equal(Profiles.currentId(s), 'personal');
+      assert.deepEqual(Profiles.list(s).map(p => p.id), ['personal']);
+    }
+  });
+
   it('derives unique ids from duplicate names and caps the count', () => {
     const s = stub();
     assert.equal(Profiles.create(s, 'Sam'), 'sam');

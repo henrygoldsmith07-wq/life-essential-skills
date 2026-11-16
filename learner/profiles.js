@@ -33,8 +33,9 @@
       if(!raw)return null;
       const doc = JSON.parse(raw);
       if(!doc || typeof doc !== 'object' || !validId(doc.current) ||
-        !Array.isArray(doc.order) || !doc.order.length ||
-        !doc.order.every(validId) || !doc.order.includes(doc.current) ||
+        !Array.isArray(doc.order) || !doc.order.length || doc.order.length > MAX_PROFILES ||
+        !doc.order.every(validId) || new Set(doc.order).size !== doc.order.length ||
+        !doc.order.includes(doc.current) ||
         typeof doc.names !== 'object' || !doc.names ||
         !doc.order.every(id => typeof doc.names[id] === 'string' && doc.names[id].trim()))return null;
       return { current: doc.current, order: [...doc.order], names: { ...doc.names } };

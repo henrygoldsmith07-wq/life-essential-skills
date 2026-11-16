@@ -127,6 +127,7 @@ const textOf = (id) => byId[id].textContent;
   (docListeners.DOMContentLoaded || []).forEach((fn) => fn());
   await flush();
   ok('init renders run statistics', /Updated/.test(textOf('meta')), textOf('meta').slice(0, 70));
+  ok('run summary is readable, not raw model ids', !/nemotron|qwen|llama|@cf\//i.test(textOf('meta')) && /NVIDIA \d+/.test(textOf('meta')));
   ok('init renders cards from the real feed', cardCount() > 0, cardCount() + ' cards');
   ok('today’s picks render', byId.picks.hidden === false && byId['picks-list'].children.length >= 2);
   ok('source health renders', byId['source-list'].descendants().some((c) => c.tagName === 'LI'));

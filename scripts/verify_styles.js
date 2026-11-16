@@ -58,3 +58,13 @@ console.log('classes with a CSS rule      :', [...used].filter(c => defined.has(
 console.log('');
 if (missing.length) { console.log('UNSTYLED (no rule found):'); missing.forEach(c => console.log('  .' + c)); process.exit(1); }
 console.log('PASS: every emitted class has a style.');
+
+// The two animated product elements must honour reduced-motion, or a learner
+// who asked for less movement still sees the milestone bar and disclosure
+// arrow animate on every navigation.
+const productCss = fs.readFileSync(path.join(root, 'learner', 'product.css'), 'utf8');
+if (!/@media\s*\(prefers-reduced-motion:\s*reduce\)\s*\{[^}]*\.domain>summary::after[^}]*\.ms__bar/.test(productCss)) {
+  console.log('FAIL: product.css does not disable both transitions for reduced motion');
+  process.exit(1);
+}
+console.log('PASS: product transitions honour reduced motion.');

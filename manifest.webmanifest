@@ -6,7 +6,6 @@
   "scope": "/",
   "start_url": "/learner/",
   "display": "standalone",
-  "orientation": "portrait-primary",
   "background_color": "#fffefa",
   "theme_color": "#1f6f5c",
   "categories": ["education", "finance", "health"],

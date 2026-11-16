@@ -384,9 +384,12 @@
       dd.textContent = typeof values[k] === 'number' ? values[k].toLocaleString() : values[k];
     });
     const s = feed.stats || {};
-    const by = Object.values(s.providers || {}).filter((p) => p.summaries).map((p) => `${p.label} ${String(p.model || '').split('/').pop()} (${p.summaries})`);
+    // Raw model ids are useful to maintainers but noisy on a learner page.
+    // Show which provider did how many summaries; the exact model stays on
+    // each card's "Summarised by" line for anyone who wants the detail.
+    const by = Object.values(s.providers || {}).filter((p) => p.summaries).map((p) => `${p.label} ${p.summaries}`);
     $('meta').textContent = feed.generated_at
-      ? `Updated ${new Date(feed.generated_at).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}${s.parallel_agents ? ` · ${s.model_calls} model calls, up to ${s.parallel_agents} agents at once` : ''}${by.length ? ` · ${by.join(', ')}` : feed.model ? ` · ${feed.model}` : ''}`
+      ? `Updated ${new Date(feed.generated_at).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}${s.parallel_agents ? ` · ${s.model_calls} model calls, up to ${s.parallel_agents} agents at once` : ''}${by.length ? ` · ${by.join(', ')}` : ''}`
       : 'The daily digest has not run yet.';
   }
 

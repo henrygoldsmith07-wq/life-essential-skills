@@ -301,7 +301,7 @@
   function render(){
     const rec=E.recommend(state,D,today()),p=E.progress(state,D,today());$('locality').value=state.locality;$('goal').value=state.goal_competencies[0]||'';renderProfiles();
     renderToday(rec,p);renderRoadmap();renderProgress(p);$('progress-content').insertAdjacentHTML('beforeend',evidenceLogHtml());renderPractice();renderSimulations();renderTools(false);renderProfile();assessor.render();
-    $('pathways-content').innerHTML='<div class="grid">'+D.index.pathways.map(p=>'<div class="card"><h2>'+esc(p.title)+'</h2><p>'+esc(p.domains.map(d=>D.index.domains.find(x=>x.id===d).title).join(', '))+'</p><p>30 suggested sessions, adjusted to your evidence. Finish with '+esc(D.index.capstones.find(c=>c.id===p.capstone).title)+'.</p><button type="button" data-pathway="'+p.id+'" '+(p.id===state.pathway?'disabled':'')+'>'+(p.id===state.pathway?'Your current pathway':'Choose this pathway')+'</button></div>').join('')+'</div>';
+    $('pathways-content').innerHTML='<div class="grid">'+D.index.pathways.map(p=>'<div class="card"><h2>'+esc(p.title)+'</h2><p>'+esc(p.domains.map(d=>D.index.domains.find(x=>x.id===d).title).join(', '))+'</p><p>30 suggested sessions, adjusted to your evidence. Finish with '+esc(D.index.capstones.find(c=>c.id===p.capstone).title)+'.</p><button type="button" data-pathway="'+esc(p.id)+'" '+(p.id===state.pathway?'disabled':'')+'>'+(p.id===state.pathway?'Your current pathway':'Choose this pathway')+'</button></div>').join('')+'</div>';
   }
   async function showLesson(path){
     const n=++token;current=null;
@@ -329,7 +329,12 @@
     const n=token;
     try{
       const box=$('ai-hint-body');box.innerHTML='<p class="muted">Asking for a coaching hint…</p>';
-      const draft=await AI_ADAPTER.coach_practice({competency_id:current.item.competencies[0],task:current.item.task,evidence:state});
+      // Send only what a coaching hint needs. Passing the whole evidence state
+      // would hand a network-backed adapter every record, date and error tag in
+      // this browser — far more than the learner asked to share.
+      const cid=current.item.competencies[0];
+      const recent=state.records.filter(r=>r.competency_id===cid).at(-1);
+      const draft=await AI_ADAPTER.coach_practice({competency_id:cid,task:current.item.task,error_tags:recent?recent.error_tags:[]});
       // asDraft wraps the result as an ai-assisted-draft that counts as help; render
       // it through FeedbackView.draft which escapes the content. This is practice
       // help, never the learner's own answer, and it forces help_used on save.
@@ -493,7 +498,7 @@
     notice('Your pathway and focus skills are set. Start with the highlighted next step.');
   }
   async function importEvidence(input){try{const file=input.files[0];if(!file)return;if(file.size>8000000)throw new Error('Evidence file is too large');const next=E.migrateState(JSON.parse(await file.text()),D,today());closeTask();assessor.cancel();blocked=false;persist(next);notice('Valid educational evidence imported. Review labels are local claims, not authenticated certificates.');}catch(e){notice('Import refused: '+e.message);}finally{input.value='';}}
-  $('domain-filter').innerHTML='<option value="all">All skill areas</option>'+D.index.domains.map(d=>'<option value="'+d.id+'">'+esc(d.title)+'</option>').join('');
+  $('domain-filter').innerHTML='<option value="all">All skill areas</option>'+D.index.domains.map(d=>'<option value="'+esc(d.id)+'">'+esc(d.title)+'</option>').join('');
   $('domain-filter').onchange=renderPractice;$('practice-filter').onchange=renderPractice;$('practice-search').oninput=renderPractice;
   $('goal').innerHTML+='<optgroup label="Skills">'+D.skills.competencies.filter(c=>c.mode==='independent').map(c=>'<option value="'+c.id+'">'+esc(skillName(c.id))+'</option>').join('')+'</optgroup>';
   $('goal').onchange=()=>persist({...state,goal_competencies:$('goal').value?[$('goal').value]:[]});

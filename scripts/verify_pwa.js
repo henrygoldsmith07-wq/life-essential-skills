@@ -97,6 +97,12 @@ const fire = (type, event) => {
   const cached = [...(store.get(cacheNames[0]) || new Map()).keys()];
   check('precache covers the dashboard shell and learner core',
     ['/learner/index.html', '/learner/app.js', '/learner/crypto-backup.js', '/learner/profiles.js', '/learner/tools.js', '/learner/data.js', '/manifest.webmanifest'].every((u) => cached.includes(u)));
+  // A new module loaded by the dashboard must be in the precache too, or the
+  // app works online but breaks offline. Derive the list from disk so this
+  // cannot drift when a module is added.
+  const modules = fs.readdirSync(path.join(ROOT, 'learner')).filter((f) => f.endsWith('.js'));
+  check('precache covers every learner module on disk',
+    modules.length > 0 && modules.every((f) => cached.includes('/learner/' + f)));
   check('precache never includes an aggregate answer file',
     cached.every((u) => !u.includes('assessor/answers.json') && !u.includes('assessor/benchmarks.json')));
 
@@ -123,6 +129,11 @@ const fire = (type, event) => {
   const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'manifest.webmanifest'), 'utf8'));
   check('manifest icons resolve to real files',
     manifest.icons.every((i) => fs.existsSync(path.join(ROOT, decodeURIComponent(new URL(i.src, 'http://localhost').pathname)))));
+  // A locked orientation makes the installed app unusable in landscape for
+  // learners with motor needs or a keyboard/tablet setup. Budgets and rubrics
+  // benefit from the extra width, so leave the choice to the device.
+  check('manifest does not lock screen orientation',
+    manifest.orientation === undefined || manifest.orientation === 'any');
 
   console.log(fail === 0 ? '\nALL PWA CHECKS PASS' : `\n${fail} FAILURE(S)`);
   process.exit(fail === 0 ? 0 : 1);
