@@ -142,6 +142,19 @@ server.listen(PORT, '127.0.0.1', async () => {
   if (/python3? scripts\/static_smoke\.js/.test(readme)) { fail++; console.log('FAIL README documents Python for a Node-only check'); }
   else console.log('PASS README documents the Node smoke command');
 
+  // The deployed site sets a CSP for every route. Keep the security-critical
+  // directives; a missing or weakened policy would not fail any other check.
+  const vercel = JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8'));
+  const allRoutes = vercel.headers.find((h) => h.source === '/(.*)');
+  const cspHeader = allRoutes && allRoutes.headers.find((h) => h.key === 'Content-Security-Policy');
+  const csp = cspHeader ? cspHeader.value : '';
+  const cspOk = csp.includes("default-src 'self'") && csp.includes("script-src 'self'") &&
+    !/script-src[^;]*'unsafe-inline'/.test(csp) && !/script-src[^;]*'unsafe-eval'/.test(csp) &&
+    csp.includes("object-src 'none'") && csp.includes("frame-ancestors 'none'") &&
+    csp.includes("base-uri 'self'") && csp.includes("connect-src 'self'");
+  if (!cspOk) { fail++; console.log('FAIL deployed CSP is missing or weakened'); }
+  else console.log('PASS deployed CSP blocks inline scripts, plugins and framing');
+
   server.close();
   console.log(fail === 0 ? '\nALL STATIC ROUTES OK' : `\n${fail} FAILURE(S)`);
   process.exit(fail === 0 ? 0 : 1);

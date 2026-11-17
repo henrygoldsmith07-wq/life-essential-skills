@@ -53,6 +53,7 @@
 
 ### Boundaries and integrity
 
+- Add a Content-Security-Policy to every deployed route: self-hosted scripts and styles only, no inline scripts or evaluation, no plugins, no framing or cross-origin form posts, and same-origin connections. The landing page's inline `<style>` and the app's dynamic style attributes still need `style-src 'unsafe-inline'`; no inline script or event handler exists in any page. The full browser suite was run against a local server applying the exact policy and passed, and `static_smoke.js` now fails if the policy is missing or weakened.
 - Add `learner/ai-boundary.js`: the interface and guards for optional AI assistance (scenario generation, alternative examples, personalised explanations, practice coaching). AI may never grade, derive an outcome, or turn an assisted performance into independent evidence; every AI artefact is labelled a draft, counts as solving help and is never persisted into learner evidence. The product ships with no provider and works fully without one.
 - The deterministic evidence model is unchanged. `evidence.js` remains the only thing that can derive an outcome; onboarding cannot create evidence; a simulation cannot alter how evidence is recorded. The engine and evidence test suites pass unmodified.
 
