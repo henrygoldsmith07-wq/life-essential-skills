@@ -46,4 +46,7 @@ test('Discover reflows on a phone without overflow or accessibility regressions'
   await expect(page.locator('#meta')).toContainText('Updated',{timeout:120000});
   expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  // The stats grid used to force ~328px of content into a 320px viewport.
+  await page.setViewportSize({width:320,height:700});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
 });

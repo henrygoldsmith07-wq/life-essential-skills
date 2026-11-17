@@ -58,6 +58,9 @@
 
 ### Fixed (found by reviewing the above)
 
+- **Shell edits could leave returning visitors on old code.** Five commits changed precached files after the last service-worker cache bump; with cache-first serving, the next visit could use the previous shell. The cache is bumped and `verify_pwa.js` now hashes the exact precache set, failing if a shell file changes without the recorded hash being updated (mutation-tested).
+- **Simulation S04's final stage only reported an outcome**, contrary to the promise that every stage changes the situation. Its final reveal now introduces a changed circumstance, a tighter change-marker check rejects the old outcome-only text (mutation-tested), and learner data was regenerated. The new scenario text is authored content and should get the usual content review.
+- **README told maintainers to run a Node check with Python.** `python scripts/static_smoke.js` fails with a syntax error; the command is corrected and guarded in the check itself.
 - **The settings accessibility scan found an unnamed file input.** The visually-hidden input behind "Import evidence" had no accessible name; it now has one, and a static guard checks every shell file input.
 - **An import test passed only because it read the wrong storage key.** With the key corrected it exposed a false premise (it expected a confirmation with no evidence to overwrite). The test now creates evidence first, so its "do not overwrite without consent" assertion is real.
 - **Attempt errors were off-screen.** An empty response or a failed feedback fetch now shows the message beside the response box as well as in the top live region, and a browser journey asserts it appears and clears.
