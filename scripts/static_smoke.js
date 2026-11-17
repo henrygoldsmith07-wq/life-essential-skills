@@ -136,6 +136,12 @@ server.listen(PORT, '127.0.0.1', async () => {
   if (notExcluded.length) { fail++; console.log('FAIL aggregate solution files not excluded from deploy:', notExcluded.join(', ')); }
   else console.log('PASS .vercelignore excludes aggregate answers/benchmarks');
 
+  // This check is Node-only; the README once told maintainers to run it with
+  // Python, which fails with a syntax error. Guard the documented command.
+  const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+  if (/python3? scripts\/static_smoke\.js/.test(readme)) { fail++; console.log('FAIL README documents Python for a Node-only check'); }
+  else console.log('PASS README documents the Node smoke command');
+
   server.close();
   console.log(fail === 0 ? '\nALL STATIC ROUTES OK' : `\n${fail} FAILURE(S)`);
   process.exit(fail === 0 ? 0 : 1);

@@ -6,6 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const crypto = require('crypto');
 
 const ROOT = path.resolve(__dirname, '..');
 let fail = 0;
@@ -103,6 +104,22 @@ const fire = (type, event) => {
   const modules = fs.readdirSync(path.join(ROOT, 'learner')).filter((f) => f.endsWith('.js'));
   check('precache covers every learner module on disk',
     modules.length > 0 && modules.every((f) => cached.includes('/learner/' + f)));
+  // A shell edit without a CACHE bump leaves returning visitors on the old
+  // code, because the worker serves precached responses before the network.
+  // Hash the exact precache set and require the recorded hash to match.
+  const swSrc = fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8');
+  const declared = (swSrc.match(/SHELL_HASH:\s*([a-f0-9]+)/) || [])[1];
+  const precacheList = (swSrc.split('const PRECACHE = [')[1] || '').split('];')[0];
+  const urls = [...precacheList.matchAll(/'([^']+)'/g)].map((m) => m[1]);
+  const hash = crypto.createHash('sha256');
+  for (const u of [...urls].sort()) {
+    let file = path.join(ROOT, u);
+    if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
+    hash.update(u + '\0' + (fs.existsSync(file) ? fs.readFileSync(file) : 'MISSING'));
+  }
+  const currentHash = hash.digest('hex').slice(0, 16);
+  check('service-worker shell hash matches the committed files (bump CACHE on change)',
+    !!declared && declared === currentHash, declared + ' vs ' + currentHash);
   check('precache never includes an aggregate answer file',
     cached.every((u) => !u.includes('assessor/answers.json') && !u.includes('assessor/benchmarks.json')));
 

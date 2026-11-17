@@ -108,8 +108,8 @@
           "ask": "How did you verify without using anything the requester gave you? What would you do now — to the account, the message, and the record?",
           "trap": "Calling a number in the message is not verification — the scammer controls it. Verify through a route you already trusted." },
         { "n": 3, "heading": "Protecting next time", "beat": "Close the door behind you.", "reveal": [
-          "You avoided the loss. Now consider what made you a target and what would make you less so."],
-          "ask": "What is one change that would make the next attempt harder — to your account, your backup access, or how requests are confirmed?",
+          "You avoided the loss. Two days later a second message arrives: this one comes from the number on your original invoice, quotes the real order, and says the order will be cancelled unless you pay by the end of the day. You cannot assume the first message was a one-off."],
+          "ask": "What do you do about this second message, and what one change would make the next attempt harder - to your account, your backup access, or how requests are confirmed?",
           "trap": "The strongest protection is a safe backup you already have before you need it, not one you set up in a panic." }      ],
       "records": [
         "How will you keep a record of a suspicious contact, and what have you already set up to protect the account that protects everything else?"

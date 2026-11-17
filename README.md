@@ -107,7 +107,7 @@ Two deployment safeguards:
 - [`.vercelignore`](.vercelignore) keeps maintainer-only paths (`scripts/`, `tests/`, `.github/`) out of the upload and excludes the aggregate `assessor/answers.json` and `assessor/benchmarks.json`, so a deployed site never serves every reference solution in one request. The browser only ever loads the per-item `assessor/feedback/<id>.json` and `assessor/calibration/<id>.json`, and only after an attempt.
 - `scripts/static_smoke.js` verifies every runtime asset resolves over HTTP with the right content type, that `learner/data.js` embeds no solutions, and that `.vercelignore` neither drops a required asset nor leaks the aggregate answer files. It runs in CI.
 
-To preview locally before deploying, serve the repository root over HTTP (`python -m http.server 8000`) and open `/learner/`. Re-run the drift checks after editing content: `python scripts/build_learner.py`, then `python scripts/static_smoke.js`.
+To preview locally before deploying, serve the repository root over HTTP (`python -m http.server 8000`) and open `/learner/`. Re-run the drift checks after editing content: `python scripts/build_learner.py`, then `node scripts/static_smoke.js`.
 
 ## Maintaining the curriculum
 

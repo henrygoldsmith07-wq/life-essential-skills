@@ -84,7 +84,10 @@ ok('goals point at real pathways', badPaths.length === 0, badPaths.join(','));
 // 8. Every simulation must actually change the constraint in its final stage.
 //    That is the core promise of a simulation, so verify it in data rather than
 //    trusting the prose. Require an explicit change marker in the final reveal.
-const CHANGE = /\b(but|however|instead|no longer|now|instead of|rather than|has changed|have changed|moved|not paid|no free|only \d)\b/i;
+// Explicit changed-circumstance markers only. "now" and "only N" used to be
+// accepted, so a final stage that merely stated an outcome ("You now have
+// £300") passed this check. S04 was the only stage relying on that loophole.
+const CHANGE = /\b(but|however|instead|no longer|rather than|has changed|have changed|has been|have been|were not paid|not paid|no free|moved|closed|cut|arrives)\b/i;
 const noChange = D.simulations.simulations.filter(s => {
   const last = s.stages[s.stages.length - 1];
   return !last || !last.reveal.some(r => CHANGE.test(r));
