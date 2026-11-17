@@ -21,8 +21,8 @@
 // Bump CACHE whenever any precached file changes, or returning visitors keep
 // being served the previous shell from cache-first. SHELL_HASH is checked in
 // CI against the files below; update it in the same commit.
-// SHELL_HASH: f7b5a03a2dff5cdd
-const CACHE = 'les-v8';
+// SHELL_HASH: ba0ddb448992f24f
+const CACHE = 'les-v9';
 
 const PRECACHE = [
   '/',
